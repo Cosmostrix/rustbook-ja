@@ -44,19 +44,14 @@ fn main() {
 }
 ```
 
-This program makes a [variable binding][var] named `x`. The value of this
-binding is a `Vec<T>`, a ‘vector’, that we create through a [macro][macro]
-defined in the standard library. This macro is called `vec`, and we invoke
-macros with a `!`. This follows a general principle of Rust: make things
-explicit. Macros can do significantly more complicated things than function
-calls, and so they’re visually distinct. The `!` also helps with parsing,
-making tooling easier to write, which is also important.
+この算譜は `x` と命名された[変数束縛][var]を作っています。この束縛の値は `Vec<T>` 「ベクトル」、私達が標準ライブラリで定義された[マクロ][macro]を通して作ったものです。
+このマクロは `vec` という名前で、マクロは後ろに `!` を付けることで呼び出せます。これは Rust の一般原則、物事はハッキリさせる、に従った表記です。マクロは関数呼び出しに比べてずっと高度で複雑なことができますから、マクロは見るからに別物でなければならないのです。末尾の `!` は構文解析をも簡単にし、補助道具を楽に書けるようにしていることもまた重要です。
 
-We used `mut` to make `x` mutable: bindings are immutable by default in Rust.
-We’ll be mutating this vector later in the example.
+私達は `x` の前に `mut` を付けて値を変更（上書き）可能にしました。Rust では束縛は何も指示しない限り不変です。
+例の中のベクトルはあとで変更します。
 
-It’s also worth noting that we didn’t need a type annotation here: while Rust
-is statically typed, we didn’t need to explicitly annotate the type. Rust has
+型注釈が必要でないことにも注目です。Rust
+は静的に型付けされていながら、型をわざわざ注記する必要がないのです。Rust has
 type inference to balance out the power of static typing with the verbosity of
 annotating types.
 
