@@ -1,7 +1,7 @@
 % 演譜言語 Rust
 
 はじめまして！ この本では、[演譜〈プログラミング〉言語 Rust][rust] について学びます。
-Rust は三つの目標、安全性・速度・並列処理に焦点を当てて開発されている算系〈システム〉演譜〈プログラミング〉言語です。Rust はこれらの目標をごみ収集部〈ガベージコレクター〉なしで堅持することにより、他の言語の苦手とする数々の用途にも活用できるものになっています。例えば、他の言語への埋め込みや、記憶域と実行時間の制約がある譜体〈プログラム〉、機器駆動書〈デバイスドライバー〉や基本算系〈オペレーティングシステム〉のような低水準な算譜〈コード〉等が書けます。Rust はこの領域を対象としている現在の言語たちを実行時のムダが全くない幾多の？？？〈コンパイル〉時安全性検査により改善し、さらに全ての読み書き衝突〈データ競合〉を生まれる前に消し去ります。Rust は「無賃〈ゼロコスト〉の抽象化」を実現することも目指しています。しかも、それらの内のいくつかはあたかも高水準言語を使っているかのような使用感を持つのです。
+Rust は三つの目標、安全性・速度・並列処理に焦点を当てて開発されている算系〈システム〉演譜〈プログラミング〉言語です。Rust はこれらの目標をごみ収集部〈ガベージコレクター〉なしで堅持することにより、他の言語の苦手とする数々の用途にも活用できるものになっています。例えば、他の言語への埋め込みや、記憶域と実行時間の制約がある譜体〈プログラム〉、機器駆動書〈デバイスドライバー〉や基本算系〈オペレーティングシステム〉のような低水準(機械寄り)な算譜〈コード〉等が書けます。Rust はこの領域を対象としている現在の言語たちを実行時のムダが全くない幾多の？？？〈コンパイル〉時安全性検査により改善し、さらに全ての不正遅延〈データ競合〉状態を生まれる前に消し去ります。Rust は「無賃〈ゼロコスト〉の抽象化」を実現することも目指しています。しかも、それらの内のいくつかはあたかも高水準言語を使っているかのような使用感を持つのです。
 その場合にも Rust では低水準言語らしい緻密な制御が可能になっています。
 
 [rust]: https://www.rust-lang.org
@@ -25,7 +25,7 @@ Rust は三つの目標、安全性・速度・並列処理に焦点を当てて
 [bi]: bibliography.html
 
 この序文を読み終えたあとは、好みに応じて「それはとっても嬉しいなって」または「構文も、意味論も、あるんだよ」のどちらかを読み進めたいと思うでしょう。企画から手をつけたい方は前者へ。小さく始めてひとつの概念をきちんと学びきってから次へ移りたい方は後者へどうぞ。
-多くの横断リンクが部分の全体を一つに繋ぎ合わせます。
+多くの横断リンクが各部分を一つに繋ぎ合わせます。
 
 ### 貢献について
 
@@ -34,9 +34,9 @@ Rust は三つの目標、安全性・速度・並列処理に焦点を当てて
 
 ## Rustの簡単な紹介
 
-Rust はあなたの興味を引くに相応しい言語なのでしょうか？ Rustの強みの一部が見える算譜の例をすこし挙げて調べてみることにしましょう。
+Rust はあなたの興味を引くに相応しい言語でしょうか？ Rustの強みを垣間見せる算譜の例をすこし挙げて調べてみることにしましょう。
 
-Rust を他にない言語たらしめている主な概念は「所有権」と呼ばれています。 この短い例を見てください。
+Rust を他にない言語たらしめている主な概念は「所有権」(ownership)と呼ばれています。この短い例を見てください。
 
 ```rust
 fn main() {
@@ -50,32 +50,18 @@ fn main() {
 私達は `x` の前に `mut` を付けて値を変更（上書き）可能にしました。Rust では束縛は何も指示しない限り不変です。
 例の中のベクトルはあとで変更します。
 
-型注釈が必要でないことにも注目です。Rust
-は静的に型付けされていながら、型をわざわざ注記する必要がないのです。Rust has
-type inference to balance out the power of static typing with the verbosity of
-annotating types.
+型注釈が必要でないことにも注目です。Rust は静的に型付けされていながら、型をわざわざ注記する必要がないのです。Rust が備える型推論は、静的な型付けの威力と型を注記する煩わしさのうまい均衡を取っています。
 
-Rust prefers stack allocation to heap allocation: `x` is placed directly on the
-stack. However, the `Vec<T>` type allocates space for the elements of the vector
-on the heap. If you’re not familiar with this distinction, you can ignore it for
-now, or check out [‘The Stack and the Heap’][heap]. As a systems programming
-language, Rust gives us the ability to control how our memory is allocated, but
-when we’re getting started, it’s less of a big deal.
+Rust は〈スタック〉割当てより〈ヒープ〉割当てを好みます。上の `x` はスタック上に直接置かれます。しかし、`Vec<T>` 型はベクトルの要素が置かれる領域をヒープ内に割当てます。この違いがよく分からない人は、今は気にしなくても構いませんし、[「スタックとヒープ」][heap]を読むのも良いでしょう.
+システムプログラミング言語として、Rust では記憶域の割当て方法を自由自在に決めることができますが、まだまだ最初ですから分からなくても大丈夫です。
 
 [var]: variable-bindings.html
 [macro]: macros.html
 [heap]: the-stack-and-the-heap.html
 
-Earlier, we mentioned that ‘ownership’ is the key new concept in Rust. In Rust
-parlance, `x` is said to ‘own’ the vector. This means that when `x` goes out of
-scope, the vector’s memory will be de-allocated. This is done deterministically
-by the Rust compiler, rather than through a mechanism such as a garbage
-collector. In other words, in Rust, we don’t call functions like `malloc` and
-`free` ourselves: the compiler statically determines when we need to allocate or
-deallocate memory, and inserts those calls itself. To err is to be human, but
-compilers never forget.
+さきほど「所有権」が Rust の肝だといいました。Rust 用語で `x` はベクトルを「所有」していると言います。これは、実行位置が `x` の(束縛)有効範囲〈スコープ〉から外れた瞬間に、ベクトルの記憶域割当てが終了するということです。記憶域の開放は Rust 〈コンパイラー〉により確定的に行われ、ごみ収集部〈ガベージコレクター〉のような機構は使用しません。つまり、Rustでは `malloc` や `free` のような機能を私達が呼ぶ必要はありません。〈コンパイラー〉が静的にいつ記憶域の割当開放が必要かを判断してこれらの呼び出しを足してくれます。過ちは人の常、されど〈コンパイラー〉の決して忘れることなし。
 
-Let’s add another line to our example:
+先の例に１行足してみましょう。
 
 ```rust
 fn main() {
@@ -85,17 +71,12 @@ fn main() {
 }
 ```
 
-We’ve introduced another binding, `y`. In this case, `y` is a ‘reference’ to the
-first element of the vector. Rust’s references are similar to pointers in other
-languages, but with additional compile-time safety checks. References interact
-with the ownership system by [‘borrowing’][borrowing] what they point to, rather
-than owning it. The difference is, when the reference goes out of scope, it
-won't deallocate the underlying memory. If it did, we’d de-allocate twice, which
-is bad!
+新しい束縛 `y` を追加しました。この場合、`y` はベクトルの最初の要素への「参照」です。Rust の参照は他の言語の場指し〈ポインター〉に近いものですが、更に？？？〈コンパイル〉時の安全性検査が付いています。
+参照と所有権方式とのやり取りは、参照先を所有する代わりに参照先を[「借用」][borrowing]することで行われます。参照の範囲外に出ても元の記憶域を開放しない点が大きなちがいです。もしここで開放してしまうと、二重に開放してしまうことになります。それはまずい！
 
 [borrowing]: references-and-borrowing.html
 
-Let’s add a third line. It looks innocent enough, but causes a compiler error:
+３行目を付け足しましょう。全く問題なさそうなのに、〈コンパイラー〉は誤りを生じました。
 
 ```rust,ignore
 fn main() {
@@ -107,8 +88,25 @@ fn main() {
 }
 ```
 
-`push` is a method on vectors that appends another element to the end of the
-vector. When we try to compile this program, we get an error:
+`push` はベクトルの操作法〈メソッド〉の一つで、ベクトルの末尾に別の要素を追加します。
+この算譜を〈コンパイル〉しようとすると、このような誤りになります。
+
+
+```text
+誤り。 `x` はすでに不変に借用されている為、可変に借用できません。
+    x.push("foo");
+    ↑
+注。 前回の `x` の借用はここです。不変な借用が借用の終わりまで後続の譲渡や `x` の可変な借用を防いでいます。
+    let y = &x[0];
+             ↑
+注。 前回の借用の終わりはここです。
+fn main() {
+
+}
+↑
+```
+
+実際はこのように表示されます。
 
 ```text
 error: cannot borrow `x` as mutable because it is also borrowed as immutable
@@ -125,20 +123,17 @@ fn main() {
 ^
 ```
 
-Whew! The Rust compiler gives quite detailed errors at times, and this is one
-of those times. As the error explains, while we made our binding mutable, we
-still can't call `push`. This is because we already have a reference to an
-element of the vector, `y`. Mutating something while another reference exists
-is dangerous, because we may invalidate the reference. In this specific case,
-when we create the vector, we may have only allocated space for two elements.
-Adding a third would mean allocating a new chunk of memory for all those elements,
-copying the old values over, and updating the internal pointer to that memory.
-That all works just fine. The problem is that `y` wouldn’t get updated, and so
-we’d have a ‘dangling pointer’. That’s bad. Any use of `y` would be an error in
-this case, and so the compiler has caught this for us.
+おお〜っと！ Rust 〈コンパイラー〉は時々すばらしくきめ細かに誤りを教えてくれますが、今回は当たりでした。
+誤りの示す通り、束縛を可変(mutable)にしていたとしても `push` を呼ぶことはできません。なぜなら、
+ベクトルの要素への参照 `y` がもうあるからです。他の参照が生きている間に一部を変更することは大変危険です。
+それは、その参照を破壊してしまえるからです。今の場合、最初にベクトルを作ったときに要素２つ分の領域だけを割り当てていたかもしれません。
+３つ目を追加するということは、全ての値が入る新しい記憶域の塊を割り当てて、古い値をまるっと写して開放し、
+内部の場指し〈ポインター〉を新しい記憶域に指すように更新することを意味しているかもしれません。
+これで何もかもが上手くいきます。問題は `y` が更新されていないことで、「中ぶらの場指し」が残ることです。
+これはまずいですね！この場合 `y` をどのように使おうが誤りになる可能性があります。
+だから〈コンパイラー〉は私達のためにこれを捕らえてくれたのです。
 
-So how do we solve this problem? There are two approaches we can take. The first
-is making a copy rather than using a reference:
+それで、どうすれば解決できるのでしょうか？２つの方法があります。１つ目は参照の代わりに複製を作る方法です。
 
 ```rust
 fn main() {
@@ -150,15 +145,14 @@ fn main() {
 }
 ```
 
-Rust has [move semantics][move] by default, so if we want to make a copy of some
-data, we call the `clone()` method. In this example, `y` is no longer a reference
-to the vector stored in `x`, but a copy of its first element, `"Hello"`. Now
-that we don’t have a reference, our `push()` works just fine.
+Rust は通常 [譲渡の意味論][move] を選択するので、あるものの複製を作りたいならば `clone()` 操作法を呼ぶ必要があります。
+この例では、`y` はもう `x` に格納されたベクトルへの参照ではなく、最初の要素 `"Hello"` の写しです。
+もはや参照は存在しないため `push()` は正しく動きます。
 
 [move]: ownership.html#move-semantics
 
-If we truly want a reference, we need the other option: ensure that our reference
-goes out of scope before we try to do the mutation. That looks like this:
+もし本当の参照と向き合いたいなら、他の選択肢が必要ですね。参照の有効範囲が確実に終わってから改変を試みるようにします。
+すると、こんな感じになります。
 
 ```rust
 fn main() {
@@ -172,8 +166,6 @@ fn main() {
 }
 ```
 
-We created an inner scope with an additional set of curly braces. `y` will go out of
-scope before we call `push()`, and so we’re all good.
+中括弧の組を増やして閉じた有効範囲を作りました。`y` は `push()` を呼ぶ前に範囲外になり、めでたしめでたしです。
 
-This concept of ownership isn’t just good for preventing dangling pointers, but an
-entire set of related problems, like iterator invalidation, concurrency, and more.
+この所有権の概念は中ぶら場指しを防ぐのみならず、〈イテレーター〉無効化や並行処理などのような関連する問題全体にも効きます。
