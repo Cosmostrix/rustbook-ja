@@ -62,7 +62,7 @@
     * [Inline Assembly](inline-assembly.md)
     * [No stdlib](no-stdlib.md)
     * [Intrinsics](intrinsics.md)
-    * [Lang items](lang-items.md)
+    * [言語建材](lang-items.md)
     * [より高度な結合方法](advanced-linking.md)
     * [測能試験](benchmark-tests.md)
     * [Box 構文と模式](box-syntax-and-patterns.md)
