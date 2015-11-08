@@ -1,21 +1,22 @@
 % Rust を導入しよう
 
-The first step to using Rust is to install it! There are a number of ways to
-install Rust, but the easiest is to use the `rustup` script. If we're on Linux
-or a Mac, all we need to do is this:
+Rust を使う最初の一歩はまずそれを導入〈インストール〉することです！
+Rust の導入方法には色々ありますが、最も簡単なのは `rustup` 台譜〈スクリプト〉を使う方法です。
+Linux または Mac をお使いの場合、
+唯一必要なことは次の行を端末〈ターミナル〉で実行することだけです。
 
-> Note: we don't need to type in the `$`s, they just indicate the start of
-> each command. We’ll see many tutorials and examples around the web that
-> follow this convention: `$` for commands run as our regular user, and `#` for
-> commands we should be running as an administrator.
+> 【注意】先頭の `$` 記号は入力しないでください。これらは各命令の始まりを示すだけの印です。
+> Web の各所でこのような慣例に従った多くの指導書〈チュートリアル〉やお手本を見かけると思います。
+> 標準利用者〈ユーザー〉として実行する命令〈コマンド〉には `$` を、
+> 管理者として実行しなければならない命令には `#` を使います。
 
 ```bash
 $ curl -sf -L https://static.rust-lang.org/rustup.sh | sh
 ```
 
-If we're concerned about the [potential insecurity][insecurity] of using `curl |
-sh`, please keep reading and see our disclaimer below. And feel free to use a
-two-step version of the installation and examine our installation script:
+`curl | sh` を使うことについて[もしやの不安 (英語)][insecurity]を懸念されるのならば、
+このまま読み進めて下にある私達の免責条項をご覧ください。また、
+次の２段階版を使って私達の導入台譜を査読することもご遠慮なくどうぞ。
 
 ```bash
 $ curl -f -L https://static.rust-lang.org/rustup.sh -O
@@ -24,13 +25,15 @@ $ sh rustup.sh
 
 [insecurity]: http://curlpipesh.tumblr.com
 
-If you're on Windows, please download the appropriate [installer][install-page].
+Windows をお使いの場合、適切な[取付具〈インストーラー〉][install-page]を入荷〈ダウンロード〉してください。
 
-> Note: By default, the Windows installer won't add Rust to the %PATH% system
-> variable. If this is the only version of Rust we are installing and we want to
-> be able to run it from the command line, click on "Advanced" on the install
-> dialog and on the "Product Features" page ensure "Add to PATH" is installed on
-> the local hard drive.
+【訳者註】無料です。強いて言えば使って広めることが対価という考えもあります。
+
+> 【注意】黙用的に〈By default〉、Windows用取付具は %PATH% 算系〈システム〉環境変数に
+> Rust の場所を追加しません。もしこの Rust が導入後に命令行〈コマンドライン〉から走らせたい
+> ただひとつの版なら、導入〈ダイアログ〉の "Advanced" を押下〈クリック〉して
+> "Product Features" ページの "Add to PATH" が〈ローカルハードドライブ〉に導入される
+> ことを確実にしてください。
 
 
 [install-page]: https://www.rust-lang.org/install.html
