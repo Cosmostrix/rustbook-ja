@@ -216,7 +216,7 @@ $ cargo new hello_world --bin
 ```
 
 目標はいきなり（〈ライブラリ〉ではなく）実行可能な譜体を作ることなので、`--bin`
-を渡しています。実行形式はよく２進譜‘binaries’と呼ばれています。
+を渡しています。実行形式はよく２進譜「binary (バイナリー)」と呼ばれています。
 (Unix 算系をお使いなら `/usr/bin` に同じ。)
 We’re passing `--bin` because our goal is to get straight to making an
 executable application, as opposed to a library. Executables are often called
@@ -252,10 +252,14 @@ version = "0.1.0"
 authors = ["Your Name <you@example.com>"]
 ```
 
+Cargo は与えた引数と `git` の全体設定を元に妥当な黙用値〈デフォルト〉
+を含んだこの〈ファイル〉を作りました。Cargo が `hello_world` 階層を `git`〈レポジトリ〉
+として初期化したことにも気づいたかもしれません。
 Cargo has populated this file with reasonable defaults based off the arguments
 we gave it and our `git` global configuration. You may notice that Cargo has
 also initialized the `hello_world` directory as a `git` repository.
 
+`src/main.rs` の中はこうなっています。
 Here’s what’s in `src/main.rs`:
 
 ```rust
@@ -264,16 +268,26 @@ fn main() {
 }
 ```
 
+Cargo が "Hello World!" を生成してくれたので、すぐ譜面に向かう用意ができました！
+Cargo にはそれ自身の[手引き][guide]があり、Cargo の特徴をより深く網羅しています。
 Cargo has generated a "Hello World!" for us, and we’re ready to start coding!
 Cargo has its own [guide][guide] which covers Cargo’s features in much more
 depth.
 
 [guide]: http://doc.crates.io/guide.html
 
+基本的な道具の使い方が分かったところで、Rust 言語自体についてもっと実際に学んでいきましょう。
+これらは、これから Rust を使っていく中でとても役立つ基本中の基本です。
 Now that we’ve got the tools down, let’s actually learn more about the Rust
 language itself. These are the basics that will serve us well through the rest
 of our time with Rust.
 
+あなたには２つの選択肢があります。
+「[Rust を学ぼう][learnrust]」へ進んで企画に飛び込むもよし、
+または「[構文も、意味論も、あるんだよ][syntax]」へ進んで地盤から着実に学んでもよいでしょう。
+比較的経験のある算系演譜師〈システムプログラマー〉は多分「Rust を学ぼう」を選ぶでしょう。
+動的言語を学んできた方々はどちらでも楽しめると思いますけどね。
+学びの様は人それぞれです！あなたに合っている方を選んでください。
 You have two options: Dive into a project with ‘[Learn Rust][learnrust]’, or
 start from the bottom and work your way up with
 ‘[Syntax and Semantics][syntax]’. More experienced systems programmers will
