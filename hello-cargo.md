@@ -141,7 +141,7 @@ Hello, world!
 ```
 
 今回は企画を織り直していなかったことに目を向けてください。Cargo は原譜に手が加わってなかった
-ことを見抜き２進譜を実行するに留めました。
+ことを見抜き二進譜を実行するに留めました。
 もし手を加えていれば両方ともが行なわれる様子を見ていたでしょう。
 Notice that we didn’t re-build the project this time. Cargo figured out that
 we hadn’t changed the source file, and so it just ran the binary. If we had
@@ -216,7 +216,7 @@ $ cargo new hello_world --bin
 ```
 
 目標はいきなり（〈ライブラリ〉ではなく）実行可能な譜体を作ることなので、`--bin`
-を渡しています。実行形式はよく２進譜「binary (バイナリー)」と呼ばれています。
+を渡しています。実行形式はよく二進譜「binary (バイナリー)」と呼ばれています。
 (Unix 算系をお使いなら `/usr/bin` に同じ。)
 We’re passing `--bin` because our goal is to get straight to making an
 executable application, as opposed to a library. Executables are often called

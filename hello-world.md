@@ -157,7 +157,7 @@ $ rustc main.rs
 ```
 
 `rustc` は、C や C++ の経験者にとっての、`gcc` または `clang` のようなものです。
-Rust は実行可能な２進譜〈バイナリ〉を出力します。`ls` でそれを見られます。
+Rust は実行可能な二進譜〈バイナリ〉を出力します。`ls` でそれを見られます。
 This is similar to `gcc` or `clang`, if you come from a C or C++ background.
 Rust will output a binary executable. We can see it with `ls`:
 
