@@ -28,13 +28,14 @@ $ sh rustup.sh
 
 Windows をお使いの場合、適切な[取付具〈インストーラー〉][install-page]を入荷〈ダウンロード〉してください。
 
-【訳者註】無料です。強いて言えば使って広めることが対価という考えもあります。
+【訳者註】無料です。ひとまずは安定版 (stable)
+の「32-bit」または「64-bit」を環境に合うように選ぶと良いでしょう。
 
-> 【注意】黙用的に〈By default〉、Windows 用取付具は %PATH% 算系〈システム〉環境変数に
+> 【注意】黙用的に〈デフォルトで〉、Windows 用取付具は %PATH% 算系〈システム〉環境変数に
 > Rust の場所を追加しません。もしこの Rust が導入後に命令行〈コマンドライン〉から走らせたい
-> ただひとつの版なら、導入〈ダイアログ〉の "Advanced" を押下〈クリック〉して
-> "Product Features" ページの "Add to PATH" が〈ローカルハードドライブ〉に導入される
-> ことを確実にしてください。
+> ただひとつの版なら、導入画面の「Advanced」を押下〈クリック〉して道なりに進み、
+> 「Product Features」画面の「Add to PATH」を選択し「Entire feature will be 
+> installed on local hard drive」を確実に選択して進めてください。
 
 
 [install-page]: https://www.rust-lang.org/install.html
@@ -58,27 +59,26 @@ Windows 用取付具を使った場合は、もう一度その `.msi` を実行�
 根本的には、こうするとき Rust を保守している善良な人々が計算機を侵害して悪事を
 はたらかないことを当てにしているからです。
 実によい洞察です！もしあなたがそのような方々の一員なら、開発資料集の
-[Rust を原譜から〈ビルド〉する][from-source]や[公式二進譜〈バイナリ〉置き場]
+[Rust を原譜から製譜〈ビルド〉する][from-source]や[公式 二進譜〈バイナリ〉置き場]
 [install-page]を当たってみてください。
 
 [from-source]: https://github.com/rust-lang/rust#building-from-source
 
-## 〈プラットフォーム〉対応
+## 土台環境〈プラットフォーム〉対応
 
-あと、公式に対応〈サポート〉している〈プラットフォーム〉も述べておかなければなりません。
+あと、公式に対応〈サポート〉している土台環境〈プラットフォーム〉も述べておかなければなりません。
 
 * Windows (7 以降、Server 2008 R2)
 * Linux (2.6.18 以降、多くの頒布物〈ディストリビューション〉)、x86 及び x86-64
 * OS X 10.7 (Lion) 以降、x86 及び x86-64
 
-私達は以上に加え、他に Android のような２、３の〈プラットフォーム〉で広範囲に
+私達は以上に加え、他に Android のような２、３の土台環境で広範囲に
 Rust を検査しています。
 とはいえ、上記３つは最も試されているので、最も動作しやすいはずです。
 
 最後に、Windows について一つ。Rust は放流〈リリース〉に際し Windows を第一級市民扱いしていますが、率直に言うと Windows での使用感は Linux/OS X のものに比べて洗練されていません。目下改善中です！もし何か動かないものがあれば、
 それは害虫〈バグ〉(不具合)です。もし見かけたらお知らせください。Windows
-に対しても他の〈プラットフォーム〉と同様に全ての〈コミット〉
-が漏れなく検査されています。
+に対しても他の土台環境と同様に全ての〈コミット〉が漏れなく検査されています。
 
 ## 導入が終わったときは
 
@@ -88,17 +88,16 @@ Rust の導入が無事済んだら、司得〈シェル〉を開いてこのよ
 $ rustc --version
 ```
 
-版数〈バージョン数〉、〈コミットハッシュ〉、〈コミット日時〉が表示されるはずです。
+版数〈バージョン〉、〈コミットハッシュ〉、〈コミット日時〉が表示されるはずです。
 
 うまく表示されたら導入成功です！ やったね たえちゃん演譜ができるよ！
 
 Windows をお使いでうまく行かなかった場合は、%PATH% 算系環境変数に Rust
 が含まれているか確認してください。もしなかった場合、取付具を再度走らせて
 "Change,	 repair, or remove installation" ページ内の "Change" を選び、
-"Add to PATH" が確実に〈ローカルハードドライブ〉
-に導入されているようにしてください。
+"Add to PATH" が確実に「local hard drive」に導入されているようにしてください。
 
-この取付具は開発資料集の写し一式も手元に導入します。従って、〈オフライン〉
+この取付具は開発資料集の写し一式も手元に導入します。従って、無接続〈オフライン〉
 で読めます。UNIX系算系では `/usr/local/share/doc/rust` がその場所です。
 Windows では Rust が導入された階層〈フォルダ〉内の `share/doc`
 階層にあります。
@@ -106,14 +105,18 @@ Windows では Rust が導入された階層〈フォルダ〉内の `share/doc`
 他にも、助けを求められる場所がたくさんあります。一番簡単なのは、
 [irc.mozilla.org 上にある IRC #rust チャンネル (英語)][irc]で、そこには
 [Mibbit][mibbit] を通して到達できます。リンクを押下すると、私達が他の心優しい 
-Rustacean (私達が自分たちのことを呼ぶちゃらけた〈ニックネーム〉です)
+Rustacean (私達が自分たちのことを呼ぶちゃらけた二つ名〈ニックネーム〉です)
 達とおしゃべりしているはずです。
-他によい場所には[〈ユーザーフォーラム〉(英語)][users]と
+他によい場所には[井戸端会議所〈ユーザーフォーラム〉(英語)][users]と
 [Stack Overflow (英語)][stackoverflow]などがあります。
 
 [irc]: irc://irc.mozilla.org/#rust
-[mibbit]: http://chat.mibbit.com/?server=irc.mozilla.org&channel=%23rust
+[mibbit]: https://chat.mibbit.com/?server=irc.mozilla.org&channel=%23rust
 [users]: https://users.rust-lang.org/
-[stackoverflow]: http://stackoverflow.com/questions/tagged/rust
+[stackoverflow]: https://stackoverflow.com/questions/tagged/rust
 
-【訳者註】（近日中に日本語コミュを作る？）
+【訳者註】[スタック・オーバーフロー 日本語版][stackoverflow-ja]、[IRC #rust-jp チャンネル][irc-jp]、[Mibbit #rust-jp][mibbit-jp]
+
+[stackoverflow-ja]: https://ja.stackoverflow.com/questions/tagged/rust
+[irc-jp]: irc://irc.mozilla.org/#rust-jp
+[mibbit-jp]: https://chat.mibbit.com/?server=irc.mozilla.org&channel=%23rust-jp

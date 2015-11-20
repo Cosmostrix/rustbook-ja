@@ -14,8 +14,9 @@ so it is assumed that Rust projects will use Cargo from the beginning.
 
 [cratesio]: http://doc.crates.io
 
-Cargo は３つのモノを管理します。譜面の織り上げ〈ビルド〉、必要になった依存物〈依存関係〉
-の入荷、そして入荷された依存物の織り上げです。最初は私達の算譜に依存物が全くないので、
+Cargo は３つのモノを管理します。
+譜面〈コード〉の織り上げ〈ビルド〉、必要になった依存物〈依存関係〉の入荷、
+そして入荷された依存物の織り上げです。最初は私達の算譜〈プログラム〉に依存物が全くないので、
 前者の機能だけを使うことになります。ゆくゆくは、もっと追加していくつもりです。
 Cargo を使って書き始めたので追加は簡単にできるでしょう。
 Cargo manages three things: building our code, downloading the dependencies our
@@ -24,7 +25,7 @@ any dependencies, so we’ll only be using the first part of its functionality.
 Eventually, we’ll add more. Since we started off by using Cargo, it'll be easy
 to add later.
 
-Rust を公式の取付具から導入した場合は Cargo も入っているはずです。
+Rust を公式の取付具〈インストーラー〉から導入した場合は Cargo も入っているはずです。
 Rust を他の手段で導入した場合は、導入について触れている
 [Cargo の README に当たって][cargoreadme]特定の手順を踏みたいことでしょう。
 If you installed Rust via the official installers you will also have Cargo. If
@@ -50,11 +51,11 @@ old executable (`main.exe` on Windows, `main` everywhere else). Let's do that pa
 ```bash
 $ mkdir src
 $ mv main.rs src/main.rs
-$ rm main  # Windows では 'rm main.exe'
+$ rm main  # Windows では 「rm main.exe」
 ```
 
 > 【注意】今は実行形式を作ろうとしているので、原譜名 `main.rs` はそのままにします。
-> もし代わりに〈ライブラリ〉を作りたいときは、`lib.rs` と名付けるとよいでしょう。
+> もし代わりに譜集〈ライブラリ〉を作りたいときは、`lib.rs` と名付けるとよいでしょう。
 > この習慣的名前は Cargo が私達の企画をうまく製譜するために使用しますが、
 > 望むのなら上書き変更できます。開始地点となる〈ファイル〉の場所は TOML〈ファイル〉の
 > [`[lib]` または `[[bin]]`][crates-custom] 鍵〈キー〉で指定できます。
@@ -66,8 +67,9 @@ $ rm main  # Windows では 'rm main.exe'
 
 [crates-custom]: http://doc.crates.io/manifest.html#configuring-a-target
 
-Cargo はすべての原譜が `src` 階層に収まっていると期待しています。こうすると最上位階層が
-README 関係・許諾契約〈ライセンス〉情報・譜面に関係のないその他一切のために残ります。
+Cargo はすべての原譜が `src` 階層に収まっていると期待しています。
+こうすると最上位階層が README (お読みください)
+関係・使用許諾契約〈ライセンス〉情報・譜面に関係のないその他一切のために残ります。
 Cargo は私達の企画を整然とした心地いいものに保つよう手伝ってくれます。
 すべての物には置場があります。
 
@@ -80,7 +82,7 @@ everything, and everything in its place.
 Next, our configuration file:
 
 ```bash
-$ editor Cargo.toml # Windows では 'notepad Cargo.toml'
+$ editor Cargo.toml # Windows では 「notepad Cargo.toml」
 ```
 
 この名前は間違えないように。`C` は必ず大文字です。
@@ -142,7 +144,7 @@ Hello, world!
 
 今回は企画を織り直していなかったことに目を向けてください。Cargo は原譜に手が加わってなかった
 ことを見抜き二進譜を実行するに留めました。
-もし手を加えていれば両方ともが行なわれる様子を見ていたでしょう。
+もし手を加えていれば両方ともが行なわれる様子を見てとれたでしょう。
 Notice that we didn’t re-build the project this time. Cargo figured out that
 we hadn’t changed the source file, and so it just ran the binary. If we had
 made a modification, we would have seen it do both:
@@ -164,8 +166,8 @@ about the future: when our project gets more complex, we need to do more
 things to get all of the parts to properly compile. With Cargo, as our project
 grows, we can just run `cargo build`, and it’ll work the right way.
 
-ついに私達の企画が放流の時を迎えたら、`cargo build --release`
-を使って企画を最適化 (optimizations) ありで製譜できます。
+ついに私達の企画が放流 (release) の時を迎えたら、`cargo build --release`
+を使って企画を最適化ありで製譜できます。
 When our project is finally ready for release, we can use `cargo build
 --release` to compile our project with optimizations.
 
@@ -215,14 +217,14 @@ To start a new project with Cargo, we use `cargo new`:
 $ cargo new hello_world --bin
 ```
 
-目標はいきなり（〈ライブラリ〉ではなく）実行可能な譜体を作ることなので、`--bin`
-を渡しています。実行形式はよく二進譜「binary (バイナリー)」と呼ばれています。
+目標はいきなり（譜集〈ライブラリ〉ではなく）実行可能な譜体を作ることなので、`--bin`
+を渡しています。実行形式はよく「二進譜 (binary)〈バイナリー〉」と呼ばれています。
 (Unix 算系をお使いなら `/usr/bin` に同じ。)
 We’re passing `--bin` because our goal is to get straight to making an
 executable application, as opposed to a library. Executables are often called
 ‘binaries.’ (as in `/usr/bin`, if we’re on a Unix system)
 
-Cargo が生成してくれたところを調べてみましょう。
+Cargo が生成してくれたものを調べてみましょう。
 Let's check out what Cargo has generated for us:
 
 ```bash
@@ -253,8 +255,8 @@ authors = ["Your Name <you@example.com>"]
 ```
 
 Cargo は与えた引数と `git` の全体設定を元に妥当な黙用値〈デフォルト〉
-を含んだこの〈ファイル〉を作りました。Cargo が `hello_world` 階層を `git`〈レポジトリ〉
-として初期化したことにも気づいたかもしれません。
+を含んだこの〈ファイル〉を作りました。Cargo が `hello_world` 階層を
+`git` 宝庫〈レポジトリ〉として初期化したことにも気づいたかもしれません。
 Cargo has populated this file with reasonable defaults based off the arguments
 we gave it and our `git` global configuration. You may notice that Cargo has
 also initialized the `hello_world` directory as a `git` repository.

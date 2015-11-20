@@ -13,7 +13,7 @@ guess correctly, it will  us. Sounds good?
 
 # 下準備
 
-新しい企画を立ち上げましょう。企画用 階層〈ディレクトリ〉(projects) に移動します。
+新しい企画を立ち上げましょう。企画用 階層〈ディレクトリ〉に移動します。
 `hello_world` のときに階層構造と `Cargo.toml` を作った方法を覚えていますか？
 Cargo にはそれをやってくれる命令があるのでした。やってみましょう。
 Let’s set up a new project. Go to your projects directory. Remember how we had

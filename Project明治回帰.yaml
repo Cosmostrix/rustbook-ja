@@ -1,3 +1,4 @@
+#!/bin/env ruby -r yaml -r pp -e 'pp YAML.load(ARGF.read())'
 # H27.10.26-27
 # -11.10 -11.20
 
@@ -1117,7 +1118,7 @@
 - en: user
   ja: 利用者
 - en: platform
-  ja: 
+  ja: 土台環境
   common: プラットフォーム
 - en: commit
   #ja: 確注
@@ -1139,8 +1140,12 @@
   ja: 放流
   common: リリース
 - en: online
+  ja: 接続下?
+  #ja: 網下
   common: オンライン
 - en: offline
+  ja: 無接続?
+  #ja: 無網下
   common: オフライン
 - en: plugin
   ja: 拡張
@@ -1193,6 +1198,19 @@
 - en: container
   ja: 容器
   common: コンテナ
+- en: user forum
+  ja: 井戸端会議所
+  common: ユーザーフォーラム
+- en: nickname
+  ja: あだ名, 二つ名
+  common: ニックネーム
+- en: repository
+  ja: 宝庫
+  #ja: 収納, 倉庫
+  common: レポジトリ
+  comment: |
+    日本の住宅事情により、「収納」「倉庫」という言葉には「要らないものを捨てる」という考えが
+    まとわりつくため不適
 
 # Rust 用語
 - en: ownership
