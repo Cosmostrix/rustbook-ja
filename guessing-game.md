@@ -26,7 +26,7 @@ $ cargo new guessing_game --bin
 $ cd guessing_game
 ```
 
-`cargo new` に企画の名前と、〈ライブラリ〉ではなく二進譜を作ろうとしているので
+`cargo new` に企画の名前と、譜集〈ライブラリ〉ではなく二進譜を作ろうとしているので
 `--bin` 旗〈フラグ〉を渡します。
 We pass the name of our project to `cargo new`, and then the `--bin` flag,
 since we’re making a binary, rather than a library.
@@ -79,7 +79,7 @@ $ cargo run
      Running `target/debug/guessing_game`
 Hello, world!
 ```
-すごい！ `run` 命令は企画上を激しく反復する必要のあるとき大変重宝します。
+すごい！ `run` 命令は企画上で激しく反復する必要のあるときに大変重宝します。
 今回のゲームはまさにこのようなもので、次の一歩の前に手早く今の一歩を試す必要があります。
 Great! The `run` command comes in handy when you need to rapidly iterate on a
 project. Our game is just such a project, we need to quickly test each
@@ -111,6 +111,8 @@ fn main() {
 }
 ```
 
+【訳者註】保存する際、文字符号〈文字コード〉を必ず UTF-8 にしてください。他の選択はありえません。
+
 ```rust,no_run
 use std::io;
 
@@ -137,10 +139,10 @@ use std::io;
 ```
 
 利用者からの入力を得て、結果を出力として印字する必要があるわけです。そのため、
-標準 (standard)〈ライブラリ〉内の `io`〈ライブラリ〉が必要です。通常 Rust は各算譜に
-「[prelude][prelude]」というわずかなものしか取り込みません。prelude
-に入っていないものは文字通り「使う」(`use`) 必要があります。２つめの「prelude」である
-[`io` prelude][ioprelude] もあります。それも似たような働きをし、
+標準 (standard) 譜集内の `io` 譜集が必要です。通常 Rust は各算譜に
+「[前奏 (prelude)〈プレリュード〉][prelude]」というわずかなものしか取り込みません。
+前奏に入っていないものは文字通り「使う」(`use`) 必要があります。２つめの「前奏」である
+[`io` 前奏][ioprelude] もあります。それも似たような働きをし、
 これを取り込む〈インポートする〉とそれが `io` 関連の便利なものをたくさん取り込んで来ます。
 We’ll need to take user input, and then print the result as output. As such, we
 need the `io` library from the standard library. Rust only imports a few things
@@ -211,7 +213,7 @@ a few tricks up their sleeves.？？？
 
 例えば、あえて指示しない限り[不変][immutable] (immutable) になります。
 さっきの例に `mut` が付いていたのはそのためで、束縛を不変ではなく可変 (mutable) にする効果があります。
-`let` の文の左辺に置かれるのは名前だけに限りません。実は「[模式〈パターン〉 (pattern)][patterns]」
+`let` の文の左辺に置かれるのは名前だけに限りません。実は「[模式 (pattern)〈パターン〉][patterns]」
 をとることができます。模式は後で使っていきます。今はこれだけで十分です。
 For example, they’re [immutable][immutable] by default. That’s why our example
 uses `mut`: it makes a binding mutable, rather than immutable. `let` doesn’t
@@ -227,7 +229,7 @@ let mut それ = 5; // 可変 mutable
 [immutable]: mutability.html
 [patterns]: patterns.html
 
-あ、'//' は注釈〈コメント〉 (comment) の始まりのことで、その行末までの全てを Rust
+あ、'//' は注釈 (comment)〈コメント〉の始まりのことで、その行末までの全てを Rust
 は[注釈][comments]として無視します。
 Oh, and `//` will start a comment, until the end of the line. Rust ignores
 everything in [comments][comments].
@@ -240,8 +242,8 @@ So now we know that `let mut guess` will introduce a mutable binding named
 `guess`, but we have to look at the other side of the `=` for what it’s
 bound to: `String::new()`.
 
-`String` は文字列 (string) 型 (type) で、標準〈ライブラリ〉で提供されています。
-[`String`][string] は増量可能な UTF-8 符号化された文章のかけらです。
+`String` は文字列 (string) 型 (type) で、標準譜集で提供されています。
+[`String`][string] は伸長可能な UTF-8 方式で符号化された文章です。
 `String` is a string type, provided by the standard library. A
 [`String`][string] is a growable, UTF-8 encoded bit of text.
 
@@ -302,7 +304,7 @@ The next part will use this handle to get input from the user:
 ```
 
 ここでは、手綱から(行読み) [`read_line()`][read_line] 操作法を呼びます。
-[操作法 (method)][method] は付属機能に近いですが、
+[操作法 (method)〈メソッド〉][method] は付属機能に近いですが、
 型自身でなく型の何かしらの実例に対してのみ利用出来ます。
 `read_line()` には引数もひとつ `&mut guess` 渡しています。
 Here, we call the [`read_line()`][read_line] method on our handle.
@@ -366,8 +368,8 @@ done:
 `read_line()` についてはもう話しましたが、`ok()` と `expect()` は何でしょうか？
 ええ、`read_line()` が利用者の入力を渡した `&mut String` に入れることにはもう触れましたが、
 そこで帰ってくる値は、[`io::Result`][ioresult] になっています。Rust には結果 (`Result`)
-という名前の型が標準〈ライブラリ〉にたくさんあります。一般的な [`Result`][result] や、
-下位〈ライブラリ〉専用版の `io::Result` などです。
+という名前の型が標準譜集にたくさんあります。一般的な [`Result`][result] や、
+下位譜集専用版の `io::Result` などです。
 But that gets hard to read. So we’ve split it up, three lines for three
 method calls. We already talked about `read_line()`, but what about `ok()`
 and `expect()`? Well, we already mentioned that `read_line()` puts what
@@ -433,7 +435,7 @@ Rust は `Result` 値を使っていなかったことで警告しました。�
 はあなたが発生しうる誤りに対処していないことを伝えようとしています。この誤りをなくす正攻法は、
 実際に誤りの対処を書くことです。
 幸運にも、問題があるときに急停止させたいだけの場合は２つの小さな操作法を使うことができます。
-誤りからどうにか回復できそうな場合は他にやることがありますが、それはあとの企画のために取っておきます。
+誤りからどうにか回復できる場合は他にやることもあるでしょうが、それはあとの企画のために取っておきます。
 Rust warns us that we haven’t used the `Result` value. This warning comes from
 a special annotation that `io::Result` has. Rust is trying to tell you that you haven’t
 handled a possible error. The right way to suppress the error is
@@ -487,10 +489,10 @@ and then print it back out.
 # Generating a secret number
 
 次に、秘密の数字を生成する必要があります。
-Rust の標準〈ライブラリ〉に乱数生成器はまだ入っていませんが、Rust 開発班は
-[`rand` わく箱〈クレート〉][randcrate] を用意しています。「わく箱〈クレート〉(crate)」は Rust
-譜面の＊＊＊〈パッケージ〉です。私達の作っている「二進譜わく箱」は実行可能形式です。
-`rand` は「〈ライブラリ〉わく箱」で、他の算譜から使われることを意図した譜面を含んでいます。
+Rust の標準譜集に乱数生成器はまだ入っていませんが、Rust 開発班は
+[`rand` わく箱][randcrate] を用意しています。「わく箱 (crate)〈クレート〉」は Rust
+譜面の＊＊包装物＊＊〈パッケージ〉です。私達の作っている「二進譜わく箱」は実行可能形式です。
+`rand` は「譜集わく箱」で、他の算譜から使われることを意図した譜面を含んでいます。
 Next, we need to generate a secret number. Rust does not yet include random
 number functionality in its standard library. The Rust team does, however,
 provide a [`rand` crate][randcrate]. A ‘crate’ is a package of Rust code.
@@ -500,7 +502,7 @@ programs.
 sec
 [randcrate]: https://crates.io/crates/rand
 
-外部の〈クレート〉を使うとき Cargo はその真価を発揮します。`rand` を使った譜面を書く前に `Cargo.toml`
+外部のわく箱を使うとき Cargo はその真価を発揮します。`rand` を使った譜面を書く前に `Cargo.toml`
 の変更が必要です。開いて、末尾に数行足します。
 Using external crates is where Cargo really shines. Before we can write
 the code using `rand`, we need to modify our `Cargo.toml`. Open it up, and

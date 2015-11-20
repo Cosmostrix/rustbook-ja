@@ -1211,6 +1211,9 @@
   comment: |
     日本の住宅事情により、「収納」「倉庫」という言葉には「要らないものを捨てる」という考えが
     まとわりつくため不適
+- en: prelude
+  ja: 前奏
+  common: プレリュード
 
 # Rust 用語
 - en: ownership
@@ -1226,7 +1229,8 @@
 - en: borrowing
   ja: 借用
 - en: move
-  ja: 譲渡
+  ja: 移動
+  #ja: 譲渡, 移転 (位置の移動の意味もあるため✗)
 - en: crate
   ja: わく箱
   ja: #荷箱, 箪笥, かご
