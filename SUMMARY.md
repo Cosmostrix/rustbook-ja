@@ -9,7 +9,7 @@
     * [食事する哲学者たち](dining-philosophers.md)
     * [他言語の中に Rust](rust-inside-other-languages.md)
 * [もう何も恐くない](effective-rust.md)
-    * [縦積みと棚置き](the-stack-and-the-heap.md)
+    * [山と原](the-stack-and-the-heap.md)
     * [検査](testing.md)
     * [条件付き製譜](conditional-compilation.md)
     * [開発資料集](documentation.md)

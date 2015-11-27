@@ -988,11 +988,12 @@
   ja: 機器駆動譜
   desc: device driver に同じ
 - en: stack
-  ja: 縦積み,山,積本
+  ja: 山
+  #ja: 縦積み
   common: スタック
 - en: heap
-  ja: 棚置き
-  #ja: 棚,平積み,本棚
+  ja: 原
+  #ja: 棚置き, 棚, 平積み, 本棚
   common: ヒープ
 - en: pointer
   ja: 場指し
