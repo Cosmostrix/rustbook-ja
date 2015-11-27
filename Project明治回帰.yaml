@@ -28,6 +28,18 @@
   #ja: 多義語一覧
   common: 曖昧さ回避
   desc: Wikipedia用語のアレ。誤訳レベル高い
+- en: leadership
+  ja: 率労眼, 代表眼
+  common: リーダーシップ
+  desc: 「統率力」「指揮力」は誤訳
+- en: leadership experience
+  ja: 率労眼体験, 代表眼体験, 代表経験, 率労経験
+  common: リーダーシップ体験
+- en: (athlete's) physical
+  ja: 体威
+  #ja: 身威(心意と同音につき却下)
+  common: フィジカル
+  comment: 同音の「体位」はスポーツ分野での用例は少ない
 
 # UI (menu)
 - en: new
@@ -310,6 +322,9 @@
   common: 保証キー?, 所有者鍵?, エンドースメント鍵?
 - en: signature database
   ja: 手配台帳
+- en: PFS; (perfect) forward secrecy
+  ja: (完全)後年秘匿性
+  common: 前方秘匿性
 
 # system configuration
 - en: device
@@ -1104,8 +1119,8 @@
   ja: 表記
   common: リテラル
 - en: (code) block
-  ja: 
-  common: (コード)ブロック
+  ja: 段落
+  common: ブロック
 - en: tutorial
   ja: 指導書
   common: チュートリアル
@@ -1215,6 +1230,18 @@
   ja: 前奏
   common: プレリュード
 
+# { 記法、構文、文法、表記 }
+- en: syntax
+  #ja: 構文, 記法, 文法
+- en: grammer
+  #ja: 文法, 記法
+- en: notation
+  #ja: 記法, 表記法, 表記
+- en: literal
+  #ja: 表記, 直定数, 記法
+  common: リテラル
+
+
 # Rust 用語
 - en: ownership
   ja: 所有権
@@ -1245,6 +1272,7 @@
   ja: 特性対象
 - en: universal function call syntax
   ja: 万能機能呼び出し構文
+  comment: uniform (統一) は異なる記法の構文が前提にある印象を受ける
 - en: sized types
   ja: 定幅型
   comment: 「固定長」は長い。「定長」は丁重/低調と聞き違える。
@@ -1252,7 +1280,7 @@
   ja: 変幅型
   comment: 「可変長」は長い。「変長」は偏重/変調と聞き違える。
 - en: box syntax
-  ja: box 構文
+  ja: ハコ構文
 - en: slice
   ja: 薄切り
   #ja: 切片
