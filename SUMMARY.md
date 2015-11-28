@@ -69,6 +69,6 @@
     * [薄切り模式](slice-patterns.md)
     * [付属定数](associated-constants.md)
     * [自在割当て部](custom-allocators.md)
-* [Rust 用語集](glossary.md)
+* [用語集](glossary.md)
 * [構文索引](syntax-index.md)
 * [参考文献](bibliography.md)
