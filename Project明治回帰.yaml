@@ -1087,7 +1087,12 @@
 - en: cast
   ja: 
 - en: overloading
-  ja: 
+  ja: 多重化
+  common: オーバーロード, 多重定義
+  comment: 「多重定義」はエラーっぽい響き
+- en: override
+  ja: 上乗せ
+  common: オーバーライド
 - en: inline assembly
   ja: 組詞埋め込み
 - en: advanced linking
@@ -1260,6 +1265,12 @@
 - en: design
   common: デザイン
   comment: 設計⊂デザイン
+- en: unwinding
+  ja: 巻き戻し
+- en: stack unwinding
+  ja: 山の巻き戻し
+  ja-abbr: 山戻し
+
 
 # Rust 用語
 - en: ownership
