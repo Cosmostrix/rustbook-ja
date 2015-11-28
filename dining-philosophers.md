@@ -278,7 +278,7 @@ impl Philosopher {
     }
 
     fn eat(&self) {
-        println!("{} is done eating.", self.name);
+        println!("{} は食べ終わった。", self.name);
     }
 }
 
@@ -309,7 +309,7 @@ In the body of the loop, we call `p.eat()`, which is defined above:
 
 ```rust,ignore
 fn eat(&self) {
-    println!("{} is done eating.", self.name);
+    println!("{} は食べ終わった。", self.name);
 }
 ```
 
@@ -320,11 +320,11 @@ mention they’re done eating. Running this program should give you the followin
 output:
 
 ```text
-Judith Butler is done eating.
-Gilles Deleuze is done eating.
-Karl Marx is done eating.
-Emma Goldman is done eating.
-Michel Foucault is done eating.
+Judith Butler は食べ終わった。
+Gilles Deleuze は食べ終わった。
+Karl Marx は食べ終わった。
+Emma Goldman は食べ終わった。
+Michel Foucault は食べ終わった。
 ```
 
 Easy enough, they’re all done! We haven’t actually implemented the real problem
@@ -348,11 +348,11 @@ impl Philosopher {
     }
 
     fn eat(&self) {
-        println!("{} is eating.", self.name);
+        println!("{} が食事をはじめた。", self.name);
 
         thread::sleep_ms(1000);
 
-        println!("{} is done eating.", self.name);
+        println!("{} は食べ終わった。", self.name);
     }
 }
 
@@ -382,11 +382,11 @@ from the standard library, and so we need to `use` it.
 
 ```rust,ignore
     fn eat(&self) {
-        println!("{} is eating.", self.name);
+        println!("{} が食事をはじめた。", self.name);
 
         thread::sleep_ms(1000);
 
-        println!("{} is done eating.", self.name);
+        println!("{} は食べ終わった。", self.name);
     }
 ```
 
@@ -396,16 +396,16 @@ simulate the time it takes a philosopher to eat.
 If you run this program, you should see each philosopher eat in turn:
 
 ```text
-Judith Butler is eating.
-Judith Butler is done eating.
-Gilles Deleuze is eating.
-Gilles Deleuze is done eating.
-Karl Marx is eating.
-Karl Marx is done eating.
-Emma Goldman is eating.
-Emma Goldman is done eating.
-Michel Foucault is eating.
-Michel Foucault is done eating.
+Judith Butler が食事をはじめた。
+Judith Butler は食べ終わった。
+Gilles Deleuze が食事をはじめた。
+Gilles Deleuze は食べ終わった。
+Karl Marx が食事をはじめた。
+Karl Marx は食べ終わった。
+Emma Goldman が食事をはじめた。
+Emma Goldman は食べ終わった。
+Michel Foucault が食事をはじめた。
+Michel Foucault は食べ終わった。
 ```
 
 Excellent! We’re getting there. There’s just one problem: we aren’t actually
@@ -429,11 +429,11 @@ impl Philosopher {
     }
 
     fn eat(&self) {
-        println!("{} is eating.", self.name);
+        println!("{} が食事をはじめた。", self.name);
 
         thread::sleep_ms(1000);
 
-        println!("{} is done eating.", self.name);
+        println!("{} は食べ終わった。", self.name);
     }
 }
 
@@ -531,16 +531,16 @@ If you run this program, you’ll see that the philosophers eat out of order!
 We have multi-threading!
 
 ```text
-Judith Butler is eating.
-Gilles Deleuze is eating.
-Karl Marx is eating.
-Emma Goldman is eating.
-Michel Foucault is eating.
-Judith Butler is done eating.
-Gilles Deleuze is done eating.
-Karl Marx is done eating.
-Emma Goldman is done eating.
-Michel Foucault is done eating.
+Judith Butler が食事をはじめた。
+Gilles Deleuze が食事をはじめた。
+Karl Marx が食事をはじめた。
+Emma Goldman が食事をはじめた。
+Michel Foucault が食事をはじめた。
+Judith Butler は食べ終わった。
+Gilles Deleuze は食べ終わった。
+Karl Marx は食べ終わった。
+Emma Goldman は食べ終わった。
+Michel Foucault は食べ終わった。
 ```
 
 But what about the forks? We haven’t modeled them at all yet.
@@ -585,11 +585,11 @@ impl Philosopher {
         let _left = table.forks[self.left].lock().unwrap();
         let _right = table.forks[self.right].lock().unwrap();
 
-        println!("{} is eating.", self.name);
+        println!("{} が食事をはじめた。", self.name);
 
         thread::sleep_ms(1000);
 
-        println!("{} is done eating.", self.name);
+        println!("{} は食べ終わった。", self.name);
     }
 }
 
@@ -670,11 +670,11 @@ fn eat(&self, table: &Table) {
     let _left = table.forks[self.left].lock().unwrap();
     let _right = table.forks[self.right].lock().unwrap();
 
-    println!("{} is eating.", self.name);
+    println!("{} が食事をはじめた。", self.name);
 
     thread::sleep_ms(1000);
 
-    println!("{} is done eating.", self.name);
+    println!("{} は食べ終わった。", self.name);
 }
 ```
 
@@ -757,16 +757,16 @@ With this, our program works! Only two philosophers can eat at any one time,
 and so you’ll get some output like this:
 
 ```text
-Gilles Deleuze is eating.
-Emma Goldman is eating.
-Emma Goldman is done eating.
-Gilles Deleuze is done eating.
-Judith Butler is eating.
-Karl Marx is eating.
-Judith Butler is done eating.
-Michel Foucault is eating.
-Karl Marx is done eating.
-Michel Foucault is done eating.
+Gilles Deleuze が食事をはじめた。
+Emma Goldman が食事をはじめた。
+Emma Goldman は食べ終わった。
+Gilles Deleuze は食べ終わった。
+Judith Butler が食事をはじめた。
+Karl Marx が食事をはじめた。
+Judith Butler は食べ終わった。
+Michel Foucault が食事をはじめた。
+Karl Marx は食べ終わった。
+Michel Foucault は食べ終わった。
 ```
 
 Congrats! You’ve implemented a classic concurrency problem in Rust.
