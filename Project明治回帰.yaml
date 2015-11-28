@@ -577,10 +577,9 @@
 - en: notepad
   ja: 雑記帳
   common: メモ帳
-- en: dead lock
-  ja: 食い合い
+- en: deadlock
+  ja: こう着状態
   common: デッドロック
-  comment: 食事する哲学者の問題
 
 - en: SSA form; static single assignment form
   #ja: 使いきり変数形式
@@ -1270,7 +1269,12 @@
 - en: stack unwinding
   ja: 山の巻き戻し
   ja-abbr: 山戻し
-
+- en: algorithm
+  ja: 算法
+  common: アルゴリズム, 算法
+- en: instance
+  ja: 実例
+  common: インスタンス
 
 # Rust 用語
 - en: ownership
