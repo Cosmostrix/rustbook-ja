@@ -39,48 +39,48 @@
 
 ## Operators and Symbols
 
-* `!` (`expr!(…)`、`expr!{…}`、`expr![…]`): denotes macro expansion。[Macros]を参照。
+* `!` (`expr!(…)`, `expr!{…}`, `expr![…]`): denotes macro expansion。[Macros]を参照。
 * `!` (`!expr`): bitwise or logical complement。 Overloadable (`Not`)。
 * `%` (`expr % expr`): arithmetic remainder。 Overloadable (`Rem`)。
 * `%=` (`var %= expr`): arithmetic remainder & assignment。
 * `&` (`expr & expr`): bitwise and。 Overloadable (`BitAnd`)。
 * `&` (`&expr`): borrow。[References and Borrowing]を参照。
-* `&` (`&type`、`&mut type`、`&'a type`、`&'a mut type`): borrowed pointer type。[References and Borrowing]を参照。
+* `&` (`&type`, `&mut type`, `&'a type`, `&'a mut type`): borrowed pointer type。[References and Borrowing]を参照。
 * `&=` (`var &= expr`): bitwise and & assignment。
 * `&&` (`expr && expr`): logical and。
 * `*` (`expr * expr`): arithmetic multiplication。 Overloadable (`Mul`)。
 * `*` (`*expr`): dereference。
-* `*` (`*const type`、`*mut type`): raw pointer。[Raw Pointers]を参照。
+* `*` (`*const type`, `*mut type`): raw pointer。[Raw Pointers]を参照。
 * `*=` (`var *= expr`): arithmetic multiplication & assignment。
 * `+` (`expr + expr`): arithmetic addition。 Overloadable (`Add`)。
-* `+` (`trait + trait`、`'a + trait`): compound type constraint。[Traits (Multiple Trait Bounds)]を参照。
+* `+` (`trait + trait`, `'a + trait`): compound type constraint。[Traits (Multiple Trait Bounds)]を参照。
 * `+=` (`var += expr`): arithmetic addition & assignment。
 * `,`: argument and element separator。[Attributes]、[Functions]、[Structs]、[Generics]、[Match]、[Closures]、[Crates and Modules (Importing Modules with `use`)]を参照。
 * `-` (`expr - expr`): arithmetic subtraction。 Overloadable (`Sub`)。
 * `-` (`- expr`): arithmetic negation。 Overloadable (`Neg`)。
 * `-=` (`var -= expr`): arithmetic subtraction & assignment。
-* `->` (`fn(…) -> type`、`|…| -> type`): function and closure return type。[Functions]、[Closures]を参照。
+* `->` (`fn(…) -> type`, `|…| -> type`): function and closure return type。[Functions]、[Closures]を参照。
 * `.` (`expr.ident`): member access。[Structs]、[Method Syntax]を参照。
-* `..` (`..`、`expr..`、`..expr`、`expr..expr`): right-exclusive range literal。
+* `..` (`..`, `expr..`, `..expr`, `expr..expr`): right-exclusive range literal。
 * `..` (`..expr`): struct literal update syntax。[Structs (Update syntax)]を参照。
-* `..` (`variant(x、..)`、`struct_type { x、.. }`): "and the rest" pattern binding。[Patterns (Ignoring bindings)]を参照。
+* `..` (`variant(x, ..)`, `struct_type { x, .. }`): "and the rest" pattern binding。[Patterns (Ignoring bindings)]を参照。
 * `...` (`expr ... expr`): inclusive range pattern。[Patterns (Ranges)]を参照。
 * `/` (`expr / expr`): arithmetic division。 Overloadable (`Div`)。
 * `/=` (`var /= expr`): arithmetic division & assignment。
-* `:` (`pat: type`、`ident: type`): constraints。[Variable Bindings]、[Functions]、[Structs]、[Traits]を参照。
+* `:` (`pat: type`, `ident: type`): constraints。[Variable Bindings]、[Functions]、[Structs]、[Traits]を参照。
 * `:` (`ident: expr`): struct field initializer。[Structs]を参照。
 * `:` (`'a: loop {…}`): loop label。[Loops (Loops Labels)]を参照。
 * `;`: statement and item terminator。
 * `;` (`[…; len]`): part of fixed-size array syntax。[Primitive Types (Arrays)]を参照。
 * `<<` (`expr << expr`): left-shift。 Overloadable (`Shl`)。
 * `<<=` (`var <<= expr`): left-shift & assignment。
-* `<` (`expr < expr`): less-than comparison。 Overloadable (`Cmp`、`PartialCmp`)。
-* `<=` (`var <= expr`): less-than or equal-to comparison。 Overloadable (`Cmp`、`PartialCmp`)。
-* `=` (`var = expr`、`ident = type`): assignment/equivalence。[Variable Bindings]、[`type` Aliases]、generic parameter defaults。
-* `==` (`var == expr`): comparison。 Overloadable (`Eq`、`PartialEq`)。
+* `<` (`expr < expr`): less-than comparison。 Overloadable (`Cmp`, `PartialCmp`)。
+* `<=` (`var <= expr`): less-than or equal-to comparison。 Overloadable (`Cmp`, `PartialCmp`)。
+* `=` (`var = expr`, `ident = type`): assignment/equivalence。[Variable Bindings]、[`type` Aliases]、generic parameter defaults。
+* `==` (`var == expr`): comparison。 Overloadable (`Eq`, `PartialEq`)。
 * `=>` (`pat => expr`): part of match arm syntax。[Match]を参照。
-* `>` (`expr > expr`): greater-than comparison。 Overloadable (`Cmp`、`PartialCmp`)。
-* `>=` (`var >= expr`): greater-than or equal-to comparison。 Overloadable (`Cmp`、`PartialCmp`)。
+* `>` (`expr > expr`): greater-than comparison。 Overloadable (`Cmp`, `PartialCmp`)。
+* `>=` (`var >= expr`): greater-than or equal-to comparison。 Overloadable (`Cmp`, `PartialCmp`)。
 * `>>` (`expr >> expr`): right-shift。 Overloadable (`Shr`)。
 * `>>=` (`var >>= expr`): right-shift & assignment。
 * `@` (`ident @ pat`): pattern binding。[Patterns (Bindings)]を参照。
@@ -97,11 +97,11 @@
 <!-- Various bits of standalone stuff. -->
 
 * `'ident`: named lifetime or loop label。[Lifetimes]、[Loops (Loops Labels)]を参照。
-* `…u8`、`…i32`、`…f64`、`…usize`、…: numeric literal of specific type。
+* `…u8`, `…i32`, `…f64`, `…usize`, …: numeric literal of specific type。
 * `"…"`: string literal。[Strings]を参照。
-* `r"…"`、`r#"…"#`、`r##"…"##`、…: raw string literal。
+* `r"…"`, `r#"…"#`, `r##"…"##`, …: raw string literal。
 * `b"…"`: byte string literal。
-* `rb"…"`、`rb#"…"#`、`rb##"…"##`、…: raw byte string literal。
+* `rb"…"`, `rb#"…"#`, `rb##"…"##`, …: raw byte string literal。
 * `'…'`: character literal。[Primitive Types (`char`)]を参照。
 * `b'…'`: ASCII byte literal。
 
@@ -112,12 +112,12 @@
 * `self::path`: path relative to the current module (*i.e.* an explicitly relative path)。[Crates and Modules (Re-exporting with `pub use`)]を参照。
 * `super::path`: path relative to the parent of the current module。[Crates and Modules (Re-exporting with `pub use`)]を参照。
 * `type::ident`: associated constants、functions、and types。[Associated Types]を参照。
-* `<type>::…`: associated item for a type which cannot be directly named (*e.g.* `<&T>::…`、`<[T]>::…`、*etc.*)。[Associated Types]を参照。
+* `<type>::…`: associated item for a type which cannot be directly named (*e.g.* `<&T>::…`, `<[T]>::…`, *etc.*)。[Associated Types]を参照。
 
 <!-- Generics -->
 
 * `path<…>` (*e.g.* `Vec<u8>`): specifies parameters to generic type *in a type*。[Generics]を参照。
-* `path::<…>`、`method::<…>` (*e.g.* `"42".parse::<i32>()`): specifies parameters to generic type、function、or method *in an expression*.
+* `path::<…>`, `method::<…>` (*e.g.* `"42".parse::<i32>()`): specifies parameters to generic type、function、or method *in an expression*.
 * `fn ident<…> …`: define generic function。[Generics]を参照。
 * `struct ident<…> …`: define generic structure。[Generics]を参照。
 * `enum ident<…> …`: define generic enumeration。[Generics]を参照。
@@ -131,7 +131,7 @@
 * `T: 'a`: generic type `T` must outlive lifetime `'a`.
 * `'b: 'a`: generic lifetime `'b` must outlive lifetime `'a`.
 * `T: ?Sized`: allow generic type parameter to be a dynamically-sized type。[Unsized Types (`?Sized`)]を参照。
-* `'a + trait`、`trait + trait`: compound type constraint。[Traits (Multiple Trait Bounds)]を参照。
+* `'a + trait`, `trait + trait`: compound type constraint。[Traits (Multiple Trait Bounds)]を参照。
 
 <!-- Macros and attributes -->
 
@@ -156,11 +156,11 @@
 * `(expr)`: parenthesized expression.
 * `(expr,)`: single-element tuple expression。[Primitive Types (Tuples)]を参照。
 * `(type,)`: single-element tuple type。[Primitive Types (Tuples)]を参照。
-* `(expr、…)`: tuple expression。[Primitive Types (Tuples)]を参照。
-* `(type、…)`: tuple type。[Primitive Types (Tuples)]を参照。
-* `expr(expr、…)`: function call expression。Also used to initialize tuple `struct`s and tuple `enum` variants。[Functions]を参照。
-* `ident!(…)`、`ident!{…}`、`ident![…]`: macro invocation。[Macros]を参照。
-* `expr.0`、`expr.1`、…: tuple indexing。[Primitive Types (Tuple Indexing)]を参照。
+* `(expr, …)`: tuple expression。[Primitive Types (Tuples)]を参照。
+* `(type, …)`: tuple type。[Primitive Types (Tuples)]を参照。
+* `expr(expr, …)`: function call expression。Also used to initialize tuple `struct`s and tuple `enum` variants。[Functions]を参照。
+* `ident!(…)`, `ident!{…}`, `ident![…]`: macro invocation。[Macros]を参照。
+* `expr.0`, `expr.1`, …: tuple indexing。[Primitive Types (Tuple Indexing)]を参照。
 
 <!-- Bracey things -->
 
