@@ -116,8 +116,9 @@ Rustacean (私達が自分たちのことを呼ぶちゃらけた二つ名〈ニ
 [users]: https://users.rust-lang.org/
 [stackoverflow]: https://stackoverflow.com/questions/tagged/rust
 
-【訳者註】[スタック・オーバーフロー 日本語版][stackoverflow-ja]、[IRC #rust-jp チャンネル][irc-jp]、[Mibbit #rust-jp][mibbit-jp]
+【訳者註】[スタック・オーバーフロー 日本語版][stackoverflow-ja]、[IRC #rust-jp チャンネル][irc-jp]、[Mibbit #rust-jp][mibbit-jp]、[Qiita の rust タグ][qiita]
 
 [stackoverflow-ja]: https://ja.stackoverflow.com/questions/tagged/rust
 [irc-jp]: irc://irc.mozilla.org/#rust-jp
 [mibbit-jp]: https://chat.mibbit.com/?server=irc.mozilla.org&channel=%23rust-jp
+[qiita]: https://qiita.com/tags/rust
