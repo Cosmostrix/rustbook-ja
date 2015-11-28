@@ -565,6 +565,7 @@
 - en: reference design
   ja: 参考設計
   common: リファレンスデザイン
+  comment: 本当は、デザインと設計は違う
 - en: disk
   ja: 円盤
   common: ディスク
@@ -1253,7 +1254,12 @@
   ja: 夜行版
   common: ナイトリービルド
   desc: 毎夜更新の最新開発版
-
+- en: work stealing
+  ja: 作業横取り
+  common: ワークスチール
+- en: design
+  common: デザイン
+  comment: 設計⊂デザイン
 
 # Rust 用語
 - en: ownership
