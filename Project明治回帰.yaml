@@ -1245,6 +1245,14 @@
 - en: registry
   ja: 登記簿
   common: レジストリ
+- en: stable (build)
+  common: 安定版
+- en: beta (build)
+  common: ベータ版
+- en: nightly (build)
+  ja: 夜行版
+  common: ナイトリービルド
+  desc: 毎夜更新の最新開発版
 
 
 # Rust 用語
