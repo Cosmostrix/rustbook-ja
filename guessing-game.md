@@ -144,7 +144,7 @@ use std::io;
 「[前奏 (prelude)〈プレリュード〉][prelude]」というわずかなものしか取り込みません。
 前奏に入っていないものは文字通り「使う」(`use`) 必要があります。２つめの「前奏」である
 [`io` 前奏][ioprelude] もあります。それも似たような働きをし、
-これを取り込む〈インポートする〉とそれが `io` 関連の便利なものをたくさん取り込んで来ます。
+これを取り込む〈インポートする〉とそれが `io` 関連の便利なものをたくさん取り込んできます。
 
 <!--We’ll need to take user input, and then print the result as output. As such,
 we
@@ -240,7 +240,7 @@ let mut それ = 5; // 可変 mutable
 [immutable]: mutability.html
 [patterns]: patterns.html
 
-あ、っと '//' は注釈 (comment)〈コメント〉の始まりで、その行末までの全てを Rust
+あ、っと「`//`」は注釈 (comment)〈コメント〉の始まりで、その行末までの全てを Rust
 は[注釈][comments]として無視します。
 
 <!--Oh, and `//` will start a comment, until the end of the line. Rust ignores
@@ -256,7 +256,7 @@ everything in [comments][comments].-->
 bound to: `String::new()`.-->
 
 `String` は文字列 (string) 型 (type) で、標準譜集で提供されています。
-[`String`][string] は伸長可能な UTF-8 方式で符号化された文章です。
+[`String`][string] は UTF-8 方式で符号化された伸長可能な文章です。
 
 <!--`String` is a string type, provided by the standard library. A
 [`String`][string] is a growable, UTF-8 encoded bit of text.-->
@@ -599,7 +599,7 @@ $ cargo build
 <!-- (You may see different versions, of course.) -->
 
 目新しい出力がたくさん！外部依存性ができたので、Cargo
-は [Crates.io][cratesio] から写した登記〈レジストリ〉からそれぞれの最新版を取得します。
+は [Crates.io][cratesio] から写した登記簿〈レジストリ〉からそれぞれの最新版を取得します。
 Crates.io は Rust 生態系の中の人々が他の人々のために〈オープンソース〉の Rust 企画を投稿する場所です。
 
 <!--Lots of new output! Now that we have an external dependency, Cargo fetches
@@ -610,7 +610,7 @@ post their open source Rust projects for others to use.-->
 
 [cratesio]: https://crates.io
 
-登記の更新後、Cargo は私達の `[dependencies]` を調べて未入荷のわく箱を入荷します。
+登記簿の更新後、Cargo は私達の `[dependencies]` を調べて未入荷のわく箱を入荷します。
 今回は `rand` に依存したいと言っただけなのに `libc` も入荷されました。
 これは、`rand` が動作するために `libc` に依存しているためです。
 これらの入荷後、それぞれ製譜して、それから私達の企画を製譜します。
@@ -646,6 +646,7 @@ $ cargo build
 そう、Cargo に `rand` の `0.3.x` 系のどれかが必要だと伝えたので、これが書かれた時点の最新版、第 `0.3.8`
 版を取ってきました。しかし一週間後、重大な不具合修正を含む第 `v0.3.9` 版が登場したとしたら？
 不具合修正を入手することが大事な一方、もし `0.3.9` が譜面を壊す退行〈リグレッション〉を含んでいたら？
+
 <!--So, we told Cargo we wanted any `0.3.x` version of `rand`, and so it fetched
 the latest
 version at the time this was written, `v0.3.8`. But what happens when next
@@ -754,6 +755,7 @@ details, read the [traits][traits] section.-->
 [traits]: traits.html
 
 中央に別の２行を追加しています。
+
 <!--There are two other lines we added, in the middle:-->
 
 ```rust,ignore
@@ -891,14 +893,14 @@ enum Foo {
 [match]: match.html
 [enum]: enums.html
 
-この定義では型 `Foo` であるものは必ず `Foo::Bar` または `Foo::Baz` のどちらかです。
-`::` を使ってある `enum` の変種の名前空間を示します。
+この定義では型 `Foo` である値は必ず `Foo::Bar` または `Foo::Baz` のどちらかです。
+`::` を使って特定の `enum` の値を含む名前空間を示します。
 
 <!--With this definition, anything of type `Foo` can be either a
 `Foo::Bar` or a `Foo::Baz`. We use the `::` to indicate the
 namespace for a particular `enum` variant.-->
 
-[`Ordering`][ordering] `enum` には３つの形を取ることができます。
+順序列挙体 [`Ordering`][ordering] `enum` は３つの形を取ることができます。
 より小さい `Less` ・ 等しい `Equal` ・ より大きい `Greater` の３つです。
 `match` 文はある型の値を取って可能な値それぞれに対する「分岐」を作ることができます。
 ３種類の `Ordering` があるので３種類の分岐があります。
@@ -939,7 +941,7 @@ src/main.rs内28行21列~28行35列 誤り。型が噛み合いません。
 (構造体 `collections::string::String` と思いきや、
     整数の変数でした。) [E0308]
 src/main.rs内28行     match guess.cmp(&secret_number) {
-                                   ↑~~~~~~~~~~~~~
+                                     ↑~~~~~~~~~~~~~
 誤り。前述の誤りにより中止します
 `guessing_game` を製譜できませんでした。
 ```
@@ -965,7 +967,7 @@ Could not compile `guessing_game`.
 Rust は強い、静的な型体系を備えています。一方、型推論も備えています。
 `let guess = String::new()` と書いた瞬間、Rust は `guess` が `String` であるべきと推論することが可能です。
 そうすることで私達はわざわざ型を書かずに済んでいます。`secret_number` については、
-１から１００までの値が持てる型がいろいろあり、32ビット整数の `i32`・32ビット非負 (unsigned) 整数の `u32`・64ビット整数の
+１から１００までの値が持てる型がいろいろあり、32ビット整数の `i32`、32ビット非負 (unsigned) 整数の `u32`、64ビット整数の
 `i64` 、…他にもあります。これまでのところ、それは問題になっておらず、Rust は `i32` を黙用します。
 しかし、ここで、Rust は `guess` と `secret_number` を比較する方法を知りません。
 両者は同じ型でなければなりません。最終的には、入力として読みだした `String` を比較のために実数型へ変換したいです。
@@ -1031,9 +1033,9 @@ fn main() {
 ```
 
 ちょっと待って、`guess` はもう作ったはずですが？
-そうです。しかし、Rust は以前の `guess` を新しいもので「遮る (shadow)」ことを認めています。
+そうです。しかし、Rust は以前の `guess` を新しいもので「覆い隠す (shadow)」ことを認めています。
 ちょうどこのような、`guess` がはじめ `String` だったけれど `u32` に変換したくなった状況でよく使われる方法です。
-遮ることで `guess` という名前を再利用でき、`guess_str` と `guess` 等々のように２つのかぶらない名前を考える
+覆い隠すことで `guess` という名前を再利用でき、`guess_str` と `guess` 等々のように２つのかぶらない名前を考える
 ことに労を費やさずに済みます。
 
 <!--Wait a minute, I thought we already had a `guess`? We do, but Rust allows us
@@ -1044,7 +1046,7 @@ Shadowing lets us re-use the `guess` name, rather than forcing us
 to come up with two unique names like `guess_str` and `guess`, or something
 else.-->
 
-`guess` を以前に書いたもの近い形の式に束縛します。
+`guess` を以前に書いたものに近い形の式に束縛します。
 
 <!-- We bind `guess` to an expression that looks like something we wrote earlier: -->
 
@@ -1058,11 +1060,11 @@ guess.trim().parse()
 どういう意味かというと、`5` を打って Enter 鍵を叩くと、`guess` は `5\n` となります。
 `\n` は「改行 (newline)」を表す特殊文字で Enter 鍵です。`trim()` はこれをなくして `5`
 が残るようにしています。[文字列の `parse()` 操作法][parse]は文字列を何かしらの数に変換します。
-これでは多種の数に変換できるので、Rust にどの型の数が欲しいか正確に伝える必要があります。
+変換先になりうる数の種類はとても多いので、Rust にどの型の数が欲しいか正確に伝える必要があります。
 そういうわけで、`let guess: u32` です。`guess` の直後のコロン (`:`) は Rust にその型を補注したいと言っています。
 `u32` は１つの、非負の（符号なし、０または正の数）３２ビット(長の) 整数です。
-Rust は[多種にわたる織り込み済み〈ビルトイン〉数値型][number]を持っていますが、私達は　`u32`
-を選びました。`u32` は小さな正(と０)の整数としてよい黙用の選択です。
+Rust は[多種にわたる織り込み済み〈ビルトイン〉数値型][number]を持っていますが、私達は `u32`
+を選びました。`u32` は小さな正(と０)の整数に向いている普通の選択肢です。
 
 <!--Followed by an `ok().expect()` invocation. Here, `guess` refers to the old
 `guess`, the one that was a `String` with our input in it. The `trim()`
@@ -1090,7 +1092,7 @@ our string contained `A👍%`? There’d be no way to convert that to a number. 
 such, we’ll do the same thing we did with `read_line()`: use the `ok()` and
 `expect()` methods to crash if there’s an error.-->
 
-できた算譜を試して見ましょう！
+できた算譜を試してみましょう！
 
 <!-- Let’s try our program out! -->
 
@@ -1167,7 +1169,7 @@ fn main() {
 }
 ```
 
-そして試してみましょう。でも待ってください、私達が足したのはただの無限ループですよね？
+そして試してみましょう。でも待ってください、私達が足したのはただの無限繰り返しですよね？
 そうです。`parse()` についての議論を覚えていますか？
 数字でない答えを与えたときは `return` して終了するといいました。観察しましょう。
 
@@ -1246,8 +1248,8 @@ fn main() {
 }
 ```
 
-`あなたの勝ちです！` の次の行に `break` を加えることで、勝ったときにループを脱出するようにします。
-このループは `main()` の最後にあるので、ループからの脱出は譜体の終了も意味します。
+`あなたの勝ちです！` の次の行に `break` を加えることで、勝ったときに繰り返しを脱出するようにします。
+この繰り返しは `main()` の最後にあるので、繰り返しからの脱出は譜体の終了も意味します。
 もうひとつ作りかえるところがあります。誰かが数字以外を入力したとき、終了したくはなくて、
 単に無視したいのです。こうするとできます。
 
@@ -1310,14 +1312,14 @@ let guess: u32 = match guess.trim().parse() {
 };
 ```
 
-上記は `ok().expect()` を `match` 文に切り替えることで「誤ったら急停止」を「実際に誤りに対処」にできるか一般的に示しています。＊＊＊
-`parse()` で返された `Result` は `Ordering` と同じように `enum` です。
+上記は `ok().expect()` を `match` 文に切り替えることで「誤ったら急停止」を「実際に誤りに対処」にできるか一般的に示しています。
+`parse()` で返された結果 `Result` は `Ordering` と同じ列挙体 `enum` です。
 しかしこの場合は、値の種類のそれぞれに付属する情報があります。`Ok` は成功、`Err` は失敗です。
-どちらもさらに情報を持っており、構文解析に成功した整数値または誤り型です。
+どちらもさらに情報を持っており、文字解析に成功した整数値または誤り型です。
 この場合、`Ok(num)` に `match` して、`Ok` の内側の値を `num` という名前で束縛します。
 そして右辺側ですぐ `num` を返します。
 `Err` の場合、誤りの種類は気にしないので名前の代わりに `_` を使います。
-これで誤りを無視し、`continue` で `loop` の次の反復に進みます。＊＊＊
+これで誤りを無視し、`continue` で `loop` の次の反復に進みます。
 
 <!--This is how you generally move from ‘crash on error’ to ‘actually handle the
 error’, by switching from `ok().expect()` to a `match` statement. The `Result`

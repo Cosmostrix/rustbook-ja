@@ -1242,6 +1242,10 @@
   #ja: 表記, 直定数, 記法
   common: リテラル
 
+- en: registry
+  ja: 登記簿
+  common: レジストリ
+
 
 # Rust 用語
 - en: ownership
