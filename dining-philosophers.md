@@ -191,11 +191,17 @@ Not just the argument itself, though, as we call `.to_string()` on it. This
 will create a copy of the string that our `&str` points to, and give us a new
 `String`, which is the type of the `name` field of `Philosopher`.-->
 
-Why not accept a `String` directly? It’s nicer to call. If we took a `String`,
+なぜ `String` を直接受け取るようにしないのでしょうか？ その方が呼びやすそうなのに。
+もし `String` を取ってしまうと、呼び出し側が `&str`
+しか持っていない場合に呼び出し側がこの操作法を自分で呼ぶ必要があるからです。
+良くない点は、この柔軟性と引き換えに _常に_ 写しが作られるようになってしまうことです。
+どのみち小さな文字列しか扱わないとわかっているので、この小さな算譜では全く問題になりません。
+
+<!--Why not accept a `String` directly? It’s nicer to call. If we took a `String`,
 but our caller had a `&str`, they’d have to call this method themselves. The
 downside of this flexibility is that we _always_ make a copy. For this small
 program, that’s not particularly important, as we know we’ll just be using
-short strings anyway.
+short strings anyway.-->
 
 One last thing you’ll notice: we just define a `Philosopher`, and seemingly
 don’t do anything with it. Rust is an ‘expression based’ language, which means
