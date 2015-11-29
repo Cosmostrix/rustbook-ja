@@ -115,7 +115,7 @@ fn main() {
 `p4` に ニーチェ (Friedrich Nietzsche) が入っていました。時代の流れでしょうか。
 余談ですがフーコー著『監獄の誕生』はちょっと長いですがおすすめです。
 
-ここで、哲学者を表現するために [構造体 `struct`][struct] を作りました。
+ここで、哲学者を表現するために [構造体 (`struct`)][struct] を作りました。
 今は名前だけが必須です。名前の型には `&str` ではなく [`String`][string] を選びました。
 一般的に言って、中身を所有する型を使った方が参照を使った型よりも簡単になります。
 
@@ -418,8 +418,8 @@ fn main() {
 use std::thread;
 ```
 
-`use` で名前を可視(有効)範囲〈スコープ〉に持ち込みます。
-標準譜集から〈スレッド〉 `thread` 〈モジュール〉を使おうとしているので、`use` が必要です。
+`use` で名前を可視(有効)範囲 (scope)〈スコープ〉に持ち込みます。
+標準譜集から `thread`〈モジュール〉を使おうとしているので、`use` が必要です。
 
 <!--`use` brings names into scope. We’re going to start using the `thread` module
 from the standard library, and so we need to `use` it.-->
@@ -437,8 +437,8 @@ from the standard library, and so we need to `use` it.-->
 今度は `sleep_ms()` を間にはさんで 2 つの文章を印字しています。
 これで哲学者が食べる時間を再現しましょう。
 
-【訳者註】〈スレッド〉は並列実行の主体です。 `sleep` は一定時間何もしないこと、
-`ms` はミリ秒 (millisecond) であり、1000 ミリ秒が 1 秒に等しいです。
+【訳者註】走脈 (`thread`)〈スレッド〉は「実行の脈絡 (thread of execution)」の略で、並列実行の主体です。
+`sleep` は一定時間何もしないこと、`ms` はミリ秒 (millisecond) であり、1000 ミリ秒が 1 秒に等しいです。
 
 <!--We now print out two messages, with a `sleep_ms()` in the middle. This will
 simulate the time it takes a philosopher to eat.-->
@@ -538,22 +538,31 @@ let handles: Vec<_> = philosophers.into_iter().map(|p| {
 let handles: Vec<_> =
 ```
 
-`handles` と命名した新しい束縛を導入します。
-We introduce a new binding, called `handles`. We’ve given it this name because
+`handles` と名づけた新しい束縛を導入します。 こう命名したのは、新しい走脈を作成するとき、
+走脈のはたらきを制御できる手綱 (handle)〈ハンドル〉が返されるからです。
+後ほど議論する問題があるため、ここでは型を陽に (明示的に) 書きくだす必要があります。
+`_` は型の場所取り〈プレースホルダ〉です。つまり「`handles`
+は _何か_ のベクトルとするが、この _何か_ の正体を君が推理できるのだよ、Rust 君」と言っているのです。
+
+<!--We introduce a new binding, called `handles`. We’ve given it this name because
 we are going to make some new threads, and that will return some handles to those
 threads that let us control their operation. We need to explicitly annotate
 the type here, though, due to an issue we’ll talk about later. The `_` is
 a type placeholder. We’re saying “`handles` is a vector of something, but you
-can figure out what that something is, Rust.”
+can figure out what that something is, Rust.”-->
 
 ```rust,ignore
 philosophers.into_iter().map(|p| {
 ```
 
-We take our list of philosophers and call `into_iter()` on it. This creates an
+哲学者の一覧に対して `into_iter()` を呼びます。するとそれぞれの哲学者の所有権を取得した反復子が作成されます。
+走脈に哲学者を渡すにはこうする必要があります。この反復子に対して `map`
+を呼び、その引数には要素ごとに順番に呼ばれる〈クロージャ〉を渡します。
+
+<!--We take our list of philosophers and call `into_iter()` on it. This creates an
 iterator that takes ownership of each philosopher. We need to do this to pass
 them to our threads. We take that iterator and call `map` on it, which takes a
-closure as an argument and calls that closure on each element in turn.
+closure as an argument and calls that closure on each element in turn.-->
 
 ```rust,ignore
     thread::spawn(move || {
@@ -561,13 +570,22 @@ closure as an argument and calls that closure on each element in turn.
     })
 ```
 
-Here’s where the concurrency happens. The `thread::spawn` function takes a closure
+ここで並列実行が始まります。`thread::spawn` 機能は〈クロージャ〉を引数として取り、新しい
+走脈でその〈クロージャ〉を実行します。この〈クロージャ〉
+はつかまえようとしている値の所有権を獲得しようとすることを示すために特別の補注 `move` が必要です。
+主に `map` 機能の `p` 変数のことです。
+
+<!--Here’s where the concurrency happens. The `thread::spawn` function takes a closure
 as an argument and executes that closure in a new thread. This closure needs
 an extra annotation, `move`, to indicate that the closure is going to take
 ownership of the values it’s capturing. Primarily, the `p` variable of the
-`map` function.
+`map` function.-->
 
-Inside the thread, all we do is call `eat()` on `p`. Also note that the call to `thread::spawn` lacks a trailing semicolon, making this an expression. This distinction is important, yielding the correct return value. For more details, read [Expressions vs. Statements][es].
+走脈の中では `p` に対して `eat()` を呼ぶだけで終わりです。
+`thread::spawn` の呼出しでは末尾のセミコロン (`;`) をなくし、式にしていることにも注意してください。
+この区別は重要で正しい戻り値を生み出します。より詳しくは[式と文][es]をご覧ください。
+
+<!--Inside the thread, all we do is call `eat()` on `p`. Also note that the call to `thread::spawn` lacks a trailing semicolon, making this an expression. This distinction is important, yielding the correct return value. For more details, read [Expressions vs. Statements][es].-->
 
 [es]: functions.html#expressions-vs-statements
 
@@ -575,11 +593,16 @@ Inside the thread, all we do is call `eat()` on `p`. Also note that the call to 
 }).collect();
 ```
 
-Finally, we take the result of all those `map` calls and collect them up.
+最後に、これらの `map` 呼出しの結果を全部集めてまとめあげます。
+`collect()` は結果を何かしらの収集物〈コレクション〉の形にします。今回は `Vec<T>` がほしかったので返り値の型にそう補注する必要がありました。
+要素は `thread::spawn` 呼出しの返り値で、各走脈の手綱になっています。
+ふー！
+
+<!--Finally, we take the result of all those `map` calls and collect them up.
 `collect()` will make them into a collection of some kind, which is why we
 needed to annotate the return type: we want a `Vec<T>`. The elements are the
 return values of the `thread::spawn` calls, which are handles to those threads.
-Whew!
+Whew!-->
 
 ```rust,ignore
 for h in handles {
@@ -587,9 +610,16 @@ for h in handles {
 }
 ```
 
-At the end of `main()`, we loop through the handles and call `join()` on them,
+`main()` の終わりでは全部の手綱に対して繰り返して `join()` を呼んでいます。
+すると該当走脈の実行が完了するまで実行が阻止〈ブロック〉されます。
+これにより算譜の終了前に全脈が作業を完了することが保証されます。
+
+<!--At the end of `main()`, we loop through the handles and call `join()` on them,
 which blocks execution until the thread has completed execution. This ensures
-that the threads complete their work before the program exits.
+that the threads complete their work before the program exits.-->
+
+この算譜を走らせると哲学者がバラバラに食事をする光景が見られます！
+これが多脈処理〈マルチスレッド処理〉です！
 
 If you run this program, you’ll see that the philosophers eat out of order!
 We have multi-threading!
