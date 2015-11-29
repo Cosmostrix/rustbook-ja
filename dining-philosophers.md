@@ -1,5 +1,7 @@
 % 食事する哲学者たち
 
+【訳者註】ここでの「(同時)並行」と「並列」は全く同じ意味 (concurrency) に取ってください。
+
 二番目の企画として、古典的な並行処理問題について考えていきましょう。
 「食事する哲学者たち」と呼ばれる問題です。
 元来は 1965 年にダイクストラ (Dijkstra) により考案されましたが、ここでは 1985 年に
@@ -194,7 +196,7 @@ will create a copy of the string that our `&str` points to, and give us a new
 なぜ `String` を直接受け取るようにしないのでしょうか？ その方が呼びやすそうなのに。
 もし `String` を取ってしまうと、呼び出し側が `&str`
 しか持っていない場合に呼び出し側がこの操作法を自分で呼ぶ必要があるからです。
-良くない点は、この柔軟性と引き換えに _常に_ 写しが作られるようになってしまうことです。
+欠点は、この柔軟性と引き換えに _常に_ 写しが作られるようになってしまうことです。
 どのみち小さな文字列しか扱わないとわかっているので、この小さな算譜では全く問題になりません。
 
 <!--Why not accept a `String` directly? It’s nicer to call. If we took a `String`,
@@ -203,16 +205,25 @@ downside of this flexibility is that we _always_ make a copy. For this small
 program, that’s not particularly important, as we know we’ll just be using
 short strings anyway.-->
 
-One last thing you’ll notice: we just define a `Philosopher`, and seemingly
+最後にひとつ分かることは、`Philosopher` を定義しただけでまったく何にもしていないように見える点です。
+Rust は「式を土台に」した言語で、Rust の中のほとんど全ては値を返す式になっています。
+機能も実はそうなっており、最後の式が自動的に返されます。
+新しい `Philosopher` の作成をこの機能の最後の式で行ったので、この値を返しているのです。
+
+<!--One last thing you’ll notice: we just define a `Philosopher`, and seemingly
 don’t do anything with it. Rust is an ‘expression based’ language, which means
 that almost everything in Rust is an expression which returns a value. This is
 true of functions as well, the last expression is automatically returned. Since
 we create a new `Philosopher` as the last expression of this function, we end
-up returning it.
+up returning it.-->
 
-This name, `new()`, isn’t anything special to Rust, but it is a convention for
+この `new()` という名前は Rust が特別に扱うものではありませんが、
+構造体の実例を作る機能によくつけられる (慣例的な) 名前です。
+その理由について話す前に `main()` をもう一度見てみましょう。
+
+<!--This name, `new()`, isn’t anything special to Rust, but it is a convention for
 functions that create new instances of structs. Before we talk about why, let’s
-look at `main()` again:
+look at `main()` again:-->
 
 ```rust
 # struct Philosopher {
@@ -236,13 +247,17 @@ fn main() {
 }
 ```
 
-Here, we create five variable bindings with five new philosophers. These are my
-favorite five, but you can substitute anyone you want.
+ここでは、５人の新しい哲学者に対して５つの変数束縛を作っています。
+お気に入りの５人なのですが、自由に置き換えて構いませんよ。
 
-【訳者註】哲学が苦手なら魔法少女や妖怪や弾幕バカに置き換えてもよいでしょう。
+<!--Here, we create five variable bindings with five new philosophers. These are my
+favorite five, but you can substitute anyone you want.-->
 
-If we _didn’t_ define
-that `new()` function, it would look like this:
+【訳者註】哲学が退屈なら魔法少女や妖怪や弾幕バカに置き換えてもよいでしょう。
+
+仮に `new()` 機能を定義しなかった場合は、こう書かなければなりません。
+
+<!--If we _didn’t_ define that `new()` function, it would look like this:-->
 
 ```rust
 # struct Philosopher {
@@ -257,13 +272,20 @@ fn main() {
 }
 ```
 
-That’s much noisier. Using `new` has other advantages too, but even in
-this simple case, it ends up being nicer to use.
+ずっとゴチャゴチャしていますね。`new` を使う利点は他にもありますが、
+この簡単な場合でさえあった方がよかったと分かります。
 
-Now that we’ve got the basics in place, there’s a number of ways that we can
+<!--That’s much noisier. Using `new` has other advantages too, but even in
+this simple case, it ends up being nicer to use.-->
+
+基本的な用意ができたので、より広い問題に取り組むいくつもの道があらわれました。
+逆順にやってみたいので、まずはそれぞれの哲学者が食事を終えるところを準備しましょう。
+この小さな一歩では、操作法を作って全員分の繰り返しでそれを呼びだします。
+
+<!--Now that we’ve got the basics in place, there’s a number of ways that we can
 tackle the broader problem here. I like to start from the end first: let’s
 set up a way for each philosopher to finish eating. As a tiny step, let’s make
-a method, and then loop through all the philosophers, calling it:
+a method, and then loop through all the philosophers, calling it:-->
 
 ```rust
 struct Philosopher {
@@ -297,15 +319,22 @@ fn main() {
 }
 ```
 
-Let’s look at `main()` first. Rather than have five individual variable
+`main()` にまず注目してください。哲学者５人に対して別個の変数束縛を作らず、
+代わりに哲学者の入った `Vec<T>` を作りました。
+`Vec<T>` はベクトル (vector) とも呼ばれている伸長可能な配列型です。それから [`for`][for]
+繰り返し〈ループ〉を使ってベクトルを総なめし、哲学者ひとりひとりの参照を順番に得ます。
+
+<!--Let’s look at `main()` first. Rather than have five individual variable
 bindings for our philosophers, we make a `Vec<T>` of them instead. `Vec<T>` is
 also called a ‘vector’, and it’s a growable array type. We then use a
 [`for`][for] loop to iterate through the vector, getting a reference to each
-philosopher in turn.
+philosopher in turn.-->
 
 [for]: for-loops.html
 
-In the body of the loop, we call `p.eat()`, which is defined above:
+繰り返しの本体で `p.eat()` を呼んでいます。定義は上の方にありました。
+
+<!-- In the body of the loop, we call `p.eat()`, which is defined above: -->
 
 ```rust,ignore
 fn eat(&self) {
@@ -313,11 +342,16 @@ fn eat(&self) {
 }
 ```
 
-In Rust, methods take an explicit `self` parameter. That’s why `eat()` is a
+Rust の操作法は必ず `self` 引数をとります。これが、 `eat()` が操作法であって `new`
+が付属機能である理由です。`new()` には `self` がないですからね。
+できたての `eat()` では哲学者の名前を出して食べ終わったと印字するだけです。
+この算譜を実行すると次の出力がなされるはずです。
+
+<!--In Rust, methods take an explicit `self` parameter. That’s why `eat()` is a
 method, but `new` is an associated function: `new()` has no `self`. For our
 first version of `eat()`, we just print out the name of the philosopher, and
 mention they’re done eating. Running this program should give you the following
-output:
+output:-->
 
 ```text
 Judith Butler は食べ終わった。
@@ -327,11 +361,16 @@ Emma Goldman は食べ終わった。
 Michel Foucault は食べ終わった。
 ```
 
-Easy enough, they’re all done! We haven’t actually implemented the real problem
-yet, though, so we’re not done yet!
+全員終わりました！ 楽勝です。
+まあ実際は本当の問題を実装していないので、まだ終わってはいないのですが！
 
-Next, we want to make our philosophers not just finish eating, but actually
-eat. Here’s the next version:
+<!--Easy enough, they’re all done! We haven’t actually implemented the real problem
+yet, though, so we’re not done yet!-->
+
+次に、哲学者がただ食べ終えるだけでなく実際に食べるようにしていきます。次にできた版はこちらです。
+
+<!--Next, we want to make our philosophers not just finish eating, but actually
+eat. Here’s the next version:-->
 
 ```rust
 use std::thread;
@@ -371,14 +410,19 @@ fn main() {
 }
 ```
 
-Just a few changes. Let’s break it down.
+変更は 2 カ所です。かみ砕いて行きましょう。
+
+<!-- Just a few changes. Let’s break it down. -->
 
 ```rust,ignore
 use std::thread;
 ```
 
-`use` brings names into scope. We’re going to start using the `thread` module
-from the standard library, and so we need to `use` it.
+`use` で名前を可視(有効)範囲〈スコープ〉に持ち込みます。
+標準譜集から〈スレッド〉 `thread` 〈モジュール〉を使おうとしているので、`use` が必要です。
+
+<!--`use` brings names into scope. We’re going to start using the `thread` module
+from the standard library, and so we need to `use` it.-->
 
 ```rust,ignore
     fn eat(&self) {
@@ -390,10 +434,18 @@ from the standard library, and so we need to `use` it.
     }
 ```
 
-We now print out two messages, with a `sleep_ms()` in the middle. This will
-simulate the time it takes a philosopher to eat.
+今度は `sleep_ms()` を間にはさんで 2 つの文章を印字しています。
+これで哲学者が食べる時間を再現しましょう。
 
-If you run this program, you should see each philosopher eat in turn:
+【訳者註】〈スレッド〉は並列実行の主体です。 `sleep` は一定時間何もしないこと、
+`ms` はミリ秒 (millisecond) であり、1000 ミリ秒が 1 秒に等しいです。
+
+<!--We now print out two messages, with a `sleep_ms()` in the middle. This will
+simulate the time it takes a philosopher to eat.-->
+
+この算譜を実行すると、哲学者が順番に食べていく様子が見られるはずです。
+
+<!-- If you run this program, you should see each philosopher eat in turn: -->
 
 ```text
 Judith Butler が食事をはじめた。
@@ -408,11 +460,17 @@ Michel Foucault が食事をはじめた。
 Michel Foucault は食べ終わった。
 ```
 
-Excellent! We’re getting there. There’s just one problem: we aren’t actually
-operating in a concurrent fashion, which is a core part of the problem!
+素晴らしい！ ここまで来ました。ただひとつ問題があります。
+この問題の本丸である並列化にまだ手をつけていません！
 
-To make our philosophers eat concurrently, we need to make a small change.
-Here’s the next iteration:
+<!--Excellent! We’re getting there. There’s just one problem: we aren’t actually
+operating in a concurrent fashion, which is a core part of the problem!-->
+
+哲学者たちに同時並行に食事させるためには小さな変更を加える必要があります。
+次の一歩はこうです。
+
+<!--To make our philosophers eat concurrently, we need to make a small change.
+Here’s the next iteration:-->
 
 ```rust
 use std::thread;
@@ -458,8 +516,11 @@ fn main() {
 }
 ```
 
-All we’ve done is change the loop in `main()`, and added a second one! Here’s the
-first change:
+`main()` 内の繰り返し部の変更と二番目のものの追加で全部です！
+最初の変更点は、
+
+<!--All we’ve done is change the loop in `main()`, and added a second one! Here’s the
+first change:-->
 
 ```rust,ignore
 let handles: Vec<_> = philosophers.into_iter().map(|p| {
@@ -469,12 +530,15 @@ let handles: Vec<_> = philosophers.into_iter().map(|p| {
 }).collect();
 ```
 
-While this is only five lines, they’re a dense five. Let’s break it down.
+たった５行ですが、密度の高い５行になっています。それではかみ砕いていきましょう。
+
+<!-- While this is only five lines, they’re a dense five. Let’s break it down. -->
 
 ```rust,ignore
 let handles: Vec<_> =
 ```
 
+`handles` と命名した新しい束縛を導入します。
 We introduce a new binding, called `handles`. We’ve given it this name because
 we are going to make some new threads, and that will return some handles to those
 threads that let us control their operation. We need to explicitly annotate

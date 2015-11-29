@@ -1275,6 +1275,20 @@
 - en: instance
   ja: 実例
   common: インスタンス
+- en: placeholder
+  ja: 場所取り
+  #ja: 穴埋め, 抜け穴
+  common: プレースホルダ
+  desc: 場所取りをする = hold a place〔花見などの〕
+- en: thread
+  ja: 走脈
+  ja-abbr: 脈
+  common: スレッド
+  desc: スレッドは、thread of execution（実行の脈絡）という言葉を省略したものである。
+  ch: 线程(大陸), 執行緒(臺灣), 線程(港澳)
+- en: multi-threading
+  ja: 多脈処理
+  common: マルチスレッド処理
 
 # Rust 用語
 - en: ownership
