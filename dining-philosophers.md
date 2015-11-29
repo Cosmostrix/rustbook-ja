@@ -594,7 +594,8 @@ ownership of the values it’s capturing. Primarily, the `p` variable of the
 ```
 
 最後に、これらの `map` 呼出しの結果を全部集めてまとめあげます。
-`collect()` は結果を何かしらの収集物〈コレクション〉の形にします。今回は `Vec<T>` がほしかったので返り値の型にそう補注する必要がありました。
+`collect()` は結果を何かしらの収集物〈コレクション〉の形にします。
+今回は `Vec<T>` がほしかったので返り値の型にそう補注する必要がありました。
 要素は `thread::spawn` 呼出しの返り値で、各走脈の手綱になっています。
 ふー！
 
@@ -621,8 +622,8 @@ that the threads complete their work before the program exits.-->
 この算譜を走らせると哲学者がバラバラに食事をする光景が見られます！
 これが多脈処理〈マルチスレッド処理〉です！
 
-If you run this program, you’ll see that the philosophers eat out of order!
-We have multi-threading!
+<!--If you run this program, you’ll see that the philosophers eat out of order!
+We have multi-threading!-->
 
 ```text
 Judith Butler が食事をはじめた。
@@ -637,9 +638,13 @@ Emma Goldman は食べ終わった。
 Michel Foucault は食べ終わった。
 ```
 
-But what about the forks? We haven’t modeled them at all yet.
+ところでフォークはどこに行ったんでしょうか？ フォークはまだ全然模型化していませんでしたね。
 
-To do that, let’s make a new `struct`:
+<!-- But what about the forks? We haven’t modeled them at all yet. -->
+
+フォーク用に新しい `struct` を作りましょう。
+
+<!-- To do that, let’s make a new `struct`: -->
 
 ```rust
 use std::sync::Mutex;
@@ -649,12 +654,19 @@ struct Table {
 }
 ```
 
-This `Table` has a vector of `Mutex`es. A mutex is a way to control
+この `Table` は `Mutex`〈ミューテックス〉のベクトルを持ちます。
+〈ミューテックス〉は並行性を制御する方法のひとつで、同時にひとつの走脈だけがその中身を操作できます。
+まさしく今回のフォークに求める性質そのものです。〈ミューテックス〉の中身は空の組 `()` にしました。
+なぜなら、実際に中身を使うつもりはないので、ただ持っているだけで十分だからです。
+
+<!--This `Table` has a vector of `Mutex`es. A mutex is a way to control
 concurrency: only one thread can access the contents at once. This is exactly
 the property we need with our forks. We use an empty tuple, `()`, inside the
-mutex, since we’re not actually going to use the value, just hold onto it.
+mutex, since we’re not actually going to use the value, just hold onto it.-->
 
-Let’s modify the program to use the `Table`:
+`Table` を使うように算譜を加工しましょう。
+
+<!-- Let’s modify the program to use the `Table`: -->
 
 ```rust
 use std::thread;
@@ -722,15 +734,21 @@ fn main() {
 }
 ```
 
-Lots of changes! However, with this iteration, we’ve got a working program.
-Let’s go over the details:
+なんと変更が多い！ しかし、今の一歩によって、動く算譜を手にしました。
+詳しく見ていきましょう！
+
+<!--Lots of changes! However, with this iteration, we’ve got a working program.
+Let’s go over the details:-->
 
 ```rust,ignore
 use std::sync::{Mutex, Arc};
 ```
 
-We’re going to use another structure from the `std::sync` package: `Arc<T>`.
-We’ll talk more about it when we use it.
+`std::sync` 〈バッケージ〉からもうひとつの構造体 `Arc<T>` を使います。
+あとで使うときにもっと説明します。
+
+<!--We’re going to use another structure from the `std::sync` package: `Arc<T>`.
+We’ll talk more about it when we use it.-->
 
 ```rust,ignore
 struct Philosopher {
@@ -740,11 +758,16 @@ struct Philosopher {
 }
 ```
 
-We need to add two more fields to our `Philosopher`. Each philosopher is going
+`Philosopher` にもう２つ欄を加えなければなりません。
+哲学者には左に１本、右に１本、計２本のフォークを持たせます。
+`usize` 型を使いフォークを表現します。ベクトルの添字になっている型がこれだからです。
+この２つの値は `Table` が持つ `forks` の添字になります。
+
+<!--We need to add two more fields to our `Philosopher`. Each philosopher is going
 to have two forks: the one on their left, and the one on their right.
 We’ll use the `usize` type to indicate them, as it’s the type that you index
 vectors with. These two values will be the indexes into the `forks` our `Table`
-has.
+has.-->
 
 ```rust,ignore
 fn new(name: &str, left: usize, right: usize) -> Philosopher {
@@ -756,8 +779,10 @@ fn new(name: &str, left: usize, right: usize) -> Philosopher {
 }
 ```
 
-We now need to construct those `left` and `right` values, so we add them to
-`new()`.
+`left` と `right` の値を構築する必要があるので今 `new()` に追加しました。
+
+<!--We now need to construct those `left` and `right` values, so we add them to
+`new()`.-->
 
 ```rust,ignore
 fn eat(&self, table: &Table) {
@@ -772,27 +797,45 @@ fn eat(&self, table: &Table) {
 }
 ```
 
-We have two new lines. We’ve also added an argument, `table`. We access the
+２行増えました。引数 `table` も追加しました。`Table` のフォーク一覧を読み、続いて
+`self.left` と `self.right` を使って添字の位置にあるフォークを取り出します。
+その位置にある `Mutex` を操作できるようになったので `lock()` を呼びます。
+もしこの〈ミューテックス〉が今まさに他から操作されている最中だった場合は、空くまでずっと待機します。
+
+<!--We have two new lines. We’ve also added an argument, `table`. We access the
 `Table`’s list of forks, and then use `self.left` and `self.right` to access
 the fork at that particular index. That gives us access to the `Mutex` at that
 index, and we call `lock()` on it. If the mutex is currently being accessed by
-someone else, we’ll block until it becomes available.
+someone else, we’ll block until it becomes available.-->
 
-The call to `lock()` might fail, and if it does, we want to crash. In this
+`lock()` の呼出しは失敗する可能性があり、仮にそうなった場合は急停止させたいです。
+この場合、考えられる誤りは〈ミューテックス〉の[「汚染状態」][poison]です。
+これは〈ロック〉を抱えたままの走脈が〈パニック〉した状況です。
+今回は起こりえないはずですので、気にせず `unwrap()` します。
+
+<!--The call to `lock()` might fail, and if it does, we want to crash. In this
 case, the error that could happen is that the mutex is [‘poisoned’][poison],
 which is what happens when the thread panics while the lock is held. Since this
-shouldn’t happen, we just use `unwrap()`.
+shouldn’t happen, we just use `unwrap()`.-->
 
 [poison]: ../std/sync/struct.Mutex.html#poisoning
 
-One other odd thing about these lines: we’ve named the results `_left` and
+もうひとつ奇妙なところがありますね。結果に `_left` と `_right` という名前をつけています。
+下線は一体どうしたのでしょうか？ そうですね、〈ロック〉の中の値を使う予定は _ない_ です。
+ただ〈ロック〉を取得したいだけです。そのため、Rust は値を一度も使っていないと警告するでしょう。
+下線をつけると Rust にこれが意図的なものであると伝えることができ、警告を消せます。
+
+<!--One other odd thing about these lines: we’ve named the results `_left` and
 `_right`. What’s up with that underscore? Well, we aren’t planning on
 _using_ the value inside the lock. We just want to acquire it. As such,
 Rust will warn us that we never use the value. By using the underscore,
-we tell Rust that this is what we intended, and it won’t throw a warning.
+we tell Rust that this is what we intended, and it won’t throw a warning.-->
 
-What about releasing the lock? Well, that will happen when `_left` and
-`_right` go out of scope, automatically.
+〈ロック〉の解放はどうすればよいでしょう？
+はい、`_left` と `_right` が範囲外に出たときに自動的に行われます。
+
+<!--What about releasing the lock? Well, that will happen when `_left` and
+`_right` go out of scope, automatically.-->
 
 ```rust,ignore
     let table = Arc::new(Table { forks: vec![
@@ -804,10 +847,15 @@ What about releasing the lock? Well, that will happen when `_left` and
     ]});
 ```
 
-Next, in `main()`, we make a new `Table` and wrap it in an `Arc<T>`.
+続いて、`main()` で新しい `Table` を作り `Arc<T>` で包みこみます。
+「arc」は「不可分参照数計 (atomic reference count)」の略で、`Table`
+を複数の走脈にまたがって共用するために必要です。
+共用した数にあわせて参照数が増えていき、走脈が終わりを迎えるごとに１ずつ減っていきます。
+
+<!--Next, in `main()`, we make a new `Table` and wrap it in an `Arc<T>`.
 ‘arc’ stands for ‘atomic reference count’, and we need that to share
 our `Table` across multiple threads. As we share it, the reference
-count will go up, and when each thread ends, it will go back down.
+count will go up, and when each thread ends, it will go back down.-->
 
 
 ```rust,ignore
