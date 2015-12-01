@@ -1296,6 +1296,21 @@
 - en: shadowing (bindings)
   ja: 覆い隠すこと
   common: シャドーイング
+- en: runtime
+  ja: 実行時
+  common: ランタイム
+- en: runtime (library routine)
+  ja: 必携譜
+  common: ランタイム, ランタイムライブラリ
+- en: range
+  common: 範囲
+  comment: Ruby より
+- en: consumer
+  ja: 消費者
+  comment: conduit のチュートリアルより
+- en: core
+  ja: 頭
+  common: コア
 
 # Rust 用語
 - en: ownership

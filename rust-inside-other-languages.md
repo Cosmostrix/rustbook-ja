@@ -18,7 +18,7 @@ its strengths make sense and a different one where it’s weak.-->
 しばしば、実行が遅く、しかし生産性の高い言語の選択は考える価値のある妥協案です。
 そういった言語では失うものを減らす手助けとなるよう、算系を C 言語 (以下 C という)
 で書いて、C の譜面を高水準言語で書かれたかのように呼び出せる仕組みを備えています。
-これが「外機能内通 (foreign function interface)」と呼ばれるものです。
+これが「外機能内通 (foreign function interface)〈外部関数インタフェース〉」と呼ばれるものです。
 よく「FFI」と略されます。
 
 <!--A very common area where many programming languages are weak is in runtime
@@ -60,9 +60,9 @@ pick an example where Rust has a clear advantage over many other languages:
 numeric computing and threading.-->
 
 多くの言語では一貫性を守るために数値を山〈スタック〉ではなく原〈ヒーブ〉に置いています。
-とくに対象〈オブジェクト〉指向演譜に特化した言語でごみ収集をするものは原置きが普通です。
+とくに対象指向演譜〈オブジェクト指向プログラミング〉に特化した言語でごみ収集をするものは原置きが普通です。
 ときどき最適化によって一部の数値が山に置かれることもありますが、その仕事を最適化器まかせにせず、
-確実に対象〈オブジェクト〉型より〈プリミティブ〉型を使わせるようにしたいときがあります。
+確実に対象型〈オブジェクト型〉より基本型〈プリミティブ型〉を使わせるようにしたいときがあります。
 
 <!--Many languages, for the sake of consistency, place numbers on the heap, rather
 than on the stack. Especially in languages that focus on object-oriented
@@ -71,22 +71,36 @@ optimizations can stack allocate particular numbers, but rather than relying
 on an optimizer to do its job, we may want to ensure that we’re always using
 primitive number types rather than some sort of object type.-->
 
-二番目に、
-Second, many languages have a ‘global interpreter lock’ (GIL), which limits
+二番目に、多くの言語が持つ「解釈系全体ロック
+(global interpreter lock)〈グローバルインタプリタロック〉」(GIL) の存在です。
+これは多くの状況で並列性を制限します。
+これは安全性の旗の元に行われており、好ましい効果がありますが、
+同時に行える仕事の数を制限するため、大きな悪影響があります。
+
+<!--Second, many languages have a ‘global interpreter lock’ (GIL), which limits
 concurrency in many situations. This is done in the name of safety, which is
 a positive effect, but it limits the amount of work that can be done at the
-same time, which is a big negative.
+same time, which is a big negative.-->
 
-To emphasize these two aspects, we’re going to create a little project that
+この２点を強調するため、これらを激しく使う企画を作ることにします。
+問題自体よりも他の言語に Rust を埋め込むことがこの例の焦点ですので、
+こんな風にお遊びの例としましょう。
+
+<!--To emphasize these two aspects, we’re going to create a little project that
 uses these two aspects heavily. Since the focus of the example is to embed
 Rust into other languages, rather than the problem itself, we’ll just use a
-toy example:
+toy example:-->
 
-> Start ten threads. Inside each thread, count from one to five million. After
-> all ten threads are finished, print out ‘done!’.
+> 10 個の走脈を開始します。各走脈では 1 から 500 万 まで数えます。
+> 10 個の脈がすべて走破しきったところで「完了！」と印字します。
 
-I chose five million based on my particular computer. Here’s an example of this
-code in Ruby:
+<!-- > Start ten threads. Inside each thread, count from one to five million. After
+> all ten threads are finished, print out ‘完了！’.-->
+
+500 万という数字は私の計算機で試して選びました。この譜面を Ruby で書くとこうなります。
+
+<!--I chose five million based on my particular computer. Here’s an example of this
+code in Ruby:-->
 
 ```ruby
 threads = []
@@ -104,34 +118,50 @@ threads = []
 end
 
 threads.each do |t|
-  puts "Thread finished with count=#{t.value}"
+  puts "スレッドが終了しました。計数=#{t.value}"
 end
-puts "done!"
+puts "完了！"
 ```
 
-Try running this example, and choose a number that runs for a few seconds.
+この例を実行してみて、数秒で終わりそうな手頃な数字を指定してください。
+持っている計算機〈コンピュータ〉の機体〈ハードウエア〉にもよりますが、加減が必要かもしれません。
+
+<!--Try running this example, and choose a number that runs for a few seconds.
 Depending on your computer’s hardware, you may have to increase or decrease the
-number.
+number.-->
 
-On my system, running this program takes `2.156` seconds. And, if I use some
+私の算系ではこの算譜に `2.156` 秒かかりました。そして、もし `top`
+のようなある種の〈プロセス〉監視器を使えば機械のたった１頭〈コア〉しか使われていないと分かります。
+GIL が邪魔をしているわけですね。
+
+<!--On my system, running this program takes `2.156` seconds. And, if I use some
 sort of process monitoring tool, like `top`, I can see that it only uses one
-core on my machine. That’s the GIL kicking in.
+core on my machine. That’s the GIL kicking in.-->
 
-While it’s true that this is a synthetic program, one can imagine many problems
+これがわざとらしい問題であるのは承知ですが、実世界でもこれに近い状況がたくさん考えられます。
+私達の目的のため、２〜３の走脈がせわしなく働く様子がある種の並行的で高価な計算を表すとします。
+
+<!--While it’s true that this is a synthetic program, one can imagine many problems
 that are similar to this in the real world. For our purposes, spinning up a few
-busy threads represents some sort of parallel, expensive computation.
+busy threads represents some sort of parallel, expensive computation.-->
 
-# A Rust library
+# Rust 側の譜集
 
-Let’s rewrite this problem in Rust. First, let’s make a new project with
-Cargo:
+<!-- # A Rust library -->
+
+この問題を Rust で書き直しましょう。はじめに、Cargo で新しい企画を作りましょう。
+
+<!--Let’s rewrite this problem in Rust. First, let’s make a new project with
+Cargo:-->
 
 ```bash
 $ cargo new embed
 $ cd embed
 ```
 
-This program is fairly easy to write in Rust:
+Rust だとまあまあ簡単に書けますね。
+
+<!-- This program is fairly easy to write in Rust: -->
 
 ```rust
 use std::thread;
@@ -148,39 +178,62 @@ fn process() {
     }).collect();
 
     for h in handles {
-        println!("Thread finished with count={}",
-	    h.join().map_err(|_| "Could not join a thread!").unwrap());
+        println!("走脈が終了しました。計数={}",
+	    h.join().map_err(|_| "合流に失敗しました！").unwrap());
     }
 }
 ```
 
-Some of this should look familiar from previous examples. We spin up ten
+前の例から見覚えのある箇所があります。
+10 個の走脈を回し、`handles` ベクトルに集め (collect) ています。
+各走脈では 500 万回の繰り返しで毎回 `x` に 1 足しています。
+最後に各走脈を合流させます。
+
+<!--Some of this should look familiar from previous examples. We spin up ten
 threads, collecting them into a `handles` vector. Inside of each thread, we
 loop five million times, and add one to `x` each time. Finally, we join on
-each thread.
+each thread.-->
 
-Right now, however, this is a Rust library, and it doesn’t expose anything
+現時点では Rust 譜集でしかないので C から呼べる形のものは外に出していません。
+このままの状態で別の言語につなげようとしてもそう上手くはいきません。
+２カ所だけちょっと直せばいいんですけどね。ひとつは譜面の冒頭部分を変更し、
+
+<!--Right now, however, this is a Rust library, and it doesn’t expose anything
 that’s callable from C. If we tried to hook this up to another language right
 now, it wouldn’t work. We only need to make two small changes to fix this,
-though. The first is to modify the beginning of our code:
+though. The first is to modify the beginning of our code:-->
 
 ```rust,ignore
 #[no_mangle]
 pub extern fn process() {
 ```
 
-We have to add a new attribute, `no_mangle`. When you create a Rust library, it
+とします。新しい属性 `no_mangle` を加えなければなりません。
+Rust 譜集を作ったとき、製譜済みの出力では機能名が変更されてしまっています。
+なぜそうなるのかはこの指南書の対象外ですが、他の言語があの機能を呼ぶ方法を知っておくためには、
+変更はできません。
+この属性はその振る舞いをなくします。
+
+<!--We have to add a new attribute, `no_mangle`. When you create a Rust library, it
 changes the name of the function in the compiled output. The reasons for this
 are outside the scope of this tutorial, but in order for other languages to
 know how to call the function, we can’t do that. This attribute turns
-that behavior off.
+that behavior off.-->
 
-The other change is the `pub extern`. The `pub` means that this function should
+もうひとつは `pub extern` の変更です。
+`pub` はこの機能がこの〈モジュール〉の外部から呼び出し可能であるという意味で、
+`extern` は C から呼出し可能であるべきだと言っています。
+これだけです！ 変更だらけでなくて良かった。
+
+<!--The other change is the `pub extern`. The `pub` means that this function should
 be callable from outside of this module, and the `extern` says that it should
-be able to be called from C. That’s it! Not a whole lot of change.
+be able to be called from C. That’s it! Not a whole lot of change.-->
 
-The second thing we need to do is to change a setting in our `Cargo.toml`. Add
-this at the bottom:
+二番目にすべきことは `Cargo.toml` での設定の変更です。
+一番下にこれを追加してください。
+
+<!--The second thing we need to do is to change a setting in our `Cargo.toml`. Add
+this at the bottom:-->
 
 ```toml
 [lib]
@@ -188,34 +241,53 @@ name = "embed"
 crate-type = ["dylib"]
 ```
 
-This tells Rust that we want to compile our library into a standard dynamic
-library. By default, Rust compiles an ‘rlib’, a Rust-specific format.
+いまの譜集を標準的な動的譜集〈ダイナミックライブラリ〉に製譜したいと Rust に伝えています。
+通常は Rust 専用形式の「rlib」に製譜されます。
 
-Let’s build the project now:
+<!--This tells Rust that we want to compile our library into a standard dynamic
+library. By default, Rust compiles an ‘rlib’, a Rust-specific format.-->
+
+ここで企画を織り上げましょう。
+
+<!-- Let’s build the project now: -->
 
 ```bash
 $ cargo build --release
    Compiling embed v0.1.0 (file:///home/steve/src/embed)
 ```
 
-We’ve chosen `cargo build --release`, which builds with optimizations on. We
+`cargo build --release` を選んで、最適化をありにして織り上げます。
+できるだけ高速に動いてもらいたいものです！
+できた譜集は `target/release` 以下に見つかります。
+
+<!--We’ve chosen `cargo build --release`, which builds with optimizations on. We
 want this to be as fast as possible! You can find the output of the library in
-`target/release`:
+`target/release`:-->
 
 ```bash
 $ ls target/release/
 build  deps  examples  libembed.so  native
 ```
 
-That `libembed.so` is our ‘shared object’ library. We can use this file
-just like any shared object library written in C! As an aside, this may be
-`embed.dll` or `libembed.dylib`, depending on the platform.
+上の `libembed.so` が「共有対象〈シェアードオブジェクト〉」譜集です。
+この〈ファイル〉は C で書かれた共用対象譜集とまったく同じに使えます！
+余談ですが名前は土台環境により `embed.dll` (Windows) または `libembed.dylib` (Mac)
+と変わります。
 
-Now that we’ve got our Rust library built, let’s use it from our Ruby.
+<!--That `libembed.so` is our ‘shared object’ library. We can use this file
+just like any shared object library written in C! As an aside, this may be
+`embed.dll` or `libembed.dylib`, depending on the platform.-->
+
+Rust 譜集が織れたので早速 Ruby から使ってみましょう。
+
+<!-- Now that we’ve got our Rust library built, let’s use it from our Ruby. -->
 
 # Ruby
+<!-- # Ruby -->
 
-Open up an `embed.rb` file inside of our project, and do this:
+企画階層で `embed.rb` 台譜を開き、こうします。
+
+<!-- Open up an `embed.rb` file inside of our project, and do this: -->
 
 ```ruby
 require 'ffi'
@@ -228,13 +300,15 @@ end
 
 Hello.process
 
-puts 'done!'
+puts '完了！'
 ```
 
-Before we can run this, we need to install the `ffi` gem:
+実行できるようになる前に `ffi` ジェム (gem) の導入が必要です。
+
+<!-- Before we can run this, we need to install the `ffi` gem: -->
 
 ```bash
-$ gem install ffi # this may need sudo
+$ gem install ffi # 頭に「sudo 」が必要かもしれません
 Fetching: ffi-1.9.8.gem (100%)
 Building native extensions.  This could take a while...
 Successfully installed ffi-1.9.8
@@ -244,22 +318,24 @@ Done installing documentation for ffi after 0 seconds
 1 gem installed
 ```
 
-And finally, we can try running it:
+そして最後に、走らせてみることができます。
+
+<!-- And finally, we can try running it: -->
 
 ```bash
 $ ruby embed.rb
-Thread finished with count=5000000
-Thread finished with count=5000000
-Thread finished with count=5000000
-Thread finished with count=5000000
-Thread finished with count=5000000
-Thread finished with count=5000000
-Thread finished with count=5000000
-Thread finished with count=5000000
-Thread finished with count=5000000
-Thread finished with count=5000000
-done!
-done!
+走脈が終了しました。計数=5000000
+走脈が終了しました。計数=5000000
+走脈が終了しました。計数=5000000
+走脈が終了しました。計数=5000000
+走脈が終了しました。計数=5000000
+走脈が終了しました。計数=5000000
+走脈が終了しました。計数=5000000
+走脈が終了しました。計数=5000000
+走脈が終了しました。計数=5000000
+走脈が終了しました。計数=5000000
+完了！
+完了！
 $
 ```
 
@@ -305,10 +381,10 @@ and the call to `attach_function` sets this all up. It looks like
 a Ruby function but is actually Rust!
 
 ```ruby
-puts 'done!'
+puts '完了！'
 ```
 
-Finally, as per our project’s requirements, we print out `done!`.
+Finally, as per our project’s requirements, we print out `完了！`.
 
 That’s it! As we’ve seen, bridging between the two languages is really easy,
 and buys us a lot of performance.
@@ -326,7 +402,7 @@ lib = cdll.LoadLibrary("target/release/libembed.so")
 
 lib.process()
 
-print("done!")
+print("完了！")
 ```
 
 Even easier! We use `cdll` from the `ctypes` module. A quick call
@@ -356,7 +432,7 @@ var lib = ffi.Library('target/release/libembed', {
 
 lib.process();
 
-console.log("done!");
+console.log("完了！");
 ```
 
 It looks more like the Ruby example than the Python example. We use
