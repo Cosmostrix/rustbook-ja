@@ -1289,6 +1289,11 @@
 - en: multi-threading
   ja: 多脈処理
   common: マルチスレッド処理
+- en: shadow (some bindings)
+  ja: 覆い隠す
+- en: shadowing (bindings)
+  ja: 覆い隠すこと
+  common: シャドーイング
 
 # Rust 用語
 - en: ownership
@@ -1365,3 +1370,6 @@
   common: アノテーション
   ch: 注解, 标注
   comment: commentは分かりやすさのために書くもの、annotationはcodeの一部/意味への言及(ないと困る補足)
+- en: Arc; atomic reference count
+  ja: 不可分参照数計
+

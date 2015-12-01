@@ -821,7 +821,7 @@ shouldn’t happen, we just use `unwrap()`.-->
 [poison]: ../std/sync/struct.Mutex.html#poisoning
 
 もうひとつ奇妙なところがありますね。結果に `_left` と `_right` という名前をつけています。
-下線は一体どうしたのでしょうか？ そうですね、〈ロック〉の中の値を使う予定は _ない_ です。
+この下線は一体どうしたのでしょうか？ そうですね、〈ロック〉の中の値を使う予定は _ない_ です。
 ただ〈ロック〉を取得したいだけです。そのため、Rust は値を一度も使っていないと警告するでしょう。
 下線をつけると Rust にこれが意図的なものであると伝えることができ、警告を消せます。
 
@@ -868,12 +868,18 @@ let philosophers = vec![
 ];
 ```
 
-We need to pass in our `left` and `right` values to the constructors for our
+`left` と `right` の値を内部の `Philosopher` 構築子〈コンストラクター〉に渡さなければなりません。
+ただ、ここでもうひとつ小技が登場します。 _とても_ 大事なことです。この並びを見てどう思うでしょうか。
+最後のひとつ前までは一貫していますが、ミシェル・フーコーの引数が `4, 0` と思いきや `0, 4` になっています。
+実はこれがこう着状態を防ぐ技だったのです。哲学者の一人は左利きでした！
+これは問題解決の一つの手法ですが、私の見立てでは最もかんたんな方法です。
+
+<!--We need to pass in our `left` and `right` values to the constructors for our
 `Philosopher`s. But there’s one more detail here, and it’s _very_ important. If
 you look at the pattern, it’s all consistent until the very end. Monsieur
 Foucault should have `4, 0` as arguments, but instead, has `0, 4`. This is what
 prevents deadlock, actually: one of our philosophers is left handed! This is
-one way to solve the problem, and in my opinion, it’s the simplest.
+one way to solve the problem, and in my opinion, it’s the simplest.-->
 
 ```rust,ignore
 let handles: Vec<_> = philosophers.into_iter().map(|p| {
@@ -885,18 +891,29 @@ let handles: Vec<_> = philosophers.into_iter().map(|p| {
 }).collect();
 ```
 
-Finally, inside of our `map()`/`collect()` loop, we call `table.clone()`. The
+最後に、`map()`/`collect()` 繰り返しの内側で `table.clone()` を呼びます。
+`Arc<T>` 上の `clone()` 操作法は参照数をひとつ増やすもので、可視範囲から外れたら計数をひとつ減らします。
+これは `table` への参照が走脈内にどれだけ残っているか数えるために必要です。
+仮に数えなかったとすると、どうやって正しく解放するか分からなかったことでしょう。
+
+<!--Finally, inside of our `map()`/`collect()` loop, we call `table.clone()`. The
 `clone()` method on `Arc<T>` is what bumps up the reference count, and when it
 goes out of scope, it decrements the count. This is needed so that we know how
 many references to `table` exist across our threads. If we didn’t have a count,
-we wouldn’t know how to deallocate it.
+we wouldn’t know how to deallocate it.-->
 
-You’ll notice we can introduce a new binding to `table` here, and it will
+`table` への新しい束縛を導入し、以前の名前を覆い隠していることに気づくでしょう。
+２つのかぶらない名前を考えなくて済むようによく使われる手です。
+
+<!--You’ll notice we can introduce a new binding to `table` here, and it will
 shadow the old one. This is often used so that you don’t need to come up with
-two unique names.
+two unique names.-->
 
-With this, our program works! Only two philosophers can eat at any one time,
-and so you’ll get some output like this:
+こうして、算譜が動くようになりました！
+最大 2 人の哲学者が同時に食事できるので、出力は以下のようになるでしょう。
+
+<!--With this, our program works! Only two philosophers can eat at any one time,
+and so you’ll get some output like this:-->
 
 ```text
 Gilles Deleuze が食事をはじめた。
@@ -911,4 +928,10 @@ Karl Marx は食べ終わった。
 Michel Foucault は食べ終わった。
 ```
 
-Congrats! You’ve implemented a classic concurrency problem in Rust.
+おめでとう！ 古典的な並列処理問題を Rust で実装できましたね。
+
+<!--Congrats! You’ve implemented a classic concurrency problem in Rust.-->
+
+【訳者註】古典的 (classic)
+という言葉には「よく知られた」「標準的な」「不朽の」という意味合いもあります。
+古くからありますが、その多くは現代でも通用するものです。
