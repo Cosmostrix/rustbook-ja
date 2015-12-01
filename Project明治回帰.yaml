@@ -1289,6 +1289,8 @@
 - en: multi-threading
   ja: 多脈処理
   common: マルチスレッド処理
+- en: threading
+  ja: 多脈化
 - en: shadow (some bindings)
   ja: 覆い隠す
 - en: shadowing (bindings)
