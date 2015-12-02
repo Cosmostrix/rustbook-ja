@@ -453,7 +453,7 @@
   desc: 一般に変化の大きい更新をいう
 - en: deploy
   ja: 配備
-  common: デプロイ
+  common: デプロイ, 配備
   desc: 実験機から本番環境へ送ること、一般提供
   comment: これは置き換えよりもルビにしたほうがかっこいい。
 - en: deprecated
@@ -516,7 +516,7 @@
   desc: 日本語圏では、かな漢字変換を担当するソフト
 
 - en: session
-  #ja: 作業状態, 取組み, 現環境, 会期
+  #ja: 作業状態, 取組み, 現環境, 会期, 一会(いちえ)
   common: セッション
   comment: 中身の状態までは保持されないというニュアンスが表現できない。。。
 
@@ -533,6 +533,7 @@
 
 - en: email
   yamato: お便り
+  common: メール
   desc: 紙の便りには手紙という言葉がある。
 
 - en: render
@@ -590,20 +591,20 @@
   #ja: 組付器, 組技, 組手
   common: コンビネーター
 - en: parser combinator
-  ja: 構析手?
+  #ja: 構析手?
   common: パーサ(パーザー)コンビネーター
 - en: unused memory
-  ja: 常世
+  ja: 常世(とこせ)
   common: 未使用領域
   desc: あの世
 - en: used memory
-  ja: 現世
+  ja: 現世(うつせ)
   common: 使用領域
   desc: この世
 - en: file
   #ja: カラ
   common: ファイル
-  desc: ファイルは身体→殻だ→カラ 身を入れる器。なきがらのガラ。
+  desc: 身を入れる器。なきがらのガラ。
 - en: primitive
   #ja: 素元, 溯源
   common: プリミティブ
@@ -908,7 +909,7 @@
 - en: assembly
   ja: 組詞 (クミト)
   common: アセンブリ
-  desc: 機械語に一対一対応する算譜
+  desc: 機械語に直接、一対一対応する算譜
 - en: assembler
   ja: 組立器
   #ja: 組付器
@@ -1308,7 +1309,7 @@
 - en: consumer
   ja: 消費者
   comment: conduit のチュートリアルより
-- en: core
+- en: (CPU's) core
   ja: 頭
   common: コア
 

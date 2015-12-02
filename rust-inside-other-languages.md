@@ -339,22 +339,31 @@ $ ruby embed.rb
 $
 ```
 
-Whoa, that was fast! On my system, this took `0.086` seconds, rather than
+ほわッ！ なんと早いッ！
+私の算系では純 Ruby 版で 2 秒かかっていたものが `0.086` 秒になりました。
+それではこの Ruby 譜面をひも解いていきましょう。
+
+<!--Whoa, that was fast! On my system, this took `0.086` seconds, rather than
 the two seconds the pure Ruby version took. Let’s break down this Ruby
-code:
+code:-->
 
 ```ruby
 require 'ffi'
 ```
 
-We first need to require the `ffi` gem. This lets us interface with our
-Rust library like a C library.
+まず最初に `ffi` ジェムを要求 (require) しなければなりません。
+これは Rust 譜集を C と同じように仲介をしてくれる役目を持ちます。
+
+<!--We first need to require the `ffi` gem. This lets us interface with our
+Rust library like a C library.-->
 
 ```ruby
 module Hello
   extend FFI::Library
   ffi_lib 'target/release/libembed.so'
 ```
+
+`Hello`〈モジュール〉は共有譜集からの機能を
 
 The `Hello` module is used to attach the native functions from the shared
 library. Inside, we `extend` the necessary `FFI::Library` module and then call
@@ -442,10 +451,18 @@ types of the function, which are `void` for return and an empty
 array to signify no arguments. From there, we just call it and
 print the result.
 
-On my system, this takes a quick `0.092` seconds.
+私の算系では、たったの `0.092` 秒でした。
 
-# Conclusion
+<!-- On my system, this takes a quick `0.092` seconds. -->
 
-As you can see, the basics of doing this are _very_ easy. Of course,
+# 結び
+
+<!-- # Conclusion -->
+
+ご覧の通り、外機能内通の基本は _とっても_ 簡単です。
+もちろん、できることは以上の例に限らずたくさんあります。
+詳しくは[外機能内通][ffi]の章に当たってみてください。
+
+<!--As you can see, the basics of doing this are _very_ easy. Of course,
 there's a lot more that we could do here. Check out the [FFI][ffi]
-chapter for more details.
+chapter for more details.-->
