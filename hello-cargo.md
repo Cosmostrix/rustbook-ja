@@ -16,8 +16,8 @@ so it is assumed that Rust projects will use Cargo from the beginning. -->
 [cratesio]: http://doc.crates.io
 
 Cargo は３つのモノを管理します。
-譜面〈コード〉の織り上げ〈ビルド〉、必要になった依存物 (dependencies)〈依存関係〉の入荷、
-そして入荷された依存物の織り上げです。最初は私達の算譜〈プログラム〉に依存物が全くないので、
+譜面〈コード〉の組み上げ〈ビルド〉、必要になった依存物 (dependencies)〈依存関係〉の入荷、
+そして入荷された依存物の組み上げです。最初は私達の算譜〈プログラム〉に依存物が全くないので、
 前者の機能だけを使うことになります。ゆくゆくは、もっと追加していくつもりです。
 Cargo を使って書き始めたので追加は簡単にできるでしょう。
 
@@ -131,7 +131,7 @@ extra goodies. According to the TOML docs, -->
 [toml]: https://github.com/toml-lang/toml
 
 一回この〈ファイル〉をあるべき企画の最上階へと置くと、
-織り上げ〈ビルド〉の準備ができたはずです！ そうするには、実行↓
+組み上げ〈ビルド〉の準備ができたはずです！ そうするには、実行↓
 
 <!-- Once we have this file in place in our project's root directory, we should be
 ready to build! To do so, run: -->
@@ -143,7 +143,7 @@ $ ./target/debug/hello_world
 Hello, world!
 ```
 
-ドン！ いま `cargo build` を使い私達の企画を織ったあと `./target/debug/hello_world`
+ドン！ いま `cargo build` を使い私達の企画を組んだあと `./target/debug/hello_world`
 にて実行しました。`cargo run` なら両方とも一発で行えます。
 
 <!-- Bam! We built our project with `cargo build`, and ran it with
@@ -155,7 +155,7 @@ $ cargo run
 Hello, world!
 ```
 
-今回は企画を織り直していなかったことに目を向けてください。Cargo は原譜に手が加わってなかった
+今回は企画を組み直していなかったことに目を向けてください。Cargo は原譜に手が加わってなかった
 ことを見抜き二進譜を実行するに留めました。
 もし手を加えていれば両方ともが行なわれる様子を見てとれたでしょう。
 
@@ -206,7 +206,7 @@ version = "0.0.1"
 application. Right now, we don’t have any, so it’s a bit sparse. We won't ever
 need to touch this file ourselves, just let Cargo handle it. -->
 
-以上！ `hello_world` を見事 Cargo で織り上げました。私達の譜体はごく簡単なものでしたが、
+以上！ `hello_world` を見事 Cargo で組み上げました。私達の譜体はごく簡単なものでしたが、
 今度の Rust の経歴でずっと使われる実際の道具を大いに利用しました。
 実質的にすべての Rust 企画は次のようにして取りかかれると期待してください。
 

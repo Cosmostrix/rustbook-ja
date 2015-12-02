@@ -59,7 +59,7 @@ Windows 用取付具を使った場合は、もう一度その `.msi` を実行�
 根本的には、こうするとき Rust を保守している善良な人々が計算機を侵害して悪事を
 はたらかないことを当てにしているからです。
 実によい洞察です！もしあなたがそのような方々の一員なら、開発資料集の
-[Rust を原譜から織り上げる〈ビルド〉][from-source]や[公式 二進譜〈バイナリ〉置き場]
+[Rust を原譜から組み上げる〈ビルド〉][from-source]や[公式 二進譜〈バイナリ〉置き場]
 [install-page]を当たってみてください。
 
 [from-source]: https://github.com/rust-lang/rust#building-from-source

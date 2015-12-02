@@ -69,7 +69,7 @@ an uninstall option. -->
 根本的には、こうするとき Rust を保守している善良な人々が計算機を侵害して悪事を
 はたらかないことを当てにしているからです。
 実によい洞察です！もしあなたがそのような方々の一員なら、開発資料集の
-[Rust を原譜から織り上げる][from-source]や[公式二進譜置き場]
+[Rust を原譜から組み上げる][from-source]や[公式二進譜置き場]
 [install-page]を当たってみてください。
 
 <!-- Some people, and somewhat rightfully so, get very upset when we tell you to

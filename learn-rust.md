@@ -1,6 +1,6 @@
 % Rust を学ぼう
 
-ようこそ！ この章には企画を織り上げながら Rust を教える３つの教程があります。
+ようこそ！ この章には企画を組み上げながら Rust を教える３つの教程があります。
 そこでは全体を高く俯瞰する視点を手にしますが、細かい点はさっとかすめる程度になります。
 
 <!-- Welcome! This section has a few tutorials that teach you Rust through building

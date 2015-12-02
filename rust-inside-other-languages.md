@@ -247,7 +247,7 @@ crate-type = ["dylib"]
 <!--This tells Rust that we want to compile our library into a standard dynamic
 library. By default, Rust compiles an ‘rlib’, a Rust-specific format.-->
 
-ここで企画を織り上げましょう。
+ここで企画を組み上げましょう。
 
 <!-- Let’s build the project now: -->
 
@@ -256,7 +256,7 @@ $ cargo build --release
    Compiling embed v0.1.0 (file:///home/steve/src/embed)
 ```
 
-`cargo build --release` を選んで、最適化をありにして織り上げます。
+`cargo build --release` を選んで、最適化をありにして組み上げます。
 できるだけ高速に動いてもらいたいものです！
 できた譜集は `target/release` 以下に見つかります。
 
@@ -278,7 +278,7 @@ build  deps  examples  libembed.so  native
 just like any shared object library written in C! As an aside, this may be
 `embed.dll` or `libembed.dylib`, depending on the platform.-->
 
-Rust 譜集が織れたので早速 Ruby から使ってみましょう。
+Rust 譜集が組めたので早速 Ruby から使ってみましょう。
 
 <!-- Now that we’ve got our Rust library built, let’s use it from our Ruby. -->
 

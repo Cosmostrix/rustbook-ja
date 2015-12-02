@@ -534,7 +534,6 @@
 - en: email
   yamato: お便り
   common: メール
-  desc: 紙の便りには手紙という言葉がある。
 
 - en: render
   ja: 描出する
@@ -587,7 +586,7 @@
   common: 静的単一代入形式
   comment: 一回使いきり→最後まで使う。使いすて→再利用せずに捨てる。
 - en: combinator
-  ja: 組手?
+  ja: 組詞(クミト)
   #ja: 組付器, 組技, 組手
   common: コンビネーター
 - en: parser combinator
@@ -904,27 +903,30 @@
   common: プリプロセサ
   #desc: 選定(select; よく考えて決める)と同じ音かつ、プリプロセサの仕事をよく表した語。
 - en: assemble
-  ja: 組み立て
+  ja: 織り上げ
+  #ja: 組み立て
   common: アセンブル
+  comment: 「build=組み立て」の用例の多さを鑑み大引越
 - en: assembly
-  ja: 組詞 (クミト)
+  ja: 直譜
+  #ja: 組詞 (クミト)
   common: アセンブリ
-  desc: 機械語に直接、一対一対応する算譜
+  desc: 機械語に直接、一対一対応する算譜。
 - en: assembler
-  ja: 組立器
-  #ja: 組付器
+  ja: 織り器?, 織機
+  #ja: 組立器, 組付器, 織り係
   common: アセンブラ
-  desc: 組詞を組付けせしめるもの。
+  desc: 糸車=命令セット, 直譜に忠実に織り上げせしめるもの。
 - en: link
   ja: 結合
   common: リンク
 - en: linker
   ja: 結合器
-  common: リンカー
+  common: リンカ
 - en: loader
   ja: 配荷器
-  #ja: 施術器
-  common: ローダー
+  #ja: 施術器, 配荷係
+  common: ローダ
   #desc: 施術者(practitioner; [代替医療の]実践者,開業医,[仏道の]修行者)がとてもWizardっぽくていいので採用
 
 # 実行までの過程
@@ -1094,7 +1096,7 @@
   ja: 上乗せ
   common: オーバーライド
 - en: inline assembly
-  ja: 組詞埋め込み
+  ja: 直譜埋め込み
 - en: advanced linking
   ja: より高度な結合方法
 - en: benchmark tests
@@ -1104,11 +1106,13 @@
 - en: custom allocator
   ja: 自在割当て部?
 - en: build
-  ja: 織る(動), 織り上げ(名)
+  ja: 組み上げる, (組む)
+  #ja: 織る(動), 織り上げ(名)
   common: ビルド
-  comment: 織る＝引っ張っても伸びないもの、編む＝伸縮性のある伸びるもの
+  #comment: 織る＝引っ張っても伸びないもの、編む＝伸縮性のある伸びるもの
+  desc: 「組み立て」は意味が広くあいまいなため回避
 - en: rebuild
-  ja: 織り直し
+  ja: 組み直し
   common: リビルド
 - en: game
   common: ゲーム
@@ -1122,14 +1126,11 @@
   comment: MSDN 日本語版の Fundamental types の訳
 - en: guarantee
   commom: 保証
-- en: literal
-  ja: 表記
-  common: リテラル
 - en: (code) block
   ja: 段落
   common: ブロック
 - en: tutorial
-  ja: 指導書
+  ja: 指南書, 指導書, 教程
   common: チュートリアル
 - en: command
   ja: 命令
@@ -1139,6 +1140,7 @@
   common: コマンドライン
 - en: user
   ja: 利用者
+  common: ユーザー
 - en: platform
   ja: 土台環境
   common: プラットフォーム
@@ -1162,11 +1164,11 @@
   ja: 放流
   common: リリース
 - en: online
-  ja: 接続下?
+  ja: 接続下?, 有接続?
   #ja: 網下
   common: オンライン
 - en: offline
-  ja: 無接続?
+  ja: 無接続
   #ja: 無網下
   common: オフライン
 - en: plugin
@@ -1175,6 +1177,9 @@
 - en: by community
   ja: 有志により
   #common: コミュニティにより
+- en: volunteer(s)
+  ja: 有志, 篤志家, 志願兵, 義勇(軍)、挺身(隊)
+  common: ボランティア
 - en: (text) editor
   ja: 書房
   #ja: 工房
@@ -1239,13 +1244,17 @@
 
 # { 記法、構文、文法、表記 }
 - en: syntax
+  ja: 構文
   #ja: 構文, 記法, 文法
 - en: grammer
+  ja: 文法
   #ja: 文法, 記法
 - en: notation
+  ja: 記法
   #ja: 記法, 表記法, 表記
 - en: literal
-  #ja: 表記, 直定数, 記法
+  ja: 表記
+  #ja: 表記, 記法, 直定数
   common: リテラル
 
 - en: registry
@@ -1264,11 +1273,11 @@
   common: ワークスチール
 - en: design
   common: デザイン
-  comment: 設計⊂デザイン
+  desc: 設計⊂デザイン
 - en: unwinding
-  ja: 巻き戻し
+  ja: 巻き戻し, 崩し?
 - en: stack unwinding
-  ja: 山の巻き戻し
+  ja: 山の巻き戻し, 山崩し?
   ja-abbr: 山戻し
 - en: algorithm
   ja: 算法
@@ -1363,12 +1372,17 @@
 - en: associated constants
   ja: 付属定数
 - en: intrinsics
-  ja: 
+  ja: 原生
+  #ja: 真性, 野生
 - en: lang items
   ja: 言語建材
-  comment: 言語項目の方がいい？
+  ch: 言語項目
+- en: dereference
+  ja: たどる
+  common: 逆参照
 - en: deref coercions
-  ja: 
+  ja: 押し辿り
+  desc: ポインタ逆参照演算子(*)のオーバーロード機能。押し=強要=coerce。
 - en: unsafe
 - en: compiler plugins
   ja: 製譜器拡張
@@ -1381,7 +1395,6 @@
   #ja: 一代, 生存期間, 一生, 天命
   desc: 変数の有効期間
 - en: rustacean
-  #ja: 
 - en: annotation
   ja: 補注
   #ja: 特注
@@ -1390,4 +1403,6 @@
   comment: commentは分かりやすさのために書くもの、annotationはcodeの一部/意味への言及(ないと困る補足)
 - en: Arc; atomic reference count
   ja: 不可分参照数計
-
+- en: count
+  ja: 計数
+  common: カウント

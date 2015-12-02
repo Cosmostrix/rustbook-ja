@@ -580,7 +580,7 @@ versions. [Cargo’s documentation][cargodoc] contains more details.-->
 [semver]: http://semver.org
 [cargodoc]: http://doc.crates.io/crates-io.html
 
-それでは、譜面はそのまま企画を織り上げましょう。
+それでは、譜面はそのまま企画を組み上げましょう。
 
 <!-- Now, without changing any of our code, let’s build our project: -->
 
@@ -629,7 +629,7 @@ our project.-->
 $ cargo build
 ```
 
-この通り、何もありません！ Cargo は私達の企画が織り上がり、その依存物もすべて織り上がり、
+この通り、何もありません！ Cargo は私達の企画が組み上がり、その依存物もすべて組み上がり、
 もはや なにもする必要がないことを知っています。することがないので終了するのみです。
 `src/main.rs` をもう一度開いてちょっとでも手を加え、もう一度保存すると、一行表れるのが見えるでしょう。
 
@@ -654,11 +654,11 @@ week, version `v0.3.9` comes out, with an important bugfix? While getting
 bugfixes is important, what if `0.3.9` contains a regressio that breaks our
 code?-->
 
-この問題への答えは今のあなたの企画階層の下にある `Cargo.lock` ファイルです。最初に企画を織ったとき、
+この問題への答えは今のあなたの企画階層の下にある `Cargo.lock` ファイルです。最初に企画を組んだとき、
 Cargo が指示した基準に合った全ての版を見い出してそれらを `Cargo.lock` ファイルに書き込みます。
-今後企画を織るとき Cargo は `Cargo.lock` の存在を知り、
+今後企画を組むとき Cargo は `Cargo.lock` の存在を知り、
 もう一度版を探す作業を繰り返さずに先の版を使います。
-これにより、何度でも織り上げられる状態に自動的になります。
+これにより、何度でも組み上げられる状態に自動的になります。
 つまり、意識的に昇格〈アップグレード〉するまで `0.3.8` のままということです。
 固定 (lock) ファイルのおかげで、私達の譜面を共有した誰もがそうなります。
 
@@ -1063,7 +1063,7 @@ guess.trim().parse()
 変換先になりうる数の種類はとても多いので、Rust にどの型の数が欲しいか正確に伝える必要があります。
 そういうわけで、`let guess: u32` です。`guess` の直後のコロン (`:`) は Rust にその型を補注したいと言っています。
 `u32` は１つの、非負の（符号なし、０または正の数）３２ビット(長の) 整数です。
-Rust は[多種にわたる織り込み済み〈ビルトイン〉数値型][number]を持っていますが、私達は `u32`
+Rust は[多種にわたる組み込み〈ビルトイン〉数値型][number]を持っていますが、私達は `u32`
 を選びました。`u32` は小さな正(と０)の整数に向いている普通の選択肢です。
 
 <!--Followed by an `ok().expect()` invocation. Here, `guess` refers to the old
@@ -1412,7 +1412,7 @@ fn main() {
 
 <!-- # Complete! -->
 
-この時点で、あなたは数字当てゲームを首尾よく織り上げました！ おめでとうございます！
+この時点で、あなたは数字当てゲームを首尾よく組み上げました！ おめでとうございます！
 
 <!-- At this point, you have successfully built the Guessing Game!
 Congratulations! -->
