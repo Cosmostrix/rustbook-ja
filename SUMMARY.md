@@ -43,7 +43,7 @@
     * [Drop](drop.md)
     * [if let](if-let.md)
     * [特性対象](trait-objects.md)
-    * [Closures](closures.md)
+    * [閉包](closures.md)
     * [万能機能呼び出し構文](ufcs.md)
     * [わく箱と Modules](crates-and-modules.md)
     * [`const` と `static`](const-and-static.md)
