@@ -124,7 +124,7 @@ puts "完了！"
 ```
 
 この例を実行してみて、数秒で終わりそうな手頃な数字を指定してください。
-持っている計算機〈コンピュータ〉の機体〈ハードウエア〉にもよりますが、加減が必要かもしれません。
+持っている計算機の機体〈ハードウエア〉にもよりますが、加減が必要かもしれません。
 
 <!--Try running this example, and choose a number that runs for a few seconds.
 Depending on your computer’s hardware, you may have to increase or decrease the

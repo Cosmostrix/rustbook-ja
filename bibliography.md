@@ -31,7 +31,7 @@ Rust, as well as publications about Rust.-->
 * [Thread scheduling for multiprogramming multiprocessors](http://www.eecis.udel.edu/%7Ecavazos/cisc879-spring2008/papers/arora98thread.pdf)
 * [The data locality of work stealing](http://www.aladdin.cs.cmu.edu/papers/pdfs/y2000/locality_spaa00.pdf)
 * [Dynamic circular work stealing deque](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.170.1097&rep=rep1&type=pdf) - Chase/Lev deque
-* [Work-first and help-first scheduling policies for async-finish task parallelism](http://www.cs.rice.edu/%7Eyguo/pubs/PID824943.pdf) - 完全正格な作業横取り (work stealing) より一般化されている
+* [Work-first and help-first scheduling policies for async-finish task parallelism](http://www.cs.rice.edu/%7Eyguo/pubs/PID824943.pdf) - 完全正格な作業横取り (work stealing) よりも一般化されている
 * [A Java fork/join calamity](http://www.coopsoft.com/ar/CalamityArticle.html) - Java の fork/join 譜集への批判、特に作業横取りの非正格計算への応用
 * [Scheduling techniques for concurrent systems](http://www.stanford.edu/~ouster/cgi-bin/papers/coscheduling.pdf)
 * [Contention aware scheduling](http://www.blagodurov.net/files/a8-blagodurov.pdf)
