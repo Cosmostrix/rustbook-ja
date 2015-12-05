@@ -74,8 +74,8 @@
 
 # UI (settings)
 - en: configuration
-  ja: 調整項目
-  common: 設定
+  ja: 構成
+  common: 機器構成, 設定
   desc: con + figure + -tion
 - en: options
   ja: 選択項目
@@ -265,13 +265,15 @@
   common: パケット
   desc: 大きなデータを小分けしたもの
 - en: internet
-  ja: 相互接続網, 網際網路
-  common: インターネット
+  ja: 網際網路
+  #ja: 相互接続網(人ではなく通信網同士のつながりであることが分かりにくい)
+  common: (広義の) インターネット
   desc: inter(〜の間) + network(独立した通信網)
+  ch: 互联网, 网际网路, 網際網路
 - en: the Internet
-  ja: 相互接続網, 網際網路
-  common: (ジ・)インターネット
-  desc: internet のうち世界規模のもの
+  ja: 網際網路
+  common: インターネット
+  desc: internet のうちARPANETを前身とする特定の世界的規模のもの
 
 # security
 - en: password
@@ -1115,8 +1117,14 @@
   ja: 測能試験
   #ja: 基準評価試験,評位試験,評順試験,評列試験
   common: ベンチマークテスト
+- en: allocate (memory)
+  ja: 割り付け
+  comment: 「割り当て」は特定の場所に束縛されていることへの言及が弱いため却下
+- en: allocate (other resource)
+  ja: 割り当て
 - en: custom allocator
-  ja: 自在割当て部?
+  ja: 自在割付け部
+  common: カスタムアロケーター
 - en: build
   ja: 組み上げる, (組む)
   #ja: 織る(動), 織り上げ(名)
@@ -1142,7 +1150,7 @@
   ja: 段落
   common: ブロック
 - en: tutorial
-  ja: 指南書, 指導書, 教程
+  ja: 指南書, 指導書, 手引書, 教程
   common: チュートリアル
 - en: command
   ja: 命令
@@ -1342,7 +1350,10 @@
   ja: 黒箱
   common: ブラックボックス
   ch: 黑箱
-
+- en: patch
+  yamato: 直し
+  ja: 改良布
+  common: パッチ
 
 # Rust 用語
 - en: ownership

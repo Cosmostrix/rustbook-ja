@@ -19,8 +19,8 @@ it exists. The marker is the attribute `#[lang = "..."]` and there are
 various different values of `...`, i.e. various different 'lang
 items'.-->
 
-例えば、`Box` 場指しは２つの言語建材を必要とします。ひとつは割り当て用で、もうひとつは開放用です。
-以下は、支えなしに立っている算譜で `malloc` と `free` による動的割り当てのために `Box` 糖を使う例です。
+例えば、`Box` 場指しは２つの言語建材を必要とします。ひとつは割り付け用で、もうひとつは開放用です。
+以下は、支えなしに立っている算譜で `malloc` と `free` による動的割り付けのために `Box` 糖を使う例です。
 
 <!--For example, `Box` pointers require two lang items, one for allocation
 and one for deallocation. A freestanding program that uses the `Box`

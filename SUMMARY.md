@@ -1,9 +1,7 @@
 # もくじ
+
 * [訳者まえがき](preface-ja.md)
 * [はじめよう、Rust](getting-started.md)
-    * [Rust を導入しよう](installing-rust.md)
-    * [Hello, world!](hello-world.md)
-    * [Hello, Cargo!](hello-cargo.md)
 * [Rust を学ぼう](learn-rust.md)
     * [数字当てゲーム](guessing-game.md)
     * [食事する哲学者たち](dining-philosophers.md)
@@ -45,7 +43,7 @@
     * [特性対象](trait-objects.md)
     * [閉包](closures.md)
     * [万能機能呼び出し構文](ufcs.md)
-    * [わく箱と Modules](crates-and-modules.md)
+    * [わく箱と役区](crates-and-modules.md)
     * [`const` と `static`](const-and-static.md)
     * [属性](attributes.md)
     * [型の別名](type-aliases.md)
@@ -68,7 +66,7 @@
     * [ハコ構文と模式](box-syntax-and-patterns.md)
     * [薄切り模式](slice-patterns.md)
     * [付属定数](associated-constants.md)
-    * [自在割当て部](custom-allocators.md)
+    * [自在割付け部](custom-allocators.md)
 * [用語集](glossary.md)
 * [構文索引](syntax-index.md)
 * [参考文献](bibliography.md)
