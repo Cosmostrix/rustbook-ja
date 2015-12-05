@@ -81,11 +81,22 @@ that would solve this problem:-->
 6. ... ? All the forks are taken, but nobody can eat!-->
 
 この問題の解決方法にはいろいろありますが、この手引きでは独自の解法をとります。
-今は問題の模型〈モデル〉化からはじめましょう。まずは哲学者。
+その前に `cargo` で新しい企画を作りましょう。
 
-<!--There are different ways to solve this problem. We’ll get to our solution in
-the tutorial itself. For now, let’s get started modeling the problem itself.
-We’ll start with the philosophers:-->
+<!-- There are different ways to solve this problem. We’ll get to our solution in
+the tutorial itself. For now, let’s get started and create a new project with
+`cargo`: -->
+
+```bash
+$ cd ~/projects
+$ cargo new dining_philosophers --bin
+$ cd dining_philosophers
+```
+これで問題そのものの模型〈モデル〉化を始められます。
+まずは哲学者からにしましょう。 `src/main.rs` を開きます。
+
+<!-- Now we can start modeling the problem itself. We’ll start with the philosophers
+in `src/main.rs`: -->
 
 ```rust
 struct Philosopher {
@@ -211,7 +222,7 @@ Rust は「式を土台に」した言語で、Rust の中のほとんど全て�
 <!--One last thing you’ll notice: we just define a `Philosopher`, and seemingly
 don’t do anything with it. Rust is an ‘expression based’ language, which means
 that almost everything in Rust is an expression which returns a value. This is
-true of functions as well, the last expression is automatically returned. Since
+true of functions as well — the last expression is automatically returned. Since
 we create a new `Philosopher` as the last expression of this function, we end
 up returning it.-->
 
@@ -247,13 +258,11 @@ fn main() {
 
 ここでは、５人の新しい哲学者に対して５つの変数束縛を作っています。
 お気に入りの５人なのですが、自由に置き換えて構いませんよ。
+仮に `new()` 機能を定義しなかった場合は、このようになるでしょう。
 
-<!--Here, we create five variable bindings with five new philosophers. These are my
-favorite five, but you can substitute anyone you want.-->
-
-仮に `new()` 機能を定義しなかった場合は、こう書かなければなりません。
-
-<!--If we _didn’t_ define that `new()` function, it would look like this:-->
+<!--Here, we create five variable bindings with five new philosophers.
+If we _didn’t_ define
+that `new()` function, it would look like this:-->
 
 ```rust
 # struct Philosopher {
@@ -575,19 +584,22 @@ closure as an argument and calls that closure on each element in turn.-->
 機能は閉包を引数として取り、新しい走脈でその閉包を実行します。
 この閉包はつかまえようとしている値の所有権を獲得しようとすることを示すために特別の補注
 `move` が必要です。
-主に `map` 機能の `p` 変数のことです。
+この場合は `map` 機能の `p` 変数のことです。
 
 <!--Here’s where the concurrency happens. The `thread::spawn` function takes a closure
 as an argument and executes that closure in a new thread. This closure needs
 an extra annotation, `move`, to indicate that the closure is going to take
-ownership of the values it’s capturing. Primarily, the `p` variable of the
+ownership of the values it’s capturing. In this case, it's the `p` variable of the
 `map` function.-->
 
 走脈の中では `p` に対して `eat()` を呼ぶだけで終わりです。
 `thread::spawn` の呼出しでは末尾のセミコロン (`;`) をなくし、式にしていることにも注意してください。
 この区別は重要で正しい戻り値を生み出します。より詳しくは[式と文][es]をご覧ください。
 
-<!--Inside the thread, all we do is call `eat()` on `p`. Also note that the call to `thread::spawn` lacks a trailing semicolon, making this an expression. This distinction is important, yielding the correct return value. For more details, read [Expressions vs. Statements][es].-->
+<!--Inside the thread, all we do is call `eat()` on `p`. Also note that
+the call to `thread::spawn` lacks a trailing semicolon, making this an
+expression. This distinction is important, yielding the correct return
+value. For more details, read [Expressions vs. Statements][es].-->
 
 [es]: functions.html#expressions-vs-statements
 

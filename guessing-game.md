@@ -545,10 +545,13 @@ rand="0.3.0"
 `Cargo.toml` の依存物の節 `[dependencies]` は `[package]` の節に似ており、
 節の始まりから次の節の始まりまでの間にあるものはその節の一部になります。
 Cargo は dependencies 節を見てどんな外部のわく箱への依存があるかを知ります。
-また、あなたが要求した版数もそこで知ります。この場合の指定は約 `0.3.0` 版になっており、
+また、あなたが要求した版数もそこで知ります。この場合の指定は約 `0.3.0` 版で、
 Cargo はこの版と互換性のある版ならどれでもよいと理解します。
-Cargo は版号の書き方の標準である[意味論的付版 (Semantic Versioning)][semver] を理解します。
-厳格に第 `0.3.0` 版だけを使わせたい場合は、`=0.3.0` と書けます。最新版を使いたい場合は `*` を使えます。
+Cargo は版数の書き方の標準である[意味論的付版 (Semantic Versioning)][semver] を理解します。
+上のような裸の数字は実際には `^0.3.0` の略記であって、「0.3.0 
+と互換性のあるいずれか」という意味です。
+厳格に第 `0.3.0` 版だけを使わせたい場合は、`rand="=0.3.0"`
+と書けます (２つの = に注意)。 最新版を使いたい場合は `*` を使えます。
 さらに、版の範囲指定も可能です。[Cargo の開発資料集][cargodoc]に詳細があります。
 
 <!--`[dependencies]` section of `Cargo.toml` is like the `[package]` section:
@@ -560,9 +563,13 @@ which Cargo understands to be any release that’s compatible with this specific
 version.
 Cargo understands [Semantic Versioning][semver], which is a standard for
 writing version
-numbers. If we wanted to use only `0.3.0` exactly, we could use `=0.3.0`. If we
-wanted to use the latest version we could use `*`; We could use a range of
-versions. [Cargo’s documentation][cargodoc] contains more details.-->
+numbers. A bare number like above is actually shorthand for `^0.3.0`,
+meaning "anything compatible with 0.3.0".
+If we wanted to use only `0.3.0` exactly, we could say `rand="=0.3.0"`
+(note the two equal signs).
+And if we wanted to use the latest version we could use `*`.
+We could also use a range of versions.
+[Cargo’s documentation][cargodoc] contains more details.-->
 
 [semver]: http://semver.org
 [cargodoc]: http://doc.crates.io/crates-io.html
@@ -799,16 +806,16 @@ $ cargo run
 
 いいぞ！ 次は、推理された数字と秘密の数字を比べましょう。
 
-<!--Great! Next up: let’s compare our guess to the secret guess.-->
+<!--Great! Next up: comparing our guess to the secret number.-->
 
 # 数字を比較しよう
 
 <!--# Comparing guesses-->
 
-入力が手に入ったので当てずっぽうの数字と予想した数字を比べましょう。
+入力が手に入ったので秘密の数字と予想した数字を比べましょう。
 次の段階はこうなりますが、まだ製譜はできません。
 
-<!--Now that we’ve got user input, let’s compare our guess to the random guess.
+<!--Now that we’ve got user input, let’s compare our guess to the secret number.
 Here’s our next step, though it doesn’t quite compile yet:-->
 
 ```rust,ignore
@@ -1150,10 +1157,10 @@ fn main() {
 
 そして試してみましょう。でも待ってください、私達が足したのはただの無限繰り返しですよね？
 そうです。`parse()` についての議論を覚えていますか？
-数字でない答えを与えたときは `return` して終了するといいました。観察しましょう。
+数字でない答えを与えたときは `panic!` して終了するといいました。観察しましょう。
 
 <!--And try it out. But wait, didn’t we just add an infinite loop? Yup. Remember
-our discussion about `parse()`? If we give a non-number answer, we’ll `return`
+our discussion about `parse()`? If we give a non-number answer, we’ll `panic!`
 and quit. Observe:-->
 
 ```bash

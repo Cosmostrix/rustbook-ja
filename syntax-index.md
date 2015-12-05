@@ -4,7 +4,7 @@
 
 * `as`: primitive casting。[Casting Between Types (`as`)]を参照。
 * `break`: 繰り返し (loop) からの脱出。[Loops (Ending Iteration Early)]を参照。
-* `const`: 項目を定数とする。[`const` と `static`]を参照。
+* `const`: 定数の項目および定数の生場指し。[`const` と `static`]を参照。
 * `continue`: 次の繰り返し (loop) の反復を続ける。[Loops (Ending Iteration Early)]を参照。
 * `crate`: 外部のわく箱 (crate) を結ぶ。[Crates and Modules (Importing External Crates)]を参照。
 * `else`: `if` および `if let` の失敗側。[`if`]、[`if let`]を参照。
@@ -39,7 +39,7 @@
 
 ## 演算子 (Operators) と 記号 (Symbols)
 
-* `!` (`expr!(…)`, `expr!{…}`, `expr![…]`): denotes macro expansion。[Macros]を参照。
+* `!` (`ident!(…)`, `ident!{…}`, `ident![…]`): denotes macro expansion。[Macros]を参照。
 * `!` (`!expr`): bitwise or logical complement。 Overloadable (`Not`)。
 * `%` (`expr % expr`): arithmetic remainder。 Overloadable (`Rem`)。
 * `%=` (`var %= expr`): arithmetic remainder & assignment。
@@ -89,6 +89,7 @@
 * `^=` (`var ^= expr`): bitwise exclusive or & assignment。
 * `|` (`expr | expr`): bitwise or。 Overloadable (`BitOr`)。
 * `|` (`pat | pat`): pattern alternatives。[Patterns (Multiple patterns)]を参照。
+* `|` (`|…| expr`): closures。[Closures]を参照。
 * `|=` (`var |= expr`): bitwise or & assignment。
 * `||` (`expr || expr`): logical or。
 * `_`: "ignored" pattern binding。[Patterns (Ignoring bindings)]を参照。
@@ -107,6 +108,7 @@
 * `br"…"`, `br#"…"#`, `br##"…"##`, …: raw byte string literal, combination of raw and byte string literal。[Reference (Raw Byte String Literals)]を参照。
 * `'…'`: character literal。[Primitive Types (`char`)]を参照。
 * `b'…'`: ASCII byte literal。
+* `|…| expr`: closure。[Closures]を参照。
 
 <!-- Path-related syntax -->
 
@@ -175,6 +177,8 @@
 * `[…]`: array literal。[Primitive Types (Arrays)]を参照。
 * `[expr; len]`: array literal containing `len` copies of `expr`。[Primitive Types (Arrays)]を参照。
 * `[type; len]`: array type containing `len` instances of `type`。[Primitive Types (Arrays)]を参照。
+* `expr[expr]`: collection indexing.  Overloadable (`Index`, `IndexMut`)。
+* `expr[..]`, `expr[a..]`, `expr[..b]`, `expr[a..b]`: collection indexing pretending to be collection slicing, using `Range`, `RangeFrom`, `RangeTo`, `RangeFull` as the "index"。
 
 [`const` and `static` (`static`)]: const-and-static.html#static
 [`const` and `static`]: const-and-static.html
