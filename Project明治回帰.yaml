@@ -1354,6 +1354,12 @@
   yamato: 直し
   ja: 改良布
   common: パッチ
+- en: native
+  #ja: 
+  common: ネイティプ
+- en: attach
+  #ja: 
+  common: アタッチ
 
 # Rust 用語
 - en: ownership

@@ -284,6 +284,7 @@ Rust 譜集が組めたので早速 Ruby から使ってみましょう。
 <!-- Now that we’ve got our Rust library built, let’s use it from our Ruby. -->
 
 # Ruby
+
 <!-- # Ruby -->
 
 企画階層で `embed.rb` 台譜を開き、こうします。
@@ -364,10 +365,10 @@ module Hello
   ffi_lib 'target/release/libembed.so'
 ```
 
-`Hello` 役区は共有譜集から〈ネイティブ〉機能を〈アタッチ〉するために使われます。
-内部では必要な `FFI::Library` 役区を拡張 (`extend`) し、それから `ffi_lib`
-を呼んで共有対象譜集を積載します。
-ただ作った譜集が置かれた場所をそれに渡しますが、場所は前に見た通り
+`Hello` モジュール(役区)は共有譜集から〈ネイティブ〉関数(機能)を〈アタッチ〉するために使われます。
+その中では、必要となる `FFI::Library` モジュールを拡張 (`extend`) し、それから `ffi_lib`
+を呼んで共有対象譜集を積載 (load)〈ロード〉しています。
+作った譜集が置かれた場所を渡すだけでよく、その場所は前にも見た通り
 `target/release/libembed.so` です。
 
 <!-- The `Hello` module is used to attach the native functions from the shared
@@ -380,34 +381,52 @@ our library is stored, which, as we saw before, is
 attach_function :process, [], :void
 ```
 
-The `attach_function` method is provided by the FFI gem. It’s what
+`attach_function` メソッド(操作法)は FFI ジェムで提供されています。これには
+Rust 側の `process()` 機能と Ruby の同名の関数(機能)を結ぶはたらきがあります。
+`process()` は無引数なので２つ目の〈パラメータ〉は空配列とし、何も返さないので
+`:void` を最後の引数として渡します。
+
+<!-- The `attach_function` method is provided by the FFI gem. It’s what
 connects our `process()` function in Rust to a Ruby function of the
 same name. Since `process()` takes no arguments, the second parameter
 is an empty array, and since it returns nothing, we pass `:void` as
-the final argument.
+the final argument. -->
 
 ```ruby
 Hello.process
 ```
 
-This is the actual call into Rust. The combination of our `module`
+実際に Rust を呼び出しているところです。
+用意した `module` と `attach_function` の呼出しの組み合わせにより全ての準備が整いました。
+まるで Ruby の関数のような見かけですが実際は Rust です！
+
+<!-- This is the actual call into Rust. The combination of our `module`
 and the call to `attach_function` sets this all up. It looks like
-a Ruby function but is actually Rust!
+a Ruby function but is actually Rust! -->
 
 ```ruby
 puts '完了！'
 ```
 
-Finally, as per our project’s requirements, we print out `完了！`.
+最後に、私達の企画の要件にから、`完了！`と印字します。
 
-That’s it! As we’ve seen, bridging between the two languages is really easy,
-and buys us a lot of performance.
+<!-- Finally, as per our project’s requirements, we print out `完了！`. -->
 
-Next, let’s try Python!
+以上です！
+これまで見てきた通り、2 つの言語の橋渡しは本当に簡単で、速度もかなり稼げます。
+
+<!-- That’s it! As we’ve seen, bridging between the two languages is really easy,
+and buys us a lot of performance. -->
+
+次は Python でやってみます！
+
+<!-- Next, let’s try Python! -->
 
 # Python
 
-Create an `embed.py` file in this directory, and put this in it:
+`embed.py` 〈ファイル〉をこの階層につくり、中にはこれを入れます。
+
+<!-- Create an `embed.py` file in this directory, and put this in it: -->
 
 ```python
 from ctypes import cdll
@@ -419,23 +438,34 @@ lib.process()
 print("完了！")
 ```
 
-Even easier! We use `cdll` from the `ctypes` module. A quick call
-to `LoadLibrary` later, and we can call `process()`.
+もっと楽になって参りました！ `ctypes` モジュール から `cdll` を使いました。
+`LoadLibrary` の短い呼出しの後、`process()` を呼べます。
 
-On my system, this takes `0.017` seconds. Speedy!
+<!-- Even easier! We use `cdll` from the `ctypes` module. A quick call
+to `LoadLibrary` later, and we can call `process()`. -->
+
+私の算系では、`0.017` 秒かかりました。 早い！
+
+<!-- On my system, this takes `0.017` seconds. Speedy! -->
 
 # Node.js
 
-Node isn’t a language, but it’s currently the dominant implementation of
-server-side JavaScript.
+Node は言語ではなく、今どきの〈サーバ〉側 JavaScript の優勢な実装です。
 
-In order to do FFI with Node, we first need to install the library:
+<!-- Node isn’t a language, but it’s currently the dominant implementation of
+server-side JavaScript. -->
+
+Node で外機能内通するためには、まず譜集の導入が必要です。
+
+<!-- In order to do FFI with Node, we first need to install the library: -->
 
 ```bash
 $ npm install ffi
 ```
 
-After that installs, we can use it:
+導入後はこう使います。
+
+<!-- After that installs, we can use it: -->
 
 ```javascript
 var ffi = require('ffi');
@@ -449,12 +479,18 @@ lib.process();
 console.log("完了！");
 ```
 
-It looks more like the Ruby example than the Python example. We use
+Python の例よりは Ruby 寄りに見えますね。
+`ffi` モジュールを使って `ffi.Library()` を操作でき、共有対象を積載します。
+関数の引数と返り値の型を書く必要があります。返り値は `void`
+を、引数はないことを表すために空配列を渡します。
+そこからは同様に呼出しと結果の印字をします。
+
+<!-- It looks more like the Ruby example than the Python example. We use
 the `ffi` module to get access to `ffi.Library()`, which loads up
 our shared object. We need to annotate the return type and argument
 types of the function, which are `void` for return and an empty
 array to signify no arguments. From there, we just call it and
-print the result.
+print the result. -->
 
 私の算系では、たったの `0.092` 秒でした。
 
