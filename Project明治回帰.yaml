@@ -1439,3 +1439,7 @@
 - en: count
   ja: 計数
   common: カウント
+- en: bound
+  ja: 縛り
+  desc: 型および特性にかかる制約。Haskellでいう文脈。
+

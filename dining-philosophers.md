@@ -1,8 +1,6 @@
 % 食事する哲学者たち
 
-【訳者註】ここでの「(同時)並行」と「並列」は全く同じ意味 (concurrency) に取ってください。
-
-二番目の企画として、古典的な並行処理問題について考えていきましょう。
+二番目の企画として、古典的な並列処理問題について考えていきましょう。
 「食事する哲学者たち」と呼ばれる問題です。
 元来は 1965 年にダイクストラ (Dijkstra) により考案されましたが、ここでは 1985 年に
 トニー・ホーア (Tony Hoare) が簡単化した[この論文][paper]を利用します。
@@ -82,7 +80,7 @@ that would solve this problem:-->
 5. Philosopher 5 begins the algorithm, picking up the fork on their left.
 6. ... ? All the forks are taken, but nobody can eat!-->
 
-この問題の解決方法にはいろいろありますが、本教程では独自の解法をとります。
+この問題の解決方法にはいろいろありますが、この手引きでは独自の解法をとります。
 今は問題の模型〈モデル〉化からはじめましょう。まずは哲学者。
 
 <!--There are different ways to solve this problem. We’ll get to our solution in
@@ -111,9 +109,9 @@ fn main() {
 }
 ```
 
-【訳者註】結構ラディカルな面子ですねぇ。以前の版では `p1` に スピノザ (Baruch Spinoza)、
-`p4` に ニーチェ (Friedrich Nietzsche) が入っていました。時代の流れでしょうか。
-余談ですがフーコー著『監獄の誕生』はちょっと長いですがおすすめです。
+> 【訳者註】以前の版では `p1` に スピノザ (Baruch Spinoza)、`p4` に ニーチェ
+> (Friedrich Nietzsche) が入っていました。時代の流れでしょうか。
+> 余談ですが フーコー著『監獄の誕生』はちょっと長いですが刺激的です。
 
 ここで、哲学者を表現するために [構造体 (`struct`)][struct] を作りました。
 今は名前だけが必須です。名前の型には `&str` ではなく [`String`][string] を選びました。
@@ -253,8 +251,6 @@ fn main() {
 <!--Here, we create five variable bindings with five new philosophers. These are my
 favorite five, but you can substitute anyone you want.-->
 
-【訳者註】哲学が退屈なら魔法少女や妖怪や弾幕バカに置き換えてもよいでしょう。
-
 仮に `new()` 機能を定義しなかった場合は、こう書かなければなりません。
 
 <!--If we _didn’t_ define that `new()` function, it would look like this:-->
@@ -330,7 +326,7 @@ also called a ‘vector’, and it’s a growable array type. We then use a
 [`for`][for] loop to iterate through the vector, getting a reference to each
 philosopher in turn.-->
 
-[for]: for-loops.html
+[for]: loops.html#for
 
 繰り返しの本体で `p.eat()` を呼んでいます。定義は上の方にありました。
 
@@ -374,6 +370,7 @@ eat. Here’s the next version:-->
 
 ```rust
 use std::thread;
+use std::time::Duration;
 
 struct Philosopher {
     name: String,
@@ -389,7 +386,7 @@ impl Philosopher {
     fn eat(&self) {
         println!("{} が食事をはじめた。", self.name);
 
-        thread::sleep_ms(1000);
+        thread::sleep(Duration::from_millis(1000));
 
         println!("{} は食べ終わった。", self.name);
     }
@@ -416,10 +413,11 @@ fn main() {
 
 ```rust,ignore
 use std::thread;
+use std::time::Duration;
 ```
 
 `use` で名前を可視(有効)範囲 (scope)〈スコープ〉に持ち込みます。
-標準譜集から `thread`〈モジュール〉を使おうとしているので、`use` が必要です。
+標準譜集から `thread` 役区〈モジュール〉を使おうとしているので、`use` が必要です。
 
 <!--`use` brings names into scope. We’re going to start using the `thread` module
 from the standard library, and so we need to `use` it.-->
@@ -428,19 +426,21 @@ from the standard library, and so we need to `use` it.-->
     fn eat(&self) {
         println!("{} が食事をはじめた。", self.name);
 
-        thread::sleep_ms(1000);
+        thread::sleep(Duration::from_millis(1000));
 
         println!("{} は食べ終わった。", self.name);
     }
 ```
 
-今度は `sleep_ms()` を間にはさんで 2 つの文章を印字しています。
+今度は `sleep()` を間にはさんで 2 つの文章を印字しています。
 これで哲学者が食べる時間を再現しましょう。
 
-【訳者註】走脈 (`thread`)〈スレッド〉は「実行の脈絡 (thread of execution)」の略で、並列実行の主体です。
-`sleep` は一定時間何もしないこと、`ms` はミリ秒 (millisecond) であり、1000 ミリ秒が 1 秒に等しいです。
+> 【訳者註】走脈 (`thread`)〈スレッド〉は「実行の脈絡
+> (thread of execution)」の略で、並列実行の主体です。
+> `sleep` はある時間の間 (duration) 何もしないことで、1000 ミリ秒 (millisecond) は
+> 1 秒に等しい時間の長さです。
 
-<!--We now print out two messages, with a `sleep_ms()` in the middle. This will
+<!--We now print out two messages, with a `sleep()` in the middle. This will
 simulate the time it takes a philosopher to eat.-->
 
 この算譜を実行すると、哲学者が順番に食べていく様子が見られるはずです。
@@ -474,6 +474,7 @@ Here’s the next iteration:-->
 
 ```rust
 use std::thread;
+use std::time::Duration;
 
 struct Philosopher {
     name: String,
@@ -489,7 +490,7 @@ impl Philosopher {
     fn eat(&self) {
         println!("{} が食事をはじめた。", self.name);
 
-        thread::sleep_ms(1000);
+        thread::sleep(Duration::from_millis(1000));
 
         println!("{} は食べ終わった。", self.name);
     }
@@ -557,7 +558,7 @@ philosophers.into_iter().map(|p| {
 
 哲学者の一覧に対して `into_iter()` を呼びます。するとそれぞれの哲学者の所有権を取得した反復子が作成されます。
 走脈に哲学者を渡すにはこうする必要があります。この反復子に対して `map`
-を呼び、その引数には要素ごとに順番に呼ばれる〈クロージャ〉を渡します。
+を呼び、その引数には要素ごとに順番に呼ばれる閉包 (closure)〈クロージャ〉を渡します。
 
 <!--We take our list of philosophers and call `into_iter()` on it. This creates an
 iterator that takes ownership of each philosopher. We need to do this to pass
@@ -570,9 +571,10 @@ closure as an argument and calls that closure on each element in turn.-->
     })
 ```
 
-ここで並列実行が始まります。`thread::spawn` 機能は〈クロージャ〉を引数として取り、新しい
-走脈でその〈クロージャ〉を実行します。この〈クロージャ〉
-はつかまえようとしている値の所有権を獲得しようとすることを示すために特別の補注 `move` が必要です。
+ここで並列実行が始まります。`thread::spawn`
+機能は閉包を引数として取り、新しい走脈でその閉包を実行します。
+この閉包はつかまえようとしている値の所有権を獲得しようとすることを示すために特別の補注
+`move` が必要です。
 主に `map` 機能の `p` 変数のことです。
 
 <!--Here’s where the concurrency happens. The `thread::spawn` function takes a closure
@@ -655,7 +657,7 @@ struct Table {
 ```
 
 この `Table` は `Mutex`〈ミューテックス〉のベクトルを持ちます。
-〈ミューテックス〉は並行性を制御する方法のひとつで、同時にひとつの走脈だけがその中身を操作できます。
+〈ミューテックス〉は並列性を制御する方法のひとつで、同時にひとつの走脈だけがその中身を操作できます。
 まさしく今回のフォークに求める性質そのものです。〈ミューテックス〉の中身は空の組 `()` にしました。
 なぜなら、実際に中身を使うつもりはないので、ただ持っているだけで十分だからです。
 
@@ -670,6 +672,7 @@ mutex, since we’re not actually going to use the value, just hold onto it.-->
 
 ```rust
 use std::thread;
+use std::time::Duration;
 use std::sync::{Mutex, Arc};
 
 struct Philosopher {
@@ -689,11 +692,12 @@ impl Philosopher {
 
     fn eat(&self, table: &Table) {
         let _left = table.forks[self.left].lock().unwrap();
+        thread::sleep(Duration::from_millis(150));
         let _right = table.forks[self.right].lock().unwrap();
 
         println!("{} が食事をはじめた。", self.name);
 
-        thread::sleep_ms(1000);
+        thread::sleep(Duration::from_millis(1000));
 
         println!("{} は食べ終わった。", self.name);
     }
@@ -787,42 +791,48 @@ fn new(name: &str, left: usize, right: usize) -> Philosopher {
 ```rust,ignore
 fn eat(&self, table: &Table) {
     let _left = table.forks[self.left].lock().unwrap();
+    thread::sleep(Duration::from_millis(150));
     let _right = table.forks[self.right].lock().unwrap();
 
     println!("{} が食事をはじめた。", self.name);
 
-    thread::sleep_ms(1000);
+    thread::sleep(Duration::from_millis(1000));
 
     println!("{} は食べ終わった。", self.name);
 }
 ```
 
-２行増えました。引数 `table` も追加しました。`Table` のフォーク一覧を読み、続いて
+3 行増えました。引数 `table` を追加しました。`Table` のフォーク一覧を読み、続いて
 `self.left` と `self.right` を使って添字の位置にあるフォークを取り出します。
 その位置にある `Mutex` を操作できるようになったので `lock()` を呼びます。
 もしこの〈ミューテックス〉が今まさに他から操作されている最中だった場合は、空くまでずっと待機します。
+最初のフォークが取られて次のフォークが取られる合間に `thread::sleep` を呼ぶ必要があります。
+フォークを瞬時に取り上げるのは変ですからね。
 
-<!--We have two new lines. We’ve also added an argument, `table`. We access the
+<!--We have three new lines. We’ve added an argument, `table`. We access the
 `Table`’s list of forks, and then use `self.left` and `self.right` to access
 the fork at that particular index. That gives us access to the `Mutex` at that
 index, and we call `lock()` on it. If the mutex is currently being accessed by
-someone else, we’ll block until it becomes available.-->
+someone else, we’ll block until it becomes available. We have also a call to
+`thread::sleep` between the moment the first fork is picked and the moment the
+second forked is picked, as the process of picking up the fork is not
+immediate. -->
 
 `lock()` の呼出しは失敗する可能性があり、仮にそうなった場合は急停止させたいです。
 この場合、考えられる誤りは〈ミューテックス〉の[「汚染状態」][poison]です。
-これは〈ロック〉を抱えたままの走脈が〈パニック〉した状況です。
+これはロックを抱えたままの走脈が混乱 (`panic!`)〈パニック〉した状況です。
 今回は起こりえないはずですので、気にせず `unwrap()` します。
 
 <!--The call to `lock()` might fail, and if it does, we want to crash. In this
 case, the error that could happen is that the mutex is [‘poisoned’][poison],
 which is what happens when the thread panics while the lock is held. Since this
-shouldn’t happen, we just use `unwrap()`.-->
+shouldn’t happen, we just use `unwrap()`. -->
 
 [poison]: ../std/sync/struct.Mutex.html#poisoning
 
 もうひとつ奇妙なところがありますね。結果に `_left` と `_right` という名前をつけています。
-この下線は一体どうしたのでしょうか？ そうですね、〈ロック〉の中の値を使う予定は _ない_ です。
-ただ〈ロック〉を取得したいだけです。そのため、Rust は値を一度も使っていないと警告するでしょう。
+この下線は一体どうしたのでしょうか？ そうですね、ロックの中の値を使う予定は _ない_ です。
+ただロックを取得したいだけです。そのため、Rust は値を一度も使っていないと警告するでしょう。
 下線をつけると Rust にこれが意図的なものであると伝えることができ、警告を消せます。
 
 <!--One other odd thing about these lines: we’ve named the results `_left` and
@@ -831,7 +841,7 @@ _using_ the value inside the lock. We just want to acquire it. As such,
 Rust will warn us that we never use the value. By using the underscore,
 we tell Rust that this is what we intended, and it won’t throw a warning.-->
 
-〈ロック〉の解放はどうすればよいでしょう？
+ロックの解放はどうすればよいでしょう？
 はい、`_left` と `_right` が範囲外に出たときに自動的に行われます。
 
 <!--What about releasing the lock? Well, that will happen when `_left` and
@@ -873,13 +883,16 @@ let philosophers = vec![
 最後のひとつ前までは一貫していますが、ミシェル・フーコーの引数が `4, 0` と思いきや `0, 4` になっています。
 実はこれがこう着状態を防ぐ技だったのです。哲学者の一人は左利きでした！
 これは問題解決の一つの手法ですが、私の見立てでは最もかんたんな方法です。
+引数の順番を変えてみるとこう着状態を観察できるでしょう。
 
 <!--We need to pass in our `left` and `right` values to the constructors for our
 `Philosopher`s. But there’s one more detail here, and it’s _very_ important. If
 you look at the pattern, it’s all consistent until the very end. Monsieur
 Foucault should have `4, 0` as arguments, but instead, has `0, 4`. This is what
 prevents deadlock, actually: one of our philosophers is left handed! This is
-one way to solve the problem, and in my opinion, it’s the simplest.-->
+one way to solve the problem, and in my opinion, it’s the simplest. If you
+change the order of the parameters, you will be able to observe the deadlock
+taking place. -->
 
 ```rust,ignore
 let handles: Vec<_> = philosophers.into_iter().map(|p| {
@@ -932,6 +945,6 @@ Michel Foucault は食べ終わった。
 
 <!--Congrats! You’ve implemented a classic concurrency problem in Rust.-->
 
-【訳者註】古典的 (classic)
-という言葉には「よく知られた」「標準的な」「不朽の」という意味合いもあります。
-古くからありますが、その多くは現代でも通用するものです。
+> 【訳者註】古典的 (classic)
+> という言葉には「よく知られた」「標準的な」「不朽の」という意味合いもあります。
+>  古くからある問題ですが、その内容は現代でも通用するものです。

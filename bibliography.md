@@ -21,7 +21,7 @@ Rust, as well as publications about Rust.-->
 * [Uniqueness and Reference Immutability for Safe Parallelism](https://research.microsoft.com/pubs/170528/msr-tr-2012-79.pdf)
 * [Region Based Memory Management](http://www.cs.ucla.edu/~palsberg/tba/papers/tofte-talpin-iandc97.pdf)
 
-### 並行性
+### 並列性
 
 <!-- ### Concurrency -->
 
@@ -50,16 +50,17 @@ Rust, as well as publications about Rust.-->
 * [Composing High-Performance Memory Allocators](http://people.cs.umass.edu/~emery/pubs/berger-pldi2001.pdf)
 * [Reconsidering Custom Memory Allocation](http://people.cs.umass.edu/~emery/pubs/berger-oopsla2002.pdf)
 
-### Rust *を* 扱った論文
+### Rust を取り上げた論文
 
-<!-- ### Papers *about* Rust -->
+<!-- ### Papers *about* Rust
+日本語では間違うおそれがないため強調をなくしました -->
 
 * [GPU Programming in Rust: Implementing High Level Abstractions in a
 Systems Level
 Language](http://www.cs.indiana.edu/~eholk/papers/hips2013.pdf). Eric Holk による初期の GPU の仕事。
 * [Parallel closures: a new twist on an old
   idea](https://www.usenix.org/conference/hotpar12/parallel-closures-new-twist-old-idea)
-  - 厳密に rust のことではないけれど nmatsakis によるもの
+  - 厳密に Rust のことではないけれど nmatsakis によるもの
 * [Patina: A Formalization of the Rust Programming
   Language](ftp://ftp.cs.washington.edu/tr/2015/03/UW-CSE-15-03-02.pdf). 型体系の部分集合の初期の定式化で、Eric Reed による。
 * [Experience Report: Developing the Servo Web Browser Engine using

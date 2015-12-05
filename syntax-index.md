@@ -37,7 +37,7 @@
 * `where`: type constraint clauses。[Traits (`where` clause)]を参照。
 * `while`: conditional loop。[Loops (`while`)]を参照。
 
-## Operators and Symbols
+## 演算子 (Operators) と 記号 (Symbols)
 
 * `!` (`expr!(…)`, `expr!{…}`, `expr![…]`): denotes macro expansion。[Macros]を参照。
 * `!` (`!expr`): bitwise or logical complement。 Overloadable (`Not`)。
@@ -60,6 +60,7 @@
 * `-` (`- expr`): arithmetic negation。 Overloadable (`Neg`)。
 * `-=` (`var -= expr`): arithmetic subtraction & assignment。
 * `->` (`fn(…) -> type`, `|…| -> type`): function and closure return type。[Functions]、[Closures]を参照。
+* `-> !` (`fn(…) -> !`, `|…| -> !`): diverging function or closure。[Diverging Functions]を参照。
 * `.` (`expr.ident`): member access。[Structs]、[Method Syntax]を参照。
 * `..` (`..`, `expr..`, `..expr`, `expr..expr`): right-exclusive range literal。
 * `..` (`..expr`): struct literal update syntax。[Structs (Update syntax)]を参照。
@@ -92,16 +93,18 @@
 * `||` (`expr || expr`): logical or。
 * `_`: "ignored" pattern binding。[Patterns (Ignoring bindings)]を参照。
 
-## Other Syntax
+## その他の構文
+
+<!-- ## Other Syntax -->
 
 <!-- Various bits of standalone stuff. -->
 
 * `'ident`: named lifetime or loop label。[Lifetimes]、[Loops (Loops Labels)]を参照。
 * `…u8`, `…i32`, `…f64`, `…usize`, …: numeric literal of specific type。
 * `"…"`: string literal。[Strings]を参照。
-* `r"…"`, `r#"…"#`, `r##"…"##`, …: raw string literal。
-* `b"…"`: byte string literal。
-* `rb"…"`, `rb#"…"#`, `rb##"…"##`, …: raw byte string literal。
+* `r"…"`, `r#"…"#`, `r##"…"##`, …: raw string literal, escape characters are not processed。[Reference (Raw String Literals)]を参照。
+* `b"…"`: byte string literal, constructs a `[u8]` instead of a string。[Reference (Byte String Literals)]を参照。
+* `br"…"`, `br#"…"#`, `br##"…"##`, …: raw byte string literal, combination of raw and byte string literal。[Reference (Raw Byte String Literals)]を参照。
 * `'…'`: character literal。[Primitive Types (`char`)]を参照。
 * `b'…'`: ASCII byte literal。
 
@@ -189,6 +192,7 @@
 [Crates and Modules (Importing External Crates)]: crates-and-modules.html#importing-external-crates
 [Crates and Modules (Importing Modules with `use`)]: crates-and-modules.html#importing-modules-with-use
 [Crates and Modules (Re-exporting with `pub use`)]: crates-and-modules.html#re-exporting-with-pub-use
+[Diverging Functions]: functions.html#diverging-functions
 [Enums]: enums.html
 [Foreign Function Interface]: ffi.html
 [Functions (Early Returns)]: functions.html#early-returns
@@ -217,6 +221,9 @@
 [Primitive Types (Tuple Indexing)]: primitive-types.html#tuple-indexing
 [Primitive Types (Tuples)]: primitive-types.html#tuples
 [Raw Pointers]: raw-pointers.html
+[Reference (Byte String Literals)]: ../reference.html#byte-string-literals
+[Reference (Raw Byte String Literals)]: ../reference.html#raw-byte-string-literals
+[Reference (Raw String Literals)]: ../reference.html#raw-string-literals
 [References and Borrowing]: references-and-borrowing.html
 [Strings]: strings.html
 [Structs (Update syntax)]: structs.html#update-syntax

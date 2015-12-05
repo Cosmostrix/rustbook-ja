@@ -6,7 +6,7 @@
 <!-- So you’ve learned how to write some Rust code. But there’s a difference between
 writing *any* Rust code and writing *good* Rust code. -->
 
-この章は比較的独立した教程の集まりになっており、あなたの書く Rust を次なる高みへと押し上げる方法をお見せします。
+この章は比較的独立した手引きの集まりになっており、あなたの書く Rust を次なる高みへと押し上げる方法をお見せします。
 内容は、よく使う書き方と標準譜集の特色の紹介です。
 以下の項目は好みの順に読み進めてもらって構いません。
 

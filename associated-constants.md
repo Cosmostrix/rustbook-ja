@@ -1,6 +1,6 @@
 % 付属定数
 
-付属定数 (`associated_consts`) 機構により、定数をこのように定義できます。
+付属定数 (`associated_consts`) 機構により、定数を以下のように定義できます。
 
 ```rust
 #![feature(associated_consts)]
@@ -18,7 +18,7 @@ fn main() {
 }
 ```
 
-`Foo` の実装側は `ID` の定義を求められるようになります。定義が無かった場合、
+`Foo` の実装側は `ID` の定義を求められるようになります。定義がなかった場合、
 
 ```rust,ignore
 #![feature(associated_consts)]
@@ -46,7 +46,7 @@ error: not all trait items implemented, missing: `ID` [E0046]
 ```
 
 を与えます。
-さらに、黙用値〈デフォルト値〉も定義できます。
+さらに、黙用値も定義できます。
 
 ```rust
 #![feature(associated_consts)]
@@ -71,7 +71,8 @@ fn main() {
 この通り、`Foo` の実装時には `i32` に対する実装のように実装を省略できます。
 その場合には黙用値が使われますが、`i64` のように独自の定義を行うこともできます。
 
-付属定数は特性以外にも付けられます。構造体 (`struct`) 用の `impl` 段落〈ブロック〉でも機能します。
+付属定数は特性以外にも付けられます。構造体 (`struct`) または列挙体 (`enum`) の `impl`
+段落でも機能します。
 
 ```rust
 #![feature(associated_consts)]
@@ -79,6 +80,6 @@ fn main() {
 struct Foo;
 
 impl Foo {
-    pub const FOO: u32 = 3;
+    const FOO: u32 = 3;
 }
 ```

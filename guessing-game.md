@@ -122,7 +122,6 @@ fn main() {
     let mut guess = String::new();
 
     io::stdin().read_line(&mut guess)
-        .ok()
         .expect("行の読み取りに失敗しました");
 
     println!("あなたの予想は → {}", guess);
@@ -285,7 +284,6 @@ a new value of some kind.-->
 
 ```rust,ignore
     io::stdin().read_line(&mut guess)
-        .ok()
         .expect("行の読み取りに失敗しました");
 ```
 
@@ -375,7 +373,6 @@ a single line of text, it’s only the first part of the single logical line of
 code:-->
 
 ```rust,ignore
-        .ok()
         .expect("行の読み取りに失敗しました");
 ```
 
@@ -387,54 +384,44 @@ and other whitespace. This helps you split up long lines. We _could_ have
 done:-->
 
 ```rust,ignore
-    io::stdin().read_line(&mut guess).ok().expect("行の読み取りに失敗しました");
+    io::stdin().read_line(&mut guess).expect("行の読み取りに失敗しました");
 ```
 
-が、これでは読みにくくなってしまいます。なので３つの操作呼び出しを３行に分けました。
-`read_line()` についてはもう話しましたが、`ok()` と `expect()` は何でしょうか？
+が、これでは読みにくくなってしまいます。なので 2 つの操作呼び出しを 2 行に分けました。
+`read_line()` についてはもう話しましたが、`expect()` は何でしょうか？
 ええ、`read_line()` が利用者の入力を渡した `&mut String` に入れることにはもう触れましたが、
 そこで帰ってくる値は、[`io::Result`][ioresult] になっています。Rust には結果 (`Result`)
 という名前の型が標準譜集にたくさんあります。一般的な [`Result`][result] や、
 下位譜集専用版の `io::Result` などです。
 
-<!--But that gets hard to read. So we’ve split it up, three lines for three
-method calls. We already talked about `read_line()`, but what about `ok()`
-and `expect()`? Well, we already mentioned that `read_line()` puts what
-the user types into the `&mut String` we pass it. But it also returns
-a value: in this case, an [`io::Result`][ioresult]. Rust has a number of
-types named `Result` in its standard library: a generic [`Result`][result],
-and then specific versions for sub-libraries, like `io::Result`.-->
+<!--But that gets hard to read. So we’ve split it up, three lines for three method
+calls. We already talked about `read_line()`, but what about `expect()`? Well,
+we already mentioned that `read_line()` puts what the user types into the `&mut
+String` we pass it. But it also returns a value: in this case, an
+[`io::Result`][ioresult]. Rust has a number of types named `Result` in its
+standard library: a generic [`Result`][result], and then specific versions for
+sub-libraries, like `io::Result`.-->
 
 [ioresult]: ../std/io/type.Result.html
 [result]: ../std/result/enum.Result.html
 
 これらの `Result` 型の目的は誤り対処の情報を符号にすることです。
-`Result` 型の値は他の型と同じく操作法が定義されています。この場合、`io::Result` は `ok()` 操作法をもち、
-「この値が成功時のものだとしたい、違ったら誤り情報を投げてくれ」と言っています。
-投げ捨てるのはなぜでしょうか？
-そうですね、簡単な譜体として、基本的に何か問題があったら続行不可能なので、
-全体誤りを印字するだけにしたいです。
-[`ok()` 操作法][ok] が返す値には別の操作法 `expect()` が定義されています。[`expect()` 操作法][expect]
-は呼んだ値を取り、それが失敗の値だった場合は渡した伝言で [`panic!`][panic] します。
+`Result` 型の値は他の型と同じく操作法が定義されています。
+この場合、`io::Result` は [`expect()` 操作法][expect]をもちます。
+これは呼んだ値を取り、それが失敗の値だった場合は渡した伝言で [`panic!`][panic] します。
 このような `panic!` は作った譜体を急停止〈クラッシュ〉させ、その伝言を表示します。
 
 <!--The purpose of these `Result` types is to encode error handling information.
 Values of the `Result` type, like any type, have methods defined on them. In
-this case, `io::Result` has an `ok()` method, which says ‘we want to assume
-this value is a successful one. If not, just throw away the error
-information’. Why throw it away? Well, for a basic program, we just want to
-print a generic error, as basically any issue means we can’t continue. The
-[`ok()` method][ok] returns a value which has another method defined on it:
-`expect()`. The [`expect()` method][expect] takes a value it’s called on, and
-if it isn’t a successful one, [`panic!`][panic]s with a message you
-passed it. A `panic!` like this will cause our program to crash, displaying
-the message.-->
+this case, `io::Result` has an [`expect()` method][expect] that takes a value
+it’s called on, and if it isn’t a successful one, [`panic!`][panic]s with a
+message you passed it. A `panic!` like this will cause our program to crash,
+displaying the message.-->
 
-[ok]: ../std/result/enum.Result.html#method.ok
 [expect]: ../std/option/enum.Option.html#method.expect
 [panic]: error-handling.html
 
-この２つの操作法を削っても製譜はできますが、警告をもらいます。
+この操作法を削っても製譜はできますが、警告をもらいます。
 
 <!--If we leave off calling these two methods, our program will compile, but
 we’ll get a warning:-->
@@ -722,7 +709,6 @@ fn main() {
     let mut guess = String::new();
 
     io::stdin().read_line(&mut guess)
-        .ok()
         .expect("行の読み取りに失敗しました");
 
     println!("あなたの予想は → {}", guess);
@@ -844,7 +830,6 @@ fn main() {
     let mut guess = String::new();
 
     io::stdin().read_line(&mut guess)
-        .ok()
         .expect("行の読み取りに失敗しました");
 
     println!("あなたの予想は → {}", guess);
@@ -1005,11 +990,9 @@ fn main() {
     let mut guess = String::new();
 
     io::stdin().read_line(&mut guess)
-        .ok()
         .expect("行の読み取りに失敗しました");
 
     let guess: u32 = guess.trim().parse()
-        .ok()
         .expect("数字を１つ入力してください！");
 
     println!("あなたの予想は → {}", guess);
@@ -1028,7 +1011,6 @@ fn main() {
 
 ```rust,ignore
     let guess: u32 = guess.trim().parse()
-        .ok()
         .expect("数字を１つ入力してください！");
 ```
 
@@ -1054,7 +1036,7 @@ else.-->
 guess.trim().parse()
 ```
 
-`ok().expect()` の呼出しの次です。ここで、`guess` は古い方の `guess` をさし、入力が入っている `String`
+ここで、`guess` は古い方の `guess` をさし、入力が入っている `String`
 の方です。`String` の `trim()` 操作法は文字列の両端にある空白を取り除きます。
 `read_line()` を満足させるために「Enter」(または「Return」)鍵を押す必要があるためこれが重要です。
 どういう意味かというと、`5` を打って Enter 鍵を叩くと、`guess` は `5\n` となります。
@@ -1066,26 +1048,25 @@ guess.trim().parse()
 Rust は[多種にわたる組み込み〈ビルトイン〉数値型][number]を持っていますが、私達は `u32`
 を選びました。`u32` は小さな正(と０)の整数に向いている普通の選択肢です。
 
-<!--Followed by an `ok().expect()` invocation. Here, `guess` refers to the old
-`guess`, the one that was a `String` with our input in it. The `trim()`
-method on `String`s will eliminate any white space at the beginning and end of
-our string. This is important, as we had to press the ‘return’ key to satisfy
-`read_line()`. This means that if we type `5` and hit return, `guess` looks
-like this: `5\n`. The `\n` represents ‘newline’, the enter key. `trim()` gets
-rid of this, leaving our string with just the `5`. The [`parse()` method on
-strings][parse] parses a string into some kind of number. Since it can parse a
-variety of numbers, we need to give Rust a hint as to the exact type of number
-we want. Hence, `let guess: u32`. The colon (`:`) after `guess` tells Rust
-we’re going to annotate its type. `u32` is an unsigned, thirty-two bit
-integer. Rust has [a number of built-in number types][number], but we’ve
-chosen `u32`. It’s a good default choice for a small positive number.-->
+<!--Here, `guess` refers to the old `guess`, the one that was a `String` with our
+input in it. The `trim()` method on `String`s will eliminate any white space at
+the beginning and end of our string. This is important, as we had to press the
+‘return’ key to satisfy `read_line()`. This means that if we type `5` and hit
+return, `guess` looks like this: `5\n`. The `\n` represents ‘newline’, the
+enter key. `trim()` gets rid of this, leaving our string with just the `5`. The
+[`parse()` method on strings][parse] parses a string into some kind of number.
+Since it can parse a variety of numbers, we need to give Rust a hint as to the
+exact type of number we want. Hence, `let guess: u32`. The colon (`:`) after
+`guess` tells Rust we’re going to annotate its type. `u32` is an unsigned,
+thirty-two bit integer. Rust has [a number of built-in number types][number],
+but we’ve chosen `u32`. It’s a good default choice for a small positive number. -->
 
 [parse]: ../std/primitive.str.html#method.parse
 [number]: primitive-types.html#numeric-types
 
 `read_line()` と同じように、`parse()` の呼出しは誤りを生じ得ます。
 もし文字列が `A👍%` だったら？ これを１つの数値に変換する方法はないでしょう。
-というわけで、`read_line()` でやったのと同じように `ok()` と `expect()` 操作法を使って誤りがあった場合に譜体を急停止させます。
+というわけで、`read_line()` でやったのと同じように `expect()` 操作法を使って誤りがあった場合に譜体を急停止させます。
 
 <!--Just like `read_line()`, our call to `parse()` could cause an error. What if
 our string contained `A👍%`? There’d be no way to convert that to a number. As
@@ -1151,11 +1132,9 @@ fn main() {
         let mut guess = String::new();
 
         io::stdin().read_line(&mut guess)
-            .ok()
             .expect("行の読み取りに失敗しました");
 
         let guess: u32 = guess.trim().parse()
-            .ok()
             .expect("数字を１つ入力してください！");
 
         println!("あなたの予想は → {}", guess);
@@ -1227,11 +1206,9 @@ fn main() {
         let mut guess = String::new();
 
         io::stdin().read_line(&mut guess)
-            .ok()
             .expect("行の読み取りに失敗しました");
 
         let guess: u32 = guess.trim().parse()
-            .ok()
             .expect("数字を１つ入力してください！");
 
         println!("あなたの予想は → {}", guess);
@@ -1248,7 +1225,8 @@ fn main() {
 }
 ```
 
-`あなたの勝ちです！` の次の行に `break` を加えることで、勝ったときに繰り返しを脱出するようにします。
+`あなたの勝ちです！` の次の行に `break` 
+を加えることで、勝ったときに繰り返しを脱出するようにします。
 この繰り返しは `main()` の最後にあるので、繰り返しからの脱出は譜体の終了も意味します。
 もうひとつ作りかえるところがあります。誰かが数字以外を入力したとき、終了したくはなくて、
 単に無視したいのです。こうするとできます。
@@ -1279,7 +1257,6 @@ fn main() {
         let mut guess = String::new();
 
         io::stdin().read_line(&mut guess)
-            .ok()
             .expect("行の読み取りに失敗しました");
 
         let guess: u32 = match guess.trim().parse() {
@@ -1312,9 +1289,10 @@ let guess: u32 = match guess.trim().parse() {
 };
 ```
 
-上記は `ok().expect()` を `match` 文に切り替えることで「誤ったら急停止」を「実際に誤りに対処」にできるか一般的に示しています。
+上記は `expect()` を `match` 文に切り替えることで「誤ったら急停止」を「実際に誤りに対処」にできるか一般的に示しています。
 `parse()` で返された結果 `Result` は `Ordering` と同じ列挙体 `enum` です。
-しかしこの場合は、値の種類のそれぞれに付属する情報があります。`Ok` は成功、`Err` は失敗です。
+しかしこの場合は、値の種類のそれぞれに付属する情報があります。
+`Ok` は成功、`Err` は失敗です。
 どちらもさらに情報を持っており、文字解析に成功した整数値または誤り型です。
 この場合、`Ok(num)` に `match` して、`Ok` の内側の値を `num` という名前で束縛します。
 そして右辺側ですぐ `num` を返します。
@@ -1322,7 +1300,6 @@ let guess: u32 = match guess.trim().parse() {
 これで誤りを無視し、`continue` で `loop` の次の反復に進みます。
 
 <!--This is how you generally move from ‘crash on error’ to ‘actually handle the
-error’, by switching from `ok().expect()` to a `match` statement. The `Result`
 returned by `parse()` is an `enum` just like `Ordering`, but in this case, each
 variant has some data associated with it: `Ok` is a success, and `Err` is a
 failure. Each contains more information: the successfully parsed integer, or an
@@ -1386,7 +1363,6 @@ fn main() {
         let mut guess = String::new();
 
         io::stdin().read_line(&mut guess)
-            .ok()
             .expect("行の読み取りに失敗しました");
 
         let guess: u32 = match guess.trim().parse() {
@@ -1418,7 +1394,8 @@ fn main() {
 Congratulations! -->
 
 この初めての企画ではたくさんのものをお見せしました。
-`let`、`match`、操作法、付属機能、外部わく箱の利用などです。次の企画ではさらに多くをお見せします。
+`let`、`match`、操作法、付属機能、外部わく箱の利用などです。
+次の企画ではさらに多くをお見せします。
 
 <!--This first project showed you a lot: `let`, `match`, methods, associated
 functions, using external crates, and more. Our next project will show off

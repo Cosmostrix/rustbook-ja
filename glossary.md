@@ -55,6 +55,21 @@ let z = (8, 2, 6);
 
 <!-- In the example above `x` and `y` have arity 2. `z` has arity 3. -->
 
+### 縛り (Bounds)
+
+<!-- ### Bounds -->
+
+縛りとは型または[特性][traits]にかかる制約のことです。
+例えば、ある縛りが機能の取る引数上に課されていた場合、
+その機能に渡される型は指示された制約を守ったものでなければなりません。
+
+<!-- Bounds are constraints on a type or [trait][traits]. For example, if a bound
+is placed on the argument a function takes, types passed to that function
+must abide by that constraint. -->
+
+[traits]: traits.html
+
+
 ### 動的変幅型 (DST; Dynamically Sized Type)
 
 <!-- ### DST (Dynamically Sized Type) -->

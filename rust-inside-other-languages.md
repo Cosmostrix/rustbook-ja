@@ -1,6 +1,6 @@
 % 他言語の中に Rust
 
-三番目の企画には、Rust 最大の強みである「実質的に〈ランタイム〉を必要としない」点を披露できるものを選びます。
+三番目の企画には、Rust 最大の強みである「実質的に必携譜〈ランタイム〉を必要としない」点を披露できるものを選びます。
 
 <!--For our third project, we’re going to choose something that shows off one of
 Rust’s greatest strengths: a lack of a substantial runtime.-->
@@ -139,7 +139,7 @@ sort of process monitoring tool, like `top`, I can see that it only uses one
 core on my machine. That’s the GIL kicking in.-->
 
 これがわざとらしい問題であるのは承知ですが、実世界でもこれに近い状況がたくさん考えられます。
-私達の目的のため、２〜３の走脈がせわしなく働く様子がある種の並行的で高価な計算を表すとします。
+私達の目的のため、２〜３の走脈がせわしなく働く様子がある種の並列的で高価な計算を表すとします。
 
 <!--While it’s true that this is a synthetic program, one can imagine many problems
 that are similar to this in the real world. For our purposes, spinning up a few
@@ -221,7 +221,7 @@ know how to call the function, we can’t do that. This attribute turns
 that behavior off.-->
 
 もうひとつは `pub extern` の変更です。
-`pub` はこの機能がこの〈モジュール〉の外部から呼び出し可能であるという意味で、
+`pub` はこの機能がこの役区 (module)〈モジュール〉の外部から呼び出し可能であるという意味で、
 `extern` は C から呼出し可能であるべきだと言っています。
 これだけです！ 変更だらけでなくて良かった。
 
@@ -271,12 +271,13 @@ build  deps  examples  libembed.so  native
 
 上の `libembed.so` が「共有対象〈シェアードオブジェクト〉」譜集です。
 この〈ファイル〉は C で書かれた共用対象譜集とまったく同じに使えます！
-余談ですが名前は土台環境により `embed.dll` (Windows) または `libembed.dylib` (Mac)
-と変わります。
+余談ですが名前は土台環境により `embed.dll` (Microsoft Windows) または
+`libembed.dylib` (Mac OS X) と変わります。
 
 <!--That `libembed.so` is our ‘shared object’ library. We can use this file
 just like any shared object library written in C! As an aside, this may be
-`embed.dll` or `libembed.dylib`, depending on the platform.-->
+`embed.dll` (Microsoft Windows) or `libembed.dylib` (Mac OS X), depending on 
+your operating system.-->
 
 Rust 譜集が組めたので早速 Ruby から使ってみましょう。
 
@@ -363,7 +364,7 @@ module Hello
   ffi_lib 'target/release/libembed.so'
 ```
 
-`Hello`〈モジュール〉は共有譜集からの機能を
+`Hello` 役区は共有譜集からの機能を
 
 The `Hello` module is used to attach the native functions from the shared
 library. Inside, we `extend` the necessary `FFI::Library` module and then call
