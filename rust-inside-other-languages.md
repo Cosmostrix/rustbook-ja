@@ -319,7 +319,7 @@ Done installing documentation for ffi after 0 seconds
 1 gem installed
 ```
 
-そして最後に、走らせてみることができます。
+そしてようやく、実行して試せるようになりました。
 
 <!-- And finally, we can try running it: -->
 
@@ -340,7 +340,7 @@ $ ruby embed.rb
 $
 ```
 
-ほわッ！ なんと早いッ！
+アッー、なんと早いッ！
 私の算系では純 Ruby 版で 2 秒かかっていたものが `0.086` 秒になりました。
 それではこの Ruby 譜面をひも解いていきましょう。
 
@@ -364,13 +364,17 @@ module Hello
   ffi_lib 'target/release/libembed.so'
 ```
 
-`Hello` 役区は共有譜集からの機能を
+`Hello` 役区は共有譜集から〈ネイティブ〉機能を〈アタッチ〉するために使われます。
+内部では必要な `FFI::Library` 役区を拡張 (`extend`) し、それから `ffi_lib`
+を呼んで共有対象譜集を積載します。
+ただ作った譜集が置かれた場所をそれに渡しますが、場所は前に見た通り
+`target/release/libembed.so` です。
 
-The `Hello` module is used to attach the native functions from the shared
+<!-- The `Hello` module is used to attach the native functions from the shared
 library. Inside, we `extend` the necessary `FFI::Library` module and then call
 `ffi_lib` to load up our shared object library. We just pass it the path that
 our library is stored, which, as we saw before, is
-`target/release/libembed.so`.
+`target/release/libembed.so`. -->
 
 ```ruby
 attach_function :process, [], :void
