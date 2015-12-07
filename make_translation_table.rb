@@ -2,7 +2,7 @@ require 'yaml'
 require 'pp'
 
 table = YAML.load(File.read('Project明治回帰.yaml')).sort_by {|x| x['en'].downcase }
-puts File.read('translation-table-template.md')
+puts File.read('src/translation-table-template.md')
 puts '| 英 | 和 | 参考訳 | ＊ |'
 puts '|----|----|--------|----|'
 table.each do |x|
