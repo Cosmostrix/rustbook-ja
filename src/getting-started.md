@@ -1038,7 +1038,7 @@ guide], which covers all of its features. -->
 
 [Cargo guide]: http://doc.crates.io/guide.html
 
-# 結びのことば
+## 結びのことば
 
 <!-- # Closing Thoughts -->
 
