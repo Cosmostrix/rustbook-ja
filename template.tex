@@ -20,6 +20,7 @@
 \captionsetup{font=bf,position=below}
 
 \usepackage{ctable}
+\usepackage{pdfpages}
 
 \definecolor{shadecolor}{gray}{0.90}
 
@@ -88,7 +89,7 @@
 \fancypagestyle{plain}{\fancyhf{}\fancyfoot[LE,RO]{\footnotesize\textbf\thepage}}
 \pagestyle{plain}
 
-\renewcommand{\headrulewidth}{0.2pt} %0
+\renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{0pt}
 
 \newcounter{img}[chapter]
@@ -144,14 +145,16 @@
 
 \begin{document}
 \frontmatter
-\maketitle
-\thispagestyle{empty}
-
+\includepdf{frontcover.jpg}
+%\maketitle
+%\thispagestyle{empty}
 <%= latex_p %>
 
+% http://d.hatena.ne.jp/phithon/20110224/tex_change_the_depth_of_the_table_of_contents
 \setcounter{tocdepth}{1}
 \tableofcontents\newpage\thispagestyle{empty}
 
+\renewcommand{\headrulewidth}{0.2pt}
 \mainmatter
 \fancyhf{}
 \fancyhead[LE]{{\small\leftmark}}
@@ -162,4 +165,6 @@
 
 <%= latex %>
 \backmatter
+\mbox{}\newpage\thispagestyle{empty}
+\includepdf{backcover.jpg}
 \end{document}

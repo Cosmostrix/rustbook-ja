@@ -123,6 +123,7 @@ def post_pandoc(string, config)
                         "#{txt} (\\ref{#{ref}}#{if $global_links<8 then '章' else '節' end}) "
                     end
                 end
+
                 # remove hidden code
                 s /(?<!\s)\n#.*/, '\1'
 

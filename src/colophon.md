@@ -11,7 +11,7 @@
 
 原作者　The Rust Project Developers
 
-著者/訳者　XXX <XXX@lunakit.org>
+著者/訳者　XXX <rustbook@lunakit.org>
 
 印刷所　ちょ古っ都製本工房 様 <http://www.chokotto.jp>
 
