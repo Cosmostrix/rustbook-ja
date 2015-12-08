@@ -50,13 +50,13 @@
 
 \makeatletter
   \setlength\headheight{12\p@}
-  \setlength\headsep   {.25in}
-  \setlength\topskip   {10\p@}
-  \setlength\footskip{.35in}
+  \setlength\headsep   {.25in} %25
+  \setlength\topskip   {10\p@} %10
+  \setlength\footskip  {.25in} %35
   \setlength\textwidth{450\p@}
   
   \setlength\@tempdima{\paperheight}
-  \addtolength\@tempdima{-2in}
+  \addtolength\@tempdima{-1.5in} %2
   \divide\@tempdima\baselineskip
   \@tempcnta=\@tempdima
   \setlength\textheight{\@tempcnta\baselineskip}
@@ -76,7 +76,7 @@
   \@settopoint\evensidemargin
   
   \setlength\topmargin{\paperheight}
-  \addtolength\topmargin{-2in}
+  \addtolength\topmargin{-2in} %2
   \addtolength\topmargin{-\headheight}
   \addtolength\topmargin{-\headsep}
   \addtolength\topmargin{-\textheight}
@@ -88,7 +88,7 @@
 \fancypagestyle{plain}{\fancyhf{}\fancyfoot[LE,RO]{\footnotesize\textbf\thepage}}
 \pagestyle{plain}
 
-\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\headrulewidth}{0.2pt} %0
 \renewcommand{\footrulewidth}{0pt}
 
 \newcounter{img}[chapter]
@@ -146,6 +146,9 @@
 \frontmatter
 \maketitle
 \thispagestyle{empty}
+
+<%= latex_p %>
+
 \setcounter{tocdepth}{1}
 \tableofcontents\newpage\thispagestyle{empty}
 
@@ -158,4 +161,5 @@
 \pagestyle{fancy}
 
 <%= latex %>
+\backmatter
 \end{document}

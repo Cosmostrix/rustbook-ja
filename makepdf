@@ -110,22 +110,21 @@ def post_pandoc(string, config)
 
                 # 追加
                 print string
-
+                # proper local links
                 s /\\href\{([^}]*)\}\{([^}]*)\}/ do |m|
                     txt = $2
                     ref = $1.sub '../', 'https://doc.rust-lang.org/stable/std/'
-                    if ref.match /^(https?|irc|mailto):/ then
+                    if ref.match /^(https?|irc|ftp|mailto):/ then
                         ref.gsub! '_', '\_'
                         "\\href{#{ref}}{#{txt}}"
                     else
                         $global_links += 1
                         ref.sub! /.*#(.*[.])*(.*)$/, '\2'
-                        "#{txt} (\\ref{#{ref}}#{if $global_links<7 then '章' else '節' end}) "
+                        "#{txt} (\\ref{#{ref}}#{if $global_links<8 then '章' else '節' end}) "
                     end
                 end
-                #s /\\href\{[-\w.]*#(.*)\}\{([^}]*)\}/ { '\2 (\ref{\1}章) '}
-                #s /\\href\{([-\w.}]*)\}\{([^}]*)\}/, '\2 (\ref{\1}章) '
-                s /^### .*\n/, ''
+                # remove hidden code
+                s /(?<!\s)\n#.*/, '\1'
 
 		# Reformat for the book documentclass as opposed to article
 		s '\section', '\chap'
@@ -192,7 +191,6 @@ def bulletlist(l, i)
                }
 end
 toc = bulletlist(YAML.load(`pandoc src/SUMMARY_.md -t json`)[1][1], 1).flatten
-toc.unshift ({"text" => "訳者まえがき", "href" => "preface-ja.md", "level" => 1})
 toc.unshift ({"text" => "演譜言語 Rust", "href" => "README.md", "level" => 1})
 toc.push ({"text" => "奥付", "href" => "colophon.md", "level" => 1})
 languages.each do |lang|
@@ -202,11 +200,13 @@ languages.each do |lang|
 		puts "#{lang}:"
                 #markdown = Dir["#$root/#{lang}/*/*.markdown"].sort.map do |file|
                 markdown = toc.map do |page|
-                    header = '#' * page['level'] + "\\1 {##{page['href'].gsub('md','html')}}"
+                    header = '#' * page['level'] + " \\1 {##{page['href'].gsub('md','html')}}"
                     File.read("#$root/#{lang}/#{page['href']}")
-                      .gsub(/^#/, '#' * (page['level']+1))
-                      .gsub(/%(.*)/, header)
+                      .gsub(/\n\n#/, "\n\n" + '#' * (page['level']+1))
+                      .sub(/^% (.*)/, header)
 		end.join("\n\n")
+
+                preface = File.read("#$root/#{lang}/preface-ja.md").sub(/^% (.*)/, '# \1') + "\n\n"
 
                 print "\tParsing markdown... "
                 #latex = IO.popen('pandoc -p --no-wrap -f markdown -t latex', 'w+') do |pipe|
@@ -215,6 +215,11 @@ languages.each do |lang|
 			pipe.close_write
 			post_pandoc(pipe.read, config)
 		end
+                latex_p = IO.popen('pandoc -p --no-wrap -f markdown -t latex --no-highlight', 'w+') do |pipe|
+                    pipe.write(pre_pandoc(preface, config))
+                    pipe.close_write
+                    post_pandoc(pipe.read, config)
+                end
 		puts "done"
 p latex
 		print "\tCreating main.tex for #{lang}... "

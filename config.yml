@@ -44,7 +44,7 @@ zh-tw:
 ja:
   langrule: "\\XeTeXlinebreakskip=0em plus 0.1em minus 0.01em\n\\XeTeXlinebreakpenalty=0"
   font: Source Han Sans JP Normal
-  bold: Source Han Sans JP Normal
+  bold: Source Han Sans JP Medium
   mono: VL Gothic
   prechap: "第"
   postchap: "章"
