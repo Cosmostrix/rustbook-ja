@@ -1,4 +1,4 @@
-all: out/rustbook out/tex out/gitbook.pdf
+all: rustbook.ja.pdf #out/rustbook out/tex out/gitbook.pdf
 
 src/translation-table.md: Project明治回帰.yaml
 	ruby make_translation_table.rb > $@
@@ -15,6 +15,10 @@ out/gitbook.pdf: src/*.md src/translation-table.md
 out/tex: src/*.md src/translation-table.md header.tex GitbookToPandoc.jar
 	mkdir -p out; rm -rf out/tex
 	java -jar GitbookToPandoc.jar src out/tex
+
+rustbook.ja.pdf: src/*.md src/translation-table.md template.tex
+	rm -f main.{aux,log,out,pdf,tex,toc}
+	./makepdf ja -d
 
 browse: out/rustbook
 	firefox out/rustbook/index.html

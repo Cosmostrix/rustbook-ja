@@ -103,15 +103,29 @@ def pre_pandoc(string, config)
 		s /Insert\s18333fig\d+\.png\s*\n.*?\d{1,2}-\d{1,2}\. (.*)/, 'FIG: \1'
 	end
 end
-
+$global_links = 0
 def post_pandoc(string, config)
 	replace(string) do
 		space = /\s/
 
                 # 追加
                 print string
-                s /\\href\{[-\w.]*#(.*)\}\{([^}]*)\}/, '\2 (→\ref{\1}) '
-                s /\\href\{([-\w.}]*)\}\{([^}]*)\}/, '\2 (→\ref{\1}) '
+
+                s /\\href\{([^}]*)\}\{([^}]*)\}/ do |m|
+                    txt = $2
+                    ref = $1.sub '../', 'https://doc.rust-lang.org/stable/std/'
+                    if ref.match /^(https?|irc|mailto):/ then
+                        ref.gsub! '_', '\_'
+                        "\\href{#{ref}}{#{txt}}"
+                    else
+                        $global_links += 1
+                        ref.sub! /.*#(.*[.])*(.*)$/, '\2'
+                        "#{txt} (\\ref{#{ref}}#{if $global_links<7 then '章' else '節' end}) "
+                    end
+                end
+                #s /\\href\{[-\w.]*#(.*)\}\{([^}]*)\}/ { '\2 (\ref{\1}章) '}
+                #s /\\href\{([-\w.}]*)\}\{([^}]*)\}/, '\2 (\ref{\1}章) '
+                s /^### .*\n/, ''
 
 		# Reformat for the book documentclass as opposed to article
 		s '\section', '\chap'
@@ -233,8 +247,8 @@ p latex
 		end
 
 		unless abort
-			print "\tMoving output to progit.#{lang}.pdf... "
-                        mv("#{dir}/main.pdf", "#$root/progit.#{lang}.pdf")
+			print "\tMoving output to rustbook.#{lang}.pdf... "
+                        mv("#{dir}/main.pdf", "#$outDir/rustbook.#{lang}.pdf")
 			puts "done"
 		end
 	end
