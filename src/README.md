@@ -116,7 +116,7 @@ fn main() {
 ↑
 ```
 
-上記は単に理解を助けるための訳であり、実際はこのように表示されます。
+上記は単に理解を助けるための日本語訳であり、実際はこのように表示されます。
 
 ```text
 error: cannot borrow `x` as mutable because it is also borrowed as immutable

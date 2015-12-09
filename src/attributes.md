@@ -53,7 +53,7 @@ fn super_fast_fn() {
 # }
 ```
 
-複数の〈キー〉と値の組でも可。
+複数の鍵〈キー〉と値の組でも可。
 
 ```rust
 #[cfg(target_os = "macos")]

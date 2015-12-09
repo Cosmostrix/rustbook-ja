@@ -1,6 +1,8 @@
 #!/bin/env ruby -r yaml -r pp -e 'pp YAML.load(ARGF.read())'
 # H27.10.26-27
-# -11.10 -11.20
+# -11.10 -11.20 -12.10
+
+# 翻訳は形の合わないブロックで同じ城を組み立てるようなものである。その全く難儀なことよ。
 
 # en: 英語
 # ja: 提案する言葉
@@ -20,8 +22,8 @@
   desc: 感覚的な音の大きさ
 - en: love
   yamato: 御大切
-  common: 愛
-  desc: 平安時代の翻訳
+  common: 大好き, 愛してる
+  desc: 平安時代の翻訳。死んでも「愛」とは呼ばせない
 - en: literacy
   ja: 基礎教養
   common: リテラシー
@@ -30,18 +32,19 @@
   ja: 情報教養
   common: ITリテラシー
 - en: media literacy
-  ja: 情報活用能力
-  common: メディアリテラシー
+  #ja: 
+  common: メディアリテラシー, 情報活用能力
   desc: 情報メディアを主体的に読み解いて必要な情報を引き出し、その真偽を見抜き、活用する能力のこと
 - en: disambiguous
   ja: 語義の一覧
   #ja: 多義語一覧
   common: 曖昧さ回避
-  desc: Wikipedia用語のアレ。誤訳レベル高い
+  desc: Wikipedia 用語のアレ。もう見たくない
 - en: leadership
   ja: 率労眼, 代表眼
-  common: リーダーシップ
-  desc: 「統率力」「指揮力」は誤訳
+  common: リーダーシップ, 統率力, 指揮力
+  desc: 飲み会の幹事などで苦労すると身につく視点のこと。「統率力」「指揮力」は的を外している
+  comment: 企業が求めるリーダーシップってそういうことだったのか
 - en: leadership experience
   ja: 率労眼体験, 代表眼体験, 代表経験, 率労経験
   common: リーダーシップ体験
@@ -54,7 +57,7 @@
 # UI (menu)
 - en: new
   ja: 新しく作る
-  yamato: あらた
+  yamato: あらためる
   common: 新規作成
 - en: save
   common: 上書き保存
@@ -68,7 +71,7 @@
 - en: export
   ja: 書き出す, 持ち出す
   common: エクスポート
-  desc: port＝港、輸出入する
+  desc: port＝港, 輸出入する
 - en: undo
   ja: 前戻し
   common: 元に戻す
@@ -76,7 +79,7 @@
   ja: 先戻し
   common: やり直し
 - en: edit
-  yamato: てなほし
+  yamato: てなおし
   common: 編集
 - en: help
   ja: 手引き
@@ -102,7 +105,7 @@
 - en: customize
   ja: 自在調整
   common: カスタマイズ
-  desc: custom(習慣)に合わせること
+  desc: custom (習慣)に合わせること
 - en: tuning
   ja: 調律
   common: チューニング
@@ -175,23 +178,23 @@
   yamato: とりうつす
   common: コピー
 - en: paste
-  yamato: さし貼る
+  yamato: さしはる
   common: 貼り付け
 - en: remove
   ja: 削除, ゴミ箱へ移動
-  yamato: いく
+  yamato: すてる
   common: リムーブ, 削除
   desc: ゴミ箱への「再移動」
 - en: restore
   ja: 元に戻す
-  yamato: (み)かへす(身返す)
+  yamato: もとにもどす, もとにおさめる
   common: リストア
   desc: ごみ箱から移動すること
 - en: delete
   ja: 消去
   yamato: けしさる
   common: 削除
-  desc: unlink(断鎖)システムコールの呼び出しをいう。忘却する
+  desc: unlink (断鎖) システムコールの呼び出しをいう。忘却する
 - en: shred
   ja: 破砕
   yamato: けしつぶす
@@ -199,12 +202,12 @@
   desc: いわゆる「完全削除」
 - en: rename
   ja: 改名
-  yamato: 名付け, 名を改める
+  yamato: 名付けなおす, 名を改める, 名を変える, 名変え
   common: リネーム, 名前変更
 
 # file system
 - en: file
-  ja: 
+  #ja: 
   common: ファイル
 - en: directory
   ja: 階層
@@ -228,7 +231,7 @@
   common: 絶対パス
 - en: path/to/file
   ja: ファイル/への/道筋
-  #ja: ファイル/の/所在(場所)
+  #ja: ファイル/の/{所在,場所}
   common: path/to/file
 #- en: symbolic link
 #  ja: 勝手道
@@ -253,7 +256,7 @@
   ja: 作業卓
   ja-abbr: 卓
   common: デスクトップ
-  comment: デスクトップ /= 作業台 と主張する人もいる
+  comment: デスクトップ ≠ 作業台 と主張する人もいる
 - en: downloads
   ja: 荷受(け)
   common: ダウンロードフォルダ
@@ -277,18 +280,19 @@
   desc: 大きなデータを小分けしたもの
 - en: internet
   ja: 網際網路
-  #ja: 相互接続網(人ではなく通信網同士のつながりであることが分かりにくい)
+  #ja: 相互接続網 (人ではなく通信網同士のつながりであることが分かりにくい)
   common: (広義の) インターネット
-  desc: inter(〜の間) + network(独立した通信網)
+  desc: inter (〜の間) + network (独立した通信網)
   ch: 互联网, 网际网路, 網際網路
 - en: the Internet
   ja: 網際網路
   common: インターネット
-  desc: internet のうちARPANETを前身とする特定の世界的規模のもの
+  desc: internet のうち ARPANET を前身とする特定の世界的規模のもの
 
 # security
 - en: password
-  yamato: 合言葉
+  yamato: あいことば
+  ja: 暗証語, 合言葉
   common: パスワード
 - en: passphrase
   ja: 暗証文
@@ -311,11 +315,11 @@
 - en: MAC; mandatory access control
   ja: 強制操作制限
   common: 強制アクセス制御
-  desc: 不当な(悪意ある)行為から他の部分を守る仕組み
+  desc: 不当な (悪意ある) 行為から他の部分を守る仕組み
 - en: security
   common: セキュリティ
   ja: 保安, 安全
-  desc: 安全性, セキュア(安全)にすること
+  desc: 安全性, セキュア (安全) にすること
 - en: blockchain
   ja: 部録鎖
   common: ブロックチェーン
@@ -394,17 +398,18 @@
 - en: italic
   ja: 伊体
   common: 斜体, イタリック
+  desc: イタリア伝来の手書き調の書体
 - en: upright type
   common: 立体, 正体
 
 - en: hardware
   ja: 機体
   common: ハードウエア
-  desc: 金属製品のこと。割と浸透している言い方にみえる
+  desc: 金属製品のこと。比較的浸透している言い方にみえる
   comment: ついに難関だったあの語の和訳を発見する
 - en: software
   ja: 譜体, 譜上の
-  common: ソフトウエア
+  common: ソフトウエア, ソフトウェア
   desc: -ware = 瀬戸物,〜用品
 - en: application (software)
   ja: (応用)譜体
@@ -416,13 +421,12 @@
   common: マルウェア, 悪意のあるソフトウェア
   desc: malformed = 奇形の、-ware = 体
   comment: MSの翻訳「悪意のある−」のニュアンスを強く出した
-# 短すぎて分かりにくいかもしれない
 - en: spyware
-  ja: 盗体
+  ja: 盗賊体
   common: スパイウェア
-  desc: 個人情報を盗む悪意あるソフト
+  desc: 個人情報を盗んだり仲間を呼んだりする悪意あるソフト
 - en: adware
-  ja: 広告体?, 押売体?
+  ja: 広告体, 押売体
   common: アドウェア
   desc: 押し売りしてくるソフト
   comment: 一発変換できたのは広告体のみ (MS-IME)
@@ -462,7 +466,7 @@
 - en: update
   ja: 更新
   common: アップデート
-  desc: up to date(今日まで上げる)
+  desc: up to date (今日まで上げる)
 - en: upgrade
   ja: 昇格
   yamato: 格上げ
@@ -543,7 +547,7 @@
   yamato: おことば
   common: コメント
 - en: trackback
-  yamato: おさそひ
+  yamato: おさそい
   common: トラックバック
 - en: permanent link
   yamato: おきどころ
@@ -590,7 +594,7 @@
   desc: 記録装置
 - en: ODD; optimal disk drive
   ja: 光学円盤駆動装置
-  common: 光学(CD/DVD/BD)ドライブ
+  common: 光学 (CD/DVD/BD) ドライブ
 
 - en: notepad
   ja: 雑記帳
@@ -604,18 +608,18 @@
   #ja: 使いきり変数形式
   common: 静的単一代入形式
 - en: combinator
-  ja: 組詞(クミト)
+  ja: 組詞 (クミト)
   #ja: 組付器, 組技, 組手
   common: コンビネーター
 - en: parser combinator
   #ja: 構析手?
-  common: パーサ(パーザー)コンビネーター
+  common: {パーサ,パーザー}コンビネーター
 - en: unused memory
-  ja: 常世(とこせ)
+  ja: 常世 (とこせ)
   common: 未使用領域
   desc: あの世
 - en: used memory
-  ja: 現世(うつせ)
+  ja: 現世 (うつせ)
   common: 使用領域
   desc: この世
 - en: file
@@ -692,8 +696,8 @@
   common: ユーザ, 利用者
   desc: 使う use + 者 -er
 - en: alignment
-  #ja: 寄せ(方向)
-  common: アライメント
+  ja: 整列(幅)
+  common: アライメント, 整列
 - en: interface
   #ja: 界面
   common: インターフェース
@@ -705,7 +709,7 @@
 - en: UX; user experience
   common: ユーザー体験
 - en: medium, media (複)
-  yamato: うつは
+  yamato: うつわ
   common: メディア, 媒体
   desc: 容れるためのモノ, 記録装置, 伝える手段
 - en: protocol
@@ -877,7 +881,7 @@
 - en: default
   ja: 黙用
   common: デフォルト, 既定の
-  desc: 未指定時に使うもの。de + fault(失敗)
+  desc: 未指定時に使うもの。de + fault (失敗)
 - en: default browser
   ja: 黙用ブラウザ, 常用するブラウザ
   common: デフォルトブラウザ
@@ -914,7 +918,7 @@
 - en: computer
   ja: (電子)計算機
   common: コンピューター
-  desc: compute(計算する) + -er(モノ)
+  desc: compute (計算する) + -er (モノ)
 - en: computer science
   ja: 計算機科学
   common: コンピューターサイエンス
@@ -928,7 +932,7 @@
   ja: 清書器, 前処理器
   #ja: 先定器
   common: プリプロセサ
-  #desc: 選定(select; よく考えて決める)と同じ音かつ、プリプロセサの仕事をよく表した語
+  #desc: 選定 (select; よく考えて決める) と同じ音かつ、プリプロセサの仕事をよく表した語
 - en: assemble
   ja: 織り上げ
   #「build=組み立て」の用例の多さを鑑み大引越
@@ -954,7 +958,7 @@
   ja: 配荷器
   #ja: 施術器, 配荷係
   common: ローダ
-  #desc: 施術者(practitioner; [代替医療の]実践者,開業医,[仏道の]修行者)がとてもWizardっぽくていいので採用
+  #desc: 施術者 (practitioner; [代替医療の]実践者,開業医,[仏道の]修行者)がとてもWizardっぽくていいので採用
 
 # 実行までの過程
 #   先定→製譜→組付→結合→施術
@@ -993,7 +997,7 @@
 - en: compiler
   ja: 製譜器
   common: コンパイラー
-  desc: 編纂(compile)、製本のイメージと実行結果がソースコードである側面を投影
+  desc: 編纂 (compile)、製本のイメージと実行結果がソースコードである側面を投影
 - en: compilation
   ja: 製譜
   common: コンパイル(すること)
@@ -1029,7 +1033,7 @@
 - en: pointer
   ja: 場指し
   # 「ポインタ＝場指し」は微妙だけど「置き先」に変えてみると違和感がすごかったので仕方なく継続
-  #ja: 置き先(実際に使ってみるまでは「場指し」より良さそうに見えた)
+  #ja: 置き先 (実際に使ってみるまでは「場指し」より良さそうに見えた)
   common: ポインタ
 - en: raw pointer
   ja: 生場指し
@@ -1046,12 +1050,12 @@
   common: メソッド
 - en: data race
   ja: 書き込み衝突
-  #ja: 不協和(タイミングに言及してないため却下), 同時書き込み(同じ場所とわからないため却下)
+  #ja: 不協和 (タイミングに言及してないため却下), 同時書き込み (同じ場所とわからないため却下)
   common: データ競合
   desc: 複数のスレッドが同じ変数に同期なしに書き込むこと。競合状態とは異なる。例：残高の同時更新
   comment: 「衝突」は同じ場所で同時に複数の物を伴う
 - en: race condition
-  ja: 折が悪い(動作,状態), 折悪(おりあし)状態
+  ja: 折が悪い{動作,状態}, 折悪 (おりあし) 状態
   #ja: 不協和状態, 間抜け状態, 間が悪い動作, ご生憎状態, 間悪状態
   common: 競合状態
   desc: 実行のタイミングや順序に影響されるプログラムの不正な振る舞い。データ競合とは異なる。例：預金の消失
@@ -1092,7 +1096,7 @@
   common: 関数
   desc: 数学の関数とはあまり関係ない
 - en: primitive
-  ja: 
+  #ja: 
 - en: comment
   ja: 注釈
   common: コメント
@@ -1108,12 +1112,12 @@
   common: マッチ, 照合
 - en: pattern
   ja: 模式
-  yamato: 様
+  yamato: さま
   common: パターン
   comment: 最初は「様(式)」だったが、意外にも中国語の「模式」が言いやすかった為
 - en: pattern matching
   ja: 模式照合
-  yamato: 様あわせ
+  yamato: さまあわせ
   common: パターンマッチング, パターン照合, パターン合致
 - en: generics
   common: 総称型
@@ -1128,7 +1132,9 @@
 - en: alias
   common: 別名
 - en: cast
+  yamato: なげうつ
   ja: 
+  common: キャスト, 型変換
 - en: overloading
   ja: 多重化
   common: オーバーロード, 多重定義
@@ -1140,10 +1146,19 @@
   ja: 直譜埋め込み
 - en: advanced linking
   ja: 上級結合法
-- en: benchmark tests
-  ja: 測能試験
-  #ja: 基準評価試験,評位試験,評順試験,評列試験
+- en: benchmark test
+  ja: 基準試験
+  #ja: 測能試験, 基準評価試験, 評位試験, 評順試験, 評列試験, 比較検討基準
   common: ベンチマークテスト
+  dest: 性能と信頼性などを基準 (同条件) に基づき評価すること
+  comment: 苦労した割に合わない直訳調になることはよくある。
+    語のもつコアな意味が入ってないものはよくある文脈に合っていても不十分なうえ、
+    他の意味で使われていないか事前調査すると他の案が大体消えてしまう。
+    例えば「性能試験」「比較試験」はアウト
+- en: performance verification
+  common: 性能検証
+- en: performance test
+  common: 性能検定(試験)
 - en: allocate (memory)
   ja: 割り付け
   common: アロケートする
@@ -1156,7 +1171,7 @@
   common: カスタムアロケーター
 - en: build
   ja: 組み上げる, (組む)
-  #ja: 織る(動), 織り上げ(名)
+  #ja: 織る (動), 織り上げ (名)
   common: ビルド
   #comment: 織る＝引っ張っても伸びないもの、編む＝伸縮性のある伸びるもの
   desc: 「組み立て」は意味が広くあいまいなため回避
@@ -1226,7 +1241,7 @@
 - en: by community
   ja: 有志により
   common: コミュニティにより
-- en: volunteer(s)
+- en: volunteer
   ja: 有志, 篤志家, 志願兵, 義勇(軍)、挺身(隊)
   common: ボランティア
 - en: editor
@@ -1258,9 +1273,9 @@
   ja: 急停止
   common: クラッシュ
 - en: module
-  ja: 役区(やっく)?
+  ja: 役区 (やっく)
   #ja: 小役
-  #yamato: やくふり, やくわけ
+  #yamato: やくわけ
   #ja: 組手, 分業, 分身, 単業, 単身, 単体, 分体, 分能, 区合, *役区, 和区, 処区, 役分け, *小役, 役部, *役素, 系素, *役歯
   common: モジュール
   desc: ある特定の役割・機能を持ち、他の部品と組み合わせて使われる小さな区域
@@ -1318,11 +1333,18 @@
 - en: stable (build)
   common: 安定版
 - en: beta (build)
-  common: ベータ版
+  ja: 先行版
+  common: ベータ版, 人柱版
 - en: nightly (build)
   ja: 夜行版
   common: ナイトリービルド
   desc: 毎夜更新の最新開発版
+- en: RC; release candidate
+  ja: 放流候補(版)
+  common: リリース候補(版)
+- en: closed beta test
+  ja: 限定先行試験
+  common: クローズドベータテスト
 - en: work stealing
   ja: 作業横取り
   common: ワークスチール
@@ -1346,13 +1368,13 @@
   ja: 場所取り
   #ja: 穴埋め, 抜け穴
   common: プレースホルダ
-  desc: 場所取りをする = hold a place〔花見などの〕
+  desc: 場所取りをする = hold a place (花見などの)
 - en: thread
   ja: 走脈
   ja-abbr: 脈
   common: スレッド
   desc: スレッドは、thread of execution（実行の脈絡）という言葉を省略したものである
-  ch: 线程(大陸), 執行緒(臺灣), 線程(港澳)
+  ch: 线程 (大陸), 執行緒 (臺灣), 線程 (港澳)
 - en: multi-threading
   ja: 多脈処理
   common: マルチスレッド処理
@@ -1382,7 +1404,7 @@
   common: ブラックボックス
   ch: 黑箱
 - en: patch
-  yamato: 直し
+  yamato: なおし
   ja: 改良布
   common: パッチ
 - en: native
@@ -1397,6 +1419,24 @@
 - en: count
   ja: 計数
   common: カウント
+- en: n-byte aligned
+  ja: n バイト整列
+  common: n バイトアライメント
+- en: open source
+  ja: 原譜開放
+  common: オープンソース
+  comment: 「解放」ではないので注意
+- en: open source software
+  ja: 原譜開放譜体
+  common: オープンソースソフトウェア
+- en: free software
+  ja: 自由譜体
+  common: フリーソフトウェア, 自由ソフトウェア
+- en: freeware
+  ja: 無料譜体
+  common: フリーウェア
+- en: FLOSS; free/libre and open source software
+  ja: 自由・原譜開放譜体
 
 # Rust 用語
 - en: ownership
@@ -1431,18 +1471,22 @@
 - en: universal function call syntax
   ja: 万能機能呼び出し構文
   comment: uniform (統一) は異なる記法の構文が前提にある印象を受ける
+- en: size (of data types)
+  ja: 幅, 長さ
+  common: サイズ, 大きさ, 長さ
 - en: sized types
   ja: 定幅型
-  comment: 「固定長」は長い。「定長」は丁重/低調と聞き違える
+  comment: 「固定長型」より短い
 - en: unsized types
   ja: 変幅型
-  comment: 「可変長」は長い。「変長」は偏重/変調と聞き違える
+  comment: 「可変長型」より短い
 - en: box syntax
   ja: ハコ構文
 - en: slice
   ja: 薄切り
   #ja: 切片
   common: スライス
+  comment: 全範囲の薄切りを考えるとおかしいが、それは原文も同じ
 - en: slice patterns
   ja: 薄切り模式
   #ja: 切片模式
@@ -1460,15 +1504,15 @@
   ja: たどる
   common: 逆参照
 - en: deref coercions
-  ja: 押し辿り
-  desc: ポインタ逆参照演算子(*)のオーバーロード機能。押し=強要=coerce
+  ja: 押し辿 (たど) り
+  desc: ポインタ逆参照演算子 (*) のオーバーロード機能。押し = 強要 = coerce
 - en: unsafe
 - en: compiler plugins
   ja: 製譜器拡張
 - en: release channel
   ja: 放流路線
   common: リリースチャンネル
-  comment: 路線＝団体や組織などの運動の基本方針(デジタル大辞泉)
+  comment: 路線＝団体や組織などの運動の基本方針 (デジタル大辞泉)
 - en: lifetime
   ja: 寿命
   #ja: 一代, 生存期間, 一生, 天命
@@ -1478,14 +1522,14 @@
   ja: 補注
   #ja: 特注
   common: アノテーション
-  desc: commentは分かりやすさのために書くもの、annotationはcodeの一部/意味への言及(ないと困る補足)
+  desc: comment は分かりやすさのために書くもの、annotation は code の一部/意味への言及 (ないと困る補足)
   ch: 注解, 标注
 - en: Arc; atomic reference count
   ja: 不可分参照数計
   common: アトミック参照カウント
 - en: bound
   ja: 縛り
-  desc: 型および特性にかかる制約。Haskellでいう文脈
+  desc: 型および特性にかかる制約。Haskell でいう文脈
 - en: feature
   ja: 機構, 機能, 特色
   common: 機能, フィーチャ

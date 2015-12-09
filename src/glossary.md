@@ -74,7 +74,7 @@ must abide by that constraint. -->
 
 <!-- ### DST (Dynamically Sized Type) -->
 
-静的に決まった大きさや〈アライメント〉がない型のことです。([詳しくはこちら][link])
+静的に決まった大きさや整列幅〈アライメント〉がない型のことです。([詳しくはこちら][link])
 
 <!-- A type without a statically known size or alignment. ([more info][link]) -->
 

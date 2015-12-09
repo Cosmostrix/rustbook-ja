@@ -62,7 +62,7 @@
     * [原生](intrinsics.md)
     * [言語建材](lang-items.md)
     * [上級結合法](advanced-linking.md)
-    * [測能試験](benchmark-tests.md)
+    * [基準試験](benchmark-tests.md)
     * [ハコ構文と模式](box-syntax-and-patterns.md)
     * [薄切り模式](slice-patterns.md)
     * [付属定数](associated-constants.md)
