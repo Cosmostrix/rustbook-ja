@@ -1,6 +1,8 @@
+.PHONY: all browse clean
+
 all: out/rustbook.ja.pdf #out/rustbook out/gitbook.pdf
 
-src/translation-table.md: Project明治回帰.yaml
+src/translation-table.md: Project明治回帰.yaml src/translation-table-template.md
 	ruby make_translation_table.rb > $@
 
 out/rustbook: src/*.md src/translation-table.md rust.css

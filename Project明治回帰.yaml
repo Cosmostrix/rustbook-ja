@@ -613,7 +613,7 @@
   common: コンビネーター
 - en: parser combinator
   #ja: 構析手?
-  common: {パーサ,パーザー}コンビネーター
+  common: '{パーサ,パーザー}コンビネーター'
 - en: unused memory
   ja: 常世 (とこせ)
   common: 未使用領域
@@ -623,9 +623,10 @@
   common: 使用領域
   desc: この世
 - en: file
-  #ja: カラ
+  ja: カラ (空, 殻, 器)?, トジ (綴)?
   common: ファイル
-  desc: 身を入れる器。なきがらのガラ
+  desc: Unix におけるファイルとは任意のバイト列である
+  comment: 身を入れる器。なきがらのガラ
 - en: primitive
   #ja: 素元, 溯源
   common: プリミティブ
@@ -1242,8 +1243,8 @@
   ja: 有志により
   common: コミュニティにより
 - en: volunteer
-  ja: 有志, 篤志家, 志願兵, 義勇(軍)、挺身(隊)
-  common: ボランティア
+  ja: 有志
+  common: ボランティア, 篤志家, 志願兵, 義勇(軍), 挺身(隊)
 - en: editor
   ja: 書房
   #ja: 工房
@@ -1501,7 +1502,7 @@
   ja: 言語建材
   ch: 言語項目
 - en: dereference
-  ja: たどる
+  ja: 辿 (たど) る
   common: 逆参照
 - en: deref coercions
   ja: 押し辿 (たど) り
