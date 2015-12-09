@@ -1,4 +1,4 @@
-all: out/rustbook out/gitbook.pdf out/rustbook.ja.pdf
+all: out/rustbook.ja.pdf #out/rustbook out/gitbook.pdf
 
 src/translation-table.md: Project明治回帰.yaml
 	ruby make_translation_table.rb > $@

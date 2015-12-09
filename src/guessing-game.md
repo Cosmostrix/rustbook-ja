@@ -758,7 +758,7 @@ details, read the [traits][traits] section.-->
 ```
 
 `rand::thread_rng()` 機能を使って乱数生成器の写しを得ます。
-それは実行中の特定の[〈スレッド〉][concurrency]に局所的なものです。
+それは実行中の特定の[走脈〈スレッド〉][concurrency]に局所的なものです。
 上で `use rand::Rng` したので `gen_range()` 操作法が利用可能になりました。
 この操作は２つの引数を取り、両者の間の数を一つ生成します。
 数の範囲には下限を含みますが、上限は含まれません。
@@ -865,8 +865,9 @@ match guess.cmp(&secret_number) {
 ```
 
 `cmp()` 操作法は比較できるものに対して呼ぶことができ、比較対象の参照を取ります。
-返り値はさっき `use` した `Ordering` 型です。`Ordering` のどの種類かピタリと判定するために [`match`][match]
-文を使います。`Ordering` は[列挙体 (`enum`)][enum] であり「すべて枚挙したもの (enumueration)」の略です。
+返り値はさっき `use` した `Ordering` 型です。
+`Ordering` のどの種類かピタリと照合〈マッチ〉するために [`match`][match] 文を使います。
+`Ordering` は[列挙体 (`enum`)][enum] であり「すべて枚挙したもの (enumueration)」の略です。
 例えば、次のように定義されています。
 
 <!--The `cmp()` method can be called on anything that can be compared, and it

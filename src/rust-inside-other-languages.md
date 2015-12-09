@@ -91,7 +91,7 @@ uses these two aspects heavily. Since the focus of the example is to embed
 Rust into other languages, rather than the problem itself, we’ll just use a
 toy example:-->
 
-> 10 個の走脈を開始します。各走脈では 1 から 500 万 まで数えます。
+> 10 個の走脈〈スレッド〉を開始します。各走脈では 1 から 500 万 まで数えます。
 > 10 個の脈がすべて走破しきったところで「完了！」と印字します。
 
 <!-- > Start ten threads. Inside each thread, count from one to five million. After
@@ -118,7 +118,7 @@ threads = []
 end
 
 threads.each do |t|
-  puts "スレッドが終了しました。計数=#{t.value}"
+  puts "走脈が終了しました。計数=#{t.value}"
 end
 puts "完了！"
 ```
