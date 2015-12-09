@@ -73,4 +73,3 @@
 * [Project 明治維新 - 諭吉アゲイン -](restoration-again.md)
     * [本書の翻訳方針](translation-policy.md)
     * [訳語表](translation-table.md)
-* [奥付](colophon.md)

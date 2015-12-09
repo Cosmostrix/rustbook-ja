@@ -144,18 +144,18 @@
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 
 \begin{document}
-\frontmatter
 \includepdf{frontcover.jpg}
-%\maketitle
-%\thispagestyle{empty}
-<%= latex_p %>
+\newpage\thispagestyle{empty}
+\maketitle
+\thispagestyle{empty}
 
-% http://d.hatena.ne.jp/phithon/20110224/tex_change_the_depth_of_the_table_of_contents
+\frontmatter <%= latex_p %>
+
 \setcounter{tocdepth}{1}
-\tableofcontents\newpage\thispagestyle{empty}
+\tableofcontents
 
-\renewcommand{\headrulewidth}{0.2pt}
 \mainmatter
+\renewcommand{\headrulewidth}{0.2pt}
 \fancyhf{}
 \fancyhead[LE]{{\small\leftmark}}
 \fancyhead[RO]{{\small\rightmark}}
@@ -164,7 +164,9 @@
 \pagestyle{fancy}
 
 <%= latex %>
+
 \backmatter
-\mbox{}\newpage\thispagestyle{empty}
+% insert empty page
+\pagestyle{empty}\mbox{}
 \includepdf{backcover.jpg}
 \end{document}
