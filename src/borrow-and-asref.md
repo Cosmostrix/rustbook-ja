@@ -94,8 +94,8 @@ foo(&mut i);
 
 # AsRef
 
-`AsRef` 特性は変換を行う特性です。総称的な譜面である値を参照に変えるときに使われます。
-こんな感じです。
+`AsRef` 特性は変換を行う特性です。総称的な譜面で何らかの値を参照に変えるときに使われます。
+このようになります。
 
 <!--The `AsRef` trait is a conversion trait. It’s used for converting some value to
 a reference in generic code. Like this:-->
