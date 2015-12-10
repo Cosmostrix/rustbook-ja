@@ -70,6 +70,4 @@
 * [用語集](glossary.md)
 * [構文索引](syntax-index.md)
 * [参考文献](bibliography.md)
-* [Project 明治維新 - 諭吉アゲイン -](restoration-again.md)
-    * [本書の翻訳方針](translation-policy.md)
-    * [訳語表](translation-table.md)
+

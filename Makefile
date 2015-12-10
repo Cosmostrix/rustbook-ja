@@ -19,7 +19,7 @@ out/rustbook.ja.pdf: src/*.md src/translation-table.md template.tex
 	./makepdf ja -d
 
 browse: out/rustbook
-	firefox $@/index.html
+	firefox out/rustbook/index.html
 
 clean:
 	rm -r out

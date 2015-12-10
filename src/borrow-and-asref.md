@@ -11,8 +11,8 @@ different. Here’s a quick refresher on what these two traits mean.-->
 
 # Borrow
 
-`Borrow` 特性は〈データ〉構造を書くときに使うもので、何らかの目的があって
-所有された型、または、借用された型のどちらかを使いたい場合に活躍します。
+`Borrow` 特性は〈データ〉構造を書くときに使われ、所有された型または借用された型の
+どちらか一方を表す型を何らかの目的に使いたい場合に活躍します。
 
 <!--The `Borrow` trait is used when you’re writing a datastructure, and you want to
 use either an owned or borrowed type as synonymous for some purpose.-->
