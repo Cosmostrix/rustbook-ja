@@ -32,5 +32,3 @@ extern "rust-intrinsic" {
 他の外機能内通の機能と同じように、これらの呼出しは常に `unsafe` です。
 
 <!-- As with any other FFI functions, these are always `unsafe` to call. -->
-
-<!--  -->

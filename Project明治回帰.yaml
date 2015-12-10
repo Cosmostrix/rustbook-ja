@@ -347,7 +347,7 @@
 # system configuration
 - en: device
   ja: 機器
-  common: デバイス
+  common: デバイス, 機器
 - en: UPS; uninterruptible power(-supply) system
   ja: 延命給電装置
   ja-abbr: 延命機
@@ -368,8 +368,8 @@
   ja: 端末
   common: 端末, ターミナル
 - en: terminal emulator
-  ja: まねっこ端末
-  common: ターミナルエミュレータ
+  ja: まね(っこ)端末
+  common: ターミナルエミュレータ, 端末エミュレータ
 - en: cd; change directory
   ja: 階層変更
   common: ディレクトリ変更
@@ -723,7 +723,7 @@
   desc: インターネットの根幹
   comment: プロトコルを作法と訳してみる
 - en: IP address
-  ja: IP 番号
+  ja: IP 番地
   common: IP アドレス
   desc: 郵便番号のようなもの
 
@@ -895,6 +895,12 @@
   ja: 時記
   common: ログ
   desc: 経過記録, 動作記録, 日誌
+- en: logger
+  ja: 帳付, 書付(役)
+  common: ロガー
+- en: helper
+  ja: 助役
+  common: ヘルパー
 
 # programming patterns
 - en: accessor
@@ -1291,7 +1297,7 @@
   ja: 標準譜集
   common: 標準ライブラリ
 - en: package
-  ja: 
+  #ja: 包み, 分装, 譜装, 
   common: パッケージ
   ch: 软件包
 - en: package manager
@@ -1438,6 +1444,9 @@
   common: フリーウェア
 - en: FLOSS; free/libre and open source software
   ja: 自由・原譜開放譜体
+- en: overhead
+  #ja: 身の丈以上, 身なり以上, 諸経費, 間接費
+  common: オーバーヘッド 
 
 # Rust 用語
 - en: ownership
