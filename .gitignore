@@ -1,2 +1,4 @@
 /out/
 /fonts/
+*.omc
+.omakedb*
