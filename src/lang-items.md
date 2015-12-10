@@ -1,6 +1,6 @@
 % 言語建材
 
-> **注意** 言語建材は Rust 頒布物に付属のわく箱によって提供されていることが多いですが、
+> **【注意】** 言語建材は Rust 頒布物に付属のわく箱によって提供されていることが多いですが、
 > 言語建材自身が安定した〈インターフェース〉を持っていないため、
 > 言語建材を独自に定義する前に公式に頒布されているわく箱を使うことをおすすめします。
 
@@ -79,7 +79,7 @@ return a valid pointer, and so needs to do the check internally.-->
 
 <!-- Other features provided by lang items include: -->
 
-- 特性を通じた演算子の多重化〈オーバーロード〉。`==`, `<`, dereferencing (`*`) と `+` ほかの演算子に対応する特性はすべて言語建材の印が付いています。この例ではそれぞれ `eq`、`ord`、`deref`、`add` に相当。
+- 特性を通じた演算子の多重化〈オーバーロード〉。`==`, `<`, 場指し辿り (dereferencing) (`*`) と `+` ほかの演算子に対応する特性はすべて言語建材の印が付いています。この例ではそれぞれ `eq`、`ord`、`deref`、`add` に相当。
 - 山戻し (stack unwinding) と全般的な失敗。`eh_personality`、`fail`、`fail_bounds_checks` 言語建材。
 - 様々な種類の型を示すために使われている `std::marker` 内の特性。言語建材 `send`、`sync`、`copy`。
 - `std::marker` 内にある目印型とvariance indicators。言語建材 `covariant_type`、`contravariant_lifetime` 等。

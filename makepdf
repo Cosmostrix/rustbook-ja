@@ -202,7 +202,7 @@ languages.each do |lang|
                 markdown = toc.map do |page|
                     header = '#' * page['level'] + " \\1 {##{page['href'].gsub('md','html')}}"
                     File.read("#$root/#{lang}/#{page['href']}")
-                      .gsub(/\n\n#/, "\n\n" + '#' * (page['level']+1))
+                      .gsub(/\n\n(#+ )/, "\n\n" + '#' * page['level'] + '\1')
                       .sub(/^% (.*)/, header)
 		end.join("\n\n")
 
