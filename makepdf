@@ -124,7 +124,7 @@ def post_pandoc(string, config)
                 end
 
                 # remove hidden code
-                s /(?<!\s)\n#.*/, '\1'
+                s /(?<!\s)\n# .*/, '\1'
 
 		# Reformat for the book documentclass as opposed to article
 		s '\section', '\chap'

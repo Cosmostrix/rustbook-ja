@@ -6,7 +6,7 @@ Rustacean の皆がみな算系演譜や計算機科学の経験をお持ちと�
 <!--Not every Rustacean has a background in systems programming, nor in computer
 science, so we've added explanations of terms that might be unfamiliar.-->
 
-### 抽象構文木 (AST; Abstract Syntax Tree)
+### 抽象構文木 (AST; Abstract Syntax Tree) {#abstract-syntax-tree}
 
 <!-- ### Abstract Syntax Tree -->
 
@@ -37,7 +37,7 @@ of your program. For example, `2 + 3` can be turned into a tree:-->
   3   4
 ```
 
-### 項数 (Arity, アリティ)
+### 項数 (Arity, アリティ) {#arity}
 
 <!-- ### Arity -->
 
@@ -55,7 +55,7 @@ let z = (8, 2, 6);
 
 <!-- In the example above `x` and `y` have arity 2. `z` has arity 3. -->
 
-### 縛り (Bounds)
+### 縛り (Bounds) {#bounds}
 
 <!-- ### Bounds -->
 
@@ -70,7 +70,7 @@ must abide by that constraint. -->
 [traits]: traits.html
 
 
-### 動的変幅型 (DST; Dynamically Sized Type)
+### 動的変幅型 (DST; Dynamically Sized Type) {#dst-dynamically-sized-type}
 
 <!-- ### DST (Dynamically Sized Type) -->
 
@@ -80,7 +80,7 @@ must abide by that constraint. -->
 
 [link]: ../nomicon/exotic-sizes.html#dynamically-sized-types-dsts
 
-### 式 (Expression)
+### 式 (Expression) {#expression}
 
 <!-- ### Expression -->
 
@@ -95,7 +95,7 @@ variables, operators and functions that evaluate to a single value. For example,
 that expressions can have side-effects. For example, a function included in an
 expression might perform actions other than simply returning a value.-->
 
-### 式指向言語 (Expression-Oriented Language)
+### 式指向言語 (Expression-Oriented Language) {#expression-oriented-language}
 
 <!-- ### Expression-Oriented Language -->
 
@@ -116,7 +116,7 @@ themselves form part of larger expressions.-->
 [expression]: glossary.html#expression
 [statement]: glossary.html#statement
 
-### 文
+### 文 (Statement) {#statement}
 
 <!-- ### Statement -->
 
