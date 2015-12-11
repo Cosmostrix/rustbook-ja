@@ -19,6 +19,7 @@ out/gitbook.pdf: $(glob src/*.md) src/translation-table.md
 out/rustbook.ja.pdf: $(glob src/*.md) src/translation-table.md template.tex makepdf
 	rm -f out/*/main.{aux,log,out,tex,toc}
 	./makepdf ja -d
+	# cut 1-64,343-366 by hand
 
 browse: out/rustbook
 	firefox $@/index.html

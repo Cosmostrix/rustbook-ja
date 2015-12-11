@@ -5,13 +5,13 @@
 
 (えんふげんご ラスト じょう)
 
-平成 27 年 12 月 9 日 初版発行
+平成 27 年 12 月 31 日 初版発行
 
-発行者　月時計観測所
+発行者　月時計観測所 <https://lunakit.org>
+
+著者/訳者　ソラフクロウ \<rustacean@lunakit.org\>
 
 原作者　The Rust Project Developers
-
-著者/訳者　XXX <rustbook@lunakit.org>
 
 印刷所　ちょ古っ都製本工房 様 <http://www.chokotto.jp>
 
