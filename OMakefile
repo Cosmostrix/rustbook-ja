@@ -22,8 +22,8 @@ out/rustbook.ja.pdf: $(glob src/*.md) src/translation-table.md template.tex make
 	# cut 1-64,343-366 by hand
 
 browse: out/rustbook
-	firefox $@/index.html
+	firefox out/rustbook/index.html
 
 clean:
-	rm -r out
+	rm -rf out
 	rm src/translation-table.md
