@@ -1446,7 +1446,16 @@
   ja: 自由・原譜開放譜体
 - en: overhead
   #ja: 身の丈以上, 身なり以上, 諸経費, 間接費
-  common: オーバーヘッド 
+  common: オーバーヘッド
+- en: rebase
+  ja: 接ぎ木, 枝継ぎ
+  ch: 改基
+- en: tuple
+  ja: 組
+  common: タプル, 組
+- en: pair
+  ja: 対
+  common: 組, ペア
 
 # Rust 用語
 - en: ownership
