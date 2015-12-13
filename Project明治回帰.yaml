@@ -1,7 +1,5 @@
 #!/bin/env ruby -r yaml -r pp -e 'pp YAML.load(ARGF.read())'
-# H27.10.26-27
-# -11.10 -11.20 -12.10
-
+# since 2015/10/26
 # 翻訳は形の合わないブロックで同じ城を組み立てるようなものである。その全く難儀なことよ。
 
 # en: 英語
@@ -207,8 +205,10 @@
 
 # file system
 - en: file
-  #ja: 
+  ja: カラ (空, 殻, 器)?, トジ (綴)?
   common: ファイル
+  desc: Unix におけるファイルとは任意のバイト列である
+  comment: 身を入れる器。なきがらのガラ
 - en: directory
   ja: 階層
   ja-abbr: 階
@@ -288,6 +288,19 @@
   ja: 網際網路
   common: インターネット
   desc: internet のうち ARPANET を前身とする特定の世界的規模のもの
+- en: protocol
+  #ja: 通信規約, 通信作法, 手順
+  common: プロトコル
+  desc: protocol = 決まり事, 約束, 協定
+- en: IP; internet protocol
+  #ja: 相互接続網通信作法, 相互接続網通信手順, 網際手順
+  common: インターネットプロトコル
+  desc: インターネットの根幹
+  comment: プロトコルを作法と訳してみる
+- en: IP address
+  ja: IP 番地
+  common: IP アドレス
+  desc: 郵便番号のようなもの
 
 # security
 - en: password
@@ -373,6 +386,22 @@
 - en: cd; change directory
   ja: 階層変更
   common: ディレクトリ変更
+- en: console
+  ja: 演卓
+  common: コンソール
+  comment: 演奏台, 制御盤, 操作卓 の共通点
+- en: script
+  ja: 台譜
+  common: スクリプト
+- en: shell
+  ja: 司得
+  common: シェル
+  desc: 本来の「OSのAPIを叩くガワ」の意味が薄い
+- en: zsh
+  ja: 絶砥司得
+  #ja: 絶飛, 絶杜, 絶跳, 舌跳, 節豊, 絶妬, 絶図
+- en: bash
+  #ja: 抜首（普及率的に）, 発修（最初の伺得）, 抜朱, 発朱, 発守, 盆恩(bo-on)
 
 # publishing
 - en: font
@@ -402,6 +431,14 @@
 - en: upright type
   common: 立体, 正体
 
+- en: computer
+  ja: (電子)計算機
+  common: コンピューター
+  desc: compute (計算する) + -er (モノ)
+- en: computer science
+  ja: 計算機科学
+  common: コンピューターサイエンス
+  desc: 日本は母国語でこれが学べる数少ない国
 - en: hardware
   ja: 機体
   common: ハードウエア
@@ -454,6 +491,7 @@
   desc: 一般的なデータベースの種類の一つ
 - en: database server
   #ja-abbr: 帳鯖、帳場
+
 # software lifecycle
 - en: install
   ja: 導入
@@ -486,7 +524,23 @@
   ja: 取付具
   common: インストーラー
 - en: uninstaller
+  ja: 撤去具
   common: アンインストーラー
+- en: stable (build)
+  common: 安定版
+- en: beta (build)
+  ja: 先行版
+  common: ベータ版, 人柱版
+- en: nightly (build)
+  ja: 夜行版
+  common: ナイトリービルド
+  desc: 毎夜更新の最新開発版
+- en: RC; release candidate
+  ja: 放流候補(版)
+  common: リリース候補(版)
+- en: closed beta test
+  ja: 限定先行試験
+  common: クローズドベータテスト
 
 # the world wide web
 - en: upload
@@ -519,30 +573,41 @@
   common: サインイン
 - en: sign-out
   common: サインアウト
-- en: DOS; disc operating system
-  common: ディスク制御システム
-- en: 'D&D; drag and drop'
-  ja: 引きずってポイ
-  ja-abbr: 引いてポイ
-  common: ドラッグアンドドロップ
-  comment: 初出は TRON の「つかんでポイ」だが実際は理解されにくい。
-    マウスだとつかむ動作になるがタッチパッドやマジックトラックパッドでは意味不になる
-#- en: 
-#  ja: 電子文房具
-- en: IM; input method
-  ja: 入力方法
-  common: インプットメソッド
-- en: IME; input method editor
-  ja: 入力系
-  common: インプットメソッドエディタ
-  desc: 日本語圏では、かな漢字変換を担当するソフト
-
+- en: hyperlink
+  ja: 糸
+  #ja: 綱,縄
+  common: (ハイパー)リンク
+  desc: ウェブ(Web; 蜘蛛の巣)を作る核心的概念。よく切れる
+- en: user account
+  ja: 会員口座
+  common: ユーザーアカウント
 - en: session
   # 中身の状態までは保持されないというニュアンスが表現できない。。
   #ja: 作業状態, 取組み, 現環境, 会期, 一会(いちえ)
   common: セッション
+- en: email
+  yamato: (お)便り
+  common: メール
+- en: open street map
+  ja: 自由街路地図
+  common: オープンストリートマップ
+  desc: http://openstreetmap.org
+- en: browser
+  common: ブラウザ
+  desc: browse = 参照する
+- en: SNS; short message service
+  ja: 文交い屋 (ふみかいや)
+  common: SNS, ショートメール, Cメール
+- en: online
+  ja: 接続下?, 有接続?
+  #ja: 網下
+  common: オンライン
+- en: offline
+  ja: 無接続
+  #ja: 無網下
+  common: オフライン
 
-# どっかで実例を見た
+# blog どっかで実例を見た
 - en: comment (on blogs)
   yamato: おことば
   common: コメント
@@ -553,9 +618,21 @@
   yamato: おきどころ
   common: 固定リンク, 永続リンク, パーマリンク
 
-- en: email
-  yamato: お便り
-  common: メール
+- en: DOS; disc operating system
+  common: ディスク制御システム
+- en: 'D&D; drag and drop'
+  ja: 引きずってポイ
+  ja-abbr: 引いてポイ
+  common: ドラッグアンドドロップ
+  comment: 初出は TRON の「つかんでポイ」だが実際は理解されにくい。
+    マウスだとつかむ動作になるがタッチパッドやマジックトラックパッドでは意味不になる
+#- en: 
+#  ja: 電子文房具
+
+- en: medium, media (複)
+  yamato: うつわ
+  common: メディア, 媒体
+  desc: 容れるためのモノ, 記録装置, 伝える手段
 
 - en: render
   ja: 描出する
@@ -577,10 +654,6 @@
   ja: 「場面」(括弧つき)
   common: アクティビティ
 
-- en: open street map
-  ja: 自由街路地図
-  common: オープンストリートマップ
-  desc: http://openstreetmap.org
 - en: reference implementation
   ja: 参考実装
   common: リファレンス実装
@@ -622,11 +695,6 @@
   ja: 現世 (うつせ)
   common: 使用領域
   desc: この世
-- en: file
-  ja: カラ (空, 殻, 器)?, トジ (綴)?
-  common: ファイル
-  desc: Unix におけるファイルとは任意のバイト列である
-  comment: 身を入れる器。なきがらのガラ
 - en: primitive
   #ja: 素元, 溯源
   common: プリミティブ
@@ -634,9 +702,6 @@
 - en: document
   ja: 書類, 文書, 成果物
   common: ドキュメント, 書類, 文書
-- en: SNS; short message service
-  ja: 文交い屋 (ふみかいや)
-  common: SNS, ショートメール, Cメール
 - en: debug
   ja: 虫退治
   #ja: 虫狩り, 虫取り, 虫焼き
@@ -663,9 +728,6 @@
 - en: DMA; direct memory access
   ja: メモリ転送代行, メモリ転写代行
   common: ダイレクトメモリアクセス
-- en: browser
-  common: ブラウザ
-  desc: browse = 参照する
 - en: feedback
   ja: 身鏡, 見鏡
   common: フィードバック
@@ -709,44 +771,11 @@
   common: ユーザーインターフェース
 - en: UX; user experience
   common: ユーザー体験
-- en: medium, media (複)
-  yamato: うつわ
-  common: メディア, 媒体
-  desc: 容れるためのモノ, 記録装置, 伝える手段
-- en: protocol
-  #ja: 通信規約, 通信作法, 手順
-  common: プロトコル
-  desc: protocol = 決まり事, 約束, 協定
-- en: IP; internet protocol
-  #ja: 相互接続網通信作法, 相互接続網通信手順, 網際手順
-  common: インターネットプロトコル
-  desc: インターネットの根幹
-  comment: プロトコルを作法と訳してみる
-- en: IP address
-  ja: IP 番地
-  common: IP アドレス
-  desc: 郵便番号のようなもの
-
-- en: version
-  ja: 版
-  common: バージョン
-  desc: 第〜版=version
-- en: version number
-  ja: 版数
-  common: バージョン数
-- en: version string
-  ja: 版号
-  common: バージョン文字列
-- en: semver; semantic versioning
-  ja: 意味論的付版
-  common: セマンティックバージョン
 
 - en: (file's) property
   #ja: [ファイル等の]特徴, 性格, 属性
   common: プロパティ
   desc: 所有しているものの意
-
-
 - en: storage
   ja: 格納庫
   common: ストレージ
@@ -758,21 +787,19 @@
 - en: load average
   ja: 残荷平均
   common: ロードアベレージ
-
-
 - en: status bar
   ja: 状況帯, 示況帯
   common: ステータスバー
   desc: state = 状態
 
-- en: hyperlink
-  ja: 糸
-  #ja: 綱,縄
-  common: (ハイパー)リンク
-  desc: ウェブ(Web; 蜘蛛の巣)を作る核心的概念。よく切れる
-- en: user account
-  ja: 会員口座
-  common: ユーザーアカウント
+# UI (input)
+- en: IM; input method
+  ja: 入力方法
+  common: インプットメソッド
+- en: IME; input method editor
+  ja: 入力系
+  common: インプットメソッドエディタ
+  desc: 日本語圏では、かな漢字変換を担当するソフト
 
 # touch actions
 - en: touch
@@ -795,25 +822,6 @@
 - en: stretch
   ja: 引きのばす
   common: ストレッチ
-
-
-- en: console
-  ja: 演卓
-  common: コンソール
-  comment: 演奏台, 制御盤, 操作卓 の共通点
-- en: script
-  ja: 台譜
-  common: スクリプト
-- en: shell
-  ja: 司得
-  common: シェル
-  desc: 本来の「OSのAPIを叩くガワ」の意味が薄い
-- en: zsh
-  ja: 絶砥司得
-  #ja: 絶飛, 絶杜, 絶跳, 舌跳, 節豊, 絶妬, 絶図
-- en: bash
-  #ja: 抜首（普及率的に）, 発修（最初の伺得）, 抜朱, 発朱, 発守, 盆恩(bo-on)
-
 
 # category theory
 - en: category theory
@@ -902,36 +910,7 @@
   ja: 助役
   common: ヘルパー
 
-# programming patterns
-- en: accessor
-  ja: 取っ手
-  common: アクセサ
-- en: listener
-  ja: 聞き手
-  common: リスナー
-- en: handle
-  ja: 手綱
-  common: ハンドル
-- en: handler
-  #ja: 持ち手
-  common: ハンドラ
-- en: sender
-  ja: 投げ手
-  common: センダー
-- en: receiver
-  ja: 受け手
-  common: レシーバ
-
-- en: computer
-  ja: (電子)計算機
-  common: コンピューター
-  desc: compute (計算する) + -er (モノ)
-- en: computer science
-  ja: 計算機科学
-  common: コンピューターサイエンス
-  desc: 日本は母国語でこれが学べる数少ない国
-
-
+# build process
 - en: proprocess
   ja: 清書, 前処理
   common: プリプロセス
@@ -940,6 +919,16 @@
   #ja: 先定器
   common: プリプロセサ
   #desc: 選定 (select; よく考えて決める) と同じ音かつ、プリプロセサの仕事をよく表した語
+- en: compile
+  ja: 製譜する
+  common: コンパイル
+- en: compiler
+  ja: 製譜器
+  common: コンパイラー
+  desc: 編纂 (compile)、製本のイメージと実行結果がソースコードである側面を投影
+- en: compilation
+  ja: 製譜
+  common: コンパイル(すること)
 - en: assemble
   ja: 織り上げ
   #「build=組み立て」の用例の多さを鑑み大引越
@@ -968,10 +957,29 @@
   #desc: 施術者 (practitioner; [代替医療の]実践者,開業医,[仏道の]修行者)がとてもWizardっぽくていいので採用
 
 # 実行までの過程
-#   先定→製譜→組付→結合→施術
-#   清書→製譜→組立→結合→配荷
+#   x 先定→製譜→組付→結合→施術
+#   x 清書→製譜→組立→結合→配荷
+#   o 清書→製譜→織上→結合→配荷
 
-# trpl-ja
+- en: system
+  ja: 算系
+  common: システム
+- en: operating system
+  ja: 基本算系
+  #ja: 基礎算系
+  common: オペレーティングシステム
+- en: device driver
+  ja: 機器駆動書
+  common: デバイスドライバー
+  desc: プリンターなどを動かす係
+- en: driver software
+  ja: 機器駆動譜
+  common: ドライバーソフトウエア
+  desc: device driver に同じ
+- en: tooling
+  ja: 道具立て, 補助具
+
+# programming
 - en: program
   ja: 算譜, 譜体
   common: プログラム
@@ -998,37 +1006,12 @@
 - en: source (file)
   ja: 原譜
   common: ソース(ファイル)
-- en: compile
-  ja: 製譜する
-  common: コンパイル
-- en: compiler
-  ja: 製譜器
-  common: コンパイラー
-  desc: 編纂 (compile)、製本のイメージと実行結果がソースコードである側面を投影
-- en: compilation
-  ja: 製譜
-  common: コンパイル(すること)
-- en: system
-  ja: 算系
-  common: システム
-- en: operating system
-  ja: 基本算系
-  #ja: 基礎算系
-  common: オペレーティングシステム
 - en: system programming language
   ja: 算系演譜言語
   common: システムプログラミング言語
 - en: garbage collector
   ja: ごみ収集部
   common: ガベージコレクター
-- en: device driver
-  ja: 機器駆動書
-  common: デバイスドライバー
-  desc: プリンターなどを動かす係
-- en: driver software
-  ja: 機器駆動譜
-  common: ドライバーソフトウエア
-  desc: device driver に同じ
 - en: stack
   ja: 山
   #ja: 縦積み
@@ -1076,8 +1059,6 @@
 - en: out of scope
   ja: 範囲外
   common: スコープ外
-- en: tooling
-  ja: 道具立て, 補助具
 - en: FFI; foreign function interface
   ja: 外機能内通
   ja-abbr: 外通, 外機能
@@ -1185,9 +1166,6 @@
 - en: rebuild
   ja: 組み直し
   common: リビルド
-- en: game
-  common: ゲーム, 遊戯
-  comment: 芸務はさすがにないか・・・
 - en: testing
   ja: 検査
   common: テスト(する)
@@ -1195,62 +1173,27 @@
   ja: 基本型
   common: プリミティブ型
   comment: MSDN 日本語版の Fundamental types の訳
-- en: guarantee
-  commom: 保証
 - en: block (of some code)
   ja: 段落
   common: ブロック
-- en: tutorial
-  ja: 指南書, 指導書, 手引書, 教程
-  common: チュートリアル
 - en: command
   ja: 命令
   common: コメント
 - en: command line
   ja: 命令行
   common: コマンドライン
-- en: user
-  ja: 利用者
-  common: ユーザー
-- en: platform
-  ja: 土台環境
-  common: プラットフォーム
-- en: commit
-  #ja: 確注
-  common: コミット
-  comment:
-    For many databases, committing a transaction can be a costly activity.
-    台帳の多くで一貫処理の確注コストは高い
 - en: transaction
   ja: 一貫処理
   common: トランザクション
 - en: binary (executable)
   ja: 二進譜
   common: バイナリ
-- en: distributions (Linux)
-  ja: 頒布物
-  #ja: 配布算系
-  common: ディストリビューション
 - en: release
   ja: 放流
   common: リリース
-- en: online
-  ja: 接続下?, 有接続?
-  #ja: 網下
-  common: オンライン
-- en: offline
-  ja: 無接続
-  #ja: 無網下
-  common: オフライン
 - en: plugin
   ja: 拡張
   common: プラグイン
-- en: by community
-  ja: 有志により
-  common: コミュニティにより
-- en: volunteer
-  ja: 有志
-  common: ボランティア, 篤志家, 志願兵, 義勇(軍), 挺身(隊)
 - en: editor
   ja: 書房
   #ja: 工房
@@ -1269,10 +1212,6 @@
   ja: 依存物, 依存関係
   ja-abbr: 依存
   common: 依存関係
-- en: set up
-  ja: 下準備, 立ち上げ
-  common: セットアップ
-  comment: 訳は文脈によると思う
 - en: flag
   ja: 旗
   common: フラグ
@@ -1306,58 +1245,12 @@
 - en: container
   ja: 容器
   common: コンテナ
-- en: user forum
-  ja: 井戸端会議所
-  common: ユーザーフォーラム
-- en: nickname
-  ja: あだ名, 二つ名
-  common: ニックネーム
-- en: repository
-  ja: 宝庫
-  #ja: 収納, 倉庫
-  common: レポジトリ
-  comment:
-    日本の住宅事情により、「収納」「倉庫」という言葉には「要らないものを捨てる」という考えが
-    まとわりつくため不適
-
-# { 記法、構文、文法、表記 }
-- en: syntax
-  ja: 構文
-  common: 構文, 記法, 文法
-- en: grammer
-  ja: 文法
-  common: 文法, 記法
-- en: notation
-  ja: 記法
-  common: 記法, 表記法, 表記
-- en: literal
-  ja: 表記
-  common: リテラル, 表記, 記法, 直定数
-
 - en: registry
   ja: 登記簿
   common: レジストリ
-- en: stable (build)
-  common: 安定版
-- en: beta (build)
-  ja: 先行版
-  common: ベータ版, 人柱版
-- en: nightly (build)
-  ja: 夜行版
-  common: ナイトリービルド
-  desc: 毎夜更新の最新開発版
-- en: RC; release candidate
-  ja: 放流候補(版)
-  common: リリース候補(版)
-- en: closed beta test
-  ja: 限定先行試験
-  common: クローズドベータテスト
 - en: work stealing
   ja: 作業横取り
   common: ワークスチール
-- en: design
-  common: デザイン
-  desc: 設計⊂デザイン
 - en: unwinding
   ja: 巻き戻し, 崩し?
   common: 巻き戻し, アンワインド
@@ -1403,9 +1296,6 @@
 - en: consumer
   common: 消費者
   comment: conduit のチュートリアルより
-- en: core (in CPUs)
-  ja: 頭
-  common: コア
 - en: blackbox
   ja: 黒箱
   common: ブラックボックス
@@ -1429,6 +1319,91 @@
 - en: n-byte aligned
   ja: n バイト整列
   common: n バイトアライメント
+
+# programming patterns
+- en: accessor
+  ja: 取っ手
+  common: アクセサ
+- en: listener
+  ja: 聞き手
+  common: リスナー
+- en: handle
+  ja: 手綱
+  common: ハンドル
+- en: handler
+  #ja: 持ち手
+  common: ハンドラ
+- en: sender
+  ja: 投げ手
+  common: センダー
+- en: receiver
+  ja: 受け手
+  common: レシーバ
+
+# { 記法、構文、文法、表記 }
+- en: syntax
+  ja: 構文
+  common: 構文, 記法, 文法
+- en: grammer
+  ja: 文法
+  common: 文法, 記法
+- en: notation
+  ja: 記法
+  common: 記法, 表記法, 表記
+- en: literal
+  ja: 表記
+  common: リテラル, 表記, 記法, 直定数
+
+- en: game
+  common: ゲーム, 遊戯
+  comment: 芸務はさすがにないか・・・
+- en: guarantee
+  commom: 保証
+- en: tutorial
+  ja: 指南書, 指導書, 手引書, 教程
+  common: チュートリアル
+- en: user
+  ja: 利用者
+  common: ユーザー
+- en: platform
+  ja: 土台環境
+  common: プラットフォーム
+- en: distributions (Linux)
+  ja: 頒布物
+  #ja: 配布算系
+  common: ディストリビューション
+- en: by community
+  ja: 有志により
+  common: コミュニティにより
+- en: volunteer
+  ja: 有志
+  common: ボランティア, 篤志家, 志願兵, 義勇(軍), 挺身(隊)
+- en: set up
+  ja: 下準備, 立ち上げ
+  common: セットアップ
+  comment: 訳は文脈によると思う
+- en: user forum
+  ja: 井戸端会議所
+  common: ユーザーフォーラム
+- en: nickname
+  ja: あだ名, 二つ名
+  common: ニックネーム
+- en: repository
+  ja: 宝庫
+  #ja: 収納, 倉庫
+  common: レポジトリ
+  comment:
+    日本の住宅事情により、「収納」「倉庫」という言葉には「要らないものを捨てる」という考えが
+    まとわりつくため不適
+
+- en: design
+  common: デザイン
+  desc: 設計⊂デザイン
+- en: core (in CPUs)
+  ja: 頭
+  common: コア
+
+# idea, thought
 - en: open source
   ja: 原譜開放
   common: オープンソース
@@ -1447,21 +1422,38 @@
 - en: overhead
   #ja: 身の丈以上, 身なり以上, 諸経費, 間接費
   common: オーバーヘッド
+
+# version control
+- en: version
+  ja: 版
+  common: バージョン
+  desc: 第〜版=version
+- en: version number
+  ja: 版数
+  common: バージョン数
+- en: version string
+  ja: 版号
+  common: バージョン文字列
+- en: semver; semantic versioning
+  ja: 意味論的付版
+  common: セマンティックバージョン
+- en: commit
+  #ja: 確注
+  common: コミット
+  comment:
+    For many databases, committing a transaction can be a costly activity.
+    台帳の多くで一貫処理の確注コストは高い
 - en: rebase
   ja: 接ぎ木, 枝継ぎ
   ch: 改基
+
+# functional programming
 - en: tuple
   ja: 組
   common: タプル, 組
 - en: pair
   ja: 対
   common: 組, ペア
-
-# Rust 用語
-- en: ownership
-  ja: 所有権
-- en: macro
-  common: マクロ
 - en: mutable
   ja: 可変
   common: ミュータブル
@@ -1470,6 +1462,54 @@
   common: イミュータブル
 - en: mutability
   ja: 可変性
+
+- en: reference
+  common: 参照, 参考(文献,図書,資料), リファレンス
+- en: further reading
+  ja: 推薦(文献,図書,資料)
+  common: 参照文献, さらに進んだ情報, さらなる情報
+
+# Rust 用語
+- en: macro
+  common: マクロ
+- en: size (of data types)
+  ja: 幅, 長さ
+  common: サイズ, 大きさ, 長さ
+- en: slice
+  ja: 薄切り
+  #ja: 切片
+  common: スライス
+  comment: 全範囲の薄切りを考えるとおかしいが、それは原文も同じ
+- en: dereference
+  ja: 辿 (たど) る
+  common: 逆参照
+- en: unsafe
+- en: release channel
+  ja: 放流路線
+  common: リリースチャンネル
+  comment: 路線＝団体や組織などの運動の基本方針 (デジタル大辞泉)
+- en: annotation
+  ja: 補注
+  #ja: 特注
+  common: アノテーション
+  desc: comment は分かりやすさのために書くもの、annotation は code の一部/意味への言及 (ないと困る補足)
+  ch: 注解, 标注
+- en: Arc; atomic reference count
+  ja: 不可分参照数計
+  common: アトミック参照カウント
+- en: feature
+  ja: 機構, 機能, 特色
+  common: 機能, フィーチャ
+- en: range
+  common: 範囲
+  comment: Ruby より
+- en: prelude
+  ja: 前奏
+  common: プレリュード
+
+# 純 Rust 用語
+- en: ownership
+  ja: 所有権
 - en: borrowing
   ja: 借用
 - en: move
@@ -1490,9 +1530,6 @@
 - en: universal function call syntax
   ja: 万能機能呼び出し構文
   comment: uniform (統一) は異なる記法の構文が前提にある印象を受ける
-- en: size (of data types)
-  ja: 幅, 長さ
-  common: サイズ, 大きさ, 長さ
 - en: sized types
   ja: 定幅型
   comment: 「固定長型」より短い
@@ -1501,11 +1538,6 @@
   comment: 「可変長型」より短い
 - en: box syntax
   ja: ハコ構文
-- en: slice
-  ja: 薄切り
-  #ja: 切片
-  common: スライス
-  comment: 全範囲の薄切りを考えるとおかしいが、それは原文も同じ
 - en: slice patterns
   ja: 薄切り模式
   #ja: 切片模式
@@ -1519,44 +1551,18 @@
 - en: lang items
   ja: 言語建材
   ch: 言語項目
-- en: dereference
-  ja: 辿 (たど) る
-  common: 逆参照
 - en: deref coercions
   ja: 押し辿 (たど) り
   desc: ポインタ逆参照演算子 (*) のオーバーロード機能。押し = 強要 = coerce
-- en: unsafe
 - en: compiler plugins
   ja: 製譜器拡張
-- en: release channel
-  ja: 放流路線
-  common: リリースチャンネル
-  comment: 路線＝団体や組織などの運動の基本方針 (デジタル大辞泉)
 - en: lifetime
   ja: 寿命
   #ja: 一代, 生存期間, 一生, 天命
   desc: 変数の有効期間
 - en: rustacean
-- en: annotation
-  ja: 補注
-  #ja: 特注
-  common: アノテーション
-  desc: comment は分かりやすさのために書くもの、annotation は code の一部/意味への言及 (ないと困る補足)
-  ch: 注解, 标注
-- en: Arc; atomic reference count
-  ja: 不可分参照数計
-  common: アトミック参照カウント
 - en: bound
   ja: 縛り
   desc: 型および特性にかかる制約。Haskell でいう文脈
-- en: feature
-  ja: 機構, 機能, 特色
-  common: 機能, フィーチャ
 - en: feature gate
   #ja: 機構
-- en: range
-  common: 範囲
-  comment: Ruby より
-- en: prelude
-  ja: 前奏
-  common: プレリュード
