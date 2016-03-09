@@ -140,10 +140,10 @@ use std::io;
 
 利用者からの入力を得て、結果を出力として印字する必要があるわけです。そのため、
 標準 (standard) 譜集内の `io` 譜集が必要です。通常 Rust は各算譜に
-「[前奏 (prelude)〈プレリュード〉][prelude]」というわずかなものしか取り込みません。
-前奏に入っていないものは文字通り「使う」(`use`) 必要があります。２つめの「前奏」である
-[`io` 前奏][ioprelude] もあります。それも似たような働きをし、
-これを取り込む〈インポート〉とそれが `io` 関連の便利なものをたくさん取り込んできます。
+「[前奏 (prelude)〈プレリュード〉][prelude]」というわずかな譜面しか取り込みません。
+前奏に入っていない譜面は文字通り「使う」(`use`) 必要があります。２つめの「前奏」である
+[`io` 前奏][ioprelude] もあります。これも似たような働きをし、
+これを取り込む〈インポート〉だけで `io` 関連の便利なものを一挙に取り込めます。
 
 <!--We’ll need to take user input, and then print the result as output. As such,
 we
@@ -264,7 +264,7 @@ bound to: `String::new()`.-->
 
 `::new()` 構文はある特定の型の「付属機能 (associated function)」なので `::` を使っています。
 言うなれば、具体的な `String` のどれかではなく `String` 自身にひも付いているものです。
-これを「静的操作法 (static method)」と呼ぶ言語もあります。
+これを「静的操作法 (static method)〈スタティックメソッド〉」と呼ぶ言語もあります。
 
 <!--The `::new()` syntax uses `::` because this is an ‘associated function’ of
 a particular type. That is to say, it’s associated with `String` itself,
@@ -272,7 +272,7 @@ rather than a particular instance of a `String`. Some languages call this a
 ‘static method’.-->
 
 この機能の名前が `new()` な理由は、新しい、空の `String` を作ることにあります。
-ある種の新しい値を作るときによく使われる名前なので、多くの型に `new()` 機能を見かけることでしょう。
+何らかの新しい値を作るときによく使われる名前なので、多くの型に `new()` 機能を見かけることでしょう。
 
 <!--This function is named `new()`, because it creates a new, empty `String`.
 You’ll find a `new()` function on many types, as it’s a common name for making
@@ -287,7 +287,7 @@ a new value of some kind.-->
         .expect("行の読み取りに失敗しました");
 ```
 
-もっと増えました！ひとつずつやりましょう。最初の行は２つに分かれます。
+もっと長くなりました！ひとつずつ片付けましょう。最初の行は２つに分かれます。
 １つ目はここ、
 
 <!--That’s a lot more! Let’s go bit-by-bit. The first line has two parts.
@@ -324,7 +324,7 @@ terminal. More specifically, a [std::io::Stdin][iostdin].-->
 
 ここでは、手綱から(行読み) [`read_line()`][read_line] 操作法を呼びます。
 [操作法 (method)〈メソッド〉][method] は付属機能に近いですが、
-型自身でなく型の何かしらの実例に対してのみ利用出来ます。
+型自身でなく型の何かしらの実例に対してのみ利用できます。
 `read_line()` には引数もひとつ `&mut guess` 渡しています。
 
 <!--Here, we call the [`read_line()`][read_line] method on our handle.
@@ -450,7 +450,7 @@ Rust は `Result` 値を使っていなかったことで警告しました。�
 に付された特別な補注〈アノテーション〉によるものです。Rust
 はあなたが発生しうる誤りに対処していないことを伝えようとしています。この誤りをなくす正攻法は、
 実際に誤りの対処を書くことです。
-幸運にも、問題があるときに急停止させたいだけの場合は２つの小さな操作法を使うことができます。
+幸運にも、問題があるときに急停止させたいだけの場合は小さな操作法を使うことができます。
 誤りからどうにか回復できる場合は他にやることもあるでしょうが、それはあとの企画のために取っておきます。
 
 <!--Rust warns us that we haven’t used the `Result` value. This warning comes
@@ -548,7 +548,7 @@ Cargo は dependencies 節を見てどんな外部のわく箱への依存があ
 また、あなたが要求した版数もそこで知ります。この場合の指定は約 `0.3.0` 版で、
 Cargo はこの版と互換性のある版ならどれでもよいと理解します。
 Cargo は版数の書き方の標準である[意味論的付版 (Semantic Versioning)][semver] を理解します。
-上のような裸の数字は実際には `^0.3.0` の略記であって、「0.3.0 
+上のような裸の数字は実際には `\^0.3.0` の略記であって、「0.3.0
 と互換性のあるいずれか」という意味です。
 厳格に第 `0.3.0` 版だけを使わせたい場合は、`rand="=0.3.0"`
 と書けます (２つの = に注意)。 最新版を使いたい場合は `*` を使えます。
@@ -694,7 +694,7 @@ projects which are assembled out of a number of sub-packages.-->
 [doccargo]: http://doc.crates.io
 [doccratesio]: http://doc.crates.io/crates-io.html
 
-実際に `rand` を _使ってみる_ことにしましょう。次の一歩はこうです。
+実際に `rand` を _使ってみる_ ことにしましょう。次の一歩はこうです。
 
 <!--Let’s get on to actually _using_ `rand`. Here’s our next step:-->
 
@@ -735,7 +735,7 @@ in the `rand` crate by prefixing it with `rand::`.-->
 
 次に、`use` 行をもうひとつ加えました。`use rand::Rng` がそれです。`Rng` を要求する操作法をすぐ使うつもりのため `Rng`
 が有効範囲内に入っていなければなりません。
-基本的な考え方は、操作法は「特性 (trait)〈トレイト〉」と呼ばれるものの上に定義されていて、
+基本的な考え方は、操作法は「特性 (trait)」と呼ばれるものの上に定義されていて、
 その操作法が動くためにはその特性が有効範囲内に入っている必要があるということです。
 詳しい内容は[特性][traits]の章をご覧ください。
 
@@ -933,7 +933,7 @@ src/main.rs内28行21列~28行35列 誤り。型が噛み合いません。
     `&_` でした
 (構造体 `collections::string::String` と思いきや、
     整数の変数でした。) [E0308]
-<!-- src/main.rs内28行     match guess.cmp(&secret_number) { -->
+src/main.rs 28行     match guess.cmp(&secret_number) {
                                      ↑~~~~~~~~~~~~~
 誤り。前述の誤りにより中止します
 `guessing_game` を製譜できませんでした。

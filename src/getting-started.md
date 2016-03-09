@@ -350,7 +350,7 @@ was installed. -->
 # Hello, world!
 
 Rust を導入したからには早速最初の Rust 算譜〈プログラム〉を書いてみましょう。
-新しい言語で最初の譜体を作るときは、
+新しい言語で最初の算譜を作るときは、
 画面に“Hello, world!”の文を印字させるのが習わしです。
 
 <!-- Now that you have Rust installed, we'll help you write your first Rust program.
@@ -358,7 +358,7 @@ It's traditional when learning a new language to write a little program to
 print the text “Hello, world!” to the screen, and in this section, we'll follow
 that tradition.  -->
 
-こういった簡単な譜体から初める利点は、製譜器が単に導入できただけでなく
+こういった簡単な算譜から初める利点は、製譜器が単に導入できただけでなく
 きちんと動作することまで確認できる点です。
 何より画面に情報を印字する機会はとても多いので、早くからその練習をするのはよいことです。
 
@@ -550,6 +550,8 @@ a normal function.  -->
 この文字列を引数として `println!` に渡すと、画面に文字列を印字してくれます。
 ね、簡単でしょ？
 
+> 【訳者註】勘の良い方はお気づきでしょう。println は print line(s) の略です。
+
 <!-- Next is `"Hello, world!"` which is a *string*. Strings are a surprisingly
 complicated topic in a systems programming language, and this is a *[statically
 allocated]* string. We pass this string as an argument to `println!`, which
@@ -617,7 +619,7 @@ main.exe  main.rs
 
 `.rs` の拡張子のついた私達の原譜と、実行形式 (Windows では `main.exe` 他は `main`)
 の２つの〈ファイル〉があります。
-最後に残ったことは `main` または `main.exe` の実行です。
+残るは `main` または `main.exe` の実行のみです。
 
 <!-- This shows we have two files: the source code, with an `.rs` extension, and the
 executable (`main.exe` on Windows, `main` everywhere else). All that's left to
@@ -747,7 +749,7 @@ $ rm main  # または Windows では del main.exe
 ```
 Cargo はすべての原譜が `src` 階層に収まっていると期待しているので、まずそのようにします。
 こうすると最上位階層 (ここでは *hello_world*) が README (お読みください)関係、
-使用許諾契約 (license)〈ライセンス〉情報、譜面に関係のないその他一切のために残ります。
+使用許諾 (license)〈ライセンス〉情報、譜面に関係のないその他一切のために残ります。
 このようにして Cargo は私達の企画を整然とした心地いいものに保つよう手伝ってくれます。
 すべての物には置き場があります。
 
@@ -945,9 +947,9 @@ won't ever need to touch this file yourself; just let Cargo handle it. -->
 `hello_world` with Cargo.  -->
 
 今回の企画はごく簡単なものでしたが、
-今度の Rust の経歴でずっと使われる実際の道具を大いに活用しました。
+今度の Rust の経歴でずっと使われる、実際の道具を大いに活用しました。
 事実、実質的にすべての Rust
-企画は多少の差はあるけれど次のようにして始められると期待できます。
+企画は多少の差はあれど次のようにして始められると期待できます。
 
 <!-- Even though the project is simple, it now uses much of the real tooling you’ll
 use for the rest of your Rust career. In fact, you can expect to start

@@ -58,7 +58,7 @@
 * [夢の中で逢った、ような……](nightly-rust.md)
     * [製譜器拡張](compiler-plugins.md)
     * [直譜埋め込み](inline-assembly.md)
-    * [標準譜集無用](no-stdlib.md)
+    * [標準譜無用](no-stdlib.md)
     * [原生](intrinsics.md)
     * [言語建材](lang-items.md)
     * [上級結合法](advanced-linking.md)

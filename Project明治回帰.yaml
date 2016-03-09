@@ -47,7 +47,7 @@
   ja: 率労眼体験, 代表眼体験, 代表経験, 率労経験
   common: リーダーシップ体験
 - en: physical (of an athlete)
-  ja: 体威
+  ja: 体威, 威勢(の良い)?
   #ja: 身威(心意と同音につき却下)
   common: フィジカル
   comment: 同音の「体位」はスポーツ分野での用例は少ない
@@ -477,9 +477,11 @@
   common: アクセシブル
 - en: accessibility
   ja: 優操性
-  #ja: 可操性
+  #ja: 可操性, 優接性, 優達性, 優近性
   common: アクセシビリティ
   desc: 使いやすさ, 操作可能性, 高齢者や障害者への優しさ
+- en: usability
+  common: ユーザビリティ, 使い勝手
 
 - en: database
   ja: (電子)台帳
@@ -670,7 +672,7 @@
   common: 光学 (CD/DVD/BD) ドライブ
 
 - en: notepad
-  ja: 雑記帳
+  ja: メモ帳, 雑記帳
   common: メモ帳
 - en: deadlock
   ja: こう着状態
@@ -715,7 +717,7 @@
   ja: 物選り
   common: リソースセレクタ
 - en: cell (in spreadsheets)
-  ja: マス目
+  ja: マス(目)
   common: セル
   comment: cell = 細胞, コルクの目
   desc: 表計算ソフトのセル
@@ -856,10 +858,10 @@
   desc: (M, m, e) がモノイドとは、乗法 m:M×M→M、単位 e:1→M が結合律と単位律を満たすこと
 - en: comonoid
   common: 余モノイド
-  desc: 余モノイド (M, δ, ε) はその双対概念で、余乗法 δ:M→M×M、余単位 ε:M→1 が余結合律と余単位律を満たす構造物です。射の矢印をひっくり返した定義となります
+  desc: 余モノイド (M, δ, ε) はモノイドの双対概念で、余乗法 δ:M→M×M、余単位 ε:M→1 が余結合律と余単位律を満たす構造物。射の矢印をひっくり返した定義となる
 - en: bimonoid
   common: 双モノイド
-  desc: 双モノイド (M, m, e, δ, ε) とは、(M, m, e) がモノイド、(M, δ, ε) が余モノイドであり、さらにモノイドと余モノイドが“協調している”ことを要求します。“協調”とは、余モノイドの構造射 δ, ε がモノイド射（モノイド準同型写像）となっていることです（逆に、「モノイドの構造射が余モノイド射」と言っても同じです）
+  desc: 双モノイド (M, m, e, δ, ε) は、(M, m, e) がモノイド、(M, δ, ε) が余モノイドであり、さらにモノイドと余モノイドが“協調している”ことを要求する。“協調”とは、余モノイドの構造射 δ, ε がモノイド射（モノイド準同型写像）となっていること（逆に、「モノイドの構造射が余モノイド射」と言っても同じ）
 - en: bicategory
   common: 双圏
 - en: double category
@@ -875,7 +877,7 @@
   desc: 「ベクトル空間、線形写像、テンソル積」のモノイド圏における双モノイド
 - en: module (math)
   common: 加群
-  desc: 「ベクトル空間、線形写像、テンソル積」のモノイド圏におけるモノイド作用は、代数Aによるベクトル空間Vへの作用となります。これは、Vが台であるA-加群になります
+  desc: 「ベクトル空間、線形写像、テンソル積」のモノイド圏におけるモノイド作用は、代数Aによるベクトル空間Vへの作用となる。これは、Vが台であるA-加群になる
 - en: comodule
   common: 余加群
   desc: 加群の双対
@@ -886,6 +888,10 @@
 - en: monad
   #ja: 継箱
   common: モナド
+- en: comonad
+  #ja: 余モナド
+  common: コモナド
+
 
 - en: default
   ja: 黙用
@@ -1060,8 +1066,8 @@
   ja: 範囲外
   common: スコープ外
 - en: FFI; foreign function interface
-  ja: 外機能内通
-  ja-abbr: 外通, 外機能
+  ja: 外機能内通, 外交機能
+  ja-abbr: 外交, 外機能
   #ja: 外機能面際, 外機能仲介
   common: 外部関数インターフェース
 - en: documentation
@@ -1082,7 +1088,7 @@
 - en: function
   ja: 機能
   common: 関数
-  desc: 数学の関数とはあまり関係ない
+  desc: いわゆる手続きのこと。副作用を含むものは数学上の関数ではない
 - en: primitive
   #ja: 
 - en: comment
@@ -1102,11 +1108,11 @@
   ja: 模式
   yamato: さま
   common: パターン
-  comment: 最初は「様(式)」だったが、意外にも中国語の「模式」が言いやすかった為
+  comment: 最初は「様(式)」だったが、意外にも中国語の「模式」がハマったため採用
 - en: pattern matching
   ja: 模式照合
   yamato: さまあわせ
-  common: パターンマッチング, パターン照合, パターン合致
+  common: パターンマッチング, パターン照合 #, パターン合致
 - en: generics
   common: 総称型
   comment: 単数の場合、単に「総称」と書いた方が自然なときもある
@@ -1121,7 +1127,7 @@
   common: 別名
 - en: cast
   yamato: なげうつ
-  ja: 
+  ja: 型変換
   common: キャスト, 型変換
 - en: overloading
   ja: 多重化
@@ -1250,13 +1256,15 @@
   common: レジストリ
 - en: work stealing
   ja: 作業横取り
+  desc: 各CPUに仕事の山を割り当て、早く終わったCPUが他のCPUの積み残しを盗むタスクスケジュール方法。
+    折り紙を配ってみんなで鶴を折る時、早く終わった人がよくやるアレ。折り鶴方式
   common: ワークスチール
 - en: unwinding
-  ja: 巻き戻し, 崩し?
+  ja: 崩し
   common: 巻き戻し, アンワインド
+  comment: unwind は「ほぐす」「緊張を解く」。英辞郎に「崩れる」の用例がある
 - en: stack unwinding
-  ja: 山の巻き戻し, 山崩し?
-  ja-abbr: 山戻し
+  ja: 山崩し
   common: スタック巻き戻し, アンワインド
 - en: algorithm
   ja: 算法
@@ -1273,7 +1281,7 @@
   ja: 走脈
   ja-abbr: 脈
   common: スレッド
-  desc: スレッドは、thread of execution（実行の脈絡）という言葉を省略したものである
+  desc: Thread of execution（実行の脈絡）という言葉を省略したものである
   ch: 线程 (大陸), 執行緒 (臺灣), 線程 (港澳)
 - en: multi-threading
   ja: 多脈処理
@@ -1302,8 +1310,8 @@
   ch: 黑箱
 - en: patch
   yamato: なおし
-  ja: 改良布
-  common: パッチ
+  #ja: 改良布
+  common: パッチ, 修正パッチ, 修正
 - en: native
   #ja: 
   common: ネイティプ
@@ -1319,6 +1327,10 @@
 - en: n-byte aligned
   ja: n バイト整列
   common: n バイトアライメント
+- en: freestanding environment
+  ja: 無基環境, 無援環境
+  common: フリースタンディング環境, 自立環境
+  desc: OS の制御下にない一切の計算環境 (家電、携帯、OSそのもの、産業機器等の組み込み環境)
 
 # programming patterns
 - en: accessor
@@ -1397,7 +1409,7 @@
     まとわりつくため不適
 
 - en: design
-  common: デザイン
+  common: デザイン, 設計
   desc: 設計⊂デザイン
 - en: core (in CPUs)
   ja: 頭
@@ -1468,6 +1480,12 @@
 - en: further reading
   ja: 推薦(文献,図書,資料)
   common: 参照文献, さらに進んだ情報, さらなる情報
+- en: unpack
+  ja: 荷解
+  common: アンパック
+- en: pack
+  #ja: 荷詰
+  common: パック, 荷造り
 
 # Rust 用語
 - en: macro
@@ -1483,7 +1501,9 @@
 - en: dereference
   ja: 辿 (たど) る
   common: 逆参照
+  comment: 「手繰る」の用例が Web にあるが、pull の意味も持つため不採用
 - en: unsafe
+  common: 危険な
 - en: release channel
   ja: 放流路線
   common: リリースチャンネル
@@ -1498,14 +1518,16 @@
   ja: 不可分参照数計
   common: アトミック参照カウント
 - en: feature
-  ja: 機構, 機能, 特色
+  ja: (機構, 機能, 方式, 技術, 成果), (特色, 特徴, 特性, 特質, 素性), (見どころ, 目玉, 売り, 主要)
   common: 機能, フィーチャ
+  desc: 文脈により意訳したほうがよい
 - en: range
   common: 範囲
-  comment: Ruby より
+  comment: Ruby (るりま) より
 - en: prelude
   ja: 前奏
   common: プレリュード
+  desc: 言語環境に付属し基本的な環境を整えるライブラリ群。暗黙にインポートされる場合が多い。
 
 # 純 Rust 用語
 - en: ownership
@@ -1523,6 +1545,7 @@
 - en: drop
   ja: 脱落
   #ja: 脱落*, 没収, 回収*, 放棄, 開放, 排出, 除去, 片付け, 処分*, 後始末
+  desc: 実行位置が変数の有効範囲外に出たとき、その変数が処分されること
 - en: trait
   ja: 特性
 - en: trait object
@@ -1546,14 +1569,20 @@
 - en: associated constants
   ja: 付属定数
 - en: intrinsics
-  ja: 原生
-  #ja: 真性, 野生
+  ja: 底力
+  #ja: 真性, 野生, 原生, 真価, 本領, 真骨頂
+  desc: ハードウエアに本来備わっている機能への直接アクセス
+  comment: 用語は LLVM 由来かと思われる。感覚的に最も近い意味は
+    本来の能力を発揮する＝「ふだんは表に出さない、自分の最大限の力を出すこと」
+    であり、それ以外の意味を持たない「底力」が適訳とみる。
 - en: lang items
   ja: 言語建材
   ch: 言語項目
+  desc: コンパイラが暗黙に埋め込む機能のユーザ実装を提供する仕組み (メモリ確保と開放など)
 - en: deref coercions
   ja: 押し辿 (たど) り
-  desc: ポインタ逆参照演算子 (*) のオーバーロード機能。押し = 強要 = coerce
+  desc: ポインタ逆参照演算子 (*) のオーバーロード機能
+  comment: 押し = 強要 = coerce
 - en: compiler plugins
   ja: 製譜器拡張
 - en: lifetime
@@ -1561,6 +1590,10 @@
   #ja: 一代, 生存期間, 一生, 天命
   desc: 変数の有効期間
 - en: rustacean
+  ja: ラステ(ー)シャン
+  desc: Rust を使ったり、Rust に貢献したり、Rust の開発に興味を持ったりしている人々
+  comment: | 読みは「ラステーシャン」/rʌˈsteɪʃə/。
+    https://en.wikipedia.org/wiki/Crustacean + technician で rust ay cian。
 - en: bound
   ja: 縛り
   desc: 型および特性にかかる制約。Haskell でいう文脈
