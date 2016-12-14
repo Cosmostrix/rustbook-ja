@@ -77,10 +77,10 @@
   common: エクスポート
   desc: port＝港→輸出入の場
 - en: undo
-  ja-dead: 前戻し
+  ja: 前戻し
   common: 元に戻す
 - en: redo
-  ja-dead: 先戻し
+  ja: 先戻し
   common: やり直し
 - en: edit
   yamato: てなおし
@@ -407,7 +407,7 @@
   ja: 端末
   common: 端末, ターミナル
 - en: terminal emulator
-  ja: まね(っこ)端末
+  ja: 模倣端末,まね(っこ)端末
   common: ターミナルエミュレータ, 端末エミュレータ
 - en: cd; change directory
   ja: 階層変更
@@ -636,7 +636,7 @@
   common: ブラウザ
   desc: browse = 参照する
 - en: SNS; short message service
-  ja: 文交い屋 (ふみかいや)
+  ja: 文交い (ふみかい)
   common: SNS, ショートメール, Cメール
 - en: online
   ja: 接続下?, 有接続?
@@ -1595,8 +1595,8 @@
   ja: 幅, 長さ
   common: サイズ, 大きさ, 長さ
 - en: slice
-  ja: 薄切り
-  ja-dead: 切片
+  ja-dead: 薄切り
+  ja: 切片
   common: スライス
   comment: 全範囲の薄切りを考えるとおかしいが、それは原文も同じ
 - en: dereference
@@ -1663,8 +1663,8 @@
 - en: box syntax
   ja: ハコ構文
 - en: slice patterns
-  ja: 薄切り模式
-  ja-dead: 切片模式
+  ja-dead: 薄切り模式
+  ja: 切片模式
 - en: associated types
   ja: 付属型
 - en: associated constants
