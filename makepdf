@@ -69,9 +69,9 @@ end
 def pre_pandoc(string, config)
 	replace(string) do
 
-            # 追加 gitbook
-            #s /^(#|%%)/, '##'
-            #s /^%/, '#'
+        # 追加 gitbook
+        #s /^(#|%%)/, '##'
+        #s /^%/, '#'
 
 		# Pandoc discards #### subsubsections #### - this hack recovers them
 		# be careful to try to match the longest sharp string first
@@ -102,29 +102,30 @@ def pre_pandoc(string, config)
 		s /Insert\s18333fig\d+\.png\s*\n.*?\d{1,2}-\d{1,2}\. (.*)/, 'FIG: \1'
 	end
 end
+
 $global_links = 0
+
 def post_pandoc(string, config)
 	replace(string) do
 		space = /\s/
 
-                # 追加
-                print string
-                # proper local links
-                s /\\href\{([^}]*)\}\{([^}]*)\}/ do |m|
-                    txt = $2
-                    ref = $1.sub '../', 'https://doc.rust-lang.org/stable/std/'
-                    if ref.match /^(https?|irc|ftp|mailto):/ then
-                        ref.gsub! '_', '\_'
-                        "\\href{#{ref}}{#{txt}}"
-                    else
-                        $global_links += 1
-                        ref.sub! /.*#(.*[.])*(.*)$/, '\2'
-                        "#{txt} (\\ref{#{ref}}#{if $global_links<8 then '章' else '節' end}) "
-                    end
-                end
+        print string
+        # proper local links
+        s /\\href\{([^}]*)\}\{([^}]*)\}/ do |m|
+            txt = $2
+            ref = $1.sub '../', 'https://doc.rust-lang.org/stable/std/'
+            if ref.match /^(https?|irc|ftp|mailto):/ then
+                ref.gsub! '_', '\_'
+                "\\href{#{ref}}{#{txt}}"
+            else
+                $global_links += 1
+                ref.sub! /.*#(.*[.])*(.*)$/, '\2'
+                "#{txt} (\\ref{#{ref}}#{if $global_links<8 then '章' else '節' end}) "
+            end
+        end
 
-                # remove hidden code
-                s /(?<!\s)\n# .*/, '\1'
+        # remove hidden code
+        s /(?<!\s)\n# .*/, '\1'
 
 		# Reformat for the book documentclass as opposed to article
 		s '\section', '\chap'
@@ -177,33 +178,35 @@ end
 
 def bulletlist(l, i)
     l['c'].map {|x|
-                x.map {|y|
-                       case y['t']
-                      when "Plain"
-                      link = y['c'][0]
-                      ["text" => link['c'][0][0]['c'],
-                       "href" => link['c'][1][0],
-                       "level" => i]
-                      when "BulletList"
-                      bulletlist y, i+1
-                      end
-                      }
-               }
+	    x.map {|y|
+            case y['t']
+	        when "Plain"
+	          link = y['c'][0]
+	    	  p ["text" => link['c'][1][0]['c'],
+	           "href" => link['c'][2][0],
+	           "level" => i]
+	        when "BulletList"
+	          bulletlist y, i+1
+	        end
+	    }
+	}
 end
-toc = bulletlist(YAML.load(`pandoc src/SUMMARY_.md -t json`)[1][1], 1).flatten
+
+toc = bulletlist(YAML.load(`pandoc src/SUMMARY_.md -t json`)["blocks"][1], 1).flatten
 toc.unshift ({"text" => "演譜言語 Rust", "href" => "README.md", "level" => 1})
 toc.push ({"text" => "奥付", "href" => "colophon.md", "level" => 1})
+
 languages.each do |lang|
 	figures(lang) do
 		config = $config['default'].merge($config[lang]) rescue $config['default']
 
 		puts "#{lang}:"
-                #markdown = Dir["#$root/#{lang}/*/*.markdown"].sort.map do |file|
-                markdown = toc.map do |page|
-                    header = '#' * page['level'] + " \\1 {##{page['href'].gsub('md','html')}}"
-                    File.read("#$root/#{lang}/#{page['href']}")
-                      .gsub(/\n\n(#+ )/, "\n\n" + '#' * page['level'] + '\1')
-                      .sub(/^% (.*)/, header)
+        #markdown = Dir["#$root/#{lang}/*/*.markdown"].sort.map do |file|
+        markdown = toc.map do |page|
+            header = '#' * page['level'] + " \\1 {##{page['href'].gsub('md','html')}}"
+            File.read("#$root/#{lang}/#{page['href']}")
+              	.gsub(/\n\n(#+ )/, "\n\n" + '#' * page['level'] + '\1')
+              	.sub(/^% (.*)/, header)
 		end.join("\n\n")
 
                 preface = File.read("#$root/#{lang}/preface-ja.md").sub(/^% (.*)/, '# \1') + "\n\n"

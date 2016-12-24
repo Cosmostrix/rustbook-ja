@@ -796,7 +796,7 @@
   ja: 道具集, 道具一式
   common: キット, セット
 - en: development kit
-  ja: [開発]工具集
+  ja: (開発)工具集
   common: 開発キット
 - en: shutdown
   ja: 電源切, 電源断
@@ -820,7 +820,7 @@
   common: ユーザー体験
 
 - en: (file's) property
-  ja-dead: [ファイル等の]特徴, 性格, 属性
+  ja-dead: (ファイル等の)特徴, 性格, 属性
   common: プロパティ
   desc: 所有しているものの意
 - en: storage
@@ -1179,11 +1179,11 @@
   common: コメント
   desc: ソースコード上のものに限る
 - en: comment out
-  ja: 注にする, 避注
+  ja: 注釈に変える, 避注
   ja-dead: 注化
   common: コメントアウト
 - en: uncomment
-  ja: 注を外す, 帰注
+  ja: 注釈を戻す, 帰注
   ja-dead: 脱注, 除注
   common: アンコメント
 - en: loop
