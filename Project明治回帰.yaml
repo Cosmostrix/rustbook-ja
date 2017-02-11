@@ -3,22 +3,23 @@
 # 翻訳とは形の合わないブロックで同じ城を組み立てるようなものである。その全く難儀なことよ。
 # 或いは、意味ベクトルを維持したまま、うわべの言語を移し替える事とも言える。
 
-# 暫定凡例
-# en: 英語（和製英語の場合は含めない）
+# 【暫定凡例】（本当に暫定です）
+# en: 英語（和製英語の場合はこの項目を省略する）
 # ja: 提案する言葉
 # ja-abbr: その略した言い方
-# ja-dead: ボツ案
-# yamato: やまとことば
-# common: 定訳(あれば)。カタカナ表記は含むが原文ママは除く
-# expl: 意味説明(explanation)。もとの言葉と置き換えたり、括弧書きで説明を付与する場合にそのまま使えることを意図した短い文
-# desc: 語義など
-# comment: 訳の意図やボツ案などに言及する場所（いわゆるチラシの裏）
+# ja-dead: ボツ案 | { 言葉: ボツになった理由 }
+# yamato: やまとことばの提案
+# common: 定訳そして見かけた用例（末尾のーの有無については無視してよい）。カタカナ表記は含むが原文ママは除く
+# meaning: 言葉の意味。もとの言葉と置き換えたり、括弧書きで説明を付与する場合にそのまま使えることを意図した短い文
+# exp: 語義、解釈（explanation）、成り立ち
+# desc: 語の表す事物の辞書的な解説（description）
+# comment: 訳の意図やボツ案などの解説や注釈（いわゆるチラシの裏）
 # ch: 中国語（主に繁体字）
 # hidden: <bool> 隠すなら yes
 # 英語と一対一対応しない言い換えの扱い
 #   ja: {id: そのまま置き換え可能な語, 特定の文脈または特例: より適切な言い換え, ... }
-#   例 ja: {id: 易達性, 交通が便利な状態: 交通の便の良さ, (交通)利便性 }
-# 文脈によって明らかな場合に省略可能な言葉は半角かっこで括る
+#   例 ja: {id: 易達性, 交通が便利な状態: 交通の便の良さ,（交通）利便性 }
+# 文脈によって明らかな場合に省略可能な言葉はかっこで括る
 
 # misc
 - en: loudness
@@ -55,7 +56,7 @@
   common: リーダーシップ体験
 - en: physical (of an athlete)
   ja: 体威, 威勢
-  ja-dead: 身威(心意と同音につき却下)
+  ja-dead: 身威（心意と同音につき却下）
   common: フィジカル
   comment: 同音の「体位」はスポーツ分野での用例は少ないようだ
 - en: short circuit
@@ -115,7 +116,7 @@
 - en: customize
   ja: 自在調整
   common: カスタマイズ
-  desc: custom (習慣)に合わせること
+  desc: custom（習慣）に合わせること
 - en: tuning
   ja: 調律
   common: チューニング
@@ -204,7 +205,7 @@
   ja: 消去
   yamato: けしさる
   common: 削除
-  desc: unlink (断鎖) システムコールの呼び出しをいう。忘却する
+  desc: unlink（断鎖）システムコールの呼び出しをいう。忘却する
 - en: shred
   ja: 破砕
   yamato: けしつぶす
@@ -217,9 +218,9 @@
 
 # file system
 - en: file
-  ja: 草子, 冊子(そうし)
+  ja: ｛草子｜そうし｝, ｛冊子｜そうし｝
   ja-abbr: 冊
-  ja-dead: カラ(空,殻,器;身を入れる器,なきがらのガラ), トジ(綴), 篇(竹簡を数える単位)
+  ja-dead: カラ（空,殻,器;身を入れる器,なきがらのガラ）, トジ（綴）, 篇（竹簡を数える単位）
   common: ファイル
   comment: 
     そう‐し〔サウ‐〕【草紙／草子／双紙／▽冊子】《「さくし（冊子）」の音変化か》
@@ -236,7 +237,7 @@
   ja: 韋編
   ja-abbr: 編
   common: フォルダ
-  desc: ファイルとフォルダを集めてひと括りにした構造。ディレクトリと異なりファイルシステム上に実在しない場合(ゴミ箱・コンパネなど)を含む
+  desc: ファイルとフォルダを集めてひと括りにした構造。ディレクトリと異なりファイルシステム上に実在しない場合（ゴミ箱・コンパネなど）を含む
   comment: 原義は紙ばさみ
     100編2,000冊のように数える
     「巻」とは紙製の巻子を数えるための数量詞なのである
@@ -250,7 +251,7 @@
   ja: 親階層
   common: 親ディレクトリ
 - en: path
-  ja: 路 (みち)
+  ja: ｛路｜みち｝
   common: パス
 - en: copy path
   ja: 路写し
@@ -272,7 +273,7 @@
 #  ja: 実体の別名
 #  common: ハードリンク
 - en: permission
-  ja: (操作)権限
+  ja: （操作）権限
   common: パーミッション
 
 # special directories
@@ -290,7 +291,7 @@
   common: デスクトップ
   comment: デスクトップ ≠ 作業台 と主張する人もいる
 - en: downloads
-  ja: 荷受(け)
+  ja: 荷受（け）
   common: ダウンロードフォルダ
 
 # network
@@ -307,14 +308,14 @@
   ja-dead: 局内網
   common: ローカルネットワーク
 - en: packet
-  ja: 小包(み)
+  ja: 小包（み）
   common: パケット
   desc: 大きなデータを小分けしたもの
 - en: internet
   ja: 網際網路
-  ja-dead: 相互接続網 (人ではなく通信網同士のつながりであることが分かりにくい)
-  common: (広義の) インターネット
-  desc: inter (〜の間) + network (独立した通信網)
+  ja-dead: 相互接続網（人ではなく通信網同士のつながりであることが分かりにくい）
+  common: （広義の）インターネット
+  desc: inter（〜の間）+ network（独立した通信網）
   ch: 互联网, 网际网路, 網際網路
 - en: the Internet
   ja: 網際網路
@@ -360,11 +361,11 @@
 - en: MAC; mandatory access control
   ja: 強制操作制限
   common: 強制アクセス制御
-  desc: 不当な (悪意ある) 行為から他の部分を守る仕組み
+  desc: 不当な（悪意ある）行為から他の部分を守る仕組み
 - en: security
   common: セキュリティ
   ja: 保安, 安全
-  desc: 安全性, セキュア (安全) にすること
+  desc: 安全性, セキュア（安全）にすること
 - en: blockchain
   ja: 部録鎖
   common: ブロックチェーン
@@ -386,7 +387,7 @@
   ja: 手配台帳
   common: シグネチャデータベース
 - en: PFS; (perfect) forward secrecy
-  ja: (完全)後年秘匿性
+  ja: （完全）後年秘匿性
   common: 前方秘匿性
 
 # system configuration
@@ -404,7 +405,7 @@
 
 # POSIX and shell scripting
 - en: file descriptor
-  ja: (ファイル)指示番号
+  ja: ファイル指示番号
   common: ファイルディスクリプタ
 - en: system call
   ja: 天呼
@@ -413,7 +414,7 @@
   ja: 端末
   common: 端末, ターミナル
 - en: terminal emulator
-  ja: 模倣端末,まね(っこ)端末
+  ja: 模倣端末, まね（っこ）端末
   common: ターミナルエミュレータ, 端末エミュレータ
 - en: cd; change directory
   ja: 階層変更
@@ -434,7 +435,7 @@
   ja-dead: 絶飛, 絶杜, 絶跳, 舌跳, 節豊, 絶妬, 絶図
 - en: bash; Bourne-Again SHell
   ja: 盆栽司得
-  ja-dead: 抜首（普及率的に）, 発修（最初の伺得）, 抜朱, 発朱, 発守, 盆恩(ボーン)
+  ja-dead: 抜首（普及率的に）, 発修（最初の伺得）, 抜朱, 発朱, 発守, ｛盆恩｜ボーン｝
 
 # publishing
 - en: font
@@ -476,32 +477,31 @@
   common: レイヤー
 
 - en: computer
-  ja: (電子)計算機
+  ja: （電子）計算機
   common: コンピューター
-  desc: compute (計算する) + -er (モノ)
+  comment: compute（計算する）+ -er（モノ）
 - en: computer science
   ja: 計算機科学
   common: コンピューターサイエンス
-  desc: 日本は母国語でこれが学べる数少ない国
+  comment: 日本は母国語でこれが学べる数少ない国
 - en: hardware
   ja: 機体
   common: ハードウエア
-  desc: 金属製品のこと。比較的浸透している言い方にみえる
-  comment: ついに難関だったあの語の和訳を発見する
+  desc: 金属製品
+  comment: ついに難関だったあの語の和訳を発見した。しかも、比較的浸透している言い方にみえる
 - en: software
   ja: 譜体, 譜上の
   common: ソフトウエア, ソフトウェア
-  desc: -ware = 瀬戸物,〜用品
+  comment: -ware = 瀬戸物,〜用品
 - en: application (software)
-  ja: (応用)譜体
+  ja: （応用）譜体
   ja-abbr: 譜体
   common: アプリケーション
-  desc: 応用的 (applied) なソフトウエア
+  desc: 応用的（applied）なソフトウエア
 - en: malware
   ja: 悪玉体
   common: マルウェア, 悪意のあるソフトウェア
-  desc: malformed = 奇形の、-ware = 体
-  comment: MSの翻訳「悪意のある−」のニュアンスを強く出した
+  comment: malformed = 奇形の、-ware = 体。MSの翻訳「悪意のある−」のニュアンスを強く出した
 - en: spyware
   ja: 盗賊体
   common: スパイウェア
@@ -510,7 +510,7 @@
   ja: 広告体, 押売体
   common: アドウェア
   desc: 押し売りしてくるソフト
-  comment: 一発変換できたのは広告体のみ (MS-IME)
+  comment: 一発変換できたのは広告体のみ（MS-IME）
 - en: access
   ja: 操作, 到達
   common: アクセス
@@ -528,7 +528,7 @@
   common: ユーザビリティ, 使い勝手
 
 - en: database
-  ja: (電子)台帳
+  ja: （電子）台帳
   common: データベース
 - en: RDBMS; relational database management system
   ja: 関係台帳管理系
@@ -550,7 +550,7 @@
 - en: update
   ja: 更新
   common: アップデート
-  desc: up to date (今日まで上げる)
+  comment: up to date（今日まで上げる）
 - en: upgrade
   ja: 昇格
   yamato: 格上げ
@@ -582,8 +582,8 @@
   common: ナイトリービルド
   desc: 毎夜更新の最新開発版
 - en: RC; release candidate
-  ja: 放流候補(版)
-  common: リリース候補(版)
+  ja: 放流候補（版）
+  common: リリース候補（版）
 - en: closed beta test
   ja: 限定先行試験
   common: クローズドベータテスト
@@ -622,17 +622,17 @@
 - en: hyperlink
   ja: 糸
   ja-dead: 綱,縄
-  common: (ハイパー)リンク
-  desc: ウェブ(Web; 蜘蛛の巣)を作る核心的概念。よく切れる
+  common: （ハイパー）リンク
+  desc: ウェブ（Web; 蜘蛛の巣）を作る核心的概念
 - en: user account
   ja: 会員口座
   common: ユーザーアカウント
 - en: session
   # 中身の状態までは保持されないというニュアンスが表現できない。。
-  ja-dead: 作業状態, 取組み, 現環境, 会期, 一会(いちえ)
+  ja-dead: 作業状態, 取組み, 現環境, 会期, ｛一会｜いちえ｝
   common: セッション
 - en: email
-  yamato: (お)便り
+  yamato: お便り
   common: メール
 - en: open street map
   ja: 自由街路地図
@@ -642,7 +642,7 @@
   common: ブラウザ
   desc: browse = 参照する
 - en: SNS; short message service
-  ja: 文交い (ふみかい)
+  ja: ｛文｜ふみ｝｛交｜か｝い
   common: SNS, ショートメール, Cメール
 - en: online
   ja: 接続下?, 有接続?
@@ -675,7 +675,7 @@
 #- en: 
 #  ja: 電子文房具
 
-- en: medium, media (複)
+- en: medium, media (multi)
   yamato: うつわ
   common: メディア, 媒体
   desc: 容れるためのモノ, 記録装置, 伝える手段
@@ -697,8 +697,9 @@
   ja: 置物の留めを外す
   common: ウィジェットのロックを解除
 - en: activity (on KDE)
-  ja: 「場面」(括弧つき)
+  ja: 「場面」
   common: アクティビティ
+  comment: 括弧付きで用いる
 
 - en: reference implementation
   ja: 参考実装
@@ -712,8 +713,14 @@
   common: ディスク
   desc: 記録装置
 - en: ODD; optimal disk drive
+  ja-abbr: 円駆
   ja: 光学円盤駆動装置
-  common: 光学 (CD/DVD/BD) ドライブ
+  common: 光学（CD/DVD/BD）ドライブ
+- en: disk image file
+  ja-abbr: 円同
+  ja: 円盤同然ファイル
+  common: ディスクイメージファイル
+  comment: image＝生き写し
 
 - en: notepad
   ja: メモ帳, 雑記帳
@@ -727,18 +734,18 @@
   ja-dead: 使いきり変数形式
   common: 静的単一代入形式
 - en: combinator
-  ja: 組詞 (クミト)
+  ja: ｛組詞｜クミト｝
   ja-dead: 組付器, 組技, 組手
   common: コンビネーター
 - en: parser combinator
   ja-dead: 構析手?
   common: '{パーサ,パーザー}コンビネーター'
 - en: unused memory
-  ja: 常世 (とこせ)
+  ja: ｛常世｜とこせ｝
   common: 未使用領域
   desc: あの世
 - en: used memory
-  ja: 現世 (うつせ)
+  ja: ｛現世｜うつせ｝
   common: 使用領域
   desc: この世
 - en: primitive
@@ -753,15 +760,15 @@
   ja-dead: 虫狩り, 虫取り, 虫焼き
   common: デバッグ, デバグ
   desc: 不具合つぶし作業。de + bug 虫
-  comment: 悪霊退散！悪霊退散！ nico.ms/sm9
-- en: filer (explorer/finder)
+- en: filer
   ja: 物見
-  common: ファイラー (エクスプローラー/Finder)
+  common: ファイラー
+  comment: エクスプローラーやFinder等
 - en: resource selector
   ja: 物選り
   common: リソースセレクタ
 - en: cell (in spreadsheets)
-  ja: マス(目)
+  ja: マス（目）
   common: セル
   comment: cell = 細胞, コルクの目
   desc: 表計算ソフトのセル
@@ -790,7 +797,7 @@
   ja: 道具, 工具, 用具
   common: ツール
 - en: toolbar
-  ja: 道具立て(たて)
+  ja: 道具｛立｜た｝て
   ja-dead: 道具棚, 道具帯
   common: ツールバー
   comment: bar = 棒状・長方形のかたまり
@@ -802,7 +809,7 @@
   ja: 道具集, 道具一式
   common: キット, セット
 - en: development kit
-  ja: (開発)工具集
+  ja: （開発）工具集
   common: 開発キット
 - en: shutdown
   ja: 電源切, 電源断
@@ -812,13 +819,13 @@
   common: ユーザー, 利用者
   desc: 使う use + 者 -er
 - en: alignment
-  ja: 整列(幅)
+  ja: 整列（幅）
   common: アライメント, 整列
 - en: interface
   ja-dead: 界面
   common: インターフェース
   comment: inferface=窓口（取り次ぎ、事務、外部と折衝する役）、受付（取り次ぎ、申し込み）
-  ch: 介面 (繁体)
+  ch: 介面（繁体）
 - en: UI; user interface
   ja-dead: 対人界面
   common: ユーザーインターフェース
@@ -826,7 +833,7 @@
   common: ユーザー体験
 
 - en: (file's) property
-  ja-dead: (ファイル等の)特徴, 性格, 属性
+  ja-dead: （ファイル等の）特徴, 性格, 属性
   common: プロパティ
   desc: 所有しているものの意
 - en: storage
@@ -947,7 +954,7 @@
 - en: default
   ja: 黙用
   common: デフォルト, 既定の
-  desc: 未指定時に使うもの。de + fault (失敗)
+  desc: 未指定時に使うもの。de + fault （失敗）
 - en: default browser
   ja: 黙用ブラウザ, 常用するブラウザ
   common: デフォルトブラウザ
@@ -964,7 +971,7 @@
   common: ログ
   desc: 経過記録, 動作記録, 日誌
 - en: logger
-  ja: 帳付, 書付(役)
+  ja: 帳付, 書付（役）
   common: ロガー
 - en: helper
   ja: 助役
@@ -978,17 +985,17 @@
   ja: 清書器, 前処理器
   ja-dead: 先定器
   common: プリプロセサ
-  #desc: 選定 (select; よく考えて決める) と同じ音かつ、プリプロセサの仕事をよく表した語
+  #desc: 選定（select; よく考えて決める）と同じ音かつ、プリプロセサの仕事をよく表した語
 - en: compile
   ja: 製譜する
   common: コンパイル
 - en: compiler
   ja: 製譜器
   common: コンパイラー
-  desc: 編纂 (compile)、製本のイメージと実行結果がソースコードである側面を投影
+  desc: 編纂（compile）、製本のイメージと実行結果がソースコードである側面を投影
 - en: compilation
   ja: 製譜
-  common: コンパイル(すること)
+  common: コンパイル（すること）
 - en: assemble
   ja: 織り上げ
   #「build=組み立て」の用例の多さを鑑み大引越
@@ -996,7 +1003,7 @@
   common: アセンブル
 - en: assembly
   ja: 直譜
-  ja-dead: 組詞 (クミト)
+  ja-dead: ｛組詞｜クミト｝
   common: アセンブリ
   desc: 機械語に直接、一対一対応する算譜
 - en: assembler
@@ -1014,7 +1021,7 @@
   ja: 配荷器
   ja-dead: 施術器, 配荷係
   common: ローダ
-  #desc: 施術者 (practitioner; [代替医療の]実践者,開業医,[仏道の]修行者)がとてもWizardっぽくていいので採用
+  #desc: 施術者（practitioner; [代替医療の]実践者,開業医,[仏道の]修行者）がとてもWizardっぽくていいので採用
 - en: loading
   ja: 配荷中
 
@@ -1073,7 +1080,7 @@
   common: コーディング
 - en: source (file)
   ja: 原譜
-  common: ソース(ファイル)
+  common: ソース（ファイル）
 - en: system programming language
   ja: 算系演譜言語
   common: システムプログラミング言語
@@ -1100,10 +1107,10 @@
   ja: 素の指先
   ja-dead: 生場指し
   common: 生のポインタ
-  comment: 「生場指し」…生の馬刺しは食べると当たりそうだ(つまり危ない)と思ってくれることを期待していた。
+  comment: 「生場指し」…生の馬刺しは食べると当たりそうだ（つまり危ない）と思ってくれることを期待していた。
 - en: dangling pointer
   ja: 空を向いた指先
-  ja-abbr: 空指(そらゆび)
+  ja-abbr: ｛空指｜そらゆび｝
   ja-dead: うその場指し, 外れた場指し
   common: 参照先の無効なポインタ
 - en: iterator
@@ -1121,12 +1128,12 @@
   common: メソッド
 - en: data race
   ja: 書き込み衝突
-  ja-dead: 不協和 (タイミングに言及してないため却下), 同時書き込み (同じ場所とわからないため却下)
+  ja-dead: 不協和（タイミングに言及してないため却下）, 同時書き込み（同じ場所とわからないため却下）
   common: データ競合
   desc: 複数のスレッドが同じ変数に同期なしに書き込むこと。競合状態とは異なる。例：残高の同時更新
   comment: 「衝突」は同じ場所で同時に複数の物を伴う
 - en: race condition
-  ja: 折が悪い{動作,状態}, 折悪 (おりあし) 状態
+  ja: 折が悪い{動作,状態}, ｛折悪｜おりあし｝状態
   ja-dead: 不協和状態, 間抜け状態, 間が悪い動作, ご生憎状態, 間悪状態
   common: 競合状態
   desc: 実行のタイミングや順序に影響されるプログラムの不正な振る舞い。データ競合とは異なる。例：預金の消失
@@ -1198,7 +1205,7 @@
 - en: struct
   common: 構造体
 - en: enum
-  common: 列挙型, 列挙体(.NET)
+  common: 列挙型, 列挙体（.NET）
 - en: variant
   ja: 項目
   common: バリアント, 変型, 変種
@@ -1211,7 +1218,7 @@
   ja: 模式
   yamato: さま
   common: パターン
-  comment: 最初は「様(式)」だったが、意外にも中国語の「模式」がハマったため採用
+  comment: 最初は「様（式）」だったが、意外にも中国語の「模式」がハマったため採用
 - en: pattern matching
   ja: 模式照合
   yamato: さまあわせ
@@ -1220,7 +1227,7 @@
   ja: 門番
   common: ガード, 条件式
   desc: パターンマッチ中に書く条件式。値によってコードパスを開閉する
-  comment: 「前提条件」は長い。「条件(式)」は普通のifと区別できない。「要件」は類語的には良い。
+  comment: 「前提条件」は長い。「条件（式）」は普通のifと区別できない。「要件」は類語的には良い。
 - en: generics
   common: 総称型
   comment: 単数の場合、単に「総称」と書いた方が自然なときもある
@@ -1252,7 +1259,7 @@
   ja: 基準試験
   ja-dead: 測能試験, 基準評価試験, 評位試験, 評順試験, 評列試験, 比較検討基準
   common: ベンチマークテスト
-  dest: 性能と信頼性などを基準 (同条件) に基づき評価すること
+  dest: 性能と信頼性などを基準（同条件）に基づき評価すること
   comment: 苦労した割に合わない直訳調になることはよくある。
     語のもつコアな意味が入ってないものはよくある文脈に合っていても不十分なうえ、
     他の意味で使われていないか事前調査すると他の案が大体消えてしまう。
@@ -1260,7 +1267,7 @@
 - en: performance verification
   common: 性能検証
 - en: performance test
-  common: 性能検定(試験)
+  common: 性能検定（試験）
 - en: allocate (memory)
   ja: 割り付け
   common: アロケートする
@@ -1272,8 +1279,8 @@
   ja: 自在割付け部
   common: カスタムアロケーター
 - en: build
-  ja: 組み上げる, (組む)
-  ja-dead: 織る (動), 織り上げ (名)
+  ja: 組み上げる,（組む）
+  ja-dead: 織る（動）, 織り上げ（名）
   common: ビルド
   #comment: 織る＝引っ張っても伸びないもの、編む＝伸縮性のある伸びるもの
   desc: 「組み立て」は意味が広くあいまいなため回避
@@ -1282,7 +1289,7 @@
   common: リビルド
 - en: testing
   ja: 検査
-  common: テスト(する)
+  common: テストする
 - en: primitive type
   ja: 基本型
   common: プリミティブ型
@@ -1318,7 +1325,7 @@
   common: エディタ
 - en: text editor
   ja: 書房
-  common: (テキスト)エディタ
+  common: （テキスト）エディタ
 - en: metaprogramming
   ja: 演譜の演譜
   common: メタプログラミング
@@ -1338,7 +1345,7 @@
   ja: 急停止, 予期せぬ停止
   common: クラッシュ
 - en: module
-  ja: 役区 (やっく)
+  ja: ｛役区｜やっく｝
   ja-dead: 小役
   #yamato: やくわけ
   ja-dead: 組手, 分業, 分身, 単業, 単身, 単体, 分体, 分能, 区合, *役区, 和区, 処区, 役分け, *小役, 役部, *役素, 系素, *役歯
@@ -1389,13 +1396,13 @@
   ja: 場所取り
   ja-dead: 穴埋め, 抜け穴
   common: プレースホルダ
-  desc: 場所取りをする = hold a place (花見などの)
+  desc: 場所取りをする＝hold a place（花見などの）
 - en: thread
   ja: 走脈
   ja-abbr: 脈
   common: スレッド
   desc: Thread of execution（実行の脈絡）という言葉を省略したものである
-  ch: 线程 (大陸), 執行緒 (臺灣), 線程 (港澳)
+  ch: 线程（大陸）, 執行緒（臺灣）, 線程（港澳）
 - en: multi-threading
   ja: 多脈処理
   common: マルチスレッド処理
@@ -1444,7 +1451,7 @@
   ja: 自立環境
   ja-dead: 無基環境, 無援環境
   common: フリースタンディング環境, 自立環境
-  desc: OS の制御下にない一切の計算環境 (家電、携帯、OSそのもの、産業機器等の組み込み環境)
+  desc: OS の制御下にない一切の計算環境（家電、携帯、OSそのもの、産業機器等の組み込み環境）
 - en: polling
   ja: 点呼
   common: ポーリング
@@ -1516,7 +1523,7 @@
   common: コミュニティにより
 - en: volunteer
   ja: 有志
-  common: ボランティア, 篤志家, 志願兵, 義勇(軍), 挺身(隊)
+  common: ボランティア, 篤志家, 志願兵, 義勇（軍）, 挺身（隊）
 - en: set up
   ja: 下準備, 立ち上げ
   common: セットアップ
@@ -1603,9 +1610,9 @@
   ja: 可変性
 
 - en: reference
-  common: 参照, 参考(文献,図書,資料), リファレンス
+  common: 参照, 参考文献, 参考図書, 参考資料, リファレンス
 - en: further reading
-  ja: 推薦(文献,図書,資料)
+  ja: 推薦文献, 推薦図書, 推薦資料
   common: 参照文献, さらに進んだ情報, さらなる情報
 - en: unpack
   ja: 荷解
@@ -1626,7 +1633,7 @@
   common: スライス
   comment: 全範囲の薄切りを考えるとおかしいが、それは原文も同じ
 - en: dereference
-  ja: 辿 (たど) る
+  ja: ｛辿｜たど｝る
   common: 逆参照
   comment: 「手繰る」の用例が Web にあるが、pull の意味も持つため不採用
 - en: unsafe
@@ -1634,12 +1641,12 @@
 - en: release channel
   ja: 放流路線
   common: リリースチャンネル
-  comment: 路線＝団体や組織などの運動の基本方針 (デジタル大辞泉)
+  comment: 路線＝団体や組織などの運動の基本方針（デジタル大辞泉）
 - en: annotation
   ja: 補注
   ja-dead: 特注
   common: アノテーション
-  desc: comment は分かりやすさのために書くもの、annotation は code の一部/意味への言及 (ないと困る補足)
+  desc: comment は分かりやすさのために書くもの、annotation は code の一部/意味への言及（ないと困る補足）
   ch: 注解, 标注
 - en: Arc; atomic reference count
   ja: 不可分参照数計
@@ -1650,7 +1657,7 @@
   desc: 文脈により意訳したほうがよい
 - en: range
   common: 範囲
-  comment: Ruby (るりま) より
+  comment: Ruby（るりま）より
 - en: prelude
   ja: 前奏
   common: プレリュード
@@ -1663,7 +1670,7 @@
   ja: 借用
 - en: move
   ja: 移動
-  ja-dead: 譲渡, 移転 (位置の移動の意味もあるため✗)
+  ja-dead: 譲渡, 移転（位置の移動の意味もあるため✗）
 - en: crate
   ja: わく箱
   ja: #荷箱, 箪笥, かご
@@ -1679,7 +1686,7 @@
   ja: 特性対象
 - en: universal function call syntax
   ja: 万能機能呼び出し構文
-  comment: uniform (統一) は異なる記法の構文が前提にある印象を受ける
+  comment: uniform（統一）は異なる記法の構文が前提にある印象を受ける
 - en: sized types
   ja: 定幅型
   comment: 「固定長型」より短い
@@ -1705,12 +1712,12 @@
 - en: lang items
   ja: 言語建材
   ch: 言語項目
-  desc: コンパイラが暗黙に埋め込む機能のユーザ実装を提供する仕組み (メモリ確保と開放など)
+  desc: コンパイラが暗黙に埋め込む機能のユーザ実装を提供する仕組み（メモリ確保と開放など）
 - en: deref coercions
-  ja: 辿(たど)り同調
-  ja-dead: 押し辿 (たど) り
-  desc: ポインタ逆参照演算子 (*) のオーバーロード機能
-  comment: 押し = 強要 = coerce。強制〜同調圧力
+  ja: ｛辿｜たど｝り同調
+  ja-dead: 押し｛辿｜たど｝り
+  desc: ポインタ逆参照演算子 * のオーバーロード機能
+  comment: 押し＝強要＝coerce。強制〜同調圧力
 - en: compiler plugins
   ja: 製譜器拡張
 - en: lifetime
