@@ -1335,7 +1335,7 @@
   ja-dead: 旗
   common: フラグ
 - en: crash
-  ja: 急停止
+  ja: 急停止, 予期せぬ停止
   common: クラッシュ
 - en: module
   ja: 役区 (やっく)
@@ -1450,17 +1450,27 @@
   common: ポーリング
 
 # programming patterns
+- en: getter
+  common: ゲッター, 取得関数
+- en: setter
+  common: セッター, 設定関数
 - en: accessor
-  ja: 取っ手
-  common: アクセサ
+  ja-dead: 取っ手
+  common: アクセサー
 - en: listener
   ja: 聞き手
   common: リスナー
-- en: handle
+- en: handle (n.)
   ja: 手綱
   common: ハンドル
+  desc: file descriptor, etc
+- en: handle (v.)
+  ja: 対処する
+  common: ハンドルする
+  desc: event handling
 - en: handler
   ja-dead: 持ち手
+  ja: 処方, 対処法
   common: ハンドラ
 - en: sender
   ja: 投げ手
@@ -1720,3 +1730,8 @@
   ja-dead: 機構開門
   desc: 新規・実験的な言語機能のへアクセスを提供する仕組み
 
+- en: follow (SNS)
+  ja: 追い読みする,追い見する,動向を追う,報せを読む,報せを追う
+  ja-abbr: 追読,追見,追向,読報,追報
+  common: フォローする
+  comment: 
