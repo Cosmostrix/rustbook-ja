@@ -20,6 +20,26 @@
 #   ja: {id: そのまま置き換え可能な語, 特定の文脈または特例: より適切な言い換え, ... }
 #   例 ja: {id: 易達性, 交通が便利な状態: 交通の便の良さ,（交通）利便性 }
 # 文脈によって明らかな場合に省略可能な言葉はかっこで括る
+操作台http://arch2009.sazuka.net/_/rsrc/1254297379083/dai-3kai-kougi-shiryou--2009-10-02/0008_02_l.jpg
+
+着脱自在 removable
+継付け 継外し 継は時間的だから×
+施着解着 何を施す？×
+検出、認識はカーネルからudevまでの話×
+設置（撤去）、装着（除去）、取り付け（取り外し）、はめる（外す）、接続（切断）は物理層の用例が多い×
+接合（切除）○
+接ぎ合わせる（切り除く）○ヤマト
+装備（装備解除、除装）△
+接ぎ付け（切り外し）○ヤマト
+マウント成功 活着
+#
+- en: liveness
+  ja: 進展性, 進捗性, 前進性, 誠実性
+  common: 活性
+  desc: プロセス代数において、排他的に実行しなければならない部分を持つプログラムを複数プロセスで同時実行しても、いずれ必ず進捗し応答が得られるという性質。
+  #examples:
+  #  -
+  comment: 生きているけど返事をしないプロセスとの違いを明確に。
 
 # misc
 - en: loudness
@@ -222,7 +242,7 @@
   ja-abbr: 冊
   ja-dead: カラ（空,殻,器;身を入れる器,なきがらのガラ）, トジ（綴）, 篇（竹簡を数える単位）
   common: ファイル
-  comment: 
+  comment:
     そう‐し〔サウ‐〕【草紙／草子／双紙／▽冊子】《「さくし（冊子）」の音変化か》
       １ 漢籍・和本などで、紙を綴 (と) じ合わせた形式の書物。綴じ本。
       ２ 物語・日記・歌書など、和文で記された書物の総称。
@@ -515,10 +535,11 @@
   ja: 操作, 到達
   common: アクセス
   desc: 情報に対する操作の総称。能動的に取りに行くこと。read access=読取操作
-- en: accessibile
-  ja: 優操的
+- en: accessible
+  ja: 優操的,優作的,優関的,優様的
   ja-dead: 可操的
   common: アクセシブル
+  desc: 優しく関わりやすいさま
 - en: accessibility
   ja: 優操性
   ja-dead: 可操性, 優接性, 優達性, 優近性
@@ -672,7 +693,7 @@
   common: ドラッグアンドドロップ
   comment: 初出は TRON の「つかんでポイ」だが実際は理解されにくい。
     マウスだとつかむ動作になるがタッチパッドやマジックトラックパッドでは意味不になる
-#- en: 
+#- en:
 #  ja: 電子文房具
 
 - en: medium, media (multi)
@@ -1099,7 +1120,7 @@
   ja: 指先
   ja-dead: 目付け, 場指し, 置き先
   common: ポインタ
-  comment: 
+  comment:
     「置き先」は実際に使ってみるまでは「場指し」より良さそうに見えた。
     「ポインタ＝場指し」は微妙だけど「置き先」に変えてみると違和感がすごかったので仕方なく継続。
     マウスポインタから発想を得て指先/指差しに至る。
@@ -1143,8 +1164,8 @@
   common: ゼロコスト
 - en: (variable) scope
   ja: 有効範囲
-  ja-dead: 出現範囲, 可視範囲
-  common: スコープ
+  ja-dead: 出現範囲, 可視範囲, 封束範囲
+  common: スコープ, 有効範囲
   desc: ある変数束縛の有効なソースコード上の範囲
 - en: out of scope
   ja: 範囲外
@@ -1170,9 +1191,12 @@
   ja: 誤りの対処
   common: エラーハンドリング, エラー処理
 - en: function
-  ja: 機能
+  ja: 機能, 手順
   common: 関数
   desc: いわゆる手続きのこと。副作用を含むものは数学上の関数ではない
+- en: procedure
+  ja: 手続き, 手順, 処置
+  common: プロシージャ, 手続き
 - en: variable
   common: 変数
   ja: 変数, 元, 変項, 変値
@@ -1362,11 +1386,11 @@
   ja: 標準譜集
   common: 標準ライブラリ
 - en: package
-  ja-dead: 包み, 分装, 譜装, 
+  ja-dead: 包み, 分装, 譜装,
   common: パッケージ
   ch: 软件包
 - en: package manager
-  ja: 
+  ja:
   common: パッケージマネージャー
 - en: container
   ja: 容器
@@ -1433,10 +1457,10 @@
   ja-dead: 改良布
   common: パッチ, 修正パッチ, 修正
 - en: native
-  ja-dead: 
+  ja-dead:
   common: ネイティプ
 - en: attach
-  ja-dead: 
+  ja-dead:
   common: アタッチ
 - en: wildcard
   ja: 身代わり
@@ -1703,9 +1727,9 @@
 - en: associated constants
   ja: 付属定数
 - en: intrinsics
-  ja: 底力
-  ja-dead: 真性, 野生, 原生, 真価, 本領, 真骨頂
-  desc: ハードウエアに本来備わっている機能への直接アクセス
+  ja: 内部命令
+  ja-dead: 真性, 野生, 原生, 真価, 本領, 真骨頂, 底力
+  desc: ハードウエアに本来備わっている機能への型安全でない直接アクセス
   comment: 用語は LLVM 由来かと思われる。感覚的に最も近い意味は
     本来の能力を発揮する＝「ふだんは表に出さない、自分の最大限の力を出すこと」
     であり、それ以外の意味を持たない「底力」が適訳とみる。
@@ -1730,15 +1754,84 @@
   comment: |
     読みは「ラステーシャン」/rʌˈsteɪʃə/。
     https://en.wikipedia.org/wiki/Crustacean + technician で rust ay cian。
+- en: The Rustnomicon
+  ja: ラストノミコン, 奥義Rust
 - en: bound
   ja: 縛り
   desc: 型および特性にかかる制約。Haskell でいう文脈
+- en: bound variable
+  ja-abbr: 封項
+  ja: 封じ込め変項
+  common: 束縛変数
+  comment: 初めて見たときから熟（こな）れていない感じがした語だが、ついに日本語を見つけた。
+- en: free variable
+  ja-abbr: 遊項
+  ja: 自由変項
+  ja-dead: 開（放）変項
+  common: 自由変数
+  comment: |
+    束縛と自由は対義語の関係。
+    「自由」と「自在」の違いは、自由が無制限であるのに対し、自在は制限下で思うままに振る舞えること。
+    FreedomとLibertyの違い http://mb101bold.cocolog-nifty.com/blog/2008/07/freedomliberty_345d.html
+    ゆう【遊】 の意味（デジタル大辞泉）→５ 位置を定めず自由に動き回る。「遊軍・遊撃・遊星・遊牧・遊離」
+    ここでは、「定義を定めず自由に動き回る変数」の意味
 - en: feature gate
-  ja-dead: 機構開門
+  ja: 機構開門
   desc: 新規・実験的な言語機能のへアクセスを提供する仕組み
 
 - en: follow (SNS)
-  ja: 追い読みする,追い見する,動向を追う,報せを読む,報せを追う
+  ja: 追い読みする,追い見する,動向を追う,報せを読む,報せを追う,採読する
   ja-abbr: 追読,追見,追向,読報,追報
   common: フォローする
-  comment: 
+
+- en: subscribe
+  ja: 購読する（有料）,読者になる（無料）,受読する
+  ja-daed: 好読する
+  common: 購読する,読者になる
+  exp: scribe（書記官、写字生、作家、記者）→字を書くもの、sub（下の）→〜の下流、受け手
+  comment: 購の字が気になる。
+
+- en: streaming
+  ja: 着流
+  common: ストリーミング
+
+- en: sorting
+  ja: 並べ替え,排列
+  common: ソート
+  exp: 「排列」については、<http://crd.ndl.go.jp/reference/detail?page=ref_view&id=1000027247>を参照。
+
+- en: language binding
+  ja: 言語ツナギ
+  common: 言語バインディング
+  comment: 連絡窓口 liaison【同】attach;link;tie;ligate;bind;fasten
+- en: key bindings
+  ja: キー割り当て
+  common: キーバインディング
+  comment: キーボード・ショートカット、キーコンフィグと同義
+
+- en: morally true
+  ja: 伝心的に真,道徳的に真
+  comment: <http://cheng.staff.shef.ac.uk/morality/morality.pdf>
+    要約：数学において「道徳的に真である」とはどういうことか？
+    これが「証明可能だから真」や「広く正しいと信じられているから真」と大きく異なるのは、
+    数学者個々人の内面的理解を伴っているかどうかという点である。
+    例えば、エレガントな証明は技巧的に過ぎ、問題の答えが「なぜそうなのか・なぜそうあるべきか」
+    理解に苦しむものになりがちだ。読者にとって、この問題は証明可能であっても納得のいくものには
+    ならない。言い換えると、解法のココロが伝わってこない、伝心的でない、ということになる。
+    一方、圏論においては逆の現象が観察されている。口でちょっと説明するだけでその全容が理解され、
+    証明を書き下しても得るものが無い（アブストラクト・ナンセンス）。この場合は伝心的に正しい。
+    一般常識におけるモラル＝道徳と数学的モラルの共通点は、内面的な真実とその理由の追求に関する概念であることだ。
+    （フィーリングで正しい、啓発的、ということなのかも）
+    （以心伝心＝心を以て心に伝ふ）（関連語は「神髄、覚知、単伝、悟り」等か）
+- en: moralist Mathematician
+  ja: 神髄主義数学者,倫理的数学者
+  comment: 宝石の国１２話のフォスは数学的な意味でmoralistなんだなあ、などと思う。
+  # 無人島から出られない神髄主義数学者は彼の見つけた証明を書くか？
+  #「ー書かない。永久に。内面的正しさの探求だけが目的ならば、
+  # 苦しんで対外的なメッセージ＝証明に仕立てる必要などないのだ」
+- en: asset
+  ja: 素材
+  common: アセット
+- en: asset store
+  ja: 素材屋
+  common: アセットストア
