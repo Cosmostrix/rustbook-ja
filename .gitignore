@@ -1,4 +1,4 @@
-/out/
-/fonts/
+out/
 *.omc
 .omakedb*
+.DS_Store
