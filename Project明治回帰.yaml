@@ -20,21 +20,22 @@
 #   ja: {id: そのまま置き換え可能な語, 特定の文脈または特例: より適切な言い換え, ... }
 #   例 ja: {id: 易達性, 交通が便利な状態: 交通の便の良さ,（交通）利便性 }
 # 文脈によって明らかな場合に省略可能な言葉はかっこで括る
-操作台http://arch2009.sazuka.net/_/rsrc/1254297379083/dai-3kai-kougi-shiryou--2009-10-02/0008_02_l.jpg
-
-着脱自在 removable
-継付け 継外し 継は時間的だから×
-施着解着 何を施す？×
-検出、認識はカーネルからudevまでの話×
-設置（撤去）、装着（除去）、取り付け（取り外し）、はめる（外す）、接続（切断）は物理層の用例が多い×
-接合（切除）○
-接ぎ合わせる（切り除く）○ヤマト
-装備（装備解除、除装）△
-接ぎ付け（切り外し）○ヤマト
-マウント成功 活着
+# 操作台http://arch2009.sazuka.net/_/rsrc/1254297379083/dai-3kai-kougi-shiryou--2009-10-02/0008_02_l.jpg
+#
+# 着脱自在 removable
+# 継付け 継外し 継は時間的だから×
+# 施着解着 何を施す？×
+# 検出、認識はカーネルからudevまでの話×
+# 設置（撤去）、装着（除去）、取り付け（取り外し）、はめる（外す）、接続（切断）は物理層の用例が多い×
+# 接合（切除）○
+# 接ぎ合わせる（切り除く）○ヤマト
+# 装備（装備解除、除装）△
+# 接ぎ付け（切り外し）○ヤマト
+# マウント成功 活着
 #
 - en: liveness
-  ja: 進展性, 進捗性, 前進性, 誠実性
+  ja: 漸進性, 進展性
+  ja-dead: 進捗性, 前進性, 誠実性
   common: 活性
   desc: プロセス代数において、排他的に実行しなければならない部分を持つプログラムを複数プロセスで同時実行しても、いずれ必ず進捗し応答が得られるという性質。
   #examples:
@@ -43,20 +44,22 @@
 
 # misc
 - en: loudness
-  ja: 聴圧
+  ja: 音量感
+  ja-daed: 聴圧
   yamato: うるささ
   common: ラウドネス
   desc: 感覚的な音の大きさ
-- en: love
-  yamato: 御大切
-  common: 大好き, 愛してる
-  desc: 「御大切」は平安時代の翻訳。死んでも「愛」とは呼ばせない
+  comment: TV局の資料を参考にした
+# - en: love
+#   yamato: 御大切
+#   common: 大好き, 愛してる
+#   desc: 「御大切」は平安時代の翻訳。死んでも「愛」とは呼ばせない
 - en: literacy
-  ja: 基礎教養
+  ja: (基礎)教養
   common: リテラシー
   desc: 読み書きそろばん
 - en: IT literacy
-  ja: 情報教養
+  ja: 情報の教養
   common: ITリテラシー
 - en: media literacy
   common: メディアリテラシー, 情報活用能力
@@ -96,11 +99,13 @@
   ja: 別名で保存
   common: 名前を付けて保存
 - en: import
-  ja: 取り込む, 持ち込む, 取り入れる
+  ja: 輸入
+  ja-daed: 取り込む, 持ち込む, 取り入れる
   common: インポート
   desc: 「電話帳をインポートする」等
 - en: export
-  ja: 書き出す, 持ち出す, 取り出す
+  ja: 輸出
+  ja-daed: 書き出す, 持ち出す, 取り出す
   common: エクスポート
   desc: port＝港→輸出入の場
 - en: undo
@@ -1117,7 +1122,7 @@
   ja-dead: 棚置き, 棚, 平積み, 本棚
   common: ヒープ
 - en: pointer
-  ja: 指先
+  ja: 指先, 指し手
   ja-dead: 目付け, 場指し, 置き先
   common: ポインタ
   comment:
@@ -1130,9 +1135,9 @@
   common: 生のポインタ
   comment: 「生場指し」…生の馬刺しは食べると当たりそうだ（つまり危ない）と思ってくれることを期待していた。
 - en: dangling pointer
-  ja: 空を向いた指先
-  ja-abbr: ｛空指｜そらゆび｝
-  ja-dead: うその場指し, 外れた場指し
+  ja: 迷子の指先, 行方不明の指先
+  ja-abbr-dead: ｛空指｜そらゆび｝
+  ja-dead: 空を向いた指先, うその場指し, 外れた場指し
   common: 参照先の無効なポインタ
 - en: iterator
   ja: 巡査
@@ -1231,10 +1236,15 @@
 - en: enum
   common: 列挙型, 列挙体（.NET）
 - en: variant
-  ja: 項目
+  ja: 場合値
+  ja-dead: 色々値, 異方値, 項目
   common: バリアント, 変型, 変種
   desc: 列挙型のコンストラクタであり、列挙されるそれぞれの値
-  comment: 「項目を列挙する」という用例からの連想を期待して採用。類語的にも問題ない
+  comment: 「項目を列挙する」という用例からの連想を期待して採用。類語的にも問題ない。
+    が、やはり使いづらい感じがする。そもそもバリアントという言葉のセンスが悪い。
+    VBAではHaskellのAnyに相当する型をVariant型というが、
+    ここでの意味は「なんか色々ある」ぐらいのものだろう。まったく紛らわしい。
+    有用なバリアント型の例としてはOptionやEnumがある。場合分けがその本質だ。
 - en: match
   ja: 照合
   common: マッチ, 照合
@@ -1366,7 +1376,8 @@
   ja-dead: 旗
   common: フラグ
 - en: crash
-  ja: 急停止, 予期せぬ停止
+  ja: 異常終了
+  ja-dead: 急停止, 予期せぬ停止
   common: クラッシュ
 - en: module
   ja: ｛役区｜やっく｝
@@ -1389,8 +1400,9 @@
   ja-dead: 包み, 分装, 譜装,
   common: パッケージ
   ch: 软件包
+  comment: いまはカタカタで妥協しておく。
 - en: package manager
-  ja:
+  ja: パッケージ管理系
   common: パッケージマネージャー
 - en: container
   ja: 容器
@@ -1568,19 +1580,22 @@
 
 - en: design
   common: デザイン, 設計
-  desc: 設計⊂デザイン
+  comment: 設計⊂デザイン。デザインと設計は違う
 - en: core (in CPUs)
   ja: 頭
   common: コア
 
 # idea, thought
 - en: open source
-  ja: 原譜開放
+  ja: 原譜公開
+  ja-dead: 原譜開放
   common: オープンソース
   comment: 「解放」ではないので注意
 - en: open source software
-  ja: 原譜開放譜体
+  ja: 原譜公開譜体
+  ja-dead: 原譜開放譜体
   common: オープンソースソフトウェア
+  comment: openの意味は「無料で公開されている」を採用。
 - en: free software
   ja: 自由譜体
   common: フリーソフトウェア, 自由ソフトウェア
@@ -1588,8 +1603,10 @@
   ja: 無料譜体
   common: フリーウェア
 - en: FLOSS; free/libre and open source software
-  ja: 自由・原譜開放譜体
+  ja: 自由・原譜公開譜体
+  ja-dead: 自由・原譜開放譜体
 - en: overhead
+  ja: 無駄
   ja-dead: 身の丈以上, 身なり以上, 諸経費, 間接費
   common: オーバーヘッド
 
@@ -1607,6 +1624,7 @@
 - en: semver; semantic versioning
   ja: 意味論的付版
   common: セマンティックバージョン
+  comment: 改版基準
 - en: commit
   ja-dead: 確注
   common: コミット
@@ -1651,30 +1669,34 @@
 - en: size (of data types)
   ja: 幅, 長さ
   common: サイズ, 大きさ, 長さ
+  comment: サイズは実質日本語とはいえ、複合語に困るので訳出。。
 - en: slice
-  ja-dead: 薄切り
-  ja: 切片
+  ja-dead: 切片, 薄切り
   common: スライス
-  comment: 全範囲の薄切りを考えるとおかしいが、それは原文も同じ
+  comment: 全範囲の薄切りを考えるとおかしいが、それは原文も同じ。
+    スライスは日本語として通用するのでカナでよい。
 - en: dereference
   ja: ｛辿｜たど｝る
   common: 逆参照
   comment: 「手繰る」の用例が Web にあるが、pull の意味も持つため不採用
 - en: unsafe
-  common: 危険な
+  common: アンセーフ, 危険な, 安全でない
 - en: release channel
   ja: 放流路線
   common: リリースチャンネル
   comment: 路線＝団体や組織などの運動の基本方針（デジタル大辞泉）
 - en: annotation
-  ja: 補注
-  ja-dead: 特注
+  ja: 注釈
+  ja-dead: 補注, 特注
   common: アノテーション
   desc: comment は分かりやすさのために書くもの、annotation は code の一部/意味への言及（ないと困る補足）
+  comment: コメントは解説であってほしいので注釈とは言わないことにする。
   ch: 注解, 标注
 - en: Arc; atomic reference count
-  ja: 不可分参照数計
+  ja: 瞬時参照数計
+  ja-dead: 不可分参照数計
   common: アトミック参照カウント
+  comment: 参照が不可分に見えたので修正
 - en: feature
   ja: (機構, 機能, 方式, 技術, 成果), (特色, 特徴, 特性, 特質, 素性), (見どころ, 目玉, 売り, 主要)
   common: 機能, フィーチャ
@@ -1683,7 +1705,8 @@
   common: 範囲
   comment: Ruby（るりま）より
 - en: prelude
-  ja: 前奏
+  ja-abbr:  前奏
+  ja: 前奏譜
   common: プレリュード
   desc: 言語環境に付属し基本的な環境を整えるライブラリ群。暗黙にインポートされる場合が多い。
 
@@ -1696,10 +1719,11 @@
   ja: 移動
   ja-dead: 譲渡, 移転（位置の移動の意味もあるため✗）
 - en: crate
-  ja: わく箱
-  ja: #荷箱, 箪笥, かご
+  ja: 通い箱
+  ja-daed: わく箱, 荷箱, 箪笥, かご
   desc: 枠箱、クレート（60×30×30cmの箱1杯分の単位）、木箱、木枠の付いた箱
-  comment: 運送系のサイトでかなに開いてあったので踏襲
+  comment: わく箱→運送系のサイトでかなに開いてあったので踏襲。
+    かよいばこ→商品運搬用の箱はこちらの呼び方の方がメジャー。
 - en: drop
   ja: 脱落
   ja-dead: 脱落*, 没収, 回収*, 放棄, 開放, 排出, 除去, 片付け, 処分*, 後始末
@@ -1727,12 +1751,14 @@
 - en: associated constants
   ja: 付属定数
 - en: intrinsics
-  ja: 内部命令
-  ja-dead: 真性, 野生, 原生, 真価, 本領, 真骨頂, 底力
+  ja: 固有命令
+  ja-dead: 素命令, 内部命令, 真性, 野生, 原生, 真価, 本領, 真骨頂, 底力
   desc: ハードウエアに本来備わっている機能への型安全でない直接アクセス
   comment: 用語は LLVM 由来かと思われる。感覚的に最も近い意味は
     本来の能力を発揮する＝「ふだんは表に出さない、自分の最大限の力を出すこと」
     であり、それ以外の意味を持たない「底力」が適訳とみる。
+    ↑何いってるんだか。わからなければ意味がない。
+    内部命令と聞くとμOPのようなものを感じるので不適当。。
 - en: lang items
   ja: 言語建材
   ch: 言語項目
@@ -1760,12 +1786,12 @@
   ja: 縛り
   desc: 型および特性にかかる制約。Haskell でいう文脈
 - en: bound variable
-  ja-abbr: 封項
+  ja-abbr: 封項, 封値
   ja: 封じ込め変項
   common: 束縛変数
   comment: 初めて見たときから熟（こな）れていない感じがした語だが、ついに日本語を見つけた。
 - en: free variable
-  ja-abbr: 遊項
+  ja-abbr: 遊項, 遊値
   ja: 自由変項
   ja-dead: 開（放）変項
   common: 自由変数
@@ -1835,3 +1861,21 @@
 - en: asset store
   ja: 素材屋
   common: アセットストア
+
+- en: opaque datatype
+  ja: 目隠し型
+  common: 不透明型
+- en: opaque pointer
+  ja: 目隠し指先
+  common: 不透明ポインタ
+  comment: 目隠しカーテンより。
+- en: dispatch
+  ja: 指名
+  common: ディスパッチ
+  comment: dispatching priority=指名順位 より
+- en: record
+  ja-abbr: 票
+  ja: 記録票
+  common: レコード
+  desc: 一件分のデータ。構造体。
+  comment: 記録票(record)は複数の記入欄(field)の集合である。

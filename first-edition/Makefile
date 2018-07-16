@@ -19,3 +19,4 @@ en-md-html/%.html: en-src/%.md $(PROG)
 	maptrans map2html $< en-md-html
 
 .PHONY: all map2html back2md
+.PRECIOUS: ja-md/%.md
