@@ -2,7 +2,7 @@ SOURCES = $(wildcard en-src/*.md)
 SOURCES2 = $(wildcard mt-ja-src/*.html)
 PROG = $(shell which maptrans)
 
-all: map2html back2md book
+all: map2html back2md
 
 back2md: $(patsubst mt-ja-src/%.html,src/%.md,$(SOURCES2))
 	~/.cargo/bin/mdbook build
