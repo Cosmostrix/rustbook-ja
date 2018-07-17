@@ -26,7 +26,7 @@
 
 リスト15-1は、ボックスを使用して原に`i32`値を格納する方法を示しています。
 
-<span class="filename">ファイル名。src / main.rs</span>
+<span class="filename">ファイル名。src/main.rs</span>
 
 ```rust
 fn main() {
@@ -79,7 +79,7 @@ consリストは、`cons`機能を再帰的に呼び出すことによって生�
 譜面リスト15-2はconsリストのenum定義を含んでいます。
 この譜面は、`List`型が既知のサイズを持っていないので、まだ製譜されないことに注意してください。
 
-<span class="filename">ファイル名。src / main.rs</span>
+<span class="filename">ファイル名。src/main.rs</span>
 
 ```rust,ignore
 enum List {
@@ -95,7 +95,7 @@ enum List {
 
 `List`型を使用してリスト`1, 2, 3`を格納すると、リスト15-3の譜面のようになります。
 
-<span class="filename">ファイル名。src / main.rs</span>
+<span class="filename">ファイル名。src/main.rs</span>
 
 ```rust,ignore
 use List::{Cons, Nil};
@@ -109,7 +109,7 @@ fn main() {
 
 最初の`Cons`値は`1`と別の`List`値を保持します。
 この`List`値は、`2`と別の`List`値を保持する別の`Cons`値です。
-この`List`値は1つの以上である`Cons`保持している値`3`し、`List`最後にある値、`Nil`、リストの終わりを非再帰的変種。
+この`List`値は1つの以上である`Cons`保持している値`3`し、`List`最後にある値、`Nil`、リストの終わりを非再帰的場合値。
 
 リスト15-3の譜面を製譜しようとすると、譜面リスト15-4に示す誤りが発生します。
 
@@ -178,7 +178,7 @@ Rustは、再帰的に定義された型にどれだけの領域を割り当て�
 
 リスト15-2の`List` enumの定義と、リスト15-3の`List`の使い方をリスト15-5の譜面に変更することができます。これは製譜されます。
 
-<span class="filename">ファイル名。src / main.rs</span>
+<span class="filename">ファイル名。src/main.rs</span>
 
 ```rust
 enum List {

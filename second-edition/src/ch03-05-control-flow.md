@@ -1,4 +1,4 @@
-## 制御の流れ
+## 制御構造
 
 条件が真であるかどうかによっていくつかの譜面を実行するかどうかを決定し、条件が真である間に何度かの譜面を繰り返し実行することを決定することは、ほとんどの演譜言語の基本的な組み上げ段落です。
 Rust譜面の実行フローを制御できる最も一般的な構造は`if`式とループの`if`です。
@@ -9,10 +9,10 @@ Rust譜面の実行フローを制御できる最も一般的な構造は`if`式
 条件を指定し、「この条件が満たされている場合は、この譜面段落を実行します。
 条件が満たされない場合は、この譜面段落を実行しないでください。
 
-`if`式を調べるために、*projects*ディレクトリに*branches*という名前の新しい企画を作成します。
-*src / main.rs*ファイルに、次のように入力します。
+`if`式を調べるために、*projects*階層に*branches*という名前の新しい企画を作成します。
+*src/main.rs*ファイルに、次のように入力します。
 
-<span class="filename">ファイル名。src / main.rs</span>
+<span class="filename">ファイル名。src/main.rs</span>
 
 ```rust
 fn main() {
@@ -65,7 +65,7 @@ condition was false
 条件が`bool`でない場合は、誤りが発生します。
 たとえば、次の譜面を実行してみてください。
 
-<span class="filename">ファイル名。src / main.rs</span>
+<span class="filename">ファイル名。src/main.rs</span>
 
 ```rust,ignore
 fn main() {
@@ -92,10 +92,10 @@ error[E0308]: mismatched types
 
 この誤りは、Rustが`bool`期待していたのに整数を持っていることを示しています。
 RubyやJavaScriptなどの言語とは異なり、Rustはブール型以外の型をブール型に自動的に変換しようとはしません。
-あなたは明示的でなければならず、いつも`if`を条件として真偽値を指定する必要があります。
+明示的でなければならず、いつも`if`を条件として真偽値を指定する必要があります。
 たとえば、数字が`0`に等しくない場合にのみ`if` code段落を実行したい`if`、 `if`式を次のように変更できます。
 
-<span class="filename">ファイル名。src / main.rs</span>
+<span class="filename">ファイル名。src/main.rs</span>
 
 ```rust
 fn main() {
@@ -114,7 +114,7 @@ fn main() {
 `else if`式で`if`と`else`を組み合わせることで`if`複数の条件を満たすことができます。
 例えば。
 
-<span class="filename">ファイル名。src / main.rs</span>
+<span class="filename">ファイル名。src/main.rs</span>
 
 ```rust
 fn main() {
@@ -144,7 +144,7 @@ number is divisible by 3
 ```
 
 この算譜を実行すると、それはそれぞれのを確認し`if`式順番に、条件が成立しているため、第1の本体を実行します。
-6が2で割り切れるにもかかわらず、出力`number is divisible by 2`で`number is not divisible by 4, 3, or 2`、 `else`段落から`else` `number is not divisible by 4, 3, or 2`文言で`number is not divisible by 4, 3, or 2`ことも分かりませ`else`。
+6が2で割り切れるにもかかわらず、出力`number is divisible by 2`で`number is not divisible by 4, 3, or 2`、 `else`段落から`else` `number is not divisible by 4, 3, or 2`テキストで`number is not divisible by 4, 3, or 2`ことも分かりませ`else`。
 これは、Rustが最初の真の条件の段落のみを実行し、見つかったら残りの部分をチェックしないからです。
 
 式が譜面を混乱させる可能性がある`else if`余りにも多くを使用するので`else if`式がある場合は、譜面をリファクタリングすることができます。
@@ -154,7 +154,7 @@ number is divisible by 3
 
 `if`は式なので、リスト3-2のように、`let`文の右側でそれを使用できます。
 
-<span class="filename">ファイル名。src / main.rs</span>
+<span class="filename">ファイル名。src/main.rs</span>
 
 ```rust
 fn main() {
@@ -188,7 +188,7 @@ The value of number is: 5
 リスト3-2の`if` armと`else` armの両方の結果は`i32`整数でした。
 次の例のように型が一致しない場合、誤りが発生します。
 
-<span class="filename">ファイル名。src / main.rs</span>
+<span class="filename">ファイル名。src/main.rs</span>
 
 ```rust,ignore
 fn main() {
@@ -243,9 +243,9 @@ Rustには3種類のループがあります。 `loop`、 `while`、 `for`。
 
 `loop`予約語は、Rustに譜面の段落を何度も何度も何度も何度も実行するように、または明示的に停止するよう指示するまで繰り返します。
 
-例として、あなたの*ループ*ディレクトリの*src / main.rs*ファイルを*次の*ように変更します。
+例として、*ループ*階層の*src/main.rs*ファイルを*次の*ように変更します。
 
-<span class="filename">ファイル名。src / main.rs</span>
+<span class="filename">ファイル名。src/main.rs</span>
 
 ```rust,ignore
 fn main() {
@@ -276,7 +276,7 @@ again!
 
 幸いにも、Rustは、ループから脱出するための、より信頼性の高い別の方法を提供します。
 ループ内で`break`予約語を使用して、ループの実行を停止するタイミングを算譜に指示できます。
-ユーザーが正しい数を推測してゲームに勝ったときに算譜を終了するには、第2章の「正しい推測の後に終了する」章の推測ゲームでこれを実行したことを思い出してください。
+利用者が正しい数を推測してゲームに勝ったときに算譜を終了するには、第2章の「正しい推測の後に終了する」章の推測ゲームでこれを実行したことを思い出してください。
 
 #### `while`条件付きループ
 
@@ -284,12 +284,12 @@ again!
 条件が真である間に、ループが実行されます。
 条件が真でなくなると、算譜は`break`呼び出してループを停止します。
 このループ型は、`loop`、 `if`、 `else`、および`break`組み合わせを使用して実装できます。
-あなたが望むのであれば、算譜でこれを試すことができます。
+望むのであれば、算譜でこれを試すことができます。
 
 しかし、このパターンは非常に一般的なので、Rustには`while`ループと呼ばれる組み込みの言語構造が`while`ます。
 譜面リスト3-3は`while`使っています。算譜は3回ループし、毎回カウントダウンしてから、ループの後に別のメッセージを出力して終了します。
 
-<span class="filename">ファイル名。src / main.rs</span>
+<span class="filename">ファイル名。src/main.rs</span>
 
 ```rust
 fn main() {
@@ -316,7 +316,7 @@ fn main() {
 `while`構造体を使用して、配列などの集まりの要素をループすることができます。
 たとえば、リスト3-4を見てみましょう。
 
-<span class="filename">ファイル名。src / main.rs</span>
+<span class="filename">ファイル名。src/main.rs</span>
 
 ```rust
 fn main() {
@@ -359,7 +359,7 @@ the value is: 50
 より簡潔な方法として、`for`ループを使用して、集まり内の各項目に対していくつかの譜面を実行することができます。
 `for`ループは譜面リスト3-5の譜面のようになります。
 
-<span class="filename">ファイル名。src / main.rs</span>
+<span class="filename">ファイル名。src/main.rs</span>
 
 ```rust
 fn main() {
@@ -385,7 +385,7 @@ fn main() {
 
 ここでは、カウントダウンは、`for`ループと、まだ取り上げていない`rev`を使って範囲を逆転させるようなものです。
 
-<span class="filename">ファイル名。src / main.rs</span>
+<span class="filename">ファイル名。src/main.rs</span>
 
 ```rust
 fn main() {
@@ -401,7 +401,7 @@ fn main() {
 ## 概要
 
 やった！　
-それはかなりの章でした。変数、スカラーと複合データ型、機能、コメント、`if`式、ループについて学びました！　
+それはかなりの章でした。変数、スカラーと複合データ型、機能、注釈、`if`式、ループについて学びました！　
 この章で説明する概念で練習する場合は、以下のことを行う算譜を作成してみてください。
 
 * 華氏と摂氏の間の温度を変換します。

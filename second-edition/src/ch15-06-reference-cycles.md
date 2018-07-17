@@ -9,7 +9,7 @@ Rustは`Rc<T>`と`RefCell<T>`を使用して記憶リークを許可すること
 
 リスト15-25の`List` enumと`tail`操作法の定義から始めて、参照円環がどのように起こるか、そしてそれを防ぐ方法を見てみましょう。
 
-<span class="filename">ファイル名。src / main.rs</span>
+<span class="filename">ファイル名。src/main.rs</span>
 
 
 ```rust
@@ -36,7 +36,7 @@ impl List {
 
 <span class="caption">15-25リスト。保持短所リスト定義<code>RefCell&lt;T&gt;</code>何を修正することができるように<code>Cons</code>場合値が参照しています</span>
 
-リスト15-5の`List`定義の別のバリエーションを使用しています。
+リスト15-5の`List`定義の別の場合値を使用しています。
 `Cons`場合値の2番目の要素は`RefCell<Rc<List>>`。つまり、リスト15-24のように`i32`値を変更するのではなく、`Cons`場合値が指している`List`値を変更する必要がありますに。
 また、`Cons`場合値があれば、2番目の項目にアクセスするのに便利な`tail`操作法を追加しています。
 
@@ -45,7 +45,7 @@ impl List {
 次に、`a`のリストを`b`を指すように変更して、参照円環を作成します。
 この過程のさまざまな時点で参照カウントが何であるかを示すために途中で`println!`文があります。
 
-<span class="filename">ファイル名。src / main.rs</span>
+<span class="filename">ファイル名。src/main.rs</span>
 
 ```rust
 # use List::{Cons, Nil};
@@ -88,7 +88,7 @@ fn main() {
 #    // Uncomment the next line to see that we have a cycle;
 #    // it will overflow the stack
 #    // println!("a next item = {:?}", a.tail());
-    // 次の行のコメントを外して、円環があることを確認します。それは山println！　（"次の項目= {。？　}"、a.tail（））をオーバーフローさせます。
+    // 次の行の注釈を外して、円環があることを確認します。それは山println！　（"次の項目= {。？　}"、a.tail（））をオーバーフローさせます。
 }
 ```
 
@@ -101,7 +101,7 @@ fn main() {
 使用していることを行う`tail`への参照を取得する方法を`RefCell<Rc<List>>`で、変数に入れて、`a` `link`。
 次に`RefCell<Rc<List>>`の`borrow_mut`操作法を使用して、`Nil`値を保持する`Rc<List>`から内部の値を`b` `Rc<List>`します。
 
-この譜面を実行すると、最後の`println!`コメント化されたままになって`println!`ば、次の出力が得られます。
+この譜面を実行すると、最後の`println!`注釈化されたままになって`println!`ば、次の出力が得られます。
 
 ```text
 a initial rc count = 1
@@ -123,16 +123,16 @@ a rc count after changing a = 2
 <img src="img/trpl15-04.svg" alt="リストの参照円環" class="center" />
 <span class="caption">図15-4。互いに指し示すリスト<code>a</code>と<code>b</code>参照円環</span>
 
-あなたが最後のコメントを解除した場合`println!`、算譜を実行し、Rustがでこの円環を印字しようとするポインティング`a` `b`を指して、それが山をオーバーフローするまで、などと。`a`
+最後の注釈を解除した場合`println!`、算譜を実行し、Rustがでこの円環を印字しようとするポインティング`a` `b`を指して、それが山をオーバーフローするまで、などと。`a`
 
 この場合、参照円環を作成した直後に、算譜は終了します。
 この円環の結果はあまり悲惨ではありません。
-しかし、より複雑な算譜が1つの円環で大量の記憶を割り当てて長時間保持すると、算譜は必要以上の記憶を使用し、システムを圧倒して使用可能な記憶が使い果たされる可能性があります。
+しかし、より複雑な算譜が1つの円環で大量の記憶を割り当てて長時間保持すると、算譜は必要以上の記憶を使用し、算系を圧倒して使用可能な記憶が使い果たされる可能性があります。
 
 参照円環の作成は簡単ではありませんが、不可能ではありません。
 `Rc<T>`値または内部の変更可能性と参照カウントを持つ型の同様の入れ子になった組み合わせを含む`RefCell<T>`値がある場合は、円環を作成しないようにする必要があります。
-あなたはそれらを捕まえるためにRustに頼ることはできません。
-参照円環を作成することは、自動化されたテスト、譜面レビュー、およびその他の譜体開発の慣行を最小限に抑えるために、算譜のロジックバグになります。
+それらを捕まえるためにRustに頼ることはできません。
+参照円環を作成することは、自動化されたテスト、譜面精査、およびその他の譜体開発の慣行を最小限に抑えるために、算譜の論理バグになります。
 
 参照円環を回避するもう1つの方法は、データ構造を再編成して、一部の参照が所有権を表し、一部の参照が所有権を示さないようにすることです。
 その結果、いくつかの所有関係といくつかの非所有関係からなる円環を持つことができ、所有関係だけが値を削除できるかどうかに影響します。
@@ -152,7 +152,7 @@ a rc count after changing a = 2
 
 `Weak<T>`参照している値が削除されている可能性があるため、`Weak<T>`が指す値で何かを行うには、その値がまだ存在することを確認する必要があります。
 これを行うには、`Option<Rc<T>>`を返す`Weak<T>`実例の`upgrade`操作法を呼び出し`upgrade`。
-あなたは結果を得るだろう`Some`場合`Rc<T>`値がまだ削除されていないとの結果`None`場合`Rc<T>`値が削除されました。
+結果を得るだろう`Some`場合`Rc<T>`値がまだ削除されていないとの結果`None`場合`Rc<T>`値が削除されました。
 `upgrade`は`Option<T>`返すので、Rustは`Some` caseと`None`ケースが処理され、無効な指し手が存在しないことを保証します。
 
 例として、項目が次の項目のみを知っているリストを使用するのではなく、項目が子項目*と*その親項目について知っているツリーを作成します。
@@ -162,7 +162,7 @@ a rc count after changing a = 2
 まず、子ノードについて知っているノードを持つツリーを構築します。
 構造体の名前の作成します`Node`自身の保持している`i32`その子への参照だけでなく、値を`Node`値を。
 
-<span class="filename">ファイル名。src / main.rs</span>
+<span class="filename">ファイル名。src/main.rs</span>
 
 ```rust
 use std::rc::Rc;
@@ -181,7 +181,7 @@ struct Node {
 
 次に、構造体定義を使用しますと、1つの作成`Node`実例という名前の`leaf`値3と子供がいない、と別の実例の名前で`branch`値5とで`leaf` 15-27リストに示すように、その子の1つとして。
 
-<span class="filename">ファイル名。src / main.rs</span>
+<span class="filename">ファイル名。src/main.rs</span>
 
 ```rust
 # use std::rc::Rc;
@@ -227,7 +227,7 @@ fn main() {
 したがって、`Rc<T>`代わりに、`Weak<T>` `parent`の型、特に`RefCell<Weak<Node>>`ます。
 これで、`Node`構造体の定義は次のようになります。
 
-<span class="filename">ファイル名。src / main.rs</span>
+<span class="filename">ファイル名。src/main.rs</span>
 
 ```rust
 use std::rc::{Rc, Weak};
@@ -244,7 +244,7 @@ struct Node {
 ノードはその親ノードを参照することができるが、その親を所有しない。
 リスト15-28では、この新しい定義を使用するように`main`を更新して、`leaf`ノードがその親の`branch`を参照する方法を持つようにします。
 
-<span class="filename">ファイル名。src / main.rs</span>
+<span class="filename">ファイル名。src/main.rs</span>
 
 ```rust
 # use std::rc::{Rc, Weak};
@@ -294,7 +294,7 @@ leaf parent = None
 `branch`実例に`Node`実例を設定したら、`leaf`を修正して親`Weak<Node>`への`Weak<Node>`参照を与えることができます。
 `leaf`の`parent`欄の`RefCell<Weak<Node>>`で`borrow_mut`操作法を使用し、`Rc::downgrade`機能を使用して`branch`の`Rc<Node>`から`branch`する`Weak<Node>`参照を作成します`branch.`
 
-今度は`leaf`の親をもう一度印字すると、今度は`branch`持つ`Some` variantを取得します。今、`leaf`はその親にアクセスできます！　
+今度は`leaf`の親をもう一度印字すると、今度は`branch`持つ`Some` 場合値を取得します。今、`leaf`はその親にアクセスできます！　
 `leaf`を印字するとき、リスト15-26のように山のオーバーフローで終了する円環も回避します。
 `Weak<Node>`参照は`(Weak)`として出力されます。
 
@@ -313,7 +313,7 @@ children: RefCell { value: [] } }] } })
 そうすることで、`branch`が作成され、有効範囲外になったときに`branch`が作成されたときに何が起こるかを確認することができます。
 リスト15-29にその変更を示します。
 
-<span class="filename">ファイル名。src / main.rs</span>
+<span class="filename">ファイル名。src/main.rs</span>
 
 ```rust
 # use std::rc::{Rc, Weak};
@@ -381,7 +381,7 @@ fn main() {
 有効範囲の終了後に`leaf`の親にアクセスしようとすると、再び`None`が`None`れます。
 算譜の終了時に、`Rc<Node>`で`leaf`可変のため、1の強力な数と0の弱い数を持っている`leaf`、今への参照のみである`Rc<Node>`もう一度。
 
-カウントと値の低下を管理するすべてのロジックは、`Rc<T>`と`Weak<T>`と`Drop`特性の実装に組み込まれています。
+カウントと値の低下を管理するすべての論理は、`Rc<T>`と`Weak<T>`と`Drop`特性の実装に組み込まれています。
 子ノードから親ノードへの関係が`Node`の定義における`Weak<T>`参照であることを指定することによって、親ノードが子ノードを指すようにすることができます。
 
 ## 概要

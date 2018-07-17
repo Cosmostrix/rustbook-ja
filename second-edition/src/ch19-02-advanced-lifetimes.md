@@ -1,7 +1,7 @@
 ## 高度な寿命
 
 第10章の「寿命を持つ参照の検証」の節では、寿命のパラメータで参照に注釈を付けて、異なる参照の寿命がどのように関連しているかをRustに伝える方法を学習しました。
-あなたはすべての参照がどのように寿命を持っているかを見ましたが、ほとんどの場合、Rustは寿命を延ばすことができます。
+すべての参照がどのように寿命を持っているかを見ましたが、ほとんどの場合、Rustは寿命を延ばすことができます。
 ここではまだ説明していない寿命の3つの高度な機能を見ていきます。
 
 * 寿命下位型化。ある寿命が他の寿命よりも長生きすることを保証する
@@ -17,7 +17,7 @@
 構文解析器ーは、構文解析を行うために`Context`を借りる必要があります。
 譜面リスト19-12はこの構文解析器ー・譜面を実装していますが、譜面には必要な有効期間の注釈がないため、製譜されません。
 
-<span class="filename">ファイル名。src / lib.rs</span>
+<span class="filename">ファイル名。src/lib.rs</span>
 
 ```rust,ignore
 struct Context(&str);
@@ -33,7 +33,7 @@ impl Parser {
 }
 ```
 
-<span class="caption">リスト19-12。寿命注釈を持たない構文解析器ーの定義</span>
+<span class="caption">リスト19-12。寿命補注を持たない構文解析器ーの定義</span>
 
 誤りの譜面結果を製譜Rustは文字列のスライスに寿命パラメータを受け取るため`Context`とを参照する`Context`で`Parser`。
 
@@ -42,10 +42,10 @@ impl Parser {
 実際の実装では、より多くの誤り情報が提供され、解析に成功すると構造化データ型が返されます。
 これらの詳細については、この例の寿命の一部には関係しないため、説明しません。
 
-この譜面を単純にするために、解析ロジックを記述しません。
-しかし、構文解析ロジックのどこかで、入力の無効な部分を参照する誤りを返すことで無効な入力を処理する可能性が非常に高いです。
+この譜面を単純にするために、解析論理を記述しません。
+しかし、構文解析論理のどこかで、入力の無効な部分を参照する誤りを返すことで無効な入力を処理する可能性が非常に高いです。
 この参照は、譜面例を寿命に関して面白くするものです。
-最初のバイトの後に入力が無効であるということを構文解析器ーのロジックから推測しましょう。
+最初のバイトの後に入力が無効であるということを構文解析器ーの論理から推測しましょう。
 最初のバイトが有効な文字縛りにない場合、この譜面はパニックになる可能性があることに注意してください。
 再び、関係する寿命に焦点を当てるために例を単純化しています。
 
@@ -54,7 +54,7 @@ impl Parser {
 `struct Context<'a>`、 `struct Parser<'a>`、および`impl<'a>`が新しい寿命パラメータを宣言していることを第10章の「構造体定義における寿命の注釈」の章から思い出してください。
 彼らの名前はすべて同じになりますが、この例で宣言された3つの有効期間パラメータは関連していません。
 
-<span class="filename">ファイル名。src / lib.rs</span>
+<span class="filename">ファイル名。src/lib.rs</span>
 
 ```rust
 struct Context<'a>(&'a str);
@@ -79,7 +79,7 @@ Rustの製譜器誤りメッセージでは、これらの参照に寿命パラ�
 次に、リスト19-14で、`Context`実例を`Context`、その文脈を解析するために`Parser`を使用し、`parse`が返すものを返す機能を追加します。
 この譜面はうまく動作しません。
 
-<span class="filename">ファイル名。src / lib.rs</span>
+<span class="filename">ファイル名。src/lib.rs</span>
 
 ```rust,ignore
 fn parse_context(context: Context) -> Result<(), &str> {
@@ -103,7 +103,7 @@ error[E0597]: borrowed value does not live long enough
 note: borrowed value must be valid for the anonymous lifetime #1 defined on the function body at 13:1...
   --> src/lib.rs:13:1
    |
-13 | / fn parse_context(context: Context) -> Result<(), &str> {
+13 |/fn parse_context(context: Context) -> Result<(), &str> {
 14 | |     Parser { context: &context }.parse()
 15 | | }
    | |_^
@@ -119,7 +119,7 @@ error[E0597]: `context` does not live long enough
 note: borrowed value must be valid for the anonymous lifetime #1 defined on the function body at 13:1...
   --> src/lib.rs:13:1
    |
-13 | / fn parse_context(context: Context) -> Result<(), &str> {
+13 |/fn parse_context(context: Context) -> Result<(), &str> {
 14 | |     Parser { context: &context }.parse()
 15 | | }
    | |_^
@@ -164,7 +164,7 @@ Rustは、すべての生存時間に同じ寿命パラメータで注釈を付�
 このソリューションは問題を完全に解決するわけではありませんが、これが始まりです。
 製譜しようとすると、なぜこの修正が十分でないのかを見ていきます。
 
-<span class="filename">ファイル名。src / lib.rs</span>
+<span class="filename">ファイル名。src/lib.rs</span>
 
 ```rust,ignore
 struct Context<'s>(&'s str);
@@ -202,14 +202,14 @@ error[E0491]: in type `&'c Context<'s>`, reference has a longer lifetime than th
 note: the pointer is valid for the lifetime 'c as defined on the struct at 3:1
  --> src/lib.rs:3:1
   |
-3 | / struct Parser<'c, 's> {
+3 |/struct Parser<'c, 's> {
 4 | |     context: &'c Context<'s>,
 5 | | }
   | |_^
 note: but the referenced data is only valid for the lifetime 's as defined on the struct at 3:1
  --> src/lib.rs:3:1
   |
-3 | / struct Parser<'c, 's> {
+3 |/struct Parser<'c, 's> {
 4 | |     context: &'c Context<'s>,
 5 | | }
   | |_^
@@ -224,7 +224,7 @@ Rustは`'c`と`'s`関係を知らない。
 
 当社の定義では`Parser`、と言うこと`'s`（文字列スライスの寿命）は、少なくとも限り生きることが保証されて`'c`（参照の寿命`Context`）、このように見えるように寿命の宣言を変更します。
 
-<span class="filename">ファイル名。src / lib.rs</span>
+<span class="filename">ファイル名。src/lib.rs</span>
 
 ```rust
 # struct Context<'a>(&'a str);
@@ -252,7 +252,7 @@ struct Parser<'c, 's: 'c> {
 これらの型は、実行時に借用ルールを追跡する参照の上のの包みです。
 `Ref`構造体の定義は、リスト19-16に示されていますが、現在は寿命の縛りはありません。
 
-<span class="filename">ファイル名。src / lib.rs</span>
+<span class="filename">ファイル名。src/lib.rs</span>
 
 ```rust,ignore
 struct Ref<'a, T>(&'a T);
@@ -317,7 +317,7 @@ struct StaticRef<T: 'static>(&'static T);
 `Ball`構造体は参照を保持する（したがって寿命パラメータを持つ）とともに、特性`Red`実装します。
 特性対象`Box<Red>`として`Ball`実例を使用したいと考えています。
 
-<span class="filename">ファイル名。src / main.rs</span>
+<span class="filename">ファイル名。src/main.rs</span>
 
 ```rust
 trait Red { }

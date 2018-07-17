@@ -13,7 +13,7 @@
 通常の参照は指し手の型であり、指し手を考える方法の1つは、他の場所に格納された値への矢印のようなものです。
 譜面リスト15-6では、`i32`値への参照を作成し、逆参照演算子を使用してデータへの参照を追跡します。
 
-<span class="filename">ファイル名。src / main.rs</span>
+<span class="filename">ファイル名。src/main.rs</span>
 
 ```rust
 fn main() {
@@ -56,7 +56,7 @@ not satisfied
 リスト15-6の譜面を書き換えて、参照の代わりに`Box<T>`使うことができます。
 逆参照演算子はリスト15-7のように動作します。
 
-<span class="filename">ファイル名。src / main.rs</span>
+<span class="filename">ファイル名。src/main.rs</span>
 
 ```rust
 fn main() {
@@ -82,7 +82,7 @@ fn main() {
 `Box<T>`型は最終的に1つの要素を持つ組構造体として定義されているので、リスト15-8も同じように`MyBox<T>`型を定義しています。
 また、`Box<T>`定義された`new`機能と一致する`new`機能を定義します。
 
-<span class="filename">ファイル名。src / main.rs</span>
+<span class="filename">ファイル名。src/main.rs</span>
 
 ```rust
 struct MyBox<T>(T);
@@ -103,7 +103,7 @@ impl<T> MyBox<T> {
 リスト15-7の`main`機能をリスト15-8に追加し、`Box<T>`代わりに定義した`MyBox<T>`型を使用するように変更してみましょう。
 Rustは`MyBox`を逆参照する方法を知らないので、リスト15-9の譜面は製譜されません。
 
-<span class="filename">ファイル名。src / main.rs</span>
+<span class="filename">ファイル名。src/main.rs</span>
 
 ```rust,ignore
 fn main() {
@@ -136,7 +136,7 @@ error[E0614]: type `MyBox<{integer}>` cannot be dereferenced
 標準譜集によって提供される`Deref`特性は、`deref`という名前の操作法を実装する必要があります`deref`は`self`を借りて内部データへの参照を返します。
 15-10のリストの実装が含まれ`Deref`定義に追加する`MyBox`。
 
-<span class="filename">ファイル名。src / main.rs</span>
+<span class="filename">ファイル名。src/main.rs</span>
 
 ```rust
 use std::ops::Deref;
@@ -173,7 +173,7 @@ impl<T> Deref for MyBox<T> {
 Rustは`*`演算子を`deref`操作法の呼び出しで置き換えてから、単純な逆参照を行うため、`deref`操作法を呼び出す必要があるかどうかについて考える必要はありません。
 このRust（Rust）機能を使用すると、通常の参照を持っていようと、`Deref`を実装する型を持っていても、同じように機能する譜面を書くことができます。
 
-`deref`操作法が値への参照を返し、`*(y.deref())`かっこ以外の単純な参照が依然として必要である`*(y.deref())`は、所有権システムです。
+`deref`操作法が値への参照を返し、`*(y.deref())`かっこ以外の単純な参照が依然として必要である`*(y.deref())`は、所有権算系です。
 `deref`操作法が値への参照ではなく値を直接返す場合、値は`self`から移動されます。
 この場合`MyBox<T>`内の内部値の所有権や、参照解除演算子を使用するほとんどの場合、所有権を取得したくありません。
 
@@ -193,7 +193,7 @@ deref強制型変換機能では、参照やスマート指し手のどちらで
 動作でDEREF強制型変換を確認するには、のは、使用してみましょう`MyBox<T>`型を、リスト15-8で定義されているだけでなく、実装の`Deref`リスト15-10で追加されていること。
 リスト15-11は、文字列sliceパラメータを持つ機能の定義を示しています。
 
-<span class="filename">ファイル名。src / main.rs</span>
+<span class="filename">ファイル名。src/main.rs</span>
 
 ```rust
 fn hello(name: &str) {
@@ -207,7 +207,7 @@ fn hello(name: &str) {
 例えば。
 Deref強制型変換は、リスト15-12に示すように、`MyBox<String>`型の値への参照で`hello`を呼び出すことができます。
 
-<span class="filename">ファイル名。src / main.rs</span>
+<span class="filename">ファイル名。src/main.rs</span>
 
 ```rust
 # use std::ops::Deref;
@@ -247,7 +247,7 @@ Rustは`deref`再度呼び出して、`&String`を`&str`に変換し`&str`。こ
 
 Rustが逆参照を実装していない場合は、リスト15-12の譜面の代わりにリスト15-13の譜面を記述して、`&MyBox<String>`型の値で`hello`を呼び出す必要があります。
 
-<span class="filename">ファイル名。src / main.rs</span>
+<span class="filename">ファイル名。src/main.rs</span>
 
 ```rust
 # use std::ops::Deref;
@@ -290,7 +290,7 @@ Derefの強制型変換はRustにこれらの変換を自動的に処理させ�
 
 ### Deref強制型変換とMutabilityとの相互作用
 
-あなたが使用する方法と同様に`Deref`上書きする特性を`*`不変の参照の演算子を、あなたが使用することができ`DerefMut`上書きする特性を`*`変更可能な参照の演算子を。
+使用する方法と同様に`Deref`上書きする特性を`*`不変の参照の演算子を、使用することができ`DerefMut`上書きする特性を`*`変更可能な参照の演算子を。
 
 Rustは3つのケースで型と特性の実装を見つけたときには逆変換を行います。
 

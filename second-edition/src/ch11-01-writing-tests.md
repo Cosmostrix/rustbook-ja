@@ -31,9 +31,9 @@ $ cargo new adder --lib
 $ cd adder
 ```
 
-`adder`譜集内の*src / lib.rs*ファイルの内容はリスト11-1のようになります。
+`adder`譜集内の*src/lib.rs*ファイルの内容はリスト11-1のようになります。
 
-<span class="filename">ファイル名。src / lib.rs</span>
+<span class="filename">ファイル名。src/lib.rs</span>
 
 ```rust
 # fn main() {}
@@ -81,7 +81,7 @@ test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out
 `Compiling`、 `Finished`、 `Running`行は、`running 1 test`を`Running`行です。
 次の行には、生成されたテスト機能の名前`it_works`とそのテストを実行した結果`ok`ます。
 次に、テストの実行の概要が表示されます。
-文言`test result: ok.`
+テキスト`test result: ok.`
 すべてのテストが合格したことを意味`1 passed; 0 failed`
 `1 passed; 0 failed` totalは、合格または不合格のテストの数を示します。
 
@@ -98,12 +98,12 @@ test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out
 `Doc-tests adder`で始まるテスト出力の次の部分は、開発資料集テストの結果です。
 まだ開発資料テストはありませんが、RustはAPI開発資料に記載されている譜面例を製譜できます。
 この機能は、開発資料と譜面を同期させるのに役立ちます。
-第14章の「開発資料集コメントをテストとして」の章で開発資料テストを書く方法について説明します。今度は、`Doc-tests`出力を無視します。
+第14章の「開発資料集注釈をテストとして」の章で開発資料テストを書く方法について説明します。今度は、`Doc-tests`出力を無視します。
 
 テストの名前を変更してテスト出力をどのように変更するかを見てみましょう。
 `it_works`機能を`exploration`などの別の名前に変更します。
 
-<span class="filename">ファイル名。src / lib.rs</span>
+<span class="filename">ファイル名。src/lib.rs</span>
 
 ```rust
 # fn main() {}
@@ -130,9 +130,9 @@ test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out
 テスト機能で何かがパニックすると、テストは失敗します。
 各テストは新しい走脈で実行され、メイン走脈がテスト走脈が終了したことがわかると、テストは失敗とマークされます。
 パニックを引き起こす最も単純な方法について話しました。`panic!`を呼び出すこと`panic!`。
-新しいテストを`another`入力すると、*src / lib.rs*ファイルはリスト11-3のように*なり*ます。
+新しいテストを`another`入力すると、*src/lib.rs*ファイルはリスト11-3のように*なり*ます。
 
-<span class="filename">ファイル名。src / lib.rs</span>
+<span class="filename">ファイル名。src/lib.rs</span>
 
 ```rust
 # fn main() {}
@@ -178,7 +178,7 @@ error: test failed
 
 `ok`代わりに、回線`test tests::another`が`FAILED`示しています。
 2つの新しい章が個々の結果とサマリーの間に表示されます。最初の章には、それぞれのテストの失敗の詳細な理由が表示されます。
-この場合、*src / lib.rs*ファイルの10行目で起こった`panicked at 'Make this test fail'`で`panicked at 'Make this test fail'`たため`another`失敗しました。
+この場合、*src/lib.rs*ファイルの10行目で起こった`panicked at 'Make this test fail'`で`panicked at 'Make this test fail'`たため`another`失敗しました。
 次の章では、失敗したすべてのテストの名前だけを示します。これは、たくさんのテストがあり、多くの詳細な失敗したテスト出力がある場合に便利です。
 失敗したテストの名前を使用して、そのテストだけを実行してより簡単に虫取りすることができます。
 テストを実行する方法の詳細については、「テストの実行方法の制御」の章で説明します。
@@ -197,9 +197,9 @@ error: test failed
 `assert!`マクロを使用する`assert!`、譜面が意図したとおりに機能していることを確認するのに役立ちます。
 
 第5章のリスト5-15では、`Rectangle`構造体と`can_hold`操作法を使用しました。リスト11-5でこれを繰り返します。
-この譜面を*src / lib.rs*ファイルに*置き*、 `assert!`マクロを使っていくつかのテストを書きましょう。
+この譜面を*src/lib.rs*ファイルに*置き*、 `assert!`マクロを使っていくつかのテストを書きましょう。
 
-<span class="filename">ファイル名。src / lib.rs</span>
+<span class="filename">ファイル名。src/lib.rs</span>
 
 ```rust
 # fn main() {}
@@ -221,7 +221,7 @@ impl Rectangle {
 `can_hold`操作法は真偽値を返します。`can_hold`、 `assert!`マクロの完璧な使用例です。
 リスト11-6において、行使テスト書き込み`can_hold`作成方法を`Rectangle` 8の長さと7の幅を有する実例を、それが別の保持することができると主張`Rectangle` 5の長さと幅を有する実例を1。
 
-<span class="filename">ファイル名。src / lib.rs</span>
+<span class="filename">ファイル名。src/lib.rs</span>
 
 ```rust
 # fn main() {}
@@ -262,7 +262,7 @@ test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out
 それは合格する！　
 別のテストを追加してみましょう。今回は、小さな長方形で大きな長方形を保持できないと主張します。
 
-<span class="filename">ファイル名。src / lib.rs</span>
+<span class="filename">ファイル名。src/lib.rs</span>
 
 ```rust
 # fn main() {}
@@ -348,12 +348,12 @@ test result: FAILED. 1 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out
 しかし、これは、標準譜集がこのテストをより便利に実行するために`assert_eq!`と`assert_ne!` `assert_eq!`提供するような共通のテストです。
 これらのマクロは、それぞれ平等または不等式の2つの引数を比較します。
 アサーションに失敗した場合は、2つの値も出力される*ため*、テストが失敗した*理由を*簡単に確認できます。
-逆に、`assert!`マクロは、それが持っていることを示し`false`の値を`==`式ではなく、につながるの値`false`値。
+逆に、`assert!`マクロは、それが持っていることを示し`false`の値を`==`表現ではなく、につながるの値`false`値。
 
 `add_two`リスト11-7では`add_two`という名前の機能を書いて、そのパラメータに`2`を加えて結果を返します。
 次に、`assert_eq!`マクロを使ってこの機能をテストします。
 
-<span class="filename">ファイル名。src / lib.rs</span>
+<span class="filename">ファイル名。src/lib.rs</span>
 
 ```rust
 # fn main() {}
@@ -384,7 +384,7 @@ test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out
 ```
 
 得た最初の引数`assert_eq!`マクロ`4`、呼び出した結果に等しい`add_two(2)`
-このテストのための行は、`test tests::it_adds_two ... ok`、および`ok`の文言は、テストに合格していることを示しています！　
+このテストのための行は、`test tests::it_adds_two ... ok`、および`ok`のテキストは、テストに合格していることを示しています！　
 
 `assert_eq!`を使ったテストが失敗したときの様子を見てみましょう。
 `add_two`機能の実装を変更して、代わりに`3`を追加します。
@@ -433,19 +433,19 @@ test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out
 すべての基本型とほとんどの標準譜集型は、これらの特性を実装しています。
 定義した構造体と列挙体では、`PartialEq`を実装して、それらの型の値が等しいかどうかを`PartialEq`する必要があります。
 アサーションが失敗したときに値を出力するには、`Debug`を実装する必要があります。
-第5章のリスト5-12で説明したように、両方の特性が導出可能な特性であるため、`#[derive(PartialEq, Debug)]`注釈を構造体または列挙型の定義に追加するのと`#[derive(PartialEq, Debug)]`です。
+第5章のリスト5-12で説明したように、両方の特性が導出可能な特性であるため、`#[derive(PartialEq, Debug)]`補注を構造体または列挙型の定義に追加するのと`#[derive(PartialEq, Debug)]`です。
 これらおよび他の導出可能な特性の詳細については、付録Cを参照してください。
 
 ### 独自の誤りメッセージの追加
 
 `assert!`、 `assert_eq!`、および`assert_ne!`マクロへの選択肢の引数として、失敗メッセージとともに出力される独自のメッセージを追加することもできます。
-`assert!`または`assert_eq!`と`assert_ne!`必要な2つの引数を`assert_eq!`マクロに渡し`format!`（第8章の「 `+`演算子または`format!`マクロの連結」の章で説明してい`format!`）、あなたが含まれている形式文字列渡すことができますので、 `{}`これらの場所取りに行くための場所取りと値を。
+`assert!`または`assert_eq!`と`assert_ne!`必要な2つの引数を`assert_eq!`マクロに渡し`format!`（第8章の「 `+`演算子または`format!`マクロの連結」の章で説明してい`format!`）、含まれている形式文字列渡すことができますので、 `{}`これらの場所取りに行くための場所取りと値を。
 独自のメッセージは、アサーションが意味するものを文書化するのに便利です。
 テストが失敗した場合は、譜面の問題の詳細を知ることができます。
 
 たとえば、名前で人を迎える機能があり、機能に渡す名前が出力に現れることをテストしたいとしましょう。
 
-<span class="filename">ファイル名。src / lib.rs</span>
+<span class="filename">ファイル名。src/lib.rs</span>
 
 ```rust
 # fn main() {}
@@ -465,8 +465,8 @@ mod tests {
 }
 ```
 
-この算譜の要件はまだ合意されていません。挨拶の開始時の`Hello`文言が変更されることは間違いありません。
-要件が変更されたときにテストを更新する必要がないと判断したので、`greeting`機能から返された値と完全に等しいかどうかを調べる代わりに、出力に入力パラメータの文言が含まれていると主張します。
+この算譜の要件はまだ合意されていません。挨拶の開始時の`Hello`テキストが変更されることは間違いありません。
+要件が変更されたときにテストを更新する必要がないと判断したので、`greeting`機能から返された値と完全に等しいかどうかを調べる代わりに、出力に入力パラメータのテキストが含まれていると主張します。
 
 `greeting`に`name`を`name`ないように`name`して、このテストの失敗の内容を確認して、この譜面にバグを導入しましょう。
 
@@ -532,7 +532,7 @@ note: Run with `RUST_BACKTRACE=1` for a backtrace.
 
 リスト11-8は、期待通りに`Guess::new`誤り状態が発生したことをチェックするテストを示しています。
 
-<span class="filename">ファイル名。src / lib.rs</span>
+<span class="filename">ファイル名。src/lib.rs</span>
 
 ```rust
 # fn main() {}
@@ -621,10 +621,10 @@ test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out
 `should_panic`を使用するテストは、譜面がいくつかのパニックを引き起こしたことだけを示しているため、不正確になる可能性があります。
 たとえ期待していたのとは異なる理由でテストがパニックになっても、`should_panic`テストは合格となります。
 作るために`should_panic`テストをより正確に、選択肢を追加することができ`expected`にパラメータを`should_panic`属性。
-テストハーネスは、失敗メッセージに指定された文言が含まれていることを確認します。
+テストハーネスは、失敗メッセージに指定されたテキストが含まれていることを確認します。
 たとえば、リスト11-9の`Guess`の変更された譜面では、値が小さすぎるか大きすぎるかに応じて異なるメッセージで`new`機能がパニックする場合があります。
 
-<span class="filename">ファイル名。src / lib.rs</span>
+<span class="filename">ファイル名。src/lib.rs</span>
 
 ```rust
 # fn main() {}

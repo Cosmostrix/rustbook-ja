@@ -11,14 +11,14 @@ Rustの閉包は、変数に保存するか、他の機能に引数として渡�
 途中で、閉包、型推論、および特性の構文について説明します。
 
 この仮説的な状況を考えてみましょう。スタートアップ時に、独自の運動トレーニング計画を作成するアプリを作っています。
-バックエンドはRustで書かれており、トレーニングプランを生成する計算手続きは、アプリユーザーの年齢、体格指数、運動の好み、最近のトレーニング、彼らが指定した強度番号など、多くの要因を考慮しています。
+バックエンドはRustで書かれており、トレーニングプランを生成する計算手続きは、アプリ利用者の年齢、体格指数、運動の好み、最近のトレーニング、彼らが指定した強度番号など、多くの要因を考慮しています。
 使用される実際の計算手続きは、この例では重要ではありません。
 重要なのは、この計算に数秒かかるということです。
-この計算手続きを呼び出す必要があるときにのみ呼び出し、一度呼び出すだけで、ユーザーが必要以上に待たされることはありません。
+この計算手続きを呼び出す必要があるときにのみ呼び出し、一度呼び出すだけで、利用者が必要以上に待たされることはありません。
 
 リスト13-1に示す機能`simulated_expensive_calculation`使って、この仮説的な計算手続きを呼び出すことをシミュレートします。これは、`calculating slowly...` 2秒間待ってから渡した数を返します。
 
-<span class="filename">ファイル名。src / main.rs</span>
+<span class="filename">ファイル名。src/main.rs</span>
 
 ```rust
 use std::thread;
@@ -34,18 +34,18 @@ fn simulated_expensive_calculation(intensity: u32) -> u32 {
 <span class="caption">譜面リスト13-1。実行に約2秒かかっている仮説計算を待つ機能</span>
 
 次に、`main`機能は、この例で重要なトレーニングアプリの部分を含んでいます。
-この機能は、ユーザーがワークアウトプランを要求したときに譜体が呼び出す譜面を表します。
+この機能は、利用者がワークアウトプランを要求したときに譜体が呼び出す譜面を表します。
 譜体のフロントエンドとのやりとりは閉包の使用に関係しないので、算譜への入力を表す値をハード譜面し、出力を出力します。
 
 必要な入力は次のとおりです。
 
-* ユーザーからの強度番号。低強度のトレーニングや高強度のトレーニングを希望するかどうかを示すためにトレーニングをリクエストしたときに指定されます。
+* 利用者からの強度番号。低強度のトレーニングや高強度のトレーニングを希望するかどうかを示すためにトレーニングをリクエストしたときに指定されます。
 * 運動計画に多種多様な乱数を生成する
 
 出力は、推奨されるワークアウト計画になります。
 譜面リスト13-2は、使用する`main`機能を示しています。
 
-<span class="filename">ファイル名。src / main.rs</span>
+<span class="filename">ファイル名。src/main.rs</span>
 
 ```rust
 fn main() {
@@ -60,16 +60,16 @@ fn main() {
 # fn generate_workout(intensity: u32, random_number: u32) {}
 ```
 
-<span class="caption">リスト13-2。ユーザ入力と乱数生成をシミュレートするハード譜面された値を持つ<code>main</code>機能</span>
+<span class="caption">リスト13-2。利用者入力と乱数生成をシミュレートするハード譜面された値を持つ<code>main</code>機能</span>
 
 わかりやすくするために、変数`simulated_user_specified_value`を10、変数`simulated_random_number`を7にハード作譜しました。
 実際の算譜では、アプリのフロントエンドからの強度番号を取得したい、と使用したい`rand`第2章で推測ゲームの例で行ったように、乱数を生成するための通い箱を`main`機能呼び出し`generate_workout`機能をシミュレートされた入力値と比較します。
 
 文脈があるので、計算手続きに着きましょう。
-リスト13-3の機能`generate_workout`には、この例で最も関心のある譜体のビジネスロジックが含まれています。
+リスト13-3の機能`generate_workout`には、この例で最も関心のある譜体のビジネス論理が含まれています。
 この例の譜面変更の残りの部分がこの機能に適用されます。
 
-<span class="filename">ファイル名。src / main.rs</span>
+<span class="filename">ファイル名。src/main.rs</span>
 
 ```rust
 # use std::thread;
@@ -104,18 +104,18 @@ fn generate_workout(intensity: u32, random_number: u32) {
 }
 ```
 
-<span class="caption">リスト13-3。 <code>simulated_expensive_calculation</code>機能への入力と呼び出しに基づいてワークアウトプランを出力するビジネスロジック</span>
+<span class="caption">リスト13-3。 <code>simulated_expensive_calculation</code>機能への入力と呼び出しに基づいてワークアウトプランを出力するビジネス論理</span>
 
 譜面リスト13-3の譜面では、低速計算機能が複数呼び出されています。
 最初の`if`段落の呼び出しは`simulated_expensive_calculation`二回、`if`外側内側の`else`全くそれを呼び出すことはありません、第二の内部譜面`else`場合は、一度それを呼び出します。
 
 
-`generate_workout`機能の望ましい挙動は、ユーザが低強度トレーニング（25未満の数字で示される）または高強度トレーニング（25以上の数）を望むかどうかを最初に確認することであます。
+`generate_workout`機能の望ましい挙動は、利用者が低強度トレーニング（25未満の数字で示される）または高強度トレーニング（25以上の数）を望むかどうかを最初に確認することであます。
 
 低強度トレーニング計画では、シミュレーションしている複雑な計算手続きに基づいて、いくつかのプッシュアップと腹筋を推奨します。
 
-ユーザーが高輝度のトレーニングをしたい場合は、追加のロジックがあります。アプリによって生成された乱数の値が3になると、アプリは休憩と水分をおすすめします。
-そうでない場合、ユーザーは複雑な計算手続きに基づいて実行するまでに数分かかるでしょう。
+利用者が高輝度のトレーニングをしたい場合は、追加の論理があります。アプリによって生成された乱数の値が3になると、アプリは休憩と水分をおすすめします。
+そうでない場合、利用者は複雑な計算手続きに基づいて実行するまでに数分かかるでしょう。
 
 この譜面は今のところビジネスが望んでいるように機能しますが、データ科学チームは、将来`simulated_expensive_calculation`機能を呼び出す方法をいくつか変更する必要があると判断したとしましょう。
 これらの変更が発生したときに更新を簡素化するため、この譜面をリファクタリングして、`simulated_expensive_calculation`機能を1回だけ呼び出すようにします。
@@ -127,7 +127,7 @@ fn generate_workout(intensity: u32, random_number: u32) {
 様々な方法でワークアウト算譜を再構成することができました。
 まず、`simulated_expensive_calculation`機能の重複呼び出しを変数に抽出してみましょう（リスト13-4を参照）。
 
-<span class="filename">ファイル名。src / main.rs</span>
+<span class="filename">ファイル名。src/main.rs</span>
 
 ```rust
 # use std::thread;
@@ -178,7 +178,7 @@ fn generate_workout(intensity: u32, random_number: u32) {
 代わりに、常に呼び出しの`simulated_expensive_calculation`前に機能を`if`段落、閉包を定義し、むしろリスト13-5に示すように、機能呼び出しの結果を格納するよりも、変数に*閉包を*保存することができます。
 実際には、ここで導入しているclosure内で`simulated_expensive_calculation`の全身を動かすことができます。
 
-<span class="filename">ファイル名。src / main.rs</span>
+<span class="filename">ファイル名。src/main.rs</span>
 
 ```rust
 # use std::thread;
@@ -212,7 +212,7 @@ let expensive_closure = |num| {
 閉包が定義されている`if`、 `if`段落の譜面を変更して、閉包を呼び出して譜面を実行し、結果の値を取得することができます。
 リスト13-6に示すように、閉包定義を保持する変数名を指定し、使用する引数値を含むかっこで囲みます。
 
-<span class="filename">ファイル名。src / main.rs</span>
+<span class="filename">ファイル名。src/main.rs</span>
 
 ```rust
 # use std::thread;
@@ -251,7 +251,7 @@ fn generate_workout(intensity: u32, random_number: u32) {
 
 高価な計算は1つの場所でのみ呼び出され、結果を必要とするところでその譜面を実行しています。
 
-しかし、リスト13-3の問題の1つを再導入しました。最初の`if`段落で閉包を2回呼び出します。これは高価な譜面を2回呼び出し、必要なだけ長くユーザーを待機させます。
+しかし、リスト13-3の問題の1つを再導入しました。最初の`if`段落で閉包を2回呼び出します。これは高価な譜面を2回呼び出し、必要なだけ長く利用者を待機させます。
 閉包を呼び出した結果を保持する段落で`if`ローカル変数を作成することでこの問題を解決できますが、閉包は別の解決策を提供します。
 その解決策について少し話します。
 しかし、最初に、閉包の定義に型の注釈がなく、閉包に関連する特性がない理由について話しましょう。
@@ -259,9 +259,9 @@ fn generate_workout(intensity: u32, random_number: u32) {
 ### 閉包型推論と注釈
 
 閉包では、パラメータの型や`fn`機能のような戻り値に注釈を付ける必要はありません。
-型注釈は、ユーザーに公開されている明示的な接点の一部であるため、機能に必要です。
+型補注は、利用者に公開されている明示的な接点の一部であるため、機能に必要です。
 この接点を厳密に定義することは、機能が使用して返した値の型に誰もが同意することを確実にするために重要です。
-しかし、閉包は、公開された接点ではこのように使用されません。変数は変数に格納され、名前を付けずに譜集のユーザーに公開します。
+しかし、閉包は、公開された接点ではこのように使用されません。変数は変数に格納され、名前を付けずに譜集の利用者に公開します。
 
 閉包は通常、短く、任意の場合ではなく狭い文脈内でのみ関連します。
 これらの制限された文脈の中で、製譜器は、ほとんどの変数の型を推論する方法と同様に、パラメータの型と戻り型を確実に推論することができます。
@@ -271,7 +271,7 @@ fn generate_workout(intensity: u32, random_number: u32) {
 変数の場合と同様に、厳密に必要以上に冗長であることを犠牲にして、明示と明快さを増やしたい場合は、型注釈を追加できます。
 リスト13-5で定義した閉包の型に注釈を付けると、リスト13-7のようになります。
 
-<span class="filename">ファイル名。src / main.rs</span>
+<span class="filename">ファイル名。src/main.rs</span>
 
 ```rust
 # use std::thread;
@@ -307,7 +307,7 @@ let add_one_v4 = |x|               x + 1  ;
 この閉包は、この例の目的を除いてあまり有用ではありません。
 型の注釈を定義に追加していないことに注意してください。最初に`String`を引数として、2回目に`u32`を使用して閉包を2回呼び出すと、誤りが発生します。
 
-<span class="filename">ファイル名。src / main.rs</span>
+<span class="filename">ファイル名。src/main.rs</span>
 
 ```rust,ignore
 let example_closure = |x| x;
@@ -345,7 +345,7 @@ error[E0308]: mismatched types
 幸いにも、私たちにはもう一つの解決策があります。
 閉包を保持する構造体と閉包を呼び出す結果の値を作成できます。
 構造体は、結果の値が必要な場合にのみ閉包を実行し、残りの譜面は結果を保存して再利用する必要がないように結果の値をキャッシュします。
-あなたはこのパターンを*メモ*や*怠惰な評価*として知っているかもしれません。
+このパターンを*メモ*や*怠惰な評価*として知っているかもしれません。
 
 閉包を保持する構造体を作成するには、閉包の型を指定する必要があります。構造体の定義では、各欄の型を知る必要があるからです。
 各閉包実例には、独自の一意の無名型があります。つまり、2つの閉包が同じ型指示を持っていても、それらの型はまだ異なるとみなされます。
@@ -356,12 +356,12 @@ error[E0308]: mismatched types
 これらの特性の違いについては、「環境をクローズで取り込む」章で説明します。
 この例では、`Fn`特性を使用することができます。
 
-`Fn`特性束縛に型を追加して、パラメータの型を式し、閉包がこの特性縛りに一致する必要がある戻り値を追加します。
+`Fn`特性束縛に型を追加して、パラメータの型を表現し、閉包がこの特性縛りに一致する必要がある戻り値を追加します。
 この場合、閉包は、型のパラメータがある`u32`して返す`u32`、指定した束縛特徴はある`Fn(u32) -> u32`。
 
 リスト13-9は、閉包と選択肢の結果値を保持する`Cacher`構造体の定義を示しています。
 
-<span class="filename">ファイル名。src / main.rs</span>
+<span class="filename">ファイル名。src/main.rs</span>
 
 ```rust
 struct Cacher<T>
@@ -386,9 +386,9 @@ struct Cacher<T>
 `Cacher`を使用している譜面が閉包の*結果*を要求すると、`Cacher`はその時点で閉包を実行し、その結果を`value`欄の`Some`場合値に格納します。
 次に、譜面が再び閉包の結果を求める場合、閉包を再度実行する代わりに、`Cacher`は`Some`場合値に保持されている結果を返します。
 
-上で説明した`value`欄の周りのロジックは、リスト13-10で定義されています。
+上で説明した`value`欄の周りの論理は、リスト13-10で定義されています。
 
-<span class="filename">ファイル名。src / main.rs</span>
+<span class="filename">ファイル名。src/main.rs</span>
 
 ```rust
 # struct Cacher<T>
@@ -421,7 +421,7 @@ impl<T> Cacher<T>
 }
 ```
 
-<span class="caption">リスト13-10。のキャッシュロジック<code>Cacher</code></span>
+<span class="caption">リスト13-10。のキャッシュ論理<code>Cacher</code></span>
 
 `Cacher`は、呼び出し元譜面がこれらの欄の値を直接変更できるようにするのではなく、構造体欄の値を管理したいので、これらの欄は非公開です。
 
@@ -436,7 +436,7 @@ impl<T> Cacher<T>
 
 リスト13-11は、リスト13-6の`generate_workout`機能でこの`Cacher`構造体を使用する方法を示しています。
 
-<span class="filename">ファイル名。src / main.rs</span>
+<span class="filename">ファイル名。src/main.rs</span>
 
 ```rust
 # use std::thread;
@@ -500,7 +500,7 @@ fn generate_workout(intensity: u32, random_number: u32) {
 }
 ```
 
-<span class="caption">リスト13-11。キャッシュロジックを抽象化<code>generate_workout</code>ために<code>generate_workout</code>機能で<code>Cacher</code>を使う</span>
+<span class="caption">リスト13-11。キャッシュ論理を抽象化<code>generate_workout</code>ために<code>generate_workout</code>機能で<code>Cacher</code>を使う</span>
 
 閉包を変数に直接保存する代わりに、閉包を保持する`Cacher`新しい実例を保存します。
 次に、結果が必要な各場所で、`Cacher`実例の`value`操作法を呼び出します。
@@ -508,7 +508,7 @@ fn generate_workout(intensity: u32, random_number: u32) {
 
 リスト13-2の`main`機能でこの算譜を実行してみてください。
 内の値に変更`simulated_user_specified_value`と`simulated_random_number`様々で、すべての場合にそのことを確認するために、変数`if`と`else`、段落を`calculating slowly...`必要なときに一度だけしか表示されます。
-`Cacher`は、必要以上に高価な計算を呼び出さないようにするために必要なロジックを処理し、`generate_workout`はビジネスロジックに集中`generate_workout`ことができます。
+`Cacher`は、必要以上に高価な計算を呼び出さないようにするために必要な論理を処理し、`generate_workout`はビジネス論理に集中`generate_workout`ことができます。
 
 ### `Cacher`実装の制限
 
@@ -555,12 +555,12 @@ thread 'call_with_different_values' panicked at 'assertion failed: `(left == rig
 
 ### 閉包による環境の捉え方
 
-ワークアウト生成器の例では、インラインの無名機能としてのみ閉包を使用しました。
+ワークアウト生成器の例では、イン行の無名機能としてのみ閉包を使用しました。
 しかし、閉包には、機能にはない追加の機能があります。つまり、環境を捕獲し、定義されている有効範囲から変数にアクセスできます。
 
 `equal_to_x`リスト13-12には、閉包の周囲環境からの`x`変数を使用する`equal_to_x`変数に格納された閉包の例があります。
 
-<span class="filename">ファイル名。src / main.rs</span>
+<span class="filename">ファイル名。src/main.rs</span>
 
 ```rust
 fn main() {
@@ -581,7 +581,7 @@ fn main() {
 機能でも同じことをすることはできません。
 次の例で試してみると、譜面は製譜されません。
 
-<span class="filename">ファイル名。src / main.rs</span>
+<span class="filename">ファイル名。src/main.rs</span>
 
 ```rust,ignore
 fn main() {
@@ -633,7 +633,7 @@ error[E0434]: can't capture dynamic environment in a fn item; use the || { ...
 今のところ、リスト13-12の譜面では、`move`予約語を閉包定義に追加し、整数の代わりにベクトルを使用します。これは、整数を移動するのではなくコピーすることができるためです。
 この譜面はまだ製譜されません。
 
-<span class="filename">ファイル名。src / main.rs</span>
+<span class="filename">ファイル名。src/main.rs</span>
 
 ```rust,ignore
 fn main() {
@@ -669,6 +669,6 @@ error[E0382]: use of moved value: `x`
 次に、閉包は`x`所有権を持ち、`main`は`println!`文で`x`もう使用することはできません。
 `println!`削除すると、この例が修正されます。
 
-一つを指定する時間のほとんど`Fn`特性縛りは、あなたが始めることができる`Fn`とあなたが必要な場合、製譜器はあなたを教えてくれます`FnMut`または`FnOnce`閉包体に何が起こるかに基づきます。
+一つを指定する時間のほとんど`Fn`特性縛りは、始めることができる`Fn`と必要な場合、製譜器はあなたを教えてくれます`FnMut`または`FnOnce`閉包体に何が起こるかに基づきます。
 
 環境を捕獲できる閉包が機能パラメータとして有用な状況を説明するために、次の話題、反復子に移りましょう。

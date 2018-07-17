@@ -19,7 +19,7 @@ fn first_word(s: &String) -> ?
 しかし、単語の終わりの添字を返すことができます。
 リスト4-7に示すように、これを試してみましょう。
 
-<span class="filename">ファイル名。src / main.rs</span>
+<span class="filename">ファイル名。src/main.rs</span>
 
 ```rust
 fn first_word(s: &String) -> usize {
@@ -75,7 +75,7 @@ s.len()
 つまり、`String`とは別の値なので、将来も有効であるという保証はありません。
 リスト4-7の`first_word`機能を使用するリスト4-8の算譜を考えてみましょう。
 
-<span class="filename">ファイル名。src / main.rs</span>
+<span class="filename">ファイル名。src/main.rs</span>
 
 ```rust
 # fn first_word(s: &String) -> usize {
@@ -149,7 +149,7 @@ let world = &s[6..11];
 <img src="img/trpl04-06.svg" alt="Stringの6番目のバイトへの指し手と長さ5" class="center" />
 <span class="caption">図4-6。文字列スライスの一部を参照する<code>String</code></span>
 
-Rustのでは`..`あなたが最初の添字（ゼロ）で開始したい場合は、範囲の構文、次の2つの期間の前に値を脱落することができます。
+Rustのでは`..`最初の添字（ゼロ）で開始したい場合は、範囲の構文、次の2つの期間の前に値を脱落することができます。
 換言すれば、これらは等しい。
 
 ```rust
@@ -186,12 +186,12 @@ let slice = &s[..];
 > > 注意。文字列スライス範囲の添字は、有効なUTF-8文字縛りで指定する必要があります。
 > > マルチバイト文字の途中で文字列スライスを作成しようとすると、算譜は誤りで終了します。
 > > 文字列スライスを導入する目的で、この章でのみASCIIを仮定しています。
-> > UTF-8処理の詳細については、第8章の「文字列を使用したUTF-8符号化文言の保存」を参照してください。
+> > UTF-8処理の詳細については、第8章の「文字列を使用したUTF-8符号化テキストの保存」を参照してください。
 
 このすべての情報を念頭に置いて、`first_word`を書き換えてスライスを返しましょう。
 "string slice"を表す型は`&str`。
 
-<span class="filename">ファイル名。src / main.rs</span>
+<span class="filename">ファイル名。src/main.rs</span>
 
 ```rust
 fn first_word(s: &String) -> &str {
@@ -226,7 +226,7 @@ Emptied文字列で最初の単語添字を使用しようとした場合、問�
 スライスはこのバグを不可能にし、私たちに譜面の問題がはるかに早いことを知らせます。
 `first_word`のスライス版を使用すると、製譜時誤りが送出されます。
 
-<span class="filename">ファイル名。src / main.rs</span>
+<span class="filename">ファイル名。src/main.rs</span>
 
 ```rust,ignore
 fn main() {
@@ -292,7 +292,7 @@ fn first_word(s: &str) -> &str {
 持っている場合は`String`、全体のスライス渡すことができます`String`。
 `String`への参照の代わりに文字列スライスを取る機能を定義することにより、APIは機能を失うことなくより一般的かつ有用になります。
 
-<span class="filename">ファイル名。src / main.rs</span>
+<span class="filename">ファイル名。src/main.rs</span>
 
 ```rust
 # fn first_word(s: &str) -> &str {
@@ -353,7 +353,7 @@ let slice = &a[1..3];
 ## 概要
 
 所有権、借用、およびスライスの概念は、製譜時にRust算譜における記憶域の安全性を保証します。
-Rust言語は、他のシステム演譜言語と同じ方法で記憶使用量を制御できますが、所有者が範囲外になったときにデータ所有者がデータを自動的に後始末するということは、追加譜面を記述したり虫取りする必要がないこの制御を得ます。
+Rust言語は、他の算系演譜言語と同じ方法で記憶使用量を制御できますが、所有者が範囲外になったときにデータ所有者がデータを自動的に後始末するということは、追加譜面を記述したり虫取りする必要がないこの制御を得ます。
 
 所有権は、Rustの他の部分のどれくらいが影響を受けるのかに影響を及ぼします。そのため、これらの概念については、残りの部分でさらに詳しく説明します。
 第5章に進み、`struct`内のデータをまとめてグループ化しましょう。

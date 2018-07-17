@@ -24,7 +24,7 @@
 譜面リスト17-11に、このワークフローを譜面形式で示します。これは、譜集crateという名前の`blog`実装するAPIの使用例です。
 まだ`blog`通い箱を実装していないので、これはまだ製譜されません。
 
-<span class="filename">ファイル名。src / main.rs</span>
+<span class="filename">ファイル名。src/main.rs</span>
 
 ```rust,ignore
 extern crate blog;
@@ -47,19 +47,19 @@ fn main() {
 <span class="caption">リスト17-11。<code>blog</code>通い箱に必要な動作を示す譜面</span>
 
 `Post::new`使ってブログ投稿の新しいドラフトを作成できるようにしたいと考えています。
-次に、ドラフト状態にある間にブログ投稿に文言を追加できるようにします。
+次に、ドラフト状態にある間にブログ投稿にテキストを追加できるようにします。
 投稿の内容をすぐに取得しようとすると、承認前に投稿がまだ草稿であるため、何も起こらないはずです。
 デモンストレーションの目的で`assert_eq!`を譜面に追加しました。
 このための優れた単体テストは、ブログ投稿のドラフトが`content`操作法から空の文字列を返すと主張することですが、この例ではテストを書くつもりはありません。
 
 次に、ポストの見直しの要求を有効にしたい、としたい`content`審査を待っている間に空の文字列を返すこと。
-投稿が承認されると、投稿が公開されるはずです。つまり、`content`呼び出し時に投稿の文言が返されます。
+投稿が承認されると、投稿が公開されるはずです。つまり、`content`呼び出し時に投稿のテキストが返されます。
 
 通い箱からやり取りしている唯一の型は`Post`型です。
 この型は状態パターンを使用し、投稿が草案中であるか、レビューを待っているか、公開されているかを示す3つの状態対象の1つになる値を保持します。
 ある状態から別の状態への変更は、`Post`型で内部的に管理されます。
-`Post`実例の譜集のユーザーから呼び出された操作法に応答してステートが変更されますが、ステートの変更を直接管理する必要はありません。
-また、ユーザーはレビューの前に投稿を公開するなど、州で間違いを犯すことはできません。
+`Post`実例の譜集の利用者から呼び出された操作法に応答してステートが変更されますが、ステートの変更を直接管理する必要はありません。
+また、利用者はレビューの前に投稿を公開するなど、州で間違いを犯すことはできません。
 
 ### `Post`定義とドラフト状態での新規実例の作成
 
@@ -69,7 +69,7 @@ fn main() {
 その後、`Post`の特性対象保持する`Box<State>`内部で`Option`という名前の民間分野での`state`。
 この`Option`がなぜ必要なのかが分かります。
 
-<span class="filename">ファイル名。src / lib.rs</span>
+<span class="filename">ファイル名。src/lib.rs</span>
 
 ```rust
 pub struct Post {
@@ -104,14 +104,14 @@ impl State for Draft {}
 `Post`の`state`欄は内部用なので、他の状態で`Post`を作成する方法はありません！　
 `Post::new`機能では、`content`欄を新しい空の`String`ます。
 
-### 投稿内容の文言の保存
+### 投稿内容のテキストの保存
 
-リスト17-11は、`add_text`という名前の`add_text`を呼び出して、`&str`を渡してブログ記事の文言内容に追加したいということを示しています。
+リスト17-11は、`add_text`という名前の`add_text`を呼び出して、`&str`を渡してブログ記事のテキスト内容に追加したいということを示しています。
 これを操作法として実装します。これは、`content`欄を`pub`として公開するのではなく、
 つまり、`content`欄のデータの読み込み方法を制御する操作法を後で実装することができます。
 `add_text`操作法はかなり簡単ですので、リスト17-13の実装を`impl Post`段落に追加しましょう。
 
-<span class="filename">ファイル名。src / lib.rs</span>
+<span class="filename">ファイル名。src/lib.rs</span>
 
 ```rust
 # pub struct Post {
@@ -127,7 +127,7 @@ impl Post {
 }
 ```
 
-<span class="caption">リスト17-13。投稿の<code>content</code>文言を追加する<code>add_text</code>実装</span>
+<span class="caption">リスト17-13。投稿の<code>content</code>テキストを追加する<code>add_text</code>実装</span>
 
 `add_text`を呼び出す`Post`実例を変更しているため、`add_text`操作法は`self`への変更可能な参照を取ります。
 次に、`content`内の`String` `push_str`を呼び出し、`text`引数を渡して、保存された`content`に追加し`content`。
@@ -142,7 +142,7 @@ impl Post {
 これまでの投稿は下書きの状態にしかないので、投稿の内容は常に空でなければなりません。
 リスト17-14は、この場所取りの実装を示しています。
 
-<span class="filename">ファイル名。src / lib.rs</span>
+<span class="filename">ファイル名。src/lib.rs</span>
 
 ```rust
 # pub struct Post {
@@ -167,7 +167,7 @@ impl Post {
 次に、ポストのレビューをリクエストするための機能を追加する必要があります。ポストの状態を`Draft`から`PendingReview`変更する必要があります。
 リスト17-15にこの譜面を示します。
 
-<span class="filename">ファイル名。src / lib.rs</span>
+<span class="filename">ファイル名。src/lib.rs</span>
 
 ```rust
 # pub struct Post {
@@ -241,7 +241,7 @@ impl State for PendingReview {
 
 `approve`操作法は`request_review`操作法に似てい`request_review`。リスト17-16に示すように、現在の状態がその状態が承認されたときに持つべき値を`state`に設定します。
 
-<span class="filename">ファイル名。src / lib.rs</span>
+<span class="filename">ファイル名。src/lib.rs</span>
 
 ```rust
 # pub struct Post {
@@ -316,7 +316,7 @@ impl State for Published {
 ここで、`Post`の`content`操作法を更新する必要があります。状態が`Published`の場合は、投稿の`content`欄に値を返します。
 それ以外の場合は、リスト17-17に示すように空の文字列スライスを返します。
 
-<span class="filename">ファイル名。src / lib.rs</span>
+<span class="filename">ファイル名。src/lib.rs</span>
 
 ```rust
 # trait State {
@@ -351,9 +351,9 @@ impl Post {
 これは、たとえ製譜器がそれを理解できないとしても、`None`値が決して不可能であることがわかっているときに、第9章の「製譜器より多くの情報がある場合のケース」の章で述べたケースの1つです。
 
 この時点で、呼ぶとき`content`の`&Box<State>`、DEREF強制型変換は上有効になります`&`および`Box`ので、`content`方法は、最終的に実装する型で呼び出される`State`特性を。
-これは、`State`特性定義に`content`を追加する必要があることを意味します。リスト17-18に示すように、状態に応じて内容を返すロジックを配置します。
+これは、`State`特性定義に`content`を追加する必要があることを意味します。リスト17-18に示すように、状態に応じて内容を返す論理を配置します。
 
-<span class="filename">ファイル名。src / lib.rs</span>
+<span class="filename">ファイル名。src/lib.rs</span>
 
 ```rust
 # pub struct Post {
@@ -386,11 +386,11 @@ impl State for Published {
 つまり、`Draft`および`PendingReview`構造体に`content`を実装`content`必要はありません。
 `Published`構造体は`content`操作法を上書きし、`post.content`の値を`post.content`ます。
 
-第10章で説明したように、この操作法では寿命注釈が必要であることに注意してください。引数として`post`を参照し、その`post`一部への参照を返すので、返される参照の存続期間は`post`議論の寿命。
+第10章で説明したように、この操作法では寿命補注が必要であることに注意してください。引数として`post`を参照し、その`post`一部への参照を返すので、返される参照の存続期間は`post`議論の寿命。
 
 これで完了です。リスト17-11のすべてが現在機能しています！　
 ブログポストワークフローのルールで州のパターンを実装しました。
-ルールに関連するロジックは、`Post`全体に散在するのではなく、状態対象に存在します。
+ルールに関連する論理は、`Post`全体に散在するのではなく、状態対象に存在します。
 
 ### 状態パターンの相殺取引
 
@@ -409,14 +409,14 @@ Rustは、対象指向の状態パターンを実装して、各状態で投稿�
 
 * 投稿の状態を`PendingReview`から`Draft`戻す`reject`操作法を追加します。
 * 状態を[ `Published`に変更`approve`には、`approve`するために2回の呼び出しが必要です。
-* 投稿が`Draft`状態の場合にのみ、文言内容を追加できるようにします。
+* 投稿が`Draft`状態の場合にのみ、テキスト内容を追加できるようにします。
    ヒント。状態対象は内容について何が変わる可能性があるのか​​責任を負いませんが、`Post`を変更する責任はありません。
 
 状態パターンの1つの欠点は、状態が状態間の遷移を実装するので、状態のいくつかは互いに結合されることであます。
 間、別の状態を追加する場合`PendingReview`や`Published`など、`Scheduled`、中に譜面を変更する必要があります`PendingReview`への移行を`Scheduled`代わりに。
 `PendingReview`が新しい状態の追加で変更する必要はないが、それは別の設計パターンに切り替えることを意味します。
 
-もう一つの欠点は、いくつかのロジックを複製したことです。
+もう一つの欠点は、いくつかの論理を複製したことです。
 重複のいくつかを排除するために、`request_review`黙用の実装を行い、`self`を返す`State`操作法を`approve`しようとします。
 しかし、これは、対象の安全性に違反します。なぜなら、その特性は、具体的な`self`が正確に何であるかを知らないからです。
 `State`を特性対象として使用できるようにするためには、その操作法が対象化安全である必要があります。
@@ -432,11 +432,11 @@ Rustは、対象指向の状態パターンを実装して、各状態で投稿�
 
 状態パターンを再考して、異なる相殺取引を得る方法を導入します。
 ステートとトランジションを完全にカプセル化するのではなく、外部の譜面がそれらを認識していないので、ステートを異なる型に符号化します。
-したがって、Rustの型チェックシステムは、製譜誤りを出すことによって、公開された投稿のみが許可されている下書き投稿を使用しようとする試みを防ぎます。
+したがって、Rustの型チェック算系は、製譜誤りを出すことによって、公開された投稿のみが許可されている下書き投稿を使用しようとする試みを防ぎます。
 
 リスト17-11の`main`の最初の部分について考えてみましょう。
 
-<span class="filename">ファイル名。src / main.rs</span>
+<span class="filename">ファイル名。src/main.rs</span>
 
 ```rust,ignore
 fn main() {
@@ -447,13 +447,13 @@ fn main() {
 }
 ```
 
-`Post::new`と投稿の内容に文言を追加する機能を使用して、ドラフト状態で新しい投稿を作成できるようにします。
+`Post::new`と投稿の内容にテキストを追加する機能を使用して、ドラフト状態で新しい投稿を作成できるようにします。
 しかし、空の文字列を返すドラフトポストに`content`操作法を持たせる代わりに、ドラフト投稿に`content`操作法がまったくないようにします。
 そうすれば、草稿の内容を取得しようとすると、操作法が存在しないことを示す製譜器誤りが発生します。
 その結果、譜面が製譜されなくなるため、偶発的に草稿内容を本番で表示することは不可能になります。
 リスト17-19に、`Post`構造体と`DraftPost`構造体の定義と、それぞれの操作法を示します。
 
-<span class="filename">ファイル名。src / lib.rs</span>
+<span class="filename">ファイル名。src/lib.rs</span>
 
 ```rust
 pub struct Post {
@@ -485,14 +485,14 @@ impl DraftPost {
 
 <span class="caption">リスト17-19。 <code>content</code>操作法と<code>DraftPost</code>持たず、 <code>content</code>操作法を持たない<code>Post</code></span>
 
-`Post`および`DraftPost`構造体には、ブログ投稿文言を格納する内部用`content`欄があります。
+`Post`および`DraftPost`構造体には、ブログ投稿テキストを格納する内部用`content`欄があります。
 構造体は、`state`の符号化を構造体の型に移しているので、もはや`state`欄を持ちません。
 `Post`構造体には、公開の投稿を表します、そしてそれが持っている`content`を返す操作法`content`。
 
 まだ持っている`Post::new`機能を、代わりの実例を返すの`Post`、それがの実例を返し`DraftPost`。
 `content`は内部用であり、`Post`を返す機能はないので、今すぐ`Post`実例を作成することはできません。
 
-`DraftPost`構造体には`add_text`操作法があるので、以前と同じように`content`に文言を追加できますが、`DraftPost`は`content`操作法が定義されていないことに注意してください。
+`DraftPost`構造体には`add_text`操作法があるので、以前と同じように`content`にテキストを追加できますが、`DraftPost`は`content`操作法が定義されていないことに注意してください。
 今では、すべての投稿が草稿として開始され、ドラフト投稿には表示可能な内容がありません。
 これらの制約を回避しようとすると、製譜器ー・誤りが発生します。
 
@@ -503,7 +503,7 @@ impl DraftPost {
 保留中のレビュー状態の投稿にはまだ内容が表示されません。
 のは、別の構造体を追加することによって、これらの制約を実装してみましょう`PendingReviewPost`、定義`request_review`上の方法を`DraftPost`返すように`PendingReviewPost`、と定義する`approve`の操作法を`PendingReviewPost`返すために`Post`リスト17-20で示されるように、。
 
-<span class="filename">ファイル名。src / lib.rs</span>
+<span class="filename">ファイル名。src/lib.rs</span>
 
 ```rust
 # pub struct Post {
@@ -543,14 +543,14 @@ impl PendingReviewPost {
 `request_review`操作法と`approve`操作法は`self`所有権を取得し、`DraftPost`実例と`PendingReviewPost`実例を消費し、それらをそれぞれ`PendingReviewPost`と公開された`Post`に変換します。
 このように、`request_review`を呼び出した後に、残っている`DraftPost`実例を保持しません。
 `PendingReviewPost`構造体には`content`操作法が定義されていないため、`content`を読み取ろうとすると、`DraftPost`ように製譜器ー・誤りが発生します。
-公表され得る唯一の方法なので`Post`持っている実例`content`定義された操作法を呼び出すことで`approve`の方法`PendingReviewPost`、および取得する唯一の方法`PendingReviewPost`呼び出すことです`request_review`上の方法を`DraftPost`今符号化されてきました、ブログは型システムへのワークフローをポストします。
+公表され得る唯一の方法なので`Post`持っている実例`content`定義された操作法を呼び出すことで`approve`の方法`PendingReviewPost`、および取得する唯一の方法`PendingReviewPost`呼び出すことです`request_review`上の方法を`DraftPost`今符号化されてきました、ブログは型算系へのワークフローをポストします。
 
 しかし、また、`main`いくつかの小さな変更を加える必要があります。
 `request_review`操作法と`approve`操作法は、呼び出された構造体を変更するのではなく、新しい実例を返します。したがって、返された実例を保存するために、`let post =` shadowing代入を追加する必要があります。
 ドラフトや保留中のレビューポストの内容が空の文字列である必要はなく、それらの状態のポストの内容を使用しようとする譜面を製譜することはできません。
 リスト17-21に、`main`の更新された譜面を示します。
 
-<span class="filename">ファイル名。src / main.rs</span>
+<span class="filename">ファイル名。src/main.rs</span>
 
 ```rust,ignore
 extern crate blog;
@@ -572,13 +572,13 @@ fn main() {
 <span class="caption">リスト17-21。blog post workflowの新しい実装を使用する<code>main</code>への変更</span>
 
 `post`を再割り当てするために`main`に変更する必要があったのは、この実装が対象指向の状態パターンに従わなくなったことです。つまり、状態間の変換は`Post`実装内に完全にカプセル化されなくなりました。
-しかし、利益は、型システムと製譜時に発生する型チェックのために無効な状態が不可能になったことです！　
+しかし、利益は、型算系と製譜時に発生する型チェックのために無効な状態が不可能になったことです！　
 これにより、未発表の投稿の内容を表示するなどの特定のバグが発見されてから運用されるようになります。
 
 この章の最初に言及した追加要件のために提案された仕事試し`blog`、それはあなたがこの譜面の版の設計について考えるものを見るためにリスト17-20の後にあるよう通い箱を。
 この設計では、仕事のいくつかがすでに完了している可能性があることに注意してください。
 
-Rustは対象指向の設計パターンを実装することができますが、型システムに状態を​​符号化するなどの他のパタ​​ーンもRustで利用可能です。
+Rustは対象指向の設計パターンを実装することができますが、型算系に状態を​​符号化するなどの他のパタ​​ーンもRustで利用可能です。
 これらのパターンには異なる相殺取引があります。
 対象指向のパターンに精通しているかもしれませんが、Rustの機能を利用するために問題を再考すると、製譜時にいくつかのバグを防ぐなどの利点があります。
 対象指向のパターンは、対象指向言語にはない所有権などの特定の機能のために、常にRustの最良の解決策ではありません。

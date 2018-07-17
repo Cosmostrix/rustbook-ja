@@ -6,7 +6,7 @@
 たとえば、`Box<T>`は、ボックスが指す原上のスペースを解放するために、`Drop`をカスタマイズします。
 
 他の言語では、スマート指し手の実例を使用するたびに記憶または資源を解放する譜面を演譜師が呼び出さなければなりません。
-彼らが忘れると、システムが多重定義になり異常終了する可能性があります。
+彼らが忘れると、算系が多重定義になり異常終了する可能性があります。
 Rustでは、値が範囲外になるたびに特定のビットの譜面を実行するように指定することができ、製譜器はこの譜面を自動的に挿入します。
 その結果、特定の型の実例が終了した算譜のどこにでも後始末譜面を配置することに注意する必要はありません。資源はまだ漏れません。
 
@@ -17,7 +17,7 @@ Rustの呼び出しがいつ`drop`を見るには、`println!`文を使って`dr
 `CustomSmartPointer`リスト15-14は、`CustomSmartPointer`構造体を示しています。`CustomSmartPointer`構造体は、実例が有効範囲外に出たときに`Dropping CustomSmartPointer!`する独自の機能のみを`Dropping CustomSmartPointer!`ています。
 この例は、Rustが`drop`機能を実行するときを示しています。
 
-<span class="filename">ファイル名。src / main.rs</span>
+<span class="filename">ファイル名。src/main.rs</span>
 
 ```rust
 struct CustomSmartPointer {
@@ -41,8 +41,8 @@ fn main() {
 
 `Drop`特性はプレリュードに含まれているので、輸入する必要はありません。
 `CustomSmartPointer` `Drop`特性を実装し、`println!`を呼び出す`drop`操作法の実装を提供します。
-`drop`機能の本体は、型の実例が範囲外になるときに実行したいロジックを配置する場所です。
-Rustが呼び出す際に証明するためにここにいくつかの文言を印字している`drop`。
+`drop`機能の本体は、型の実例が範囲外になるときに実行したい論理を配置する場所です。
+Rustが呼び出す際に証明するためにここにいくつかのテキストを印字している`drop`。
 
 `main`では、`CustomSmartPointer` 2つの実例を作成し、作成した`CustomSmartPointer`を印字します`CustomSmartPointers created.`
 。
@@ -74,7 +74,7 @@ Rustは`Drop`特性の`drop`操作法を手動で呼び出させることはで�
 
 リスト15-15に示すように、リスト15-14の`main`機能を変更して`Drop`特性の`drop`操作法を手動で呼び出そうとすると、製譜器誤りが発生します。
 
-<span class="filename">ファイル名。src / main.rs</span>
+<span class="filename">ファイル名。src/main.rs</span>
 
 ```rust,ignore
 fn main() {
@@ -112,7 +112,7 @@ Rustは、Rustが`main`の最後にある値を自動的に`drop`するため、
 強制的に強制型変換したい値を早期に引数として渡すことで呼び出します。
 この機能はプレリュードにあります。リスト15-16の`main`を変更して、リスト15-16に示すように、`drop`機能を呼び出します。
 
-<span class="filename">ファイル名。src / main.rs</span>
+<span class="filename">ファイル名。src/main.rs</span>
 
 ```rust
 # struct CustomSmartPointer {
@@ -143,7 +143,7 @@ Dropping CustomSmartPointer with data `some data`!
 CustomSmartPointer dropped before the end of main.
 ```
 
-文言 ` ``Dropping CustomSmartPointer with data `some data`!``
+テキスト ` ``Dropping CustomSmartPointer with data `some data`!``
 作成`is printed between the` CustomSmartPointerの`is printed between the`れます。
 `and` CustomSmartPointerは、メインの終了前に落としました。
 `text, showing that the`脱落`method code is called to drop`れてその時点でc` `method code is called to drop`示しています。

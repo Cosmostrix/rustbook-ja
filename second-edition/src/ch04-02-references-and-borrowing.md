@@ -4,7 +4,7 @@
 
 ここでは、値の所有権を取得するのではなく、対象への参照をパラメータとして持つ`calculate_length`機能を定義して使用する方法を示します。
 
-<span class="filename">ファイル名。src / main.rs</span>
+<span class="filename">ファイル名。src/main.rs</span>
 
 ```rust
 fn main() {
@@ -63,13 +63,13 @@ fn calculate_length(s: &String) -> usize { //  sは文字列への参照です
 
 機能パラメータの*借用*として参照を持つことを呼ぶ。
 実際の人生の場合と同様に、人が何かを所有していれば、その人からそれを借りることができます。
-あなたが終わったら、あなたはそれを返さなければなりません。
+終わったら、それを返さなければなりません。
 
 借りているものを変更しようとするとどうなりますか？　
 リスト4-6の譜面を試してみてください。
 スポイラー警告。それは動作しません！　
 
-<span class="filename">ファイル名。src / main.rs</span>
+<span class="filename">ファイル名。src/main.rs</span>
 
 ```rust,ignore
 fn main() {
@@ -104,7 +104,7 @@ error[E0596]: cannot borrow immutable borrowed content `*some_string` as mutable
 
 リスト4-6の譜面の誤りをわずかに微調整して修正できます。
 
-<span class="filename">ファイル名。src / main.rs</span>
+<span class="filename">ファイル名。src/main.rs</span>
 
 ```rust
 fn main() {
@@ -146,7 +146,7 @@ error[E0499]: cannot borrow `s` as mutable more than once at a time
 ```
 
 この制限は変更を可能にするが、非常に制御された様式であます。
-それは、ほとんどの言語があなたが好きなときにあなたが変更させるので、新しいRustびた人が苦労しているものです。
+それは、ほとんどの言語が好きなときに変更させるので、新しいRustびた人が苦労しているものです。
 
 この制限を受ける利点は、Rustが製譜時にデータ競合を防止できることです。
 *データレース*はレースコンディションに似ており、次の3つの動作が発生すると発生します。
@@ -207,11 +207,11 @@ immutable
 
 すごい！　
 不変のものがある間は、変更可能な参照を持つこと*も*できません。
-不変参照のユーザーは、値が突然下から変更されることを期待しません！　
+不変参照の利用者は、値が突然下から変更されることを期待しません！　
 しかし、複数の不変参照は大丈夫です。ただデータを読み込んでいる誰も他の人のデータの読書に影響を与えることはできないからです。
 
 これらの誤りは時には苛立つかもしれませんが、Rust製譜器は潜在的なバグを早期に（実行時ではなく製譜時に）指摘し、問題のある場所を正確に示しています。
-次に、あなたのデータがあなたが思っていたものではない理由を追跡する必要はありません。
+次に、データが思っていたものではない理由を追跡する必要はありません。
 
 ### 行方不明の参照
 
@@ -220,7 +220,7 @@ immutable
 
 Rustが製譜時の誤りで防ぐことのできない、手間のかかる参照を作成しようとしましょう。
 
-<span class="filename">ファイル名。src / main.rs</span>
+<span class="filename">ファイル名。src/main.rs</span>
 
 ```rust,ignore
 fn main() {
@@ -258,7 +258,7 @@ for it to be borrowed from.
 
 `dangle`譜面の各段階で何が起きているのかを詳しく見てみましょう。
 
-<span class="filename">ファイル名。src / main.rs</span>
+<span class="filename">ファイル名。src/main.rs</span>
 
 ```rust,ignore
 #//fn dangle() -> &String { // dangle returns a reference to a String
@@ -296,7 +296,7 @@ fn no_dangle() -> String {
 
 参考文献について議論した内容を要約しましょう。
 
-* 任意の時点で、あなたは、1つの不定参照*または*不変の参照、任意の数の*いずれかを*持つことができます。
+* 任意の時点で、1つの不定参照*または*不変の参照、任意の数の*いずれかを*持つことができます。
 * 参照は常に有効でなければなりません。
 
 次に、異なる種類の参照。スライスを見てみましょう。

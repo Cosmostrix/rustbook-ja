@@ -10,7 +10,7 @@
 付録のマクロの詳細については、まだRustで進化しているため、詳しく説明しています。
 マクロは変更されています。近い将来、Rust 1.0以来、言語と標準譜集の残りの部分よりも速い速度で変更されるため、この章は本書の他の部分よりも古くなる可能性が高くなります。
 Rustの安定性保証のため、ここに示す譜面は今後の版でも引き続き動作しますが、本書の発行時点では入手できなかったマクロを書くための追加機能や簡単な方法があります。
-あなたがこの付録から何かを実装しようとするとき、それを念頭に置いてください。
+この付録から何かを実装しようとするとき、それを念頭に置いてください。
 
 ### マクロと機能の違い
 
@@ -22,7 +22,7 @@ Rustの安定性保証のため、ここに示す譜面は今後の版でも引�
 メタ演譜は、譜面の量を減らすのに役立ちます。これは、機能の役割の1つです。
 しかし、マクロには、機能にはないいくつかの追加機能があります。
 
-関数型指示は、その機能が持つパラメータの数と型を宣言しなければなりません。
+機能型指示は、その機能が持つパラメータの数と型を宣言しなければなりません。
 一方、マクロは、さまざまなパラメータを取ることができます`println!("hello")`を1つの引数で、`println!("hello {}", name)`を2つの引数で呼び出すことができます。
 また、マクロは、製譜器が譜面の意味を解釈する前に展開されるため、マクロは、たとえば、特定の型の特性を実装できます。
 機能は実行時に呼び出され、製譜時に特性を実装する必要があるため、できません。
@@ -31,7 +31,7 @@ Rustの安定性保証のため、ここに示す譜面は今後の版でも引�
 この間接指定のため、マクロ定義は一般に、機能定義よりも読み込み、理解、および保守がより困難です。
 
 マクロと機能の別の違いは、マクロ定義は機能定義のように役区内で名前空間を持たないということです。
-外部通い箱を使用するときに予期しない名前の衝突を防ぐために、`#[macro_use]`注釈を使用して外部通い箱を有効範囲に入れると同時に、マクロを企画の有効範囲に明示的に持ち込まなければなりません。
+外部通い箱を使用するときに予期しない名前の衝突を防ぐために、`#[macro_use]`補注を使用して外部通い箱を有効範囲に入れると同時に、マクロを企画の有効範囲に明示的に持ち込まなければなりません。
 次の例では、`serde`定義されているすべてのマクロを現在の`serde`の有効範囲に`serde`ます。
 
 ```rust,ignore
@@ -88,7 +88,7 @@ macro_rules! vec {
 > > 注。標準譜集の`vec!`マクロの実際の定義には、正しい量の記憶を事前に割り当てるための譜面が含まれています。
 > > この譜面は、例を簡単にするためにここには含まれていない最適化です。
 
-`#[macro_export]`注釈は、マクロを定義している通い箱を輸入するたびにこのマクロを使用可能にする必要があることを示します。
+`#[macro_export]`補注は、マクロを定義している通い箱を輸入するたびにこのマクロを使用可能にする必要があることを示します。
 この注釈がなければ、たとえこの通い箱に依存する人が`#[macro_use]`注釈を使用しても、マクロは有効範囲に入れられません。
 
 次に、マクロ定義を`macro_rules!`開始し、マクロの名前を感嘆符*なしで*定義します。
@@ -111,7 +111,7 @@ macro_rules! vec {
 次に、ドル記号（`$`）とそれに続くカッコがあり、置換譜面で使用するカッコ内のパターンと一致する値を取得します。
 `$()`内には`$x:expr`があり、Rust式に一致し、`$x`という名前の式になります。
 
-`$()`後のカンマは、`$()`取り込まれた譜面と一致する譜面の後に​​直書きカンマ区切り文字が選択肢で現れることを示します。
+`$()`後のカンマは、`$()`取り込まれた譜面と一致する譜面の後に​​直書きカンマ区切り文字が現れるかもしれないことを示します。
 `*`は、コンマの後に`*`が先行するものの0個以上と一致することを指定します。
 
 このマクロを`vec![1, 2, 3];`と呼ぶと`vec![1, 2, 3];`
@@ -141,14 +141,14 @@ temp_vec
 
 マクロの第2の形式は、*プロシージャ型*マクロと呼ばれ*ます。*なぜなら、マクロは機能（プロシージャの一種）のようなものですからです。
 手続き型マクロは、入力としてRustのさわり譜面を受け入れ、その譜面を操作し、パターンと照合する代わりに出力としてRustのさわり譜面を生成し、宣言的マクロのように譜面を他の譜面に置き換えます。
-この執筆時点では、手続き型マクロを定義するだけで、型に型を実装できるようにすることができます。型名を`derive`注釈に指定します。
+この執筆時点では、手続き型マクロを定義するだけで、型に型を実装できるようにすることができます。型名を`derive`補注に指定します。
 
 通い箱という名前の作成します`hello_macro`という名前の特性定義`HelloMacro`という名前の関連する機能を`hello_macro`。
-通い箱のユーザーにそれぞれの型の`HelloMacro`特性を実装させるのではなく、手続き型マクロを用意し、`#[derive(HelloMacro)]`注釈を付けて`hello_macro`機能の黙用実装を得ることが`hello_macro`ます。
+通い箱の利用者にそれぞれの型の`HelloMacro`特性を実装させるのではなく、手続き型マクロを用意し、`#[derive(HelloMacro)]`注釈を付けて`hello_macro`機能の黙用実装を得ることが`hello_macro`ます。
 黙用実装は`Hello, Macro! My name is TypeName!`を出力します`Hello, Macro! My name is TypeName!`ここで、`TypeName`は、この特性が定義されている型の名前です。
 言い換えれば、別の演譜師が通い箱を使ってリストD-2のような譜面を書くことを可能にする通い箱を書くでしょう。
 
-<span class="filename">ファイル名。src / main.rs</span>
+<span class="filename">ファイル名。src/main.rs</span>
 
 ```rust,ignore
 extern crate hello_macro;
@@ -165,7 +165,7 @@ fn main() {
 }
 ```
 
-<span class="caption">リストD-2。手続き型マクロを使用しているときに、crateのユーザが書き込むことができる譜面</span>
+<span class="caption">リストD-2。手続き型マクロを使用しているときに、crateの利用者が書き込むことができる譜面</span>
 
 この譜面は`Hello, Macro! My name is Pancakes!`を印字します。終わっ`Hello, Macro! My name is Pancakes!`。
 最初のステップは、次のように新しい譜集の通い箱を作ることです。
@@ -176,7 +176,7 @@ $ cargo new hello_macro --lib
 
 次に、`HelloMacro`特性とそれに関連する機能を定義します。
 
-<span class="filename">ファイル名。src / lib.rs</span>
+<span class="filename">ファイル名。src/lib.rs</span>
 
 ```rust
 pub trait HelloMacro {
@@ -185,7 +185,7 @@ pub trait HelloMacro {
 ```
 
 特性とその機能を持っています。
-この時点で、通い箱ユーザーは、以下のように、目的の機能を実現するために特性を実装することができます。
+この時点で、通い箱利用者は、以下のように、目的の機能を実現するために特性を実装することができます。
 
 ```rust,ignore
 extern crate hello_macro;
@@ -221,7 +221,7 @@ fn main() {
 $ cargo new hello_macro_derive --lib
 ```
 
-2つの通い箱は密接に関連しているので、`hello_macro`通い箱のディレクトリ内に手順マクロ通い箱を作成します。
+2つの通い箱は密接に関連しているので、`hello_macro`通い箱の階層内に手順マクロ通い箱を作成します。
 特性定義を変更した場合`hello_macro`、中に手続きマクロの実装に変更する必要があります`hello_macro_derive`同様。
 2つのひな型は別々に公開する必要があり、これらのひな型を使用する演譜師は、両方を依存関係として追加し、それらの両方を有効範囲に入れる必要があります。
 代わりに、`hello_macro`依存関係として`hello_macro_derive`を使用させ、手続き型マクロ譜面を再`hello_macro_derive`することができます。
@@ -231,7 +231,7 @@ $ cargo new hello_macro_derive --lib
 また、`syn`と`quote`通い箱の機能が必要になり`quote`すぐにわかるように、それらを依存関係として追加する必要があります。
 用*Cargo.tomlファイル*に次の行を追加します`hello_macro_derive`。
 
-<span class="filename">ファイル名。hello_macro_derive / Cargo.toml</span>
+<span class="filename">ファイル名。hello_macro_derive/Cargo.toml</span>
 
 ```toml
 [lib]
@@ -242,10 +242,10 @@ syn = "0.11.11"
 quote = "0.3.15"
 ```
 
-手続きマクロの定義を開始するには、あなたのため*のsrc / lib.rsファイル*にリストD-3の譜面を配置`hello_macro_derive`通い箱。
+手続きマクロの定義を開始するには、ため*のsrc/lib.rsファイル*にリストD-3の譜面を配置`hello_macro_derive`通い箱。
 この譜面は、`impl_hello_macro`機能の定義を追加するまで製譜されません。
 
-<span class="filename">ファイル名。hello_macro_derive / src / lib.rs</span>
+<span class="filename">ファイル名。hello_macro_derive/src/lib.rs</span>
 
 ```rust,ignore
 extern crate proc_macro;
@@ -258,11 +258,11 @@ use proc_macro::TokenStream;
 #[proc_macro_derive(HelloMacro)]
 pub fn hello_macro_derive(input: TokenStream) -> TokenStream {
 #    // Construct a string representation of the type definition
-    // 型定義の文字列式を構築します。
+    // 型定義の文字列表現を構築します。
     let s = input.to_string();
 
 #    // Parse the string representation
-    // 文字列式を解析する
+    // 文字列表現を解析する
     let ast = syn::parse_derive_input(&s).unwrap();
 
 #    // Build the impl
@@ -292,14 +292,14 @@ D-3で機能を分割した方法に注目してください。
  [`quote`]: https://crates.io/crates/quote
 
 
-`hello_macro_derive`機能は、譜集のユーザがある型に対して`#[derive(HelloMacro)]`を指定したときに呼び出されます。
+`hello_macro_derive`機能は、譜集の利用者がある型に対して`#[derive(HelloMacro)]`を指定したときに呼び出されます。
 その理由は、注釈を付けたことである`hello_macro_derive`とここに機能を`proc_macro_derive`、名前、指定`HelloMacro`当社の特性名と一致します;
 それはほとんどの手続き型マクロが従う規約です。
 
 この機能は、最初の変換`input`から`TokenStream`に`String`呼び出すことにより、`to_string`。
-この`String`は、`HelloMacro`を導出させているRust譜面の文字列式です。
+この`String`は、`HelloMacro`を導出させているRust譜面の文字列表現です。
 リストD-2の例では、`s`は`String`値`struct Pancakes;`を持ち`struct Pancakes;`
-これは`#[derive(HelloMacro)]`注釈を追加したRust譜面です。
+これは`#[derive(HelloMacro)]`補注を追加したRust譜面です。
 
 > > 注意。この執筆時点では、`TokenStream`を文字列に変換することしかできません。
 > > 将来、豊富なAPIが存在するでしょう。
@@ -332,16 +332,16 @@ DeriveInput {
 
 この時点では、`impl_hello_macro`機能を定義していません。これは、インクルードしたい新しいRust譜面を作成するところです。
 前にしかし、これの最後の部分に注意`hello_macro_derive`機能が使用する`parse`から機能を`quote`の出力オンにする通い箱`impl_hello_macro`バックに機能を`TokenStream`。
-返された`TokenStream`は、通い箱ユーザーが書き込む譜面に追加されるので、通い箱を製譜すると、追加機能が提供されます。
+返された`TokenStream`は、通い箱利用者が書き込む譜面に追加されるので、通い箱を製譜すると、追加機能が提供されます。
 
 `parse_derive_input`機能または`parse`機能の呼び出しがここで失敗した場合、`unwrap`をパニックに呼んでいることに気づいたかもしれません。
 proc_macro_derive機能は手続き型マクロAPIに準拠するために`Result`ではなく`TokenStream`返さなければならないため、手続き型マクロ譜面では誤りを`proc_macro_derive`する必要があります。
 `unwrap`を使用してこの例を単純化することを選択しました。
-生産譜面で、あなたが使用して何が悪かったのかについて、より具体的な誤りメッセージが提供しなければならない`panic!`や`expect`。
+本番の譜面で、使用して何が悪かったのかについて、より具体的な誤りメッセージが提供しなければならない`panic!`や`expect`。
 
 注釈付きRust譜面を`TokenStream`から`String`および`DeriveInput`実例に`DeriveInput`する譜面があるので、`HelloMacro`特性を実装する譜面を注釈付き型に生成してみましょう。
 
-<span class="filename">ファイル名。hello_macro_derive / src / lib.rs</span>
+<span class="filename">ファイル名。hello_macro_derive/src/lib.rs</span>
 
 ```rust,ignore
 fn impl_hello_macro(ast: &syn::DeriveInput) -> quote::Tokens {
@@ -362,23 +362,23 @@ fn impl_hello_macro(ast: &syn::DeriveInput) -> quote::Tokens {
 `quote!`マクロを使用すると、返されたいRustの譜面を書き、`quote::Tokens`変換することができ`quote::Tokens`。
 このマクロはまた、非常にクールなひな型機構を提供します。
 `#name`を書くことができ、`quote!`はそれを`name`という`name`の変数の値で置き換えます。
-あなたは、通常のマクロが動作するのと同様の繰り返しを行うことさえできます。
+通常のマクロが動作するのと同様の繰り返しを行うことさえできます。
 [`quote`通い箱の][quote-docs]徹底的なご導入を[ご覧][quote-docs]ください。
 
 [quote-docs]: https://docs.rs/quote
 
-手続き型マクロは、`HelloMacro`を使用して取得できる、ユーザーが注釈した型の`HelloMacro`特性の実装を生成し`#name`。
+手続き型マクロは、`HelloMacro`を使用して取得できる、利用者が注釈した型の`HelloMacro`特性の実装を生成し`#name`。
 特性の実装には、`hello_macro` 1つの機能があります。この機能の本体には、提供したい機能が含まれています。 `hello_macro` `Hello, Macro! My name is`、そして注釈付きの名前です。
 
 ここで使用される`stringify!`マクロは、Rustに組み込まれています。
 それは`1 + 2`ようなRust式をとり、製譜時に式を`"1 + 2"`ような文字列直書きに変換します。
 これは、式を評価して結果を`String` `format!`または`println!`とは異なり`format!`。
-そこている可能性である`#name`入力は文字通り印字する式かもしれませんが、使う`stringify!`。
+そこている可能性である`#name`入力は文字通り印字する表現かもしれませんが、使う`stringify!`。
 使用して`stringify!`も変換することによって、割り当てを保存`#name`製譜時に直書き文字列に。
 
 この時点で、`cargo build`は`hello_macro`と`hello_macro_derive`両方で正常に完了`cargo build`はず`hello_macro_derive`。
 これらの通い箱をリストD-2の譜面にリンクして、手続き型マクロの実際の動作を見てみましょう！　
-`cargo new --bin pancakes`を使用して*企画*ディレクトリに新しい二進譜企画を作成します。
+`cargo new --bin pancakes`を使用して*企画*階層に新しい二進譜企画を作成します。
 追加する必要があり`hello_macro`と`hello_macro_derive`中に依存関係として`pancakes`通い箱の*Cargo.toml。*
 `hello_macro`と`hello_macro_derive`版を*https://crates.io/*に公開しているのであれば、定期的な依存関係になります。
 そうでない場合は、次のように`path`依存関係として指定できます。
@@ -389,12 +389,12 @@ hello_macro = { path = "../hello_macro" }
 hello_macro_derive = { path = "../hello_macro/hello_macro_derive" }
 ```
 
-*SRC / main.rs*にリストD-2からの譜面を入れて、実行`cargo run`。それは印字する必要があります`Hello, Macro! My name is Pancakes!`の実装`HelloMacro`手続きマクロからの特性をせずに含まれていた`pancakes`に必要通い箱それを実装します。
+*SRC/main.rs*にリストD-2からの譜面を入れて、実行`cargo run`。それは印字する必要があります`Hello, Macro! My name is Pancakes!`の実装`HelloMacro`手続きマクロからの特性をせずに含まれていた`pancakes`に必要通い箱それを実装します。
 `#[derive(HelloMacro)]`は特性の実装を追加しました。
 
 ### マクロの未来
 
 将来、Rustは宣言型マクロとプロシージャ型マクロを拡張します。
-Rustは`macro`予約語でより良い宣言的なマクロシステムを使用し、より強力な仕事のためにより多くの型の手続き型マクロを追加し`derive`。
-これらのシステムは、この刊行時点ではまだ開発中です。
+Rustは`macro`予約語でより良い宣言的なマクロ算系を使用し、より強力な仕事のためにより多くの型の手続き型マクロを追加し`derive`。
+これらの算系は、この刊行時点ではまだ開発中です。
 最新の情報については、Rustのオン行説明書を参照してください。

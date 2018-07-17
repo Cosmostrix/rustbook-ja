@@ -1,14 +1,14 @@
 ## 機能
 
 機能はRustの譜面に広がっています。
-あなたはすでに言語の中で最も重要な機能の1つを見てきました。`main`機能は、多くの算譜の入り口です。
+すでに言語の中で最も重要な機能の1つを見てきました。`main`機能は、多くの算譜の入り口です。
 新しい機能を宣言できる`fn`予約語も見てきました。
 
-Rust譜面は、機能名と変数名の従来のスタイルとして*スネークケース*を使用します。
+Rust譜面は、機能名と変数名の従来の作法として*スネークケース*を使用します。
 スネークの場合、すべての文字は小文字で、単語は別々になっています。
 ここに、機能定義の例を含む算譜があります。
 
-<span class="filename">ファイル名。src / main.rs</span>
+<span class="filename">ファイル名。src/main.rs</span>
 
 ```rust
 fn main() {
@@ -32,7 +32,7 @@ Rustの機能定義は`fn`で始まり、機能名の後にかっこが付きま
 Rustはどこで機能を定義するかは気にせず、どこかで定義されているだけです。
 
 さらに機能を探索する*機能を*という名前の新しい二進譜企画を開始してみましょう。
-`another_function`例を*src / main.rsに置き*、実行します。
+`another_function`例を*src/main.rsに置き*、実行します。
 次の出力が表示されます。
 
 ```text
@@ -55,7 +55,7 @@ Another function.
 
 `another_function`の次の書き直し版は、Rustでどのようなパラメータが見えるかを示しています。
 
-<span class="filename">ファイル名。src / main.rs</span>
+<span class="filename">ファイル名。src/main.rs</span>
 
 ```rust
 fn main() {
@@ -82,12 +82,12 @@ The value of x is: 5
 `x`の型は`i32`として指定されます。
 `another_function` `5`が渡されると、`println!`マクロは、中かっこのペアが書式文字列内にあったところに`5`置きます。
 
-関数型指示では、各パラメータの型を宣言する*必要*が*あり*ます。
+機能型指示では、各パラメータの型を宣言する*必要*が*あり*ます。
 これは、Rustの設計における意図的な決定です。機能の定義に型の注釈が必要なことは、製譜器が、譜面のどこかでそれらを使用する必要がほとんどないことを意味します。
 
 機能に複数のパラメータを指定する場合は、パラメータ宣言を次のようにカンマで区切ります。
 
-<span class="filename">ファイル名。src / main.rs</span>
+<span class="filename">ファイル名。src/main.rs</span>
 
 ```rust
 fn main() {
@@ -105,7 +105,7 @@ fn another_function(x: i32, y: i32) {
 機能のパラメータはすべて同じ型である必要はないことに注意してください。
 
 この譜面を実行してみましょう。
-*機能*企画の*src / main.rs*ファイルにある算譜を上記の例に置き換え、`cargo run`を使用して`cargo run`。
+*機能*企画の*src/main.rs*ファイルにある算譜を上記の例に置き換え、`cargo run`を使用して`cargo run`。
 
 ```text
 $ cargo run
@@ -120,7 +120,7 @@ The value of y is: 6
 
 ### 機能本体には文と式が含まれています
 
-機能本体は、選択肢で式で終わる一連の文で構成されます。
+機能本体は、式で終わるかもしれない一連の文で構成されます。
 これまでは、式を終了することなく機能のみを扱ってきましたが、式の一部として式を参照しています。
 Rustは式ベースの言語なので、これは重要な違いです。
 他の言語でも同じ区別がないので、どの文や式がどのようなものか、その違いが機能の本体にどのように影響するかを見てみましょう。
@@ -134,7 +134,7 @@ Rustは式ベースの言語なので、これは重要な違いです。
 リスト3-1では`let y = 6;`
 声明です。
 
-<span class="filename">ファイル名。src / main.rs</span>
+<span class="filename">ファイル名。src/main.rs</span>
 
 ```rust
 fn main() {
@@ -151,7 +151,7 @@ fn main() {
 したがって、`let`文を別の変数に代入することはできません。次の譜面が実行しようとしています。
 誤りが表示されます。
 
-<span class="filename">ファイル名。src / main.rs</span>
+<span class="filename">ファイル名。src/main.rs</span>
 
 ```rust,ignore
 fn main() {
@@ -186,7 +186,7 @@ error: expected expression, found statement (`let`)
 マクロの呼び出しは式です。
 新しい有効範囲を作成するために使用する段落`{}`は式です。たとえば、次のようになります。
 
-<span class="filename">ファイル名。src / main.rs</span>
+<span class="filename">ファイル名。src/main.rs</span>
 
 ```rust
 fn main() {
@@ -225,7 +225,7 @@ Rustでは、機能の戻り値は、機能本体の段落内の最終式の値�
 `return`予約語を使用して値を指定することで、機能から早期に戻ることができますが、ほとんどの機能は最後の式を暗黙的に返します。
 次に、値を返す機能の例を示します。
 
-<span class="filename">ファイル名。src / main.rs</span>
+<span class="filename">ファイル名。src/main.rs</span>
 
 ```rust
 fn five() -> i32 {
@@ -267,7 +267,7 @@ let x = 5;
 
 別の例を見てみましょう。
 
-<span class="filename">ファイル名。src / main.rs</span>
+<span class="filename">ファイル名。src/main.rs</span>
 
 ```rust
 fn main() {
@@ -284,7 +284,7 @@ fn plus_one(x: i32) -> i32 {
 この譜面を実行すると`The value of x is: 6`ます。
 しかし、`x + 1`を含む行の最後にセミコロンを置いて式から文に変更すると、誤りが発生します。
 
-<span class="filename">ファイル名。src / main.rs</span>
+<span class="filename">ファイル名。src/main.rs</span>
 
 ```rust,ignore
 fn main() {

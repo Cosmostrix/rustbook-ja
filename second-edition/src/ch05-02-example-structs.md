@@ -4,9 +4,9 @@
 単一の変数から始めて、代わりに構造体を使用するまで算譜をリファクタリングします。
 
 カーゴは、ピクセル単位で指定された長方形の幅と高さを取ると、長方形の面積を計算します*長方形を*呼ばれるとのは、新しい二進譜企画を作ってみましょう。
-リスト5-8は、企画の*src / main.rsに*ある短い算譜を示しています。
+リスト5-8は、企画の*src/main.rsに*ある短い算譜を示しています。
 
-<span class="filename">ファイル名。src / main.rs</span>
+<span class="filename">ファイル名。src/main.rs</span>
 
 ```rust
 fn main() {
@@ -50,7 +50,7 @@ fn area(width: u32, height: u32) -> u32 {
 
 リスト5-9に、組を使用する別の版の算譜を示します。
 
-<span class="filename">ファイル名。src / main.rs</span>
+<span class="filename">ファイル名。src/main.rs</span>
 
 ```rust
 fn main() {
@@ -83,7 +83,7 @@ fn area(dimensions: (u32, u32)) -> u32 {
 構造体を使用して、データにラベルを付けることによって意味を追加します。
 リスト5-10に示すように、使用している組を、パーツの名前と名前の両方を持つデータ型に変換することができます。
 
-<span class="filename">ファイル名。src / main.rs</span>
+<span class="filename">ファイル名。src/main.rs</span>
 
 ```rust
 struct Rectangle {
@@ -113,10 +113,10 @@ fn area(rectangle: &Rectangle) -> u32 {
 
 `area`機能は、`rectangle`という名前の1つのパラメータで定義されています。その型は、struct `Rectangle`実例の不変の借用です。
 第4章で述べたように、構造体の所有権を取るのではなく、構造体を借りたいと考えています。
-こうすることで、`main`は所有権を保持し、`rect1`を使用し続けることができ`rect1`。これは、関数型指示で`&`を使用し、機能を呼び出す理由です。
+こうすることで、`main`は所有権を保持し、`rect1`を使用し続けることができ`rect1`。これは、機能型指示で`&`を使用し、機能を呼び出す理由です。
 
 `area`機能は、`Rectangle`実例の`width`および`height`欄にアクセスします。
-`area`関数型指示は、正確には次のようになります。`width`と`height`欄を使用して`Rectangle`の面積を計算します。
+`area`機能型指示は、正確には次のようになります。`width`と`height`欄を使用して`Rectangle`の面積を計算します。
 これは、幅と高さが互いに関連していることを伝え、`0`と`1`組添字値を使用するのではなく、値にわかりやすい名前を付けます。
 これは分かりやすくするための勝利です。
 
@@ -126,7 +126,7 @@ fn area(rectangle: &Rectangle) -> u32 {
 リスト5-11は、前の章で使ったように`println!`マクロを使って試行しています。
 しかし、これはうまくいきません。
 
-<span class="filename">ファイル名。src / main.rs</span>
+<span class="filename">ファイル名。src/main.rs</span>
 
 ```rust,ignore
 struct Rectangle {
@@ -150,7 +150,7 @@ error[E0277]: the trait bound `Rectangle: std::fmt::Display` is not satisfied
 ```
 
 `println!`マクロは多くの種類の書式設定を行うことができ、自動的には、中かっこは`println!`に、`Display`。出力と呼ばれる書式を使用するように指示します。
-これまでに実装見てきた基本型`Display`表示したいと思います唯一の方法がありますので、自動的には`1`ユーザーまたはその他の基本型が。
+これまでに実装見てきた基本型`Display`表示したいと思います唯一の方法がありますので、自動的には`1`利用者またはその他の基本型が。
 しかし、構造体では、`println!`が出力を形式する方法は、より多くの表示可能性があるためあまり明確ではありません。カンマを使用するかどうかを指定しますか？　
 中かっこを印字しますか？　
 すべての欄を表示する必要がありますか？　
@@ -188,7 +188,7 @@ crate, add `#[derive(Debug)]` or manually implement it
 Rustに*は*虫取り情報を出力する機能*が*含まれていますが、構造体にその機能を利用できるように明示的にオプトインする必要があります。
 そうするために、リスト5-12に示すように、構造体定義の直前に注釈`#[derive(Debug)]`を追加します。
 
-<span class="filename">ファイル名。src / main.rs</span>
+<span class="filename">ファイル名。src/main.rs</span>
 
 ```rust
 #[derive(Debug)]
@@ -204,7 +204,7 @@ fn main() {
 }
 ```
 
-<span class="caption">リスト5-12。注釈を追加して<code>Debug</code>特性を導出し、虫取り書式を使用して<code>Rectangle</code>実例を印字する</span>
+<span class="caption">リスト5-12。補注を追加して<code>Debug</code>特性を導出し、虫取り書式を使用して<code>Rectangle</code>実例を印字する</span>
 
 ここで算譜を実行すると、誤りは発生せず、次の出力が表示されます。
 
@@ -216,7 +216,7 @@ rect1 is Rectangle { width: 30, height: 50 }
 これはもっともきれいな出力ではありませんが、この実例のすべての欄の値を表示します。これは、虫取り時には間違いなく役立ちます。
 より大きな構造体がある場合、読みやすいように出力するのが便利です。
 そのような場合は、`println!`文字列の`{:?}`代わりに`{:?}` `{:#?}`使用できます。
-この例で`{:#?}`スタイルを使用すると、出力は次のようになります。
+この例で`{:#?}`作法を使用すると、出力は次のようになります。
 
 ```text
 rect1 is Rectangle {

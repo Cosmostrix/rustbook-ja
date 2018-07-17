@@ -2,7 +2,7 @@
 
 リスト7-7の`nested_modules`機能の呼び出しのように、役区名を呼び出しの一部として使用して役区内で定義された機能を呼び出す方法について説明しました。
 
-<span class="filename">ファイル名。src / main.rs</span>
+<span class="filename">ファイル名。src/main.rs</span>
 
 ```rust
 pub mod a {
@@ -28,7 +28,7 @@ fn main() {
 Rustの`use`予約語は、呼び出したい機能の役区を有効範囲に持ってくることで長い機能呼び出しを短縮します。
 `a::series::of`役区を二進譜通い箱のルート有効範囲に入れる例を示します。
 
-<span class="filename">ファイル名。src / main.rs</span>
+<span class="filename">ファイル名。src/main.rs</span>
 
 ```rust
 pub mod a {
@@ -72,7 +72,7 @@ fn main() {
 
 そうすることで、すべての役区を除外し、機能を直接参照することができます。
 
-列挙型は役区のような一種の名前空間を形成するので、列挙型の変種を`use`して有効範囲に持ち込むこともできます。
+列挙型は役区のような一種の名前空間を形成するので、列挙型の場合値を`use`して有効範囲に持ち込むこともできます。
 どのような種類の`use`文でも、ある名前空間から複数の項目を有効範囲に持ってくる場合は、次のように中かっことカンマを最後の位置に指定できます。
 
 ```rust
@@ -121,9 +121,9 @@ fn main() {
 
 この章の冒頭で見たように、譜集通い箱を作成すると、Cargoが`tests`役区を作成します。
 それについてもっと詳しく説明しましょう。
-あなたの`communicator`企画で、*src / lib.rsを*開きます。
+`communicator`企画で、*src/lib.rsを*開きます。
 
-<span class="filename">ファイル名。src / lib.rs</span>
+<span class="filename">ファイル名。src/lib.rs</span>
 
 ```rust,ignore
 pub mod client;
@@ -140,7 +140,7 @@ mod tests {
 ```
 
 第11章ではテストの詳細を説明していますが、この例の部分は意味をなさないはず`it_works`。他の役区の隣にあり、 `it_works`という名前の機能を含む`tests`という名前の役区を持っています。
-特別な注釈があるにもかかわらず、`tests`役区は単なる別の役区です！　
+特別な補注があるにもかかわらず、`tests`役区は単なる別の役区です！　
 したがって、役区階層は次のようになります。
 
 ```text
@@ -154,7 +154,7 @@ communicator
 テストは譜集内で譜面を実行するためのものですので、今は機能をチェックしなくても、この`it_works`機能から`client::connect`機能を呼び出そうとします。
 これはまだ動作しません。
 
-<span class="filename">ファイル名。src / lib.rs</span>
+<span class="filename">ファイル名。src/lib.rs</span>
 
 ```rust
 #[cfg(test)]
@@ -179,7 +179,7 @@ error[E0433]: failed to resolve. Use of undeclared type or module `client`
 ```
 
 製譜に失敗しましたが、なぜでしょうか？　
-*src / main.rsのよう*に、`communicator`譜集の枠内にあるので、機能の前に`communicator::`を配置する必要はありません。
+*src/main.rsのよう*に、`communicator`譜集の枠内にあるので、機能の前に`communicator::`を配置する必要はありません。
 その理由は、パスは常に現在の役区との相対的なものであり、ここでは`tests`です。
 唯一の例外は、自動的にはパスが通い箱ルートと相対的な`use`文です。
 `tests`役区には`client`役区が必要です。
@@ -207,7 +207,7 @@ super::client::connect();
 これらの理由から、特に`tests`役区では、`use super::something`が最も良い解決策です。
 だからテストは次のようになります。
 
-<span class="filename">ファイル名。src / lib.rs</span>
+<span class="filename">ファイル名。src/lib.rs</span>
 
 ```rust
 #[cfg(test)]
@@ -236,7 +236,7 @@ test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out
 
 ## 概要
 
-これで、譜面を整理するための新しいテクニックが分かりました。
-これらの手法を使用して、関連する機能をグループ化し、ファイルが長くなりすぎないようにし、譜集ユーザーに整理された公開APIを提示します。
+これで、譜面を整理するための新しい技法が分かりました。
+これらの手法を使用して、関連する機能をグループ化し、ファイルが長くなりすぎないようにし、譜集利用者に整理された公開APIを提示します。
 
 次に、標準譜集の集まりデータ構造を見ていきます。これは、きちんとしたきれいな譜面で使用できます。

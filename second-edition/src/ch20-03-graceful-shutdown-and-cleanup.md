@@ -6,7 +6,7 @@
 
 ここで、`Drop`特性を実装して、貯留庫内の各走脈で`join`を呼び出して、クローズする前に作業している要求を完了できるようにします。
 次に、走脈が新しい要求の受け入れを停止してシャットダウンするように指示する方法を実装します。
-この譜面が実際に動作するように、走脈貯留庫を正常にシャットダウンする前に、2つの要求だけを受け入れるようにサーバーを修正します。
+この譜面が実際に動作するように、走脈貯留庫を正常にシャットダウンする前に、2つの要求だけを受け入れるように提供機を修正します。
 
 ### `ThreadPool`の`Drop`特性の実装
 
@@ -15,7 +15,7 @@
 リスト20-23は、`Drop`実装の最初の試みを示しています。
 この譜面はまだ動作しません。
 
-<span class="filename">ファイル名。src / lib.rs</span>
+<span class="filename">ファイル名。src/lib.rs</span>
 
 ```rust,ignore
 impl Drop for ThreadPool {
@@ -48,12 +48,12 @@ error[E0507]: cannot move out of borrowed content
 
 この誤りは、各`worker`可変的な借用しか持たず、`join`がその引数の所有権を取るため、`join`を呼び出すことができないことを示しています。
 この問題を解決するには、走脈を所有する`Worker`実例から走脈を移動して、走脈が`thread`を消費するように`join`があります。
-リスト17-15でこれをやった次の場合`Worker`保持している`Option<thread::JoinHandle<()>`の代わりに、呼び出すことができ`take`の方法`Option`外の値を移動するには`Some`変種と残し`None`で場合値をその場所。
+リスト17-15でこれをやった次の場合`Worker`保持している`Option<thread::JoinHandle<()>`の代わりに、呼び出すことができ`take`の方法`Option`外の値を移動するには`Some`場合値と残し`None`で場合値をその場所。
 言い換えれば、`Worker`実行している必要があります`Some`中に場合値`thread`、後始末する際に`Worker`、交換してくださいよ`Some`と`None`ように、`Worker`実行する走脈を持っていません。
 
 そこで、`Worker`の定義を次のように更新したいと考えています。
 
-<span class="filename">ファイル名。src / lib.rs</span>
+<span class="filename">ファイル名。src/lib.rs</span>
 
 ```rust
 # use std::thread;
@@ -82,7 +82,7 @@ error[E0308]: mismatched types
    |             |
    |             expected enum `std::option::Option`, found struct
    `std::thread::JoinHandle`
-   |             help: try using a variant of the expected type: `Some(thread)`
+   |             help: try using a 場合値 of the expected type: `Some(thread)`
    |
    = note: expected type `std::option::Option<std::thread::JoinHandle<()>>`
               found type `std::thread::JoinHandle<_>`
@@ -92,7 +92,7 @@ error[E0308]: mismatched types
 新しい`Worker`を作成するときに、`Some`に`thread`値を包む必要があります。
 この誤りを修正するには、次の変更を行います。
 
-<span class="filename">ファイル名。src / lib.rs</span>
+<span class="filename">ファイル名。src/lib.rs</span>
 
 ```rust,ignore
 impl Worker {
@@ -112,7 +112,7 @@ impl Worker {
 先に、`thread`を`worker`から移動させるために`Option`値を`take`ことを意図したと述べました。
 次の変更がこれを行います。
 
-<span class="filename">ファイル名。src / lib.rs</span>
+<span class="filename">ファイル名。src/lib.rs</span>
 
 ```rust,ignore
 impl Drop for ThreadPool {
@@ -128,7 +128,7 @@ impl Drop for ThreadPool {
 }
 ```
 
-第17章で説明した`take`、 `Option`の`take`操作法は、`Some` variantを取り出し、`None`をそのまま残します。
+第17章で説明した`take`、 `Option`の`take`操作法は、`Some` 場合値を取り出し、`None`をそのまま残します。
 `Some`を破壊して走脈を手に入れよ`if let`とする`if let`使っています。
 走脈上で`join`を呼び出します。
 ワーカーの走脈が既に`None`の場合、ワーカーは既に走脈を後始末していることがわかっているので、その場合は何も起こりません。
@@ -137,13 +137,13 @@ impl Drop for ThreadPool {
 
 行ったすべての変更により、譜面は警告なしで製譜されます。
 しかし、悪い知らせは、この譜面はまだ望むように機能しないということです。
-キーは、`Worker`実例の走脈によって実行される閉包のロジックです。現時点では`join`を呼び出します`join`、走脈を永久に`loop`ため、走脈をシャットダウンしません。
+キーは、`Worker`実例の走脈によって実行される閉包の論理です。現時点では`join`を呼び出します`join`、走脈を永久に`loop`ため、走脈をシャットダウンしません。
 現在の`drop`実装で`ThreadPool`を削除しようとすると、メイン走脈は最初の走脈が終了するのを永久に段落します。
 
 それらはどちらかのために聞くように、この問題を解決するために、走脈を修正します`Job`を実行したり、彼らが聞いて停止し、無限ループを終了しなければならない信号。
 `Job`実例の代わりに、チャネルはこれら2つの列挙型の1つを送信します。
 
-<span class="filename">ファイル名。src / lib.rs</span>
+<span class="filename">ファイル名。src/lib.rs</span>
 
 ```rust
 # struct Job;
@@ -157,7 +157,7 @@ enum Message {
 
 リスト20-24に示すように、`Job`型を入力するのではなく、`Message`型の値を使用するようにチャネルを調整する必要があります。
 
-<span class="filename">ファイル名。src / lib.rs</span>
+<span class="filename">ファイル名。src/lib.rs</span>
 
 ```rust,ignore
 pub struct ThreadPool {
@@ -226,7 +226,7 @@ impl Worker {
 しかし、`Terminate`種類のメッセージを作成していないため、警告が表示されます。
 リスト20-25のように`Drop`実装を変更して、この警告を修正しましょう。
 
-<span class="filename">ファイル名。src / lib.rs</span>
+<span class="filename">ファイル名。src/lib.rs</span>
 
 ```rust,ignore
 impl Drop for ThreadPool {
@@ -266,9 +266,9 @@ impl Drop for ThreadPool {
 各作業者は、終了メッセージを受信すると、チャネル上で要求の受信を停止します。
 したがって、ワーカーが存在するのと同じ数の終了メッセージを送信すると、各ワーカーはその走脈で`join`が呼び出される前`join`終了メッセージを受け取ることができます。
 
-この譜面を実行するには、リスト20-26に示すように、サーバーを正常にシャットダウンする前に、`main`を変更して2つの要求のみを受け入れるようにしましょう。
+この譜面を実行するには、リスト20-26に示すように、提供機を正常にシャットダウンする前に、`main`を変更して2つの要求のみを受け入れるようにしましょう。
 
-<span class="filename">ファイル名。src / bin / main.rs</span>
+<span class="filename">ファイル名。src/bin/main.rs</span>
 
 ```rust,ignore
 fn main() {
@@ -287,15 +287,15 @@ fn main() {
 }
 ```
 
-<span class="caption">リスト20-26。ループを終了して2つのリクエストを処理した後にサーバをシャットダウンする</span>
+<span class="caption">リスト20-26。ループを終了して2つのリクエストを処理した後に提供機をシャットダウンする</span>
 
-2つの要求のみを処理した後、現実のWebサーバーをシャットダウンする必要はありません。
+2つの要求のみを処理した後、現実のWeb提供機をシャットダウンする必要はありません。
 この譜面は、正常なシャットダウンと後始末が正常に動作していることを示しています。
 
 `take`操作法は`Iterator`特性で定義され、反復を多くても最初の2つの項目に制限します。
 `ThreadPool`は`main`の最後に有効範囲から外れ、`drop`実装が実行されます。
 
-`cargo run`でサーバーを始動し、3つの要求をします。
+`cargo run`で提供機を始動し、3つの要求をします。
 3番目のリクエストに誤りがあり、端末に次のような出力が表示されます。
 
 ```text
@@ -319,7 +319,7 @@ Shutting down worker 3
 ```
 
 作業員とメッセージの順序が異なることがあります。
-この譜面がメッセージからどのように機能するかを見ることができます。ワーカー0と3が最初の2つの要求を受け取り、3番目の要求では、サーバーは接続の受け入れを停止しました。
+この譜面がメッセージからどのように機能するかを見ることができます。ワーカー0と3が最初の2つの要求を受け取り、3番目の要求では、提供機は接続の受け入れを停止しました。
 `ThreadPool`が`main`の終わりに有効範囲から外れると、その`Drop`実装が起動し、貯留庫はすべてのワーカーに終了を指示します。
 ワーカーはそれぞれ、終了メッセージが表示されたときにメッセージを出力し、走脈貯留庫は`join`を呼び出して各ワーカー走脈をシャットダウンします。
 
@@ -330,12 +330,12 @@ Shutting down worker 3
 
 おめでとう！　
 これで企画が完了しました。
-非同期に応答するために走脈貯留庫を使用する基本的なWebサーバーがあります。
-サーバを正常にシャットダウンすることができ、貯留庫内のすべての走脈が後始末されます。
+非同期に応答するために走脈貯留庫を使用する基本的なWeb提供機があります。
+提供機を正常にシャットダウンすることができ、貯留庫内のすべての走脈が後始末されます。
 
 参考までに完全な譜面は次のとおりです。
 
-<span class="filename">ファイル名。src / bin / main.rs</span>
+<span class="filename">ファイル名。src/bin/main.rs</span>
 
 ```rust,ignore
 extern crate hello;
@@ -367,7 +367,7 @@ fn handle_connection(mut stream: TcpStream) {
     let mut buffer = [0; 512];
     stream.read(&mut buffer).unwrap();
 
-    let get = b"GET / HTTP/1.1\r\n";
+    let get = b"GET/HTTP/1.1\r\n";
     let sleep = b"GET /sleep HTTP/1.1\r\n";
 
     let (status_line, filename) = if buffer.starts_with(get) {
@@ -391,7 +391,7 @@ fn handle_connection(mut stream: TcpStream) {
 }
 ```
 
-<span class="filename">ファイル名。src / lib.rs</span>
+<span class="filename">ファイル名。src/lib.rs</span>
 
 ```rust
 use std::thread;
@@ -525,7 +525,7 @@ impl Worker {
 * 譜集の機能のテストを追加します。
 * `unwrap`する呼び出しをより堅牢な誤り処理に変更します。
 * Web要求を処理する以外の仕事を実行するには、`ThreadPool`を使用します。
-* *https://crates.io/で*走脈貯留庫の枠を見つけて、代わりに通い箱を使用して同様のWebサーバーを実装して*ください*。
+* *https://crates.io/で*走脈貯留庫の枠を見つけて、代わりに通い箱を使用して同様のWeb提供機を実装して*ください*。
    その後、APIと堅牢性を実装した走脈貯留庫と比較します。
 
 ## 概要
@@ -534,4 +534,4 @@ impl Worker {
 あなたは本の終わりまでそれを作った！　
 このRustのツアーに参加してくれてありがとう。
 これであなた自身のRust企画を実装し、他の人々の企画に協力する準備が整いました。
-あなたのRustびた旅で遭遇するあらゆる挑戦をお手伝いしたいと思う他のRustびた人の歓迎するコミュニティがあることに留意してください。
+Rustびた旅で遭遇するあらゆる挑戦をお手伝いしたいと思う他のRustびた人の歓迎するコミュニティがあることに留意してください。

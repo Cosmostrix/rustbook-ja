@@ -1,6 +1,6 @@
 ## 付録B。演算子と記号
 
-この付録には、Rustの構文の用語集が含まれています。演算子や、パス、総称化、特性縛り、マクロ、属性、コメント、組、角かっこの文脈で表示されるその他のシンボルも含まれます。
+この付録には、Rustの構文の用語集が含まれています。演算子や、パス、総称化、特性縛り、マクロ、属性、注釈、組、角かっこの文脈で表示されるその他のシンボルも含まれます。
 
 ### 演算子
 
@@ -36,9 +36,9 @@
 |`.`|`expr.ident`|<!--Member access-->要素アクセス| |
 |`..`|<!--`..`, `expr..`, `..expr`, `expr..expr`-->`..`、 `expr..`、 `..expr`、 `expr..expr`|<!--Right-exclusive range literal-->右排他的直書き| |
 |`..`|`..expr`|<!--Struct literal update syntax-->構造体直書きの更新構文| |
-|`..`|<!--`variant(x, ..)`, `struct_type { x, .. }`-->`variant(x, ..)`、 `struct_type { x, .. }`|<!--“And the rest” pattern binding-->"そして残りの"パターン束縛| |
+|`..`|<!--`場合値(x, ..)`, `struct_type { x, .. }`-->`場合値(x, ..)`、 `struct_type { x, .. }`|<!--“And the rest” pattern binding-->"そして残りの"パターン束縛| |
 |`...`|`expr...expr`|<!--In a pattern: inclusive range pattern-->パターン。包含範囲パターン| |
-|`/`|`expr / expr`|<!--Arithmetic division-->算術除算|`Div`|
+|`/`|`expr/expr`|<!--Arithmetic division-->算術除算|`Div`|
 |`/=`|`var /= expr`|<!--Arithmetic division and assignment-->算術除算と代入|`DivAssign`|
 |`:`|<!--`pat: type`, `ident: type`-->`pat: type`、 `ident: type`|<!--Constraints-->制約| |
 |`:`|`ident: expr`|<!--Struct field initializer-->構造体欄初期化子| |
@@ -158,18 +158,18 @@
 |`$ident:kind`|<!--Macro capture-->マクロ捕獲|
 |`$(…)…`|<!--Macro repetition-->マクロの繰り返し|
 
-表B-7は、コメントを作成するシンボルを示しています。
+表B-7は、注釈を作成するシンボルを示しています。
 
-<span class="caption">表B-7。コメント</span>
+<span class="caption">表B-7。注釈</span>
 
 |<!--Symbol-->シンボル|<!--Explanation-->説明|
 |--------|-------------|
-|`//`|<!--Line comment-->行コメント|
-|`//!`|<!--Inner line doc comment-->内部線のコメント|
-|`///`|<!--Outer line doc comment-->外部行の開発資料コメント|
-|`/*...*/`|<!--Block comment-->コメントを段落する|
-|`/*!...*/`|<!--Inner block doc comment-->内部段落文書のコメント|
-|`/**...*/`|<!--Outer block doc comment-->外部段落の開発資料のコメント|
+|`//`|<!--Line comment-->行注釈|
+|`//!`|<!--Inner line doc comment-->内部線の注釈|
+|`///`|<!--Outer line doc comment-->外部行の開発資料注釈|
+|`/*...*/`|<!--Block comment-->注釈を段落する|
+|`/*!...*/`|<!--Inner block doc comment-->内部段落文書の注釈|
+|`/**...*/`|<!--Outer block doc comment-->外部段落の開発資料の注釈|
 
 表B-8に、組を使用する文脈で表示されるシンボルを示します。
 
@@ -183,7 +183,7 @@
 |`(type,)`|<!--Single-element tuple type-->単一要素組型|
 |`(expr, ...)`|<!--Tuple expression-->組式|
 |`(type, ...)`|<!--Tuple type-->組型|
-|`expr(expr, ...)`|<!--Function call expression;-->機能呼び出し式。<!--also used to initialize tuple `struct` s and tuple `enum` variants-->組`struct`と組`enum`型の初期化にも使用されます|
+|`expr(expr, ...)`|<!--Function call expression;-->機能呼び出し式。<!--also used to initialize tuple `struct` s and tuple `enum` 場合値s-->組`struct`と組`enum`型の初期化にも使用されます|
 |<!--`ident!(...)`, `ident!{...}`, `ident![...]`-->`ident!(...)`、 `ident!{...}`、 `ident![...]`|<!--Macro invocation-->マクロ呼び出し|
 |<!--`expr.0`, `expr.1`, etc.-->`expr.0`、 `expr.1`など|<!--Tuple indexing-->組索引付け|
 

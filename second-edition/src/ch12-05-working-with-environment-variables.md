@@ -1,8 +1,8 @@
 ## 環境変数の操作
 
-特別な機能を追加することで`minigrep`を改善します。大文字と小文字を区別しない検索の選択肢で、ユーザーが環境変数で有効にすることができます。
-この機能を命令行選択肢にすることができ、ユーザーが適用するたびに入力する必要がありますが、代わりに環境変数を使用します。
-そうすることで、ユーザーは環境変数を一度設定し、すべての検索でその端末セッションで大文字と小文字を区別することができます。
+特別な機能を追加することで`minigrep`を改善します。大文字と小文字を区別しない検索の選択肢で、利用者が環境変数で有効にすることができます。
+この機能を命令行選択肢にすることができ、利用者が適用するたびに入力する必要がありますが、代わりに環境変数を使用します。
+そうすることで、利用者は環境変数を一度設定し、すべての検索でその端末セッションで大文字と小文字を区別することができます。
 
 ### 大文字と小文字を区別しない`search`機能の失敗テストの作成
 
@@ -10,7 +10,7 @@
 TDD過程に従い続けますので、最初のステップは失敗したテストを書き直すことです。
 リスト12-20に示すように、新しい`search_case_insensitive`機能の新しいテストを追加し、古いテストの名前を`one_result`から`case_sensitive`に変更して、2つのテストの違いを明確にします。
 
-<span class="filename">ファイル名。src / lib.rs</span>
+<span class="filename">ファイル名。src/lib.rs</span>
 
 ```rust
 #[cfg(test)]
@@ -52,7 +52,7 @@ Trust me.";
 <span class="caption">リスト12-20。追加しようとしている大文字と小文字を区別しない機能のための新しい失敗テストを追加する</span>
 
 古いテストの`contents`も編集していることに注意してください。
-文言に`"Duct tape."`という新しい行が追加されました`"Duct tape."`
+テキストに`"Duct tape."`という新しい行が追加されました`"Duct tape."`
 大文字と小文字を区別して検索する際に、`"duct"`というクエリと一致しない大文字のDを使用します。
 このように古いテストを変更することで、すでに実装されている大文字と小文字を区別した検索機能を誤って破損しないようになります。
 このテストは今すぐ通過し、大文字と小文字を区別しない検索に取り組んでいきます。
@@ -68,7 +68,7 @@ Trust me.";
 リスト12-21に示す`search_case_insensitive`機能は、`search`機能とほぼ同じです。
 唯一の違いは、小文字だろうということで`query`と各`line`ので、行がクエリが含まれているかどうかをチェックするときどんな入力引数の場合、それらは同じケースになるでしょう。
 
-<span class="filename">ファイル名。src / lib.rs</span>
+<span class="filename">ファイル名。src/lib.rs</span>
 
 ```rust
 pub fn search_case_insensitive<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
@@ -88,7 +88,7 @@ pub fn search_case_insensitive<'a>(query: &str, contents: &'a str) -> Vec<&'a st
 <span class="caption">リスト12-21。 <code>search_case_insensitive</code>機能を定義して照会とその行を比較する前に小文字にする</span>
 
 まず、`query`文字列を小文字にして、同じ名前の影付き変数に格納し`query`。
-クエリで`to_lowercase`を呼び出す必要があるので、ユーザーのクエリが`"rust"`、 `"RUST"`、 `"Rust:"`、 `"rUsT"`いずれのクエリであっても、クエリは`"rust"`であるかのように扱われますケース。
+クエリで`to_lowercase`を呼び出す必要があるので、利用者のクエリが`"rust"`、 `"RUST"`、 `"Rust:"`、 `"rUsT"`いずれのクエリであっても、クエリは`"rust"`であるかのように扱われますケース。
 
 その注意`query`今ある`String`を呼び出すためではなく、文字列スライス`to_lowercase`、既存のデータを参照するのではなく、新しいデータを作成します。
 クエリが`"rUsT"`であるとしましょう。つまり、文字列スライスには使用する小文字の`u`または`t`が含まれていないので、`"rust"`を含む新しい`String`を割り当てる必要があります。
@@ -113,7 +113,7 @@ test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out
 まず、`Config`構造体に構成選択肢を追加して、大文字小文字の区別と大/小文字を区別しない検索を切り替えます。
 この欄を追加すると、この欄はまだどこにでも初期化されていないため、製譜器誤りが発生します。
 
-<span class="filename">ファイル名。src / lib.rs</span>
+<span class="filename">ファイル名。src/lib.rs</span>
 
 ```rust
 pub struct Config {
@@ -127,7 +127,7 @@ pub struct Config {
 次に、`run`機能を使用して`case_sensitive`欄の値をチェックし、それを使用して`search`機能または`search_case_insensitive`機能を呼び出すかどうかを決定します（`search_case_insensitive`リスト12-22を参照）。
 これはまだ製譜されないことに注意してください。
 
-<span class="filename">ファイル名。src / lib.rs</span>
+<span class="filename">ファイル名。src/lib.rs</span>
 
 ```rust
 # use std::error::Error;
@@ -172,10 +172,10 @@ pub fn run(config: Config) -> Result<(), Box<Error>> {
 
 最後に、環境変数を確認する必要があります。
 環境変数を扱うための機能は、標準譜集の`env`役区にあるので、`use std::env;`してその役区を有効範囲に入れたいと思っています`use std::env;`
-*src / lib.rsの*先頭にある行。
+*src/lib.rsの*先頭にある行。
 次に、`env`役区の`var`機能を使用して、`CASE_INSENSITIVE`という名前の環境変数をチェックします（`CASE_INSENSITIVE`リスト12-23を参照）。
 
-<span class="filename">ファイル名。src / lib.rs</span>
+<span class="filename">ファイル名。src/lib.rs</span>
 
 ```rust
 use std::env;

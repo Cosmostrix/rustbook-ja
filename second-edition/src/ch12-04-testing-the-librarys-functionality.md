@@ -1,11 +1,11 @@
 ## テスト駆動開発による譜集の機能開発
 
-*src / lib.rsに*ロジックを抽出し、*src / main.rs*に引数の収集と誤り処理を残した*ので*、譜面のコア機能のテストを書く方がずっと簡単です。
+*src/lib.rsに*論理を抽出し、*src/main.rs*に引数の収集と誤り処理を残した*ので*、譜面のコア機能のテストを書く方がずっと簡単です。
 命令行から二進譜を呼び出すことなく、さまざまな引数を使って機能を直接呼び出すことができ、戻り値をチェックすることができます。
 `Config::new`機能のいくつかのテストを自由に作成し、自分で`run`ことができます。
 
-この章では、テストドリブン開発（TDD）過程を使用して検索ロジックを`minigrep`算譜に追加します。
-この譜体開発テクニックは、次の手順に従います。
+この章では、テストドリブン開発（TDD）過程を使用して検索論理を`minigrep`算譜に追加します。
+この譜体開発技法は、次の手順に従います。
 
 1. 失敗したテストを作成して実行し、期待どおりに失敗したかどうかを確認します。
 2. 新しいテストパスを作成するのに十分な譜面を書いたり修正したりしてください。
@@ -20,11 +20,11 @@
 
 ### 失敗したテストの作成
 
-これ以上必要ないので、算譜の動作を確認するために使用した*src / lib.rs*と*src / main.rs*から`println!`文を削除しましょう。
-次に、*src / lib.rsに*、第11章で行ったように、テスト機能を含む`test`役区を追加します。テスト機能は、`search`機能に必要な動作を指定します。これは、クエリと文言を検索すると、クエリを含む文言の行だけが返されます。
+これ以上必要ないので、算譜の動作を確認するために使用した*src/lib.rs*と*src/main.rs*から`println!`文を削除しましょう。
+次に、*src/lib.rsに*、第11章で行ったように、テスト機能を含む`test`役区を追加します。テスト機能は、`search`機能に必要な動作を指定します。これは、クエリとテキストを検索すると、クエリを含むテキストの行だけが返されます。
 リスト12-15はこのテストを示していますが、まだ製譜されません。
 
-<span class="filename">ファイル名。src / lib.rs</span>
+<span class="filename">ファイル名。src/lib.rs</span>
 
 ```rust
 # fn search<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
@@ -54,14 +54,14 @@ Pick three.";
 <span class="caption">リスト12-15。持っていたしたい<code>search</code>機能のための失敗テストの作成</span>
 
 このテストは文字列`"duct"`検索します。
-探している文言は3行で、そのうちの1つだけが`"duct"`を含んでいます。
+探しているテキストは3行で、そのうちの1つだけが`"duct"`を含んでいます。
 `search`機能から返される値には、期待される行のみが含まれていると主張します。
 
 このテストを実行することはできません。テストは製譜されていないため、失敗します。`search`機能はまだ存在しません。
 そこで、リスト12-16に示すように、空のベクトルを常に返す`search`機能の定義を追加して、テストを製譜して実行するのに十分な譜面を追加します。
 空のベクトルが`"safe, fast, productive."`という行を含むベクトルと一致しないため、テストは製譜して失敗するはず`"safe, fast, productive."`
 
-<span class="filename">ファイル名。src / lib.rs</span>
+<span class="filename">ファイル名。src/lib.rs</span>
 
 ```rust
 pub fn search<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
@@ -95,7 +95,7 @@ parameter
 ```
 
 Rustはおそらく必要とする二つの議論のどれを知ることができないので、それを伝える必要があます。
-`contents`はすべての文言を含む引数であり、一致する文言部分を返したいので、`contents`は寿命構文を使用して戻り値に接続する必要がある引数です。
+`contents`はすべてのテキストを含む引数であり、一致するテキスト部分を返したいので、`contents`は寿命構文を使用して戻り値に接続する必要がある引数です。
 
 他の演譜言語では、型指示の戻り値に引数を接続する必要はありません。
 これは奇妙に思えるかもしれませんが、時間の経過とともに容易になります。
@@ -152,7 +152,7 @@ error: test failed, to rerun pass '--lib'
 Rustは、リスト12-17に示すように、便利な名前の`lines`である行単位の文字列の繰り返し処理に役立つ操作法を持っています。
 これはまだ製譜されないことに注意してください。
 
-<span class="filename">ファイル名。src / lib.rs</span>
+<span class="filename">ファイル名。src/lib.rs</span>
 
 ```rust,ignore
 pub fn search<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
@@ -175,7 +175,7 @@ pub fn search<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
 リスト12-18に示すように、`search`機能の`contains`操作法への呼び出しを追加します。
 これはまだ製譜されないことに注意してください。
 
-<span class="filename">ファイル名。src / lib.rs</span>
+<span class="filename">ファイル名。src/lib.rs</span>
 
 ```rust,ignore
 pub fn search<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
@@ -196,7 +196,7 @@ pub fn search<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
 そのためには、`for`ループの前に変更可能なベクトルを作成し、`push`操作法を呼び出してベクトルに`line`を格納することができます。
 `for`ループの後に、リスト12-19に示すようにベクトルを返します。
 
-<span class="filename">ファイル名。src / lib.rs</span>
+<span class="filename">ファイル名。src/lib.rs</span>
 
 ```rust,ignore
 pub fn search<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
@@ -238,7 +238,7 @@ test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out
 合格する必要が`config.query`値と`contents` `run`にファイルから読み込み`search`機能を。
 次に、`run`は`search`から返された各行を出力し`search`。
 
-<span class="filename">ファイル名。src / lib.rs</span>
+<span class="filename">ファイル名。src/lib.rs</span>
 
 ```rust,ignore
 pub fn run(config: Config) -> Result<(), Box<Error>> {

@@ -5,7 +5,7 @@
 たとえば、ファイルを開こうとしたときにそのファイルが存在しないために操作が失敗した場合は、過程を終了する代わりにファイルを作成することができます。
 
 「 [`Result`型による潜在的な障害の処理][handle_failure] 」を思い出してください。
- 第2章では、`Result`列挙型は、`Ok`と`Err`という2つの変種を持つと定義されています。
+ 第2章では、`Result`列挙型は、`Ok`と`Err`という2つの場合値を持つと定義されています。
 
 [handle_failure]: ch02-00-guessing-game-tutorial.html#handling-potential-failure-with-the-result-type
 
@@ -16,13 +16,13 @@ enum Result<T, E> {
 }
 ```
 
-`T`と`E`は総称型のパラメータです。総称化については第10章でより詳しく説明します。あなたが今知る必要があるのは、`T`は`Ok`場合値内で成功のケースで返される値の型を表し、`E`は`Err`場合値内の`Err`場合に返される誤りの型を表します。
+`T`と`E`は総称型のパラメータです。総称化については第10章でより詳しく説明します。今知る必要があるのは、`T`は`Ok`場合値内で成功のケースで返される値の型を表し、`E`は`Err`場合値内の`Err`場合に返される誤りの型を表します。
 `Result`はこれらの総称型パラメータがあるため、`Result`型と、標準譜集が定義している機能を使用することができます。戻り値と誤り値が異なる場合があります。
 
 機能が失敗する可能性があるため、`Result`値を返す機能を呼び出しましょう。
 譜面リスト9-3では、ファイルを開こうとしています。
 
-<span class="filename">ファイル名。src / main.rs</span>
+<span class="filename">ファイル名。src/main.rs</span>
 
 ```rust
 use std::fs::File;
@@ -74,7 +74,7 @@ error[E0308]: mismatched types
 リスト9-3の譜面に、`File::open`値に応じて異なる動作を取るために追加する必要があります。
 リスト9-4は、基本的な道具である第6章で説明した`match`式を使用して`Result`を処理する方法の1つを示しています。
 
-<span class="filename">ファイル名。src / main.rs</span>
+<span class="filename">ファイル名。src/main.rs</span>
 
 ```rust,should_panic
 use std::fs::File;
@@ -100,7 +100,7 @@ fn main() {
 
 `match`のもう一方の腕は、`File::open`から`Err`値を取得するケースを処理し`File::open`。
 この例では、`panic!`マクロを呼び出すことにしました。
-現在のディレクトリに*hello.txt*という名前のファイルがなく、この譜面を実行すると、`panic!`マクロから次の出力が表示されます。
+現在の階層に*hello.txt*という名前のファイルがなく、この譜面を実行すると、`panic!`マクロから次の出力が表示されます。
 
 ```text
 thread 'main' panicked at 'There was a problem opening the file: Error { repr:
@@ -116,7 +116,7 @@ Os { code: 2, message: "No such file or directory" } }', src/main.rs:9:12
 `File::open`が他の理由で失敗した場合（たとえば、ファイルを開く権限がないなど）、リスト9-4と同じ方法で譜面を`panic!`ます。
 リスト9-5を見てください。これは、`match`別の腕を追加します。
 
-<span class="filename">ファイル名。src / main.rs</span>
+<span class="filename">ファイル名。src/main.rs</span>
 
 
 ```rust,ignore
@@ -162,7 +162,7 @@ enum `io::ErrorKind`は標準譜集によって提供され、`io`操作の結�
 パターン内の`ref`が必要なので、`error`はガード条件に移動せずに単に参照されます。
 `&` `ref`代わりに`ref`を使って第18章でパターンを参照する理由は、第18章で詳しく説明します。パターンの文脈では`&`は参照と一致し、その値を`ref`ますが、`ref`は値と一致します。あなたにそれへの参照を与えます。
 
-マッチガードでチェックしたい条件は、`error.kind()`によって返された値が`ErrorKind` enumの`NotFound`バリエーションかどうかです。
+マッチガードでチェックしたい条件は、`error.kind()`によって返された値が`ErrorKind` enumの`NotFound`場合値かどうかです。
 そうであれば、`File::create`を使ってファイルを作成しようとし`File::create`。
 しかし、`File::create`も失敗`File::create`可能性があるため、内部`match`式も追加する必要があります。
 ファイルを開くことができない場合は、別の誤りメッセージが表示されます。
@@ -177,7 +177,7 @@ enum `io::ErrorKind`は標準譜集によって提供され、`io`操作の結�
 `Result`が`Err`場合値の場合、`unwrap`は`panic!`マクロのために呼び出します。
 実行中の`unwrap`例を次に示します。
 
-<span class="filename">ファイル名。src / main.rs</span>
+<span class="filename">ファイル名。src/main.rs</span>
 
 ```rust,should_panic
 use std::fs::File;
@@ -196,10 +196,10 @@ src/libcore/result.rs:906:4
 ```
 
 `unwrap`に似ているもう1つの操作法`expect`は、`panic!`誤りメッセージを選択することもできます。
-`unwrap`代わりに`expect`を使用`expect`、良い誤りメッセージを提供すると、あなたの意図を伝えることができ、パニックの原因を簡単に追跡することができます。
+`unwrap`代わりに`expect`を使用`expect`、良い誤りメッセージを提供すると、意図を伝えることができ、パニックの原因を簡単に追跡することができます。
 `expect`の構文は次のようになります。
 
-<span class="filename">ファイル名。src / main.rs</span>
+<span class="filename">ファイル名。src/main.rs</span>
 
 ```rust,should_panic
 use std::fs::File;
@@ -218,18 +218,18 @@ thread 'main' panicked at 'Failed to open hello.txt: Error { repr: Os { code:
 2, message: "No such file or directory" } }', src/libcore/result.rs:906:4
 ```
 
-この誤りメッセージは、指定した文言で始まり、`Failed to open hello.txt`、この誤りメッセージがどこから来たのかを簡単に見つけることができます。
+この誤りメッセージは、指定したテキストで始まり、`Failed to open hello.txt`、この誤りメッセージがどこから来たのかを簡単に見つけることができます。
 複数の場所で`unwrap`を使用すると、同じメッセージをパニックするすべての`unwrap`呼び出しが発生するため、どの`unwrap`がパニックを引き起こしているかを正確に把握するのに時間がかかることがあります。
 
 ### 伝播誤り
 
 この機能内で誤りを処理する代わりに、実装が失敗する可能性のある呼び出しを呼び出す機能を書くときに、誤りを呼び出し譜面に戻して何をすべきかを決定することができます。
-これは、誤りを*伝播*するものとして知られており、譜面の文脈で使用可能なものより誤りを処理する方法を指示する情報やロジックがある場合、呼び出し譜面をより詳細に制御できます。
+これは、誤りを*伝播*するものとして知られており、譜面の文脈で使用可能なものより誤りを処理する方法を指示する情報や論理がある場合、呼び出し譜面をより詳細に制御できます。
 
-たとえば、譜面リスト9-6は、ファイルからユーザー名を読み取る機能を示しています。
+たとえば、譜面リスト9-6は、ファイルから利用者名を読み取る機能を示しています。
 ファイルが存在しないか、読み取れない場合、この機能はこれらの誤りをこの機能を呼び出した譜面に返します。
 
-<span class="filename">ファイル名。src / main.rs</span>
+<span class="filename">ファイル名。src/main.rs</span>
 
 ```rust
 use std::io;
@@ -257,7 +257,7 @@ fn read_username_from_file() -> Result<String, io::Error> {
 
 最初に機能の戻り値の型を`Result<String, io::Error>`。
 これは、機能が`Result<T, E>`型の値を返すことを意味します。ここで、総称化パラメータ`T`は具体的な型`String`で埋められ、総称型`E`は具象型`io::Error`埋められています。
-この機能が問題なく成功すると、この機能を呼び出す譜面は、この機能がファイルから読み取ったユーザー名である`String`を保持する`Ok`値を受け取ります。
+この機能が問題なく成功すると、この機能を呼び出す譜面は、この機能がファイルから読み取った利用者名である`String`を保持する`Ok`値を受け取ります。
 この機能が何らかの問題に遭遇した場合、この機能を呼び出す譜面は、問題の内容に関する詳細情報を含む`io::Error`実例を保持する`Err`値を受け取ります。
 この機能の戻り値の型として`io::Error`を選択しました。これは、この機能の本体で呼び出されている両方の操作から返される誤り値の型であるためです。 `File::open`機能と`read_to_string`操作法。
 
@@ -267,13 +267,13 @@ fn read_username_from_file() -> Result<String, io::Error> {
 
 次に、変数`s`新しい`String`を作成し、`f`のファイル手綱の`read_to_string`操作法を呼び出して、ファイルの内容を`s`読み込みます。
 `read_to_string`操作法は、`File::open`成功したにもかかわらず失敗する可能性があるため、`Result`も返します。
-だから他の必要な`match`その処理するために`Result`次の場合`read_to_string`成功し、その後、機能が成功した、と今のファイルからユーザ名を返す`s`に包まれて`Ok`。
+だから他の必要な`match`その処理するために`Result`次の場合`read_to_string`成功し、その後、機能が成功した、と今のファイルから利用者名を返す`s`に包まれて`Ok`。
 `read_to_string`が失敗した場合、`File::open`戻り値を処理した`match`で誤り値を返したのと同じ方法で誤り値を返します。
 しかし、機能の最後の式であるため、`return`を明示的に言う必要はありません。
 
-この譜面を呼び出す譜面は、ユーザー名を含む`Ok`値または`io::Error`を含む`Err`値のいずれかを取得して処理します。
+この譜面を呼び出す譜面は、利用者名を含む`Ok`値または`io::Error`を含む`Err`値のいずれかを取得して処理します。
 これらの値で呼び出し側の譜面が何をするかはわかりません。
-呼び出し元の譜面が`Err`値を取得した場合、`panic!`て算譜を異常終了させたり、黙用のユーザー名を使用したり、ファイル以外のユーザー名を参照することができます。
+呼び出し元の譜面が`Err`値を取得した場合、`panic!`て算譜を異常終了させたり、黙用の利用者名を使用したり、ファイル以外の利用者名を参照することができます。
 呼び出し元譜面が実際に何をしようとしているかについて十分な情報がないため、すべての成功または誤りの情報を上向きに伝播して適切に処理します。
 
 この伝播誤りのパターンは、Rustが疑問符演算子を提供するほど一般的`?`
@@ -283,7 +283,7 @@ fn read_username_from_file() -> Result<String, io::Error> {
 リスト9-7は、リスト9-6と同じ機能を持つ`read_username_from_file`実装を示していますが、この実装では`?`
 演算子。
 
-<span class="filename">ファイル名。src / main.rs</span>
+<span class="filename">ファイル名。src/main.rs</span>
 
 ```rust
 use std::io;
@@ -327,7 +327,7 @@ fn read_username_from_file() -> Result<String, io::Error> {
 この譜面をさらに短縮することもでき`?`
 リスト9-8を参照してください。
 
-<span class="filename">ファイル名。src / main.rs</span>
+<span class="filename">ファイル名。src/main.rs</span>
 
 ```rust
 use std::io;
@@ -351,9 +351,9 @@ fn read_username_from_file() -> Result<String, io::Error> {
 変数`f`を作成するのではなく、`File::open("hello.txt")?`の結果に`read_to_string`の呼び出しを直接`read_to_string`しました`File::open("hello.txt")?`
 。
 まだ`?`
-`read_to_string`呼び出しの終わりで、`File::open`と`read_to_string`両方が誤りを返すのではなく成功したときに`s`にユーザー名を含む`Ok`値を返します。
+`read_to_string`呼び出しの終わりで、`File::open`と`read_to_string`両方が誤りを返すのではなく成功したときに`s`に利用者名を含む`Ok`値を返します。
 この機能はリスト9-6とリスト9-7と同じです。
-これはちょうど異なった、より人間工学的な方法でそれを書くことです。
+これはちょうど異なった、より使い勝手のよいでそれを書くことです。
 
 #### `?`
 `?`

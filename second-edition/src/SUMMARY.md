@@ -16,7 +16,7 @@
     - [データ型](ch03-02-data-types.md)
     - [機能のしくみ](ch03-03-how-functions-work.md)
     - [Comments](ch03-04-comments.md)
-    - [制御の流れ](ch03-05-control-flow.md)
+    - [制御構造](ch03-05-control-flow.md)
 
 - [所有権について](ch04-00-understanding-ownership.md)
     - [所有権とは何でしょうか？　](ch04-01-what-is-ownership.md)
@@ -30,13 +30,13 @@
 
 - [列挙型と模式照合](ch06-00-enums.md)
     - [列挙型の定義](ch06-01-defining-an-enum.md)
-    - [`match`制御の流れ演算子](ch06-02-match.md)
-    - [`if let`簡潔な制御の流れ](ch06-03-if-let.md)
+    - [`match`制御構造演算子](ch06-02-match.md)
+    - [`if let`簡潔な制御構造](ch06-03-if-let.md)
 
 ## 基本Rustリテラシー
 
 - [Modules](ch07-00-modules.md)
-    - [`mod`とファイルシステム](ch07-01-mod-and-the-filesystem.md)
+    - [`mod`とファイル算系](ch07-01-mod-and-the-filesystem.md)
     - [`pub`可視性の制御](ch07-02-controlling-visibility-with-pub.md)
     - [異なる役区の名前を参照する](ch07-03-importing-names-with-use.md)
 
@@ -60,7 +60,7 @@
     - [テストの実行](ch11-02-running-tests.md)
     - [試験機関](ch11-03-test-organization.md)
 
-- [I / O企画。命令行算譜の構築](ch12-00-an-io-project.md)
+- [I/O企画。命令行算譜の構築](ch12-00-an-io-project.md)
     - [命令行引数の受け入れ](ch12-01-accepting-command-line-arguments.md)
     - [ファイルを読む](ch12-02-reading-a-file.md)
     - [役区性と誤り処理を改善するためのリファクタリング](ch12-03-improving-error-handling-and-modularity.md)
@@ -73,7 +73,7 @@
 - [機能言語の特徴。反復子と閉包](ch13-00-functional-features.md)
     - [閉包。環境を捕捉できる無名機能](ch13-01-closures.md)
     - [反復子を使用した一連の項目の処理](ch13-02-iterators.md)
-    - [I / O企画の改善](ch13-03-improving-our-io-project.md)
+    - [I/O企画の改善](ch13-03-improving-our-io-project.md)
     - [パフォーマンスの比較。ループと反復子](ch13-04-performance.md)
 
 - [カーゴとCrates.ioの詳細](ch14-00-more-about-cargo.md)
@@ -116,9 +116,9 @@
     - [高度な型](ch19-04-advanced-types.md)
     - [高度な機能と終了](ch19-05-advanced-functions-and-closures.md)
 
-- [最終的な企画。マルチ走脈Webサーバーの構築](ch20-00-final-project-a-web-server.md)
-    - [単一走脈Webサーバー](ch20-01-single-threaded.md)
-    - [単一走脈サーバーをマルチ走脈サーバーにする](ch20-02-multithreaded.md)
+- [最終的な企画。多脈処理Web提供機の構築](ch20-00-final-project-a-web-server.md)
+    - [単一走脈Web提供機](ch20-01-single-threaded.md)
+    - [単一走脈提供機を多脈処理提供機にする](ch20-02-multithreaded.md)
     - [グレースフルシャットダウンと後始末](ch20-03-graceful-shutdown-and-cleanup.md)
 
 - [Appendix](appendix-00.md)
