@@ -272,8 +272,8 @@
   ja: 階層
   ja-abbr: 階
   common: ディレクトリ
-  desc: ファイルシステムにおいてinodeの集合を保持する構造。フォルダと異なりディスク上に実体がある
-  comment: 原義は住所氏名録
+  desc: ファイル名簿。ファイルシステムにおいてinodeの集合を保持する構造。フォルダと異なりディスク上に実体がある
+  comment: 原義は住所氏名録、名簿、名鑑、電話帳
 - en: parent directory
   ja: 親階層
   common: 親ディレクトリ
@@ -1222,15 +1222,18 @@
   ja: 素操作
   common: プリミティブ
 - en: comment
-  ja: 注釈
+  ja: 注釈, 注を入れる
   common: コメント
-  desc: ソースコード上のものに限る
+  desc: （ソースコード上のものに限る）注釈や意見など。
+  comment: commentとannotationが被る大問題はとりあえず決着がついた。
+    アノテーションという英語の方がおかしかったのだ。
 - en: comment out
-  ja: 注釈に変える, 避注
+  ja: コメント化, 注釈に変える, 避注
   ja-dead: 注化
   common: コメントアウト
+  comment: 「コメント化」はわかりやすさ重視。
 - en: uncomment
-  ja: 注釈を戻す, 帰注
+  ja: 注釈を戻す, 帰注, 注を取る, 譜面に戻す
   ja-dead: 脱注, 除注
   common: アンコメント
 - en: loop
@@ -1334,12 +1337,13 @@
   common: プリミティブ型
   comment: MSDN 日本語版の Fundamental types の訳
 - en: type coercion
-  ja: 型同調
+  ja: 型同調, 強制型変換
   common: 型強制
   desc: 強制的型変換
-- en: block (of some code)
+- en: block
   ja: 段落
   common: ブロック
+  desc: コードブロック
 - en: command
   ja: 命令
   common: コメント
@@ -1353,8 +1357,9 @@
   ja: 二進譜
   common: バイナリ
 - en: release
-  ja: 放流
+  ja: リリース, 放流
   common: リリース
+  comment: CDリリースで通じるので新語を与える意義があまりない。
 - en: plugin
   ja: 拡張
   common: プラグイン
@@ -1404,7 +1409,7 @@
   ja: 標準譜集
   common: 標準ライブラリ
 - en: package
-  ja-dead: 包み, 分装, 譜装,
+  ja-dead: 包み, 分装, 譜装
   common: パッケージ
   ch: 软件包
   comment: いまはカタカタで妥協しておく。
@@ -1412,7 +1417,7 @@
   ja: パッケージ管理系
   common: パッケージマネージャー
 - en: container
-  ja: 容器
+  ja: 入れ物, 容器
   common: コンテナ
 - en: registry
   ja: 登記簿
@@ -1433,7 +1438,8 @@
   ja: 算法
   common: アルゴリズム, 算法
 - en: instance
-  ja: 実例, 具体例
+  ja: 実例
+  ja-dead: 具体例
   common: インスタンス
 - en: placeholder
   ja: 場所取り
@@ -1453,10 +1459,10 @@
   ja: 多脈化
   common: スレッド化, スレッド処理
 - en: shadow (some bindings)
-  ja: 覆い隠す
+  ja: 遮蔽する, 覆い隠す
   common: シャドーする
 - en: shadowing (bindings)
-  ja: 覆い隠すこと
+  ja: 遮蔽, 覆い隠すこと
   common: シャドーイング
 - en: runtime
   ja: 実行時
@@ -1468,9 +1474,10 @@
   common: 消費者
   comment: conduit のチュートリアルより
 - en: blackbox
-  ja: 黒箱
+  ja-dead: 黒箱
   common: ブラックボックス
   ch: 黑箱
+  comment: 黒い箱だと意味不明なのでカタカナの方がよい。
 - en: patch
   yamato: なおし
   ja-dead: 改良布
@@ -1555,8 +1562,13 @@
   ja: 利用者
   common: ユーザー
 - en: platform
-  ja: 土台環境
+  ja: 基盤環境
+  ja-dead: 土台環境
   common: プラットフォーム
+  comment: 土台環境では言いづらい点（違和感）が気になっていたが、
+    ジーニアス引いたら「利用の基盤となる...の環境」と書いてあったので採用。
+    おまけ：駅のプラットホームは主にイギリス英語らしい。
+    platformには高い演台という意味もあり、本項の意味（計算機インフラ）とはやや遠い。
 - en: distributions (Linux)
   ja: 頒布物
   ja-dead: 配布算系
@@ -1568,7 +1580,7 @@
   ja: 有志
   common: ボランティア, 篤志家, 志願兵, 義勇（軍）, 挺身（隊）
 - en: set up
-  ja: 下準備, 立ち上げ
+  ja: 下準備, 立ち上げ, 設定
   common: セットアップ
   comment: 訳は文脈によると思う
 - en: user forum
@@ -1693,11 +1705,12 @@
   common: リリースチャンネル
   comment: 路線＝団体や組織などの運動の基本方針（デジタル大辞泉）
 - en: annotation
-  ja: 注釈
-  ja-dead: 補注, 特注
+  ja: 補注
+  ja-dead: 附則, 補足, 補注, 特注, 注釈
   common: アノテーション
   desc: comment は分かりやすさのために書くもの、annotation は code の一部/意味への言及（ないと困る補足）
-  comment: コメントは解説であってほしいので注釈とは言わないことにする。
+    コンパイラに対する補足的注意事項。
+  comment: 注釈で生成コードが変わるのはおかしいので却下。「補足」には付け足す意味が含まれている。
   ch: 注解, 标注
 - en: Arc; atomic reference count
   ja: 瞬時参照数計
@@ -1751,8 +1764,7 @@
 - en: box syntax
   ja: ハコ構文
 - en: slice patterns
-  ja-dead: 薄切り模式
-  ja: 切片模式
+  ja-dead: 切片模式, 薄切り模式
 - en: associated types
   ja: 付属型
 - en: associated constants

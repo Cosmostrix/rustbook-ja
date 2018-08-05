@@ -1,14 +1,14 @@
 ## `pub`可視性の制御
 
-リスト7-5の誤りメッセージは、`network`および`network::server`譜面を*src/network/mod.rs*ファイルと*src/network/server.rs*ファイルにそれぞれ移動して解決しました。
-その時点で、`cargo build`は企画を組み上げできましたが、`client::connect`、 `network::connect`、および`network::server::connect`機能が使用されていないという警告メッセージが表示されます。
+リスト7-5の<ruby>誤り<rt>エラー</rt></ruby>メッセージは、`network`および`network::server`<ruby>譜面<rt>コード</rt></ruby>を*src/network/mod.rs*ファイルと*src/network/server.rs*ファイルにそれぞれ移動して解決しました。
+その時点で、`cargo build`は企画を<ruby>組み上げ<rt>ビルド</rt></ruby>できましたが、`client::connect`、 `network::connect`、および`network::server::connect`機能が使用されていないという警告メッセージが表示されます。
 
 では、なぜこれらの警告を受けているのでしょうか？　
-結局のところ、自分の企画の中で必ずしもそうではなく、*利用者*によって使用されることを意図した機能を持つ譜集を構築しているので、これらの`connect`機能は使用されなくてもかまいません。
+結局のところ、自分の企画の中で必ずしもそうではなく、*利用者*によって使用されることを意図した機能を持つ<ruby>譜集<rt>ライブラリー</rt></ruby>を構築しているので、これらの`connect`機能は使用されなくてもかまいません。
 それらを作成することのポイントは、自分の企画ではなく別の企画で使用されることです。
 
-この算譜がなぜこれらの警告を呼び出すのかを理解するために、別の企画の`communicator`譜集を外部から呼び出すことを試みてみましょう。
-これを行うには、この譜面を含む*src/main.rs*ファイルを作成して、譜集通い箱と同じ階層に二進譜通い箱を作成します。
+この<ruby>算譜<rt>プログラム</rt></ruby>がなぜこれらの警告を呼び出すのかを理解するために、別の企画の`communicator`<ruby>譜集<rt>ライブラリー</rt></ruby>を外部から呼び出すことを試みてみましょう。
+これを行うには、この<ruby>譜面<rt>コード</rt></ruby>を含む*src/main.rs*ファイルを作成して、譜集<ruby>通い箱<rt>クレート</rt></ruby>と同じディレクトリに<ruby>二進譜<rt>バイナリ</rt></ruby>通い箱を作成します。
 
 <span class="filename">ファイル名。src/main.rs</span>
 
@@ -20,20 +20,20 @@ fn main() {
 }
 ```
 
-`extern crate`命令を使用して、`communicator`譜集通い箱を有効範囲にします。
-パッケージには*2つの*通い箱が入っています。
-Cargoは*src/main.rs*を、ルートファイルが*src/lib.rs*である既存の譜集通い箱とは別の二進譜通い箱のルートファイルとして扱います。
-このパターンは実行可能な企画では非常に一般的です。ほとんどの機能は譜集通い箱にあり、二進譜通い箱はその譜集通い箱を使用します。
-その結果、他の算譜でも譜集通い箱を使用することができ、それは良い関心の分離です。
+`extern crate`命令を使用して、`communicator`譜集<ruby>通い箱<rt>クレート</rt></ruby>を<ruby>有効範囲<rt>スコープ</rt></ruby>にします。
+パッケージには*2つの*<ruby>通い箱<rt>クレート</rt></ruby>が入っています。
+Cargoは*src/main.rs*を、ルートファイルが*src/lib.rs*である既存の譜集<ruby>通い箱<rt>クレート</rt></ruby>とは別の<ruby>二進譜<rt>バイナリ</rt></ruby>通い箱のルートファイルとして扱います。
+このパターンは実行可能な企画では非常に一般的です。ほとんどの機能は譜集<ruby>通い箱<rt>クレート</rt></ruby>にあり、<ruby>二進譜<rt>バイナリ</rt></ruby>通い箱はその譜集<ruby>通い箱<rt>クレート</rt></ruby>を使用します。
+その結果、他の<ruby>算譜<rt>プログラム</rt></ruby>でも譜集<ruby>通い箱<rt>クレート</rt></ruby>を使用することができ、それは良い関心の分離です。
 
-探している`communicator`譜集ー外の通い箱の観点からは、作成している役区はすべて、通い箱・`communicator`と同じ名前の役区内にあります。
-通い箱の最上位役区を*ルート役区*と呼び*ます*。
+探している`communicator`<ruby>譜集<rt>ライブラリー</rt></ruby>ー外の<ruby>通い箱<rt>クレート</rt></ruby>の観点からは、作成している<ruby>役区<rt>モジュール</rt></ruby>はすべて、<ruby>通い箱<rt>クレート</rt></ruby>・`communicator`と同じ名前の<ruby>役区<rt>モジュール</rt></ruby>内にあります。
+<ruby>通い箱<rt>クレート</rt></ruby>の最上位<ruby>役区<rt>モジュール</rt></ruby>を*ルート<ruby>役区<rt>モジュール</rt></ruby>*と呼び*ます*。
 
-また、企画の下位役区内の外部通い箱を使用している場合でも、ご注意`extern crate`（それほど*のsrc/main.rs*または*SRC/lib.rs*で）ルート役区に行く必要があります。
-次に、下位役区では、項目が最上位の役区であるかのように、外部通い箱の項目を参照できます。
+また、企画の下位<ruby>役区<rt>モジュール</rt></ruby>内の外部<ruby>通い箱<rt>クレート</rt></ruby>を使用している場合でも、ご注意`extern crate`（それほど*のsrc/main.rs*または*SRC/lib.rs*で）ルート<ruby>役区<rt>モジュール</rt></ruby>に行く必要があります。
+次に、下位<ruby>役区<rt>モジュール</rt></ruby>では、項目が最上位の<ruby>役区<rt>モジュール</rt></ruby>であるかのように、外部<ruby>通い箱<rt>クレート</rt></ruby>の項目を参照できます。
 
-今、二進譜・通い箱は、`client`役区から譜集の`connect`機能を呼び出すだけです。
-しかし、`cargo build`を呼び出すと、警告の後に誤りが表示されます。
+今、<ruby>二進譜<rt>バイナリ</rt></ruby>・<ruby>通い箱<rt>クレート</rt></ruby>は、`client`<ruby>役区<rt>モジュール</rt></ruby>から<ruby>譜集<rt>ライブラリー</rt></ruby>の`connect`機能を呼び出すだけです。
+しかし、`cargo build`を呼び出すと、警告の後に<ruby>誤り<rt>エラー</rt></ruby>が表示されます。
 
 ```text
 error[E0603]: module `client` is private
@@ -44,20 +44,20 @@ error[E0603]: module `client` is private
 ```
 
 ああ！　
-この誤りは、`client`役区が内部用であることを示しています。これは警告の要点です。
+この<ruby>誤り<rt>エラー</rt></ruby>は、`client`<ruby>役区<rt>モジュール</rt></ruby>が<ruby>内部用<rt>プライベート</rt></ruby>であることを示しています。これは警告の要点です。
 それはまた、Rustの文脈で*公的*および*私的*という概念に入ったのは初めてです。
-Rustのすべての譜面の黙用状態は内部用です。誰も譜面を使用することはできません。
-算譜内で内部用機能を使用しない場合は、算譜がその機能を使用できる唯一の譜面であるため、Rustはその機能が使用されていないことを警告します。
+Rustのすべての<ruby>譜面<rt>コード</rt></ruby>の<ruby>黙用<rt>デフォルト</rt></ruby>状態は<ruby>内部用<rt>プライベート</rt></ruby>です。誰も<ruby>譜面<rt>コード</rt></ruby>を使用することはできません。
+<ruby>算譜<rt>プログラム</rt></ruby>内で<ruby>内部用<rt>プライベート</rt></ruby>機能を使用しない場合は、<ruby>算譜<rt>プログラム</rt></ruby>がその機能を使用できる唯一の<ruby>譜面<rt>コード</rt></ruby>であるため、Rustはその機能が使用されていないことを警告します。
 
-`client::connect`ような機能がpublicであると指定した後は、二進譜通い箱からその機能への呼び出しを許可するだけでなく、その機能が使用されていないという警告が消えます。
-機能を公開としてマークすると、機能が算譜外の譜面で使用されることがRustに通知されます。
-Rustは、機能が "使用されている"として現在考えられる理論上の外部使用を考慮します。したがって、機能がpublicとマークされている場合、Rustは算譜で使用する必要はなく、機能が未使用であることの警告を停止します。
+`client::connect`ような機能がpublicであると指定した後は、<ruby>二進譜<rt>バイナリ</rt></ruby>通い箱からその機能への呼び出しを許可するだけでなく、その機能が使用されていないという警告が消えます。
+機能を<ruby>公開<rt>パブリック</rt></ruby>としてマークすると、機能が<ruby>算譜<rt>プログラム</rt></ruby>外の<ruby>譜面<rt>コード</rt></ruby>で使用されることがRustに通知されます。
+Rustは、機能が "使用されている"として現在考えられる理論上の外部使用を考慮します。したがって、機能がpublicとマークされている場合、Rustは<ruby>算譜<rt>プログラム</rt></ruby>で使用する必要はなく、機能が未使用であることの警告を停止します。
 
-### 機能を公開にする
+### 機能を<ruby>公開<rt>パブリック</rt></ruby>にする
 
-Rustに機能を公開させるために、`pub`予約語を宣言の先頭に追加し`pub`。
-ここでは、`client::connect`が現在使用されていないことと、``module `client` is private``たちの二進譜通い箱の``module `client` is private``誤りであることを示す警告を修正することに焦点を当てます。
-*src/lib.rs*を変更して`client`役区を公開にし`client`。
+Rustに機能を<ruby>公開<rt>パブリック</rt></ruby>させるために、`pub`予約語を宣言の先頭に追加し`pub`。
+ここでは、`client::connect`が現在使用されていないことと、``module `client` is private``たちの<ruby>二進譜<rt>バイナリ</rt></ruby>通い箱の``module `client` is private``<ruby>誤り<rt>エラー</rt></ruby>であることを示す警告を修正することに焦点を当てます。
+*src/lib.rs*を変更して`client`<ruby>役区<rt>モジュール</rt></ruby>を<ruby>公開<rt>パブリック</rt></ruby>にし`client`。
 
 <span class="filename">ファイル名。src/lib.rs</span>
 
@@ -68,7 +68,7 @@ mod network;
 ```
 
 `pub`予約語は`mod`直前に置かれます。
-もう一度組み上げしてみましょう。
+もう一度<ruby>組み上げ<rt>ビルド</rt></ruby>してみましょう。
 
 ```text
 error[E0603]: function `connect` is private
@@ -79,9 +79,9 @@ error[E0603]: function `connect` is private
 ```
 
 やめ！　
-別の誤りがあります。
-はい、異なる誤りメッセージがお祝いの原因です。
-新しい誤りは``function `connect` is private``であることを示してい``function `connect` is private``ので、*src/client.rs*を編集して`client::connect` publicにしましょう。
+別の<ruby>誤り<rt>エラー</rt></ruby>があります。
+はい、異なる<ruby>誤り<rt>エラー</rt></ruby>メッセージがお祝いの原因です。
+新しい<ruby>誤り<rt>エラー</rt></ruby>は``function `connect` is private``であることを示してい``function `connect` is private``ので、*src/client.rs*を編集して`client::connect` publicにしましょう。
 
 <span class="filename">ファイル名。src/client.rs</span>
 
@@ -110,12 +110,12 @@ warning: function is never used: `connect`
   | |_^
 ```
 
-製譜された譜面と、`client::connect`が使用されていないという警告は消えました！　
+<ruby>製譜<rt>コンパイル</rt></ruby>された<ruby>譜面<rt>コード</rt></ruby>と、`client::connect`が使用されていないという警告は消えました！　
 
-未使用の譜面の警告は、譜面内の項目を公開する必要があることを必ずしも示すもので*はありませ*ん。これらの機能を公開APIの一部にしたく*ない*場合*は*、未使用の譜面の警告により、安全に削除することができます。
-この機能が呼び出される譜集内のすべての場所を誤って削除した場合は、バグに警告することもできます。
+未使用の<ruby>譜面<rt>コード</rt></ruby>の警告は、<ruby>譜面<rt>コード</rt></ruby>内の項目を<ruby>公開<rt>パブリック</rt></ruby>する必要があることを必ずしも示すもので*はありませ*ん。これらの機能を<ruby>公開<rt>パブリック</rt></ruby>APIの一部にしたく*ない*場合*は*、未使用の<ruby>譜面<rt>コード</rt></ruby>の警告により、安全に削除することができます。
+この機能が呼び出される<ruby>譜集<rt>ライブラリー</rt></ruby>内のすべての場所を誤って削除した場合は、バグに警告することもできます。
 
-しかし、この場合、他の2つの機能を通い箱の公開APIの一部に*し*たいので、残っている警告を取り除くためにそれらを`pub`としてマークしましょう。
+しかし、この場合、他の2つの機能を<ruby>通い箱<rt>クレート</rt></ruby>の<ruby>公開<rt>パブリック</rt></ruby>APIの一部に*し*たいので、残っている警告を取り除くためにそれらを`pub`としてマークしましょう。
 *src/network/mod.rs*を次のように変更します。
 
 <span class="filename">ファイル名。src/network/mod.rs</span>
@@ -127,7 +127,7 @@ pub fn connect() {
 mod server;
 ```
 
-次に、譜面を製譜します。
+次に、<ruby>譜面<rt>コード</rt></ruby>を<ruby>製譜<rt>コンパイル</rt></ruby>します。
 
 ```text
 warning: function is never used: `connect`
@@ -148,8 +148,8 @@ warning: function is never used: `connect`
 ```
 
 `network::connect`が`pub`設定されているにもかかわらず、未使用の機能警告が表示されて`pub`ます。
-その理由は、機能が役区内でpublicであるが、機能が存在する`network`役区がpublicでないためです。
-今回は譜集の内部から作業していますが、`client::connect`では外部から作業しました*。src/lib.rs*を変更して`network`公開する必要があります。
+その理由は、機能が<ruby>役区<rt>モジュール</rt></ruby>内でpublicであるが、機能が存在する`network`<ruby>役区<rt>モジュール</rt></ruby>がpublicでないためです。
+今回は<ruby>譜集<rt>ライブラリー</rt></ruby>の内部から作業していますが、`client::connect`では外部から作業しました*。src/lib.rs*を変更して`network`<ruby>公開<rt>パブリック</rt></ruby>する必要があります。
 
 <span class="filename">ファイル名。src/lib.rs</span>
 
@@ -159,7 +159,7 @@ pub mod client;
 pub mod network;
 ```
 
-今製譜すると、その警告は消えてしまいます。
+今<ruby>製譜<rt>コンパイル</rt></ruby>すると、その警告は消えてしまいます。
 
 ```text
 warning: function is never used: `connect`
@@ -178,13 +178,13 @@ warning: function is never used: `connect`
 
 全体的に、これらは項目の可視性のためのルールです。
 
-- 項目が公開されている場合は、その親役区のいずれかを介してアクセスできます。
-- 項目が内部用である場合、その直接の親役区と親の子役区のいずれかによってのみアクセスできます。
+- 項目が<ruby>公開<rt>パブリック</rt></ruby>されている場合は、その親<ruby>役区<rt>モジュール</rt></ruby>のいずれかを介してアクセスできます。
+- 項目が<ruby>内部用<rt>プライベート</rt></ruby>である場合、その直接の親<ruby>役区<rt>モジュール</rt></ruby>と親の子<ruby>役区<rt>モジュール</rt></ruby>のいずれかによってのみアクセスできます。
 
 ### プライバシーの例
 
 いくつかの練習をするためにいくつかのプライバシーの例を見てみましょう。
-新しい譜集企画を作成し、リスト7-6の譜面を新しい企画の*src/lib.rsに入力し*ます。
+新しい<ruby>譜集<rt>ライブラリー</rt></ruby>企画を作成し、リスト7-6の<ruby>譜面<rt>コード</rt></ruby>を新しい企画の*src/lib.rsに入力し*ます。
 
 <span class="filename">ファイル名。src/lib.rs</span>
 
@@ -211,34 +211,34 @@ fn try_me() {
 
 <span class="caption">譜面リスト7-6。private機能とpublic機能の例</span>
 
-この譜面を製譜する前に、`try_me`機能のどの行に誤りがあるかを推測して`try_me`。
-次に、譜面を製譜して、正しいかどうかを確認し、誤りについての説明を読んでください。
+この<ruby>譜面<rt>コード</rt></ruby>を<ruby>製譜<rt>コンパイル</rt></ruby>する前に、`try_me`機能のどの行に<ruby>誤り<rt>エラー</rt></ruby>があるかを推測して`try_me`。
+次に、<ruby>譜面<rt>コード</rt></ruby>を<ruby>製譜<rt>コンパイル</rt></ruby>して、正しいかどうかを確認し、<ruby>誤り<rt>エラー</rt></ruby>についての説明を読んでください。
 
-#### 誤りを見る
+#### <ruby>誤り<rt>エラー</rt></ruby>を見る
 
-`try_me`機能は、企画のルート役区にあります。
-名前の役区`outermost`内部用ですが、2番目のプライバシールールは、と述べている`try_me`機能がアクセスすることを許可されている`outermost`ための役区を`outermost`あるとして、現在の（ルート）役区である`try_me`。
+`try_me`機能は、企画のルート<ruby>役区<rt>モジュール</rt></ruby>にあります。
+名前の<ruby>役区<rt>モジュール</rt></ruby>`outermost`<ruby>内部用<rt>プライベート</rt></ruby>ですが、2番目のプライバシールールは、と述べている`try_me`機能がアクセスすることを許可されている`outermost`ための<ruby>役区<rt>モジュール</rt></ruby>を`outermost`あるとして、現在の（ルート）<ruby>役区<rt>モジュール</rt></ruby>である`try_me`。
 
-`outermost::middle_function`の呼び出しは、`middle_function`がpublicで`try_me`がその親役区を介して`middle_function` `outermost`アクセスしている`middle_function`します。
-すでにこの役区が操作可能であると判断しました。
+`outermost::middle_function`の呼び出しは、`middle_function`がpublicで`try_me`がその親<ruby>役区<rt>モジュール</rt></ruby>を介して`middle_function` `outermost`アクセスしている`middle_function`します。
+すでにこの<ruby>役区<rt>モジュール</rt></ruby>が操作可能であると判断しました。
 
-`outermost::middle_secret_function`は、製譜誤りを引き起こします。
-`middle_secret_function`は内部用なので、2番目のルールが適用されます。
-ルート役区は、`middle_secret_function`（ `outermost`）の現在の役区でも、 `middle_secret_function`現在の役区の子役区でもありません。
+`outermost::middle_secret_function`は、<ruby>製譜<rt>コンパイル</rt></ruby>誤りを引き起こします。
+`middle_secret_function`は<ruby>内部用<rt>プライベート</rt></ruby>なので、2番目のルールが適用されます。
+ルート<ruby>役区<rt>モジュール</rt></ruby>は、`middle_secret_function`（ `outermost`）の現在の<ruby>役区<rt>モジュール</rt></ruby>でも、 `middle_secret_function`現在の<ruby>役区<rt>モジュール</rt></ruby>の子<ruby>役区<rt>モジュール</rt></ruby>でもありません。
 
-`inside`という名前の役区は内部用であり、子役区を持たないため、現在の役区の`outermost`の役区だけがアクセスできます。
+`inside`という名前の<ruby>役区<rt>モジュール</rt></ruby>は<ruby>内部用<rt>プライベート</rt></ruby>であり、子<ruby>役区<rt>モジュール</rt></ruby>を持たないため、現在の<ruby>役区<rt>モジュール</rt></ruby>の`outermost`の<ruby>役区<rt>モジュール</rt></ruby>だけがアクセスできます。
 それは意味`try_me`機能を呼び出すことが許可されていない`outermost::inside::inner_function`または`outermost::inside::secret_function`。
 
-#### 誤りの修正
+#### <ruby>誤り<rt>エラー</rt></ruby>の修正
 
-誤りを修正するために譜面を変更するための提案がいくつかあります。
-それぞれを試す前に、誤りを修正するかどうかを推測してください。
-次に、プライバシールールを使用して理由を理解するために、譜面を製譜して正しいかどうかを確認します。
+<ruby>誤り<rt>エラー</rt></ruby>を修正するために<ruby>譜面<rt>コード</rt></ruby>を変更するための提案がいくつかあります。
+それぞれを試す前に、<ruby>誤り<rt>エラー</rt></ruby>を修正するかどうかを推測してください。
+次に、プライバシールールを使用して理由を理解するために、<ruby>譜面<rt>コード</rt></ruby>を<ruby>製譜<rt>コンパイル</rt></ruby>して正しいかどうかを確認します。
 もっと実験を設計して試してみてください！　
 
-* `inside`役区が公開さ`inside`とどうなりますか？　
-* `outermost`が公的で`inside`が非公開だったらどうなるでしょうか？　
+* `inside`<ruby>役区<rt>モジュール</rt></ruby>が<ruby>公開<rt>パブリック</rt></ruby>さ`inside`とどうなりますか？　
+* `outermost`が公的で`inside`が非<ruby>公開<rt>パブリック</rt></ruby>だったらどうなるでしょうか？　
 * `inner_function`の本体で、`::outermost::middle_secret_function()`場合はどうなりますか？　
-   （最初の2つのコロンは、ルート役区から始まる役区を参照することを意味します）。
+   （最初の2つのコロンは、ルート<ruby>役区<rt>モジュール</rt></ruby>から始まる<ruby>役区<rt>モジュール</rt></ruby>を参照することを意味します）。
 
-次に、`use`予約語を`use`て項目を有効範囲に持ち込む方法について説明し`use`。
+次に、`use`予約語を`use`て項目を<ruby>有効範囲<rt>スコープ</rt></ruby>に持ち込む方法について説明し`use`。

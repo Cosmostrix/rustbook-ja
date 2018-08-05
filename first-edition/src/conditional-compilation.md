@@ -1,6 +1,6 @@
-# 条件付き製譜
+# 条件付きコンパイル
 
-Rustには`#[cfg]`という特殊な属性があり、製譜器に渡されるフラグに基づいて譜面を製譜できます。
+Rustには`#[cfg]`という特殊な属性があり、コンパイラに渡されるフラグに基づいてコードをコンパイルできます。
 これには2つの形式があります。
 
 ```rust
@@ -11,7 +11,7 @@ Rustには`#[cfg]`という特殊な属性があり、製譜器に渡される�
 # fn bar() {}
 ```
 
-それらはまた、いくつかの補助譜を持っています。
+彼らはまた、いくつかのヘルパーを持っています：
 
 ```rust
 #[cfg(any(unix, windows))]
@@ -24,14 +24,14 @@ Rustには`#[cfg]`という特殊な属性があり、製譜器に渡される�
 # fn not_foo() {}
 ```
 
-これらは任意にネストすることができます。
+これらは任意にネストすることができます：
 
 ```rust
 #[cfg(any(not(unix), all(target_os="macos", target_arch = "powerpc")))]
 # fn foo() {}
 ```
 
-これらのスイッチを有効または無効にする方法については、Cargoを使用している場合は、`Cargo.toml` [`[features]`章][features]で設定します。
+これらのスイッチを有効または無効にする方法については、Cargoを使用している場合は、`Cargo.toml` [`[features]`セクション][features]で設定します。
 
 [features]: http://doc.crates.io/manifest.html#the-features-section
 
@@ -45,14 +45,14 @@ default = []
 foo = []
 ```
 
-これを行うと、カーゴは`rustc`た旗に沿って`rustc`ます。
+これを行うと、貨物は`rustc`た旗に沿って`rustc`ます：
 
 ```text
 --cfg feature="${feature_name}"
 ```
 
-これらの`cfg`フラグの和は、どの`cfg`フラグがアクティブになるかを決定し、したがってどの譜面が製譜されるかを決定します。
-この譜面を見てみましょう。
+これらの`cfg`フラグの合計は、どの`cfg`フラグがアクティブになるかを決定し、したがってどのコードがコンパイルされるかを決定します。
+このコードを見てみましょう：
 
 ```rust
 #[cfg(feature = "foo")]
@@ -60,8 +60,8 @@ mod foo {
 }
 ```
 
-`cargo build --features "foo"`で製譜すると、--`--cfg feature="foo"`フラグが`rustc`、出力には`mod foo`が入ります。
-通常の`cargo build`で製譜すると、余分なフラグは渡されないので、`foo`役区は存在しません。
+`cargo build --features "foo"`でコンパイルすると、--`--cfg feature="foo"`フラグが`rustc`、出力には`mod foo`が入ります。
+通常の`cargo build`でコンパイルすると、余分なフラグは渡されないので、`foo`モジュールは存在しません。
 
 # cfg_attr
 
@@ -74,9 +74,9 @@ mod foo {
 
 `cfg`属性で`a`が設定されている場合`a` `#[b]`と同じになり、そうでない場合は`#[b]`となります。
 
-# cfg！　
+# cfg！
 
-`cfg!`マクロを使うと、譜面内の他の場所でも次のようなフラグを使うことができます。
+`cfg!`マクロを使うと、コード内の他の場所でも次のようなフラグを使うことができます：
 
 ```rust
 if cfg!(target_os = "macos") || cfg!(target_os = "ios") {
@@ -84,4 +84,4 @@ if cfg!(target_os = "macos") || cfg!(target_os = "ios") {
 }
 ```
 
-これらは、構成設定に応じて、製譜時に`true`または`false`置き換えられます。
+これらは、構成設定に応じて、コンパイル時に`true`または`false`置き換えられます。

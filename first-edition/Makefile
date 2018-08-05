@@ -4,7 +4,9 @@ PROG = $(shell which maptrans)
 
 all: map2html back2md
 
-back2md: $(patsubst mt-ja-src/%.html,src/%.md,$(SOURCES2))
+back2md: book
+
+book: $(patsubst mt-ja-src/%.html,src/%.md,$(SOURCES2))
 	~/.cargo/bin/mdbook build
 
 src/%.md: ja-md/%.md #patch/%.patch
